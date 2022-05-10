@@ -1,0 +1,19 @@
+import styled from "@emotion/styled"
+
+const Container = styled.div`
+    display: flex;
+    justify-content:flex-end;
+`;
+
+
+interface IProps {
+    label: string,
+    value: string
+}
+function KeyValuePair(props: IProps) {
+    return (
+        <Container>{props.label} : {props.value}</Container>
+    )
+}
+
+export default KeyValuePair
