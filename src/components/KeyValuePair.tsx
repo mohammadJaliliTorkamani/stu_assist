@@ -3,6 +3,7 @@ import styled from "@emotion/styled"
 const Container = styled.div`
     display: flex;
     justify-content:flex-end;
+    font-size: 0.9rem;
 `;
 
 

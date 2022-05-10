@@ -17,10 +17,24 @@ function App() {
     link: "www.google.com"
   }]
 
+  const contactLinks = [
+    {
+      id: 1,
+      label: "روابط عمومی",
+      value: "info@stu-assist.ir"
+    }, {
+      id: 2,
+      label: "ثبت بازخورد",
+      value: "customer@stu-assist.ir"
+    }
+  ]
+
+
+
   return (
     <div className="App">
-      
-      <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={pages} />
+
+      <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={pages} contactUsLinks={contactLinks} />
     </div>
   );
 }

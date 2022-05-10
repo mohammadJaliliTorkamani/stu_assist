@@ -50,12 +50,19 @@ const RightInnerContainer = styled.div`
 
 const ContactUsLabel = styled.div`
     color: #f2f2f2;
-    font-size: 1rem;
+    font-size: 0.9rem;
 `;
 
 interface IProps {
     copyRightText: string,
-    pages: FooterPageLink[]
+    pages: FooterPageLink[],
+    contactUsLinks: KeyValuePairItem[]
+}
+
+interface KeyValuePairItem {
+    id: number,
+    label: string,
+    value: string
 }
 
 interface FooterPageLink {
@@ -77,9 +84,8 @@ function Footer(props: IProps) {
             </MiddleContainer>
             <LeftContainer>
                 <LeftInnerContainer>
-                    <ContactUsLabel>ارتباط با ما :</ContactUsLabel>
-                    <KeyValuePair label={"روابط عمومی"} value={"info@stu-assist.ir"} />
-                    <KeyValuePair label={"مشتریان"} value={"customer@stu-assist.ir"} />
+                    <ContactUsLabel>ارتباط با ما</ContactUsLabel>
+                    {props.contactUsLinks.map(item => <KeyValuePair key={item.id}  {...item} />)}
                 </LeftInnerContainer>
             </LeftContainer>
         </FooterContainer>
