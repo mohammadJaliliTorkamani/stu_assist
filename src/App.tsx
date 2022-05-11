@@ -1,5 +1,6 @@
 import './App.css';
 import Footer from './components/Footer';
+import Header from './components/Header';
 
 function App() {
 
@@ -10,11 +11,11 @@ function App() {
   }, {
     id: 2,
     text: "ضوابط استفاده",
-    link: "www.google.com"
+    link: "www.facebook.com"
   }, {
     id: 1,
     text: "تماس با ما",
-    link: "www.google.com"
+    link: "www.space.com"
   }]
 
   const contactLinks = [
@@ -33,7 +34,7 @@ function App() {
 
   return (
     <div className="App">
-
+      <Header pages={pages} user={"مهمان"} />
       <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={pages} contactUsLinks={contactLinks} />
     </div>
   );
