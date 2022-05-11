@@ -1,8 +1,3 @@
-import styled from '@emotion/styled';
-import './App.css';
-import Content from './components/Content';
-import Footer from './components/Footer';
-import Header from './components/Header';
 import TermsOfUse from './pages/TermsOfUse';
 
 function App() {
