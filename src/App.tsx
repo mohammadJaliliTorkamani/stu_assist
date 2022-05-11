@@ -1,9 +1,10 @@
+import ContactUs from './pages/ContactUs';
 import TermsOfUse from './pages/TermsOfUse';
 
 function App() {
   const content = "متن آزمایشی"
   return (
-    <TermsOfUse content={content} />
+    <ContactUs content={content} />
   );
 }
 
