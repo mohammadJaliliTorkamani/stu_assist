@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import React from "react";
-import Content from "../components/Content";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -57,6 +55,7 @@ const TextContiner = styled.div`
     padding-right: 10%;
     padding-top: 3rem;
     padding-bottom: 3rem;
+    min-height: 30rem;
 `;
 
 const TextBox = styled.div`
