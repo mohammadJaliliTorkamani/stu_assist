@@ -16,7 +16,7 @@ const LeftContainer = styled.div`
     flex:1;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 `;
 
 const LeftInnerContainer = styled.div`
@@ -31,6 +31,7 @@ const MiddleContainer = styled.div`
     flex:1;
     flex-direction: column;
     justify-content : flex-end;
+    align-items: center;
     margin-bottom: 1rem;
     font-size: 0.8rem;
 `;
