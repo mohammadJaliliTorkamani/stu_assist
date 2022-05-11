@@ -1,10 +1,12 @@
+import styled from '@emotion/styled';
 import './App.css';
+import Content from './components/Content';
 import Footer from './components/Footer';
 import Header from './components/Header';
 
 function App() {
 
-  const pages = [{
+  const footerPages = [{
     id: 3,
     text: "خانه",
     link: "www.google.com"
@@ -15,6 +17,20 @@ function App() {
   }, {
     id: 1,
     text: "تماس با ما",
+    link: "www.space.com"
+  }]
+
+  const headerPages = [{
+    id: 3,
+    text: "خانه",
+    link: "www.google.com"
+  }, {
+    id: 2,
+    text: "محاسبه GPA",
+    link: "www.facebook.com"
+  }, {
+    id: 1,
+    text: "محاسبه ECTS",
     link: "www.space.com"
   }]
 
@@ -30,13 +46,19 @@ function App() {
     }
   ]
 
+  const Container = styled.div`
+    display: flex;
+    flex-direction : column;
+  `;
+
 
 
   return (
-    <div className="App">
-      <Header pages={pages} user={"مهمان"} />
-      <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={pages} contactUsLinks={contactLinks} />
-    </div>
+    <Container className="App">
+      <Header pages={headerPages} user={"مهمان"} />
+      <Content />
+      <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={footerPages} contactUsLinks={contactLinks} />
+    </Container>
   );
 }
 

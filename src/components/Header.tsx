@@ -3,10 +3,12 @@ import styled from "@emotion/styled"
 const Container = styled.div`
     display: flex;
     flex-direction : column;
+    height: 25vh;
 `;
 
 const Banner = styled.img`
-    height: 12rem;
+    height: 15rem;
+    background: #adadad;
 `;
 
 const Bar = styled.div`
@@ -52,7 +54,7 @@ interface IProps {
 function Header({ pages, user }: IProps) {
     return (
         <Container>
-            <Banner src={"https://media-exp1.licdn.com/dms/image/C4E1BAQG2_C1ED4fO5Q/company-background_10000/0/1603996374180?e=2147483647&v=beta&t=nM8t7Skn0vzx2YqKzrTzsQbO2cMSruKqbwcJZAzYLWw"} />
+            <Banner />
             <Bar>
                 <Options>{pages.map(page => <Option key={page.id} href={page.link}>{page.text}</Option>)}</Options>
                 <Welcome>{`${user} عزیز خوش آمدید!`}</Welcome>
