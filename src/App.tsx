@@ -1,10 +1,8 @@
-import ContactUs from './pages/ContactUs';
-import TermsOfUse from './pages/TermsOfUse';
+import Home from './pages/Home';
 
 function App() {
-  const content = "متن آزمایشی"
   return (
-    <ContactUs content={content} />
+    <Home />
   );
 }
 
