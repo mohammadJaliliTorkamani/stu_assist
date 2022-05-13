@@ -1,8 +1,8 @@
-import Home from './pages/Home';
+import GPACalculator from './pages/GPACalculator';
 
 function App() {
   return (
-    <Home />
+    <GPACalculator />
   );
 }
 
