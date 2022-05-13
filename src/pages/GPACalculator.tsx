@@ -56,8 +56,7 @@ const GPAContainer = styled.div`
 `;
 
 const FieldsContainer = styled.div`
-    background: red;
-    flex:1;
+    flex:0.7;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -67,20 +66,32 @@ const FieldsContainer = styled.div`
 `;
 
 const ResultContainer = styled.div`
-    background: blue;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 3rem;
+`;
+
+const ResultInnerContainer = styled.div`
     flex: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    border: 2px solid red;
+    border-radius: 1rem;
+    min-width: 60rem;
 `;
+
+
 
 const Title = styled.div`
     font-size: 2rem;
 `;
 
 const Result = styled.div`
-    
+    font-size: 3.5rem;
 `;
 
 function GPACalculator() {
@@ -94,10 +105,12 @@ function GPACalculator() {
                     <GPANumericField title={"حداقل نمره قابل قبول"} />
                 </FieldsContainer>
                 <ResultContainer>
-                    <Title>مقدار GPA (از 4.0) : </Title>
-                    <Result>
-                        HIII
-                    </Result>
+                    <ResultInnerContainer>
+                        <Title>مقدار GPA (از 4.0) : </Title>
+                        <Result>
+                            2.5523
+                        </Result>
+                    </ResultInnerContainer>
                 </ResultContainer>
             </GPAContainer>
             <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={footerPages} contactUsLinks={contactLinks} />

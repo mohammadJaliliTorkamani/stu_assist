@@ -13,8 +13,9 @@ const Title = styled.div`
 
 const ValueInput = styled.input`
     height: 2rem;
-    width: 5rem;
+    width: 8rem;
     coolor: black;
+    text-align: center;
     font-size: 1.2rem;
 `;
 
@@ -28,7 +29,7 @@ function GPANumericField({ title }: IProps) {
             <Title>
                 {title}
             </Title>
-            <ValueInput type='number' max={20} min={0} />
+            <ValueInput type='number' min={0} max={20} />
         </Container>
     )
 }
