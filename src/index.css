@@ -15,6 +15,10 @@ body {
   direction: rtl;
 }
 
+button {
+  font-family: syekan, sans-serif;
+}
+
 html {
   margin: 0;
   padding: 0;

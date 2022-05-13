@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import CalculateButton from "../components/CalculateButton";
 import Footer from "../components/Footer";
 import GPANumericField from "../components/GPANumericField";
 import Header from "../components/Header";
@@ -103,6 +104,7 @@ function GPACalculator() {
                     <GPANumericField title={"معدل شما"} />
                     <GPANumericField title={"حداکثر نمره قابل قبول"} />
                     <GPANumericField title={"حداقل نمره قابل قبول"} />
+                    <CalculateButton title={"محاسبه"} />
                 </FieldsContainer>
                 <ResultContainer>
                     <ResultInnerContainer>
