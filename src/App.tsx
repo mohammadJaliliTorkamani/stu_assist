@@ -1,8 +1,8 @@
-import GPACalculator from './pages/GPACalculator';
+import ECTSCalculator from './pages/ECTSCalculator';
 
 function App() {
   return (
-    <GPACalculator />
+    <ECTSCalculator />
   );
 }
 
