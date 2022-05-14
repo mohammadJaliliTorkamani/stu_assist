@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import React from "react";
 import CalculateButton from "../components/CalculateButton";
 import Footer from "../components/Footer";
 import GPANumericField from "../components/GPANumericField";
