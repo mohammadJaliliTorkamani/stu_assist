@@ -140,7 +140,7 @@ function ECTSCalculator() {
                     </TitleValuePair>
                 </RightBox>
                 <ResultButtonBox>
-                    <CalculateButton title={"محاسبه"} />
+                    <CalculateButton title={"محاسبه"} color={"orange"} />
                     <CalculateArrow src={"https://thumbs.dreamstime.com/b/red-arrow-isolated-white-background-red-arrow-vector-stock-arrow-icon-110771171.jpg"} />
                 </ResultButtonBox>
                 <LeftBox>

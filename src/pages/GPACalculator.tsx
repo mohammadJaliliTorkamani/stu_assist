@@ -104,7 +104,7 @@ function GPACalculator() {
                     <GPANumericField title={"معدل شما"} />
                     <GPANumericField title={"حداکثر نمره قابل قبول"} />
                     <GPANumericField title={"حداقل نمره قابل قبول"} />
-                    <CalculateButton title={"محاسبه"} />
+                    <CalculateButton title={"محاسبه"} color={"red"} />
                 </FieldsContainer>
                 <ResultContainer>
                     <ResultInnerContainer>

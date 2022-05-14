@@ -11,12 +11,13 @@ const Container = styled.button`
 `;
 
 interface IProps {
-    title: string
+    title: string,
+    color: string
 }
 
-function CalculateButton({ title }: IProps) {
+function CalculateButton({ title, color }: IProps) {
     return (
-        <Container>{title}</Container>
+        <Container style={{ background: color }}>{title}</Container>
     )
 }
 
