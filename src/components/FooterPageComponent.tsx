@@ -26,6 +26,7 @@ const PageStyle = styled.div`
     border-radius: 3px;
     font-size : 0.60rem;
     text-decoration: none;
+    cursor: pointer;
 `;
 
 function FooterPageComponent(props: IProps) {

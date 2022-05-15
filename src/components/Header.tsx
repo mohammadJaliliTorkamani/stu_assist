@@ -19,7 +19,7 @@ const Bar = styled.div`
     justify-content: space-between;
     align-items: center;
     background: #636363;
-    padding: 1rem;    
+    padding: 0.8rem;    
 `;
 
 const Options = styled.div`
@@ -33,6 +33,7 @@ const Option = styled.div`
     color: white;
     padding-left : 2rem;
     padding-right : 2rem;
+    cursor: pointer;
 
 `;
 
