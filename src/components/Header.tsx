@@ -39,6 +39,7 @@ const Option = styled.div`
 
 const Welcome = styled.div`
     color: white;
+    cursor: pointer;
 `;
 
 interface TextLink {
