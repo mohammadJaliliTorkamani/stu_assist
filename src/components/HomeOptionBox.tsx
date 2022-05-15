@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { useNavigate } from "react-router-dom";
 
 interface TextLink {
     id: number,
@@ -10,7 +11,7 @@ interface IProps {
     page: TextLink
 }
 
-const Container = styled.a`
+const Container = styled.div`
     cursor: pointer;
     font-size: 3rem;
     background: pink;
@@ -28,8 +29,9 @@ const Container = styled.a`
 `;
 
 function HomeOptionBox({ page }: IProps) {
+    const navigate = useNavigate()
     return (
-        <Container href={page.link}>
+        <Container onClick={() => navigate(page.link)}>
             {page.text}
         </Container>
     )

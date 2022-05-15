@@ -63,6 +63,7 @@ const PayButton = styled.button`
     height: 3rem;
     margin-top: 1rem;
     font-size : 0.94rem;
+    cursor: pointer;
 `;
 
 const ChargeOptions = styled.div`
@@ -90,29 +91,29 @@ const ChargeOptionRecord = styled.div`
 const footerPages = [{
     id: 3,
     text: "خانه",
-    link: "www.google.com"
+    link: "/"
 }, {
     id: 2,
     text: "ضوابط استفاده",
-    link: "www.facebook.com"
+    link: "terms-of-use"
 }, {
     id: 1,
     text: "تماس با ما",
-    link: "www.space.com"
+    link: "contact-us"
 }]
 
 const headerPages = [{
     id: 3,
     text: "خانه",
-    link: "www.google.com"
+    link: "/"
 }, {
     id: 2,
     text: "محاسبه GPA",
-    link: "www.facebook.com"
+    link: "gpa-calculator"
 }, {
     id: 1,
     text: "محاسبه ECTS",
-    link: "www.space.com"
+    link: "ects-calculator"
 }]
 
 const contactLinks = [

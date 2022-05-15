@@ -5,29 +5,29 @@ import Header from "../components/Header";
 const footerPages = [{
     id: 3,
     text: "خانه",
-    link: "www.google.com"
+    link: "/"
 }, {
     id: 2,
     text: "ضوابط استفاده",
-    link: "www.facebook.com"
+    link: "terms-of-use"
 }, {
     id: 1,
     text: "تماس با ما",
-    link: "www.space.com"
+    link: "contact-us"
 }]
 
 const headerPages = [{
     id: 3,
     text: "خانه",
-    link: "www.google.com"
+    link: "/"
 }, {
     id: 2,
     text: "محاسبه GPA",
-    link: "www.facebook.com"
+    link: "gpa-calculator"
 }, {
     id: 1,
     text: "محاسبه ECTS",
-    link: "www.space.com"
+    link: "ects-calculator"
 }]
 
 const contactLinks = [
@@ -73,11 +73,9 @@ const TextBox = styled.div`
     line-height: 2rem;
 `;
 
-interface IProps {
-    content: string
-}
 
-function TermsOfUse({ content }: IProps) {
+function TermsOfUse() {
+    const content = "این یک متن آزمایشی است"
     return (
         <Container className="App">
             <Header pages={headerPages} user={"مهمان"} />

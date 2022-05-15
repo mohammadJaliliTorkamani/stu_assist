@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
     display: flex;
@@ -28,7 +29,7 @@ const Options = styled.div`
 
 `;
 
-const Option = styled.a`
+const Option = styled.div`
     text-decoration: none;
     color: white;
     padding-left : 2rem;
@@ -52,11 +53,12 @@ interface IProps {
 }
 
 function Header({ pages, user }: IProps) {
+    const navigate = useNavigate()
     return (
         <Container>
             <Banner />
             <Bar>
-                <Options>{pages.map(page => <Option key={page.id} href={page.link}>{page.text}</Option>)}</Options>
+                <Options>{pages.map(page => <Option key={page.id} onClick={() => navigate(page.link === "/" ? "/" : ("/" + page.link), { replace: true })}>{page.text}</Option>)}</Options>
                 <Welcome>{`${user} عزیز خوش آمدید!`}</Welcome>
             </Bar>
         </Container>

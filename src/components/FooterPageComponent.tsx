@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
     page: FooterPageLink
@@ -9,7 +10,7 @@ interface FooterPageLink {
     link: string
 }
 
-const PageStyle = styled.a`
+const PageStyle = styled.div`
     displaY: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,8 +29,9 @@ const PageStyle = styled.a`
 `;
 
 function FooterPageComponent(props: IProps) {
+    const navigate = useNavigate()
     return (
-        <PageStyle href={props.page.link}>
+        <PageStyle onClick={() => navigate(props.page.link === "/" ? "/" : ("/" + props.page.link), { replace: true })}>
             {props.page.text}
         </PageStyle >
     )
