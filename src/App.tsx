@@ -1,8 +1,8 @@
-import OTP from './pages/OTP';
+import Profile from './pages/Profile';
 
 function App() {
   return (
-    <OTP />
+    <Profile />
   );
 }
 
