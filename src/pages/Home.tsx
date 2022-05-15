@@ -49,6 +49,7 @@ const HomeOptionsContainer = styled.div`
     justify-content: space-around;
     align-items: center;
     min-height: 36rem;
+    margin-top: 2rem;
 `;
 
 const Container = styled.div`
@@ -60,13 +61,13 @@ function Home() {
     return (
         <Container className="App">
             <Header pages={headerPages} user={"مهمان"} />
-            <HomeOptionsContainer>
+            <HomeOptionsContainer key={1}>
                 <HomeOptionBox page={{
                     id: 1,
                     text: "محاسبه GPA",
                     link: "gpa-calculator"
                 }} />
-                <HomeOptionBox page={{
+                <HomeOptionBox key={2} page={{
                     id: 2,
                     text: "محاسبه ECTS",
                     link: "ects-calculator"

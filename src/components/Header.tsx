@@ -13,14 +13,12 @@ const Banner = styled.img`
 `;
 
 const Bar = styled.div`
-    height: 3rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     background: #636363;
-    padding-left: 2rem;
-    padding-right: 2rem;    
+    padding: 1.2rem;    
 `;
 
 const Options = styled.div`
@@ -56,10 +54,10 @@ function Header({ pages, user }: IProps) {
     const navigate = useNavigate()
     return (
         <Container>
-            <Banner />
+            <Banner src={"https://i.pinimg.com/736x/2d/e8/82/2de882cd4f3992ada3d609e3a183f7a4--marketing.jpg"} />
             <Bar>
                 <Options>{pages.map(page => <Option key={page.id} onClick={() => navigate(page.link === "/" ? "/" : ("/" + page.link), { replace: true })}>{page.text}</Option>)}</Options>
-                <Welcome>{`${user} عزیز خوش آمدید!`}</Welcome>
+                <Welcome onClick={() => navigate(user === "مهمان" ? 'login' : 'profile', { replace: true })}>{`${user} عزیز خوش آمدید!`}</Welcome>
             </Bar>
         </Container>
     )
