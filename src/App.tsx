@@ -1,8 +1,8 @@
-import ECTSCalculator from './pages/ECTSCalculator';
+import Login from './pages/Login';
 
 function App() {
   return (
-    <ECTSCalculator />
+    <Login />
   );
 }
 
