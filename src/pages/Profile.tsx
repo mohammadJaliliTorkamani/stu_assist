@@ -128,15 +128,15 @@ const contactLinks = [
     }
 ]
 
-const chargeValue = [{ id: 1, value: 50, price: 50000 }, { id: 1, value: 200, price: 100000 }, { id: 1, value: 500, price: 250000 }, { id: 1, value: 1000, price: 500000 }]
+const chargeValue = [{ id: 1, value: 50, price: 50000 }, { id: 2, value: 200, price: 100000 }, { id: 3, value: 500, price: 250000 }, { id: 4, value: 1000, price: 500000 }]
 
 function Profile() {
     return (
         <Container>
             <Header pages={headerPages} user={"مهمان"} />
             <Content>
-                <RightBox>
-                    <InfoBox>
+                <RightBox >
+                    <InfoBox >
                         <InfoRecord title={"نام و نام خانوادگی"} value={"محمد جلیلی ترکمانی"} />
                         <InfoRecord title={"تعداد درخواست باقی مانده"} value={"5 درخواست"} />
                     </InfoBox>
