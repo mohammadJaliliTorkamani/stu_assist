@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
+import { useState } from "react";
 import Button from "../components/Button";
-import CalculateButton from "../components/Button";
 import Footer from "../components/Footer";
 import GPANumericField from "../components/GPANumericField";
 import Header from "../components/Header";
@@ -85,8 +85,6 @@ const ResultInnerContainer = styled.div`
     min-width: 60rem;
 `;
 
-
-
 const Title = styled.div`
     font-size: 2rem;
 `;
@@ -96,21 +94,30 @@ const Result = styled.div`
 `;
 
 function GPACalculator() {
+    const [min, setMin] = useState(0)
+    const [max, setMax] = useState(0)
+    const [grade, setGrade] = useState(0)
+    const [gpa, setGPA] = useState(0)
+
+    const handleCalculate = () => {
+        setGPA(3 * ((max - grade) / (max - min)) + 1)
+    }
+
     return (
         <Container>
             <Header pages={headerPages} user={"مهمان"} />
             <GPAContainer>
                 <FieldsContainer>
-                    <GPANumericField title={"معدل شما"} />
-                    <GPANumericField title={"حداکثر نمره قابل قبول"} />
-                    <GPANumericField title={"حداقل نمره قابل قبول"} />
-                    <Button title={"محاسبه"} color={"red"} onClick={() => null} />
+                    <GPANumericField title={"معدل شما"} value={grade} setValue={setGrade} />
+                    <GPANumericField title={"حداکثر نمره قابل قبول"} value={min} setValue={setMin} />
+                    <GPANumericField title={"حداقل نمره قابل قبول"} value={max} setValue={setMax} />
+                    <Button title={"محاسبه"} color={"red"} onClick={() => handleCalculate()} />
                 </FieldsContainer>
                 <ResultContainer>
                     <ResultInnerContainer>
                         <Title>مقدار GPA (از 4.0) : </Title>
                         <Result>
-                            2.5523
+                            {gpa}
                         </Result>
                     </ResultInnerContainer>
                 </ResultContainer>

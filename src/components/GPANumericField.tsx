@@ -20,16 +20,18 @@ const ValueInput = styled.input`
 `;
 
 interface IProps {
-    title: string
+    title: string,
+    value: any,
+    setValue: any
 }
 
-function GPANumericField({ title }: IProps) {
+function GPANumericField({ title, value, setValue }: IProps) {
     return (
         <Container>
             <Title>
                 {title}
             </Title>
-            <ValueInput type='number' min={0} max={20} />
+            <ValueInput type='number' min={0} max={20} value={value} onChange={e => setValue(e.target.value)} />
         </Container>
     )
 }

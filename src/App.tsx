@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import ContactUs from './pages/ContactUs';
 import ECTSCalculator from './pages/ECTSCalculator';
