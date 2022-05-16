@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@onefifteen-z/react-input-otp": "^1.0.5",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -13,6 +14,8 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "axios": "^0.27.2",
+    "otp-input-component": "^0.1.2",
+    "otp-input-react": "^0.3.0",
     "react": "^18.1.0",
     "react-awesome-slider": "^4.1.0",
     "react-dom": "^18.1.0",
