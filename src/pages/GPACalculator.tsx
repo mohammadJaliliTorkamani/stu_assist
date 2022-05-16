@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
-import GPANumericField from "../components/GPANumericField";
+import TitledNumericInput from "../components/TitledNumericInput";
 import Header from "../components/Header";
 
 const footerPages = [{
@@ -108,10 +108,10 @@ function GPACalculator() {
             <Header pages={headerPages} user={"مهمان"} />
             <GPAContainer>
                 <FieldsContainer>
-                    <GPANumericField title={"معدل شما"} value={grade} setValue={setGrade} />
-                    <GPANumericField title={"حداکثر نمره قابل قبول"} value={min} setValue={setMin} />
-                    <GPANumericField title={"حداقل نمره قابل قبول"} value={max} setValue={setMax} />
-                    <Button title={"محاسبه"} color={"red"} onClick={() => handleCalculate()} />
+                    <TitledNumericInput title={"معدل شما"} value={grade} setValue={setGrade} max={20} min={0} />
+                    <TitledNumericInput title={"حداکثر نمره قابل قبول"} value={min} setValue={setMin} max={20} min={0} />
+                    <TitledNumericInput title={"حداقل نمره قابل قبول"} value={max} setValue={setMax} max={20} min={0} />
+                    <Button title={"محاسبه"} color={"orange"} onClick={() => handleCalculate()} />
                 </FieldsContainer>
                 <ResultContainer>
                     <ResultInnerContainer>

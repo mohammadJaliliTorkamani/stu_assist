@@ -5,15 +5,16 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 `;
 
 const Title = styled.div`
-
+    color: black;
 `;
 
 const ValueInput = styled.input`
     height: 2rem;
-    width: 8rem;
+    width: 6rem;
     coolor: black;
     text-align: center;
     font-size: 1.2rem;
@@ -21,19 +22,27 @@ const ValueInput = styled.input`
 
 interface IProps {
     title: string,
+    max: number,
+    min: number,
     value: any,
     setValue: any
 }
 
-function GPANumericField({ title, value, setValue }: IProps) {
+function TitledNumericInput({ title, max, min, value, setValue }: IProps) {
     return (
         <Container>
             <Title>
                 {title}
             </Title>
-            <ValueInput type='number' min={0} max={20} value={value} onChange={e => setValue(e.target.value)} />
+            <ValueInput
+                type='number'
+                min={min}
+                max={max}
+                value={value}
+                onChange={e => parseInt(e.target.value) <= max ? setValue(e.target.value) : null}
+            />
         </Container>
     )
 }
 
-export default GPANumericField
+export default TitledNumericInput
