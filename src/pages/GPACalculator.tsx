@@ -147,7 +147,7 @@ function GPACalculator() {
     const naviaget = useNavigate()
 
     const handleCalculate = () => {
-        if (!isLoading && !isGuest)
+        if (!isLoading && !isGuest && !isOutOfCoupon)
             //must be calculated in server side            
             setGPA(max - min === 0 ? 0 : 3 * ((max - grade) / (max - min)) + 1)
     }
