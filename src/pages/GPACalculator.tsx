@@ -137,7 +137,7 @@ const chargeValue = [{ id: 1, value: 50, price: 50000 }, { id: 2, value: 200, pr
 function GPACalculator() {
     const [isLoading, setIsLoading] = useState(false)
     const [isGuest, setIsGuest] = useState(false)
-    const [isOutOfCoupon, setIsOutOfCoupon] = useState(true)
+    const [isOutOfCoupon, setIsOutOfCoupon] = useState(false)
     const [selectedChargeOption, setSelectedChargeOption] = useState({ id: -1, value: -1, price: -1 })
     const [min, setMin] = useState(0)
     const [max, setMax] = useState(0)
@@ -148,7 +148,8 @@ function GPACalculator() {
 
     const handleCalculate = () => {
         if (!isLoading && !isGuest)
-            setGPA(3 * ((max - grade) / (max - min)) + 1)
+            //must be calculated in server side            
+            setGPA(max - min === 0 ? 0 : 3 * ((max - grade) / (max - min)) + 1)
     }
 
     return (
