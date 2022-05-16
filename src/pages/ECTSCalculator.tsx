@@ -92,10 +92,11 @@ const LeftBox = styled.div`
 const Value = styled.input`
     font-size: 2rem;
     width: 10rem;
+    text-align: center;
 `;
 
 const Title = styled.div`
-    
+    color: black;
 `;
 
 const TitleValuePair = styled.div`
