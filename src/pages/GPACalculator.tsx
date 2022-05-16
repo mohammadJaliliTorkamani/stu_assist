@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import Footer from "../components/Footer";
 import TitledNumericInput from "../components/TitledNumericInput";
 import Header from "../components/Header";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const footerPages = [{
     id: 3,
@@ -132,18 +132,6 @@ const ChargeOptionRecord = styled.div`
     font-size: 0.85rem;
 `;
 
-const PayButton = styled.button`
-    color: white;
-    background: orange;
-    border-radius: 4px;
-    border: 0px solid orange;
-    width: 14rem;
-    height: 3rem;
-    margin-top: 1rem;
-    font-size : 0.94rem;
-    cursor: pointer;
-`;
-
 const chargeValue = [{ id: 1, value: 50, price: 50000 }, { id: 2, value: 200, price: 100000 }, { id: 3, value: 500, price: 250000 }, { id: 4, value: 1000, price: 500000 }]
 
 function GPACalculator() {
@@ -196,7 +184,7 @@ function GPACalculator() {
                                     return <ChargeOptionRecord key={value.id} onClick={e => setSelectedChargeOption(value)}>{value.value} درخواست , {value.price} تومان</ChargeOptionRecord>
                                 })}
                             </ChargeOptions>
-                            <PayButton>پرداخت</PayButton>
+                            <Button color="orange" title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />
                         </ChargeBox>
                     }
                     {
