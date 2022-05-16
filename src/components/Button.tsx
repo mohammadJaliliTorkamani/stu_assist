@@ -13,13 +13,14 @@ const Container = styled.button`
 
 interface IProps {
     title: string,
-    color: string
+    color: string,
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-function CalculateButton({ title, color }: IProps) {
+function Button({ title, color, onClick }: IProps) {
     return (
-        <Container style={{ background: color }}>{title}</Container>
+        <Container style={{ background: color }} onClick={(e) => onClick(e)}>{title}</Container>
     )
 }
 
-export default CalculateButton
+export default Button

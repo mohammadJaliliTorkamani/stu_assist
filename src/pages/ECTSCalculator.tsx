@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import CalculateButton from "../components/CalculateButton";
+import Button from "../components/Button";
+import CalculateButton from "../components/Button";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -138,7 +139,7 @@ function ECTSCalculator() {
                     </TitleValuePair>
                 </RightBox>
                 <ResultButtonBox>
-                    <CalculateButton title={"محاسبه"} color={"orange"} />
+                    <Button title={"محاسبه"} color={"orange"} onClick={() => null} />
                     <CalculateArrow src={"https://thumbs.dreamstime.com/b/red-arrow-isolated-white-background-red-arrow-vector-stock-arrow-icon-110771171.jpg"} />
                 </ResultButtonBox>
                 <LeftBox>
