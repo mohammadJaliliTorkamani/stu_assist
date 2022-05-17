@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from '../assets/user_avatar.png'
 import Button from "../components/Button";
@@ -62,6 +62,12 @@ function Login() {
     const [phoneNumber, setPhoneNumber] = useState('')
     const navigate = useNavigate()
     const buttonRef = useRef<any>()
+    const inputRef = useRef<any>()
+
+    useEffect(() => {
+        inputRef.current.focus()
+    }, [])
+
     const buttonHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (phoneNumber.length === 0)
             alert("لطفا شماره تلفن خود را وارد نمایید")
@@ -84,7 +90,7 @@ function Login() {
                 <Logo src={avatar} />
                 <PhoneContainer>
                     <Title>شماره تلفن</Title>
-                    <PhoneNumber type='number' value={phoneNumber} onChange={e => {
+                    <PhoneNumber type='number' ref={inputRef} value={phoneNumber} onChange={e => {
                         if (e.target.value.length <= 11)
                             setPhoneNumber(e.target.value)
                         if (e.target.value.length === 11)

@@ -90,7 +90,7 @@ function OTP() {
                         onChange={e => {
                             if (e.target.value.length <= 5)
                                 setOtp(e.target.value)
-                            if (e.target.value.length == 5)
+                            if (e.target.value.length === 5)
                                 buttonRef.current.focus()
                         }
                         }
