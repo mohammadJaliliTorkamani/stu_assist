@@ -23,7 +23,7 @@ function App() {
         } />
         <Route path='contact-us' element={<ContactUs />} />
         <Route path='login' element={<Login />} />
-        <Route path='otp' element={<OTP />} />
+        <Route path='otp-verification' element={<OTP />} />
         <Route path='ects-calculator' element={<ECTSCalculator />} />
         <Route path='gpa-calculator' element={<GPACalculator />} />
         <Route path='*' element={<NotFound />} />

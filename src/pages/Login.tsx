@@ -81,7 +81,7 @@ function Login() {
         let i = 0;
         while (i++ < 1000000000);
         console.log("Navigating to OTP....")
-        navigate('/otp', { replace: true })
+        navigate('/otp-verification', { replace: true })
     }
 
     return (
