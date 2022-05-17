@@ -28,23 +28,16 @@ export default function NotFound() {
     return (
         <Container>
             <Logo src={logo} />
-            <>
-                صفحه مورد نظر یافت نشد!
-            </>
+            صفحه مورد نظر یافت نشد!
             <br />
             <br />
-            <>
-                لطفا از صحت نشانی صفحه مورد نظر اطمینان حاصل نمایید.
-            </>
+            لطفا از صحت نشانی صفحه مورد نظر اطمینان حاصل نمایید.
             <br />
             <br />
-            <>
-                با تشکر
-            </>
+            با تشکر
             <br />
             <br />
             <Button color="blue" title="بازگشت به خانه" onClick={() => navigate('/')} />
-
         </Container >
     )
 }
