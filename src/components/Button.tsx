@@ -11,13 +11,19 @@ const Container = styled.button`
 
 interface IProps {
     title: string,
-    color: string,
+    color?: string,
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-function Button({ title, color, onClick }: IProps) {
+function Button({ title, color = "orange", onClick }: IProps) {
     return (
-        <Container style={{ background: color }} onClick={(e) => onClick(e)}>{title}</Container>
+        <Container
+            style={{
+                background: color,
+                color: ((color === "white" || color === "#ffffff" || color === "#fff") ? "black" : "white")
+            }}
+            onClick={(e) => onClick(e)}>{title}
+        </Container>
     )
 }
 
