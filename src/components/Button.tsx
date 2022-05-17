@@ -12,16 +12,18 @@ const Container = styled.button`
 interface IProps {
     title: string,
     color?: string,
+    reference?: any,
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-function Button({ title, color = "orange", onClick }: IProps) {
+function Button({ title, onClick, color = "orange", reference = null }: IProps) {
     return (
         <Container
             style={{
                 background: color,
                 color: ((color === "white" || color === "#ffffff" || color === "#fff") ? "black" : "white")
             }}
+            ref={reference}
             onClick={(e) => onClick(e)}>{title}
         </Container>
     )
