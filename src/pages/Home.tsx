@@ -1,47 +1,5 @@
 import styled from "@emotion/styled";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import HomeOptionBox from "../components/HomeOptionBox";
-
-const footerPages = [{
-    id: 3,
-    text: "خانه",
-    link: "/"
-}, {
-    id: 2,
-    text: "ضوابط استفاده",
-    link: "terms-of-use"
-}, {
-    id: 1,
-    text: "تماس با ما",
-    link: "contact-us"
-}]
-
-const headerPages = [{
-    id: 3,
-    text: "خانه",
-    link: "/"
-}, {
-    id: 2,
-    text: "محاسبه GPA",
-    link: "gpa-calculator"
-}, {
-    id: 1,
-    text: "محاسبه ECTS",
-    link: "ects-calculator"
-}]
-
-const contactLinks = [
-    {
-        id: 1,
-        label: "روابط عمومی",
-        value: "info@stu-assist.ir"
-    }, {
-        id: 2,
-        label: "ثبت بازخورد",
-        value: "customer@stu-assist.ir"
-    }
-]
 
 const HomeOptionsContainer = styled.div`
     display: flex;
@@ -52,29 +10,20 @@ const HomeOptionsContainer = styled.div`
     margin-top: 2rem;
 `;
 
-const Container = styled.div`
-    display: flex;
-    flex-direction : column;
-  `;
-
 function Home() {
     return (
-        <Container className="App">
-            <Header pages={headerPages} user={"مهمان"} />
-            <HomeOptionsContainer key={1}>
-                <HomeOptionBox page={{
-                    id: 1,
-                    text: "محاسبه GPA",
-                    link: "gpa-calculator"
-                }} />
-                <HomeOptionBox key={2} page={{
-                    id: 2,
-                    text: "محاسبه ECTS",
-                    link: "ects-calculator"
-                }} />
-            </HomeOptionsContainer>
-            <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={footerPages} contactUsLinks={contactLinks} />
-        </Container>
+        <HomeOptionsContainer key={1}>
+            <HomeOptionBox page={{
+                id: 1,
+                text: "محاسبه GPA",
+                link: "gpa-calculator"
+            }} />
+            <HomeOptionBox key={2} page={{
+                id: 2,
+                text: "محاسبه ECTS",
+                link: "ects-calculator"
+            }} />
+        </HomeOptionsContainer>
     )
 }
 

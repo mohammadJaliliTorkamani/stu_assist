@@ -1,54 +1,8 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import Button from "../components/Button";
-import Footer from "../components/Footer";
 import TitledNumericInput from "../components/TitledNumericInput";
-import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
-
-const footerPages = [{
-    id: 3,
-    text: "خانه",
-    link: "/"
-}, {
-    id: 2,
-    text: "ضوابط استفاده",
-    link: "terms-of-use"
-}, {
-    id: 1,
-    text: "تماس با ما",
-    link: "contact-us"
-}]
-
-const headerPages = [{
-    id: 3,
-    text: "خانه",
-    link: "/"
-}, {
-    id: 2,
-    text: "محاسبه GPA",
-    link: "gpa-calculator"
-}, {
-    id: 1,
-    text: "محاسبه ECTS",
-    link: "ects-calculator"
-}]
-
-const contactLinks = [
-    {
-        id: 1,
-        label: "روابط عمومی",
-        value: "info@stu-assist.ir"
-    }, {
-        id: 2,
-        label: "ثبت بازخورد",
-        value: "customer@stu-assist.ir"
-    }
-]
-
-const Container = styled.div`
-    height: 40px;
-`;
 
 const GPAContainer = styled.div`
     display: flex;
@@ -153,54 +107,50 @@ function GPACalculator() {
     }
 
     return (
-        <Container>
-            <Header pages={headerPages} user={"مهمان"} />
-            <GPAContainer>
-                <FieldsContainer>
-                    <TitledNumericInput title={"معدل شما"} value={grade} setValue={setGrade} max={20} min={0} />
-                    <TitledNumericInput title={"حداکثر نمره قابل قبول"} value={min} setValue={setMin} max={20} min={0} />
-                    <TitledNumericInput title={"حداقل نمره قابل قبول"} value={max} setValue={setMax} max={20} min={0} />
-                    <Button title={"محاسبه"} color={"orange"} onClick={() => handleCalculate()} />
-                </FieldsContainer>
-                <ResultContainer>
-                    {
-                        isLoading && <div>Loading</div>
-                    }
-                    {
-                        isGuest && !isLoading && <LoginBox>
-                            <Title>
-                                لطفا ابتدا وارد حساب کاربری خود شوید
-                            </Title>
-                            <Button title="ورود / ثبت نام" onClick={e => naviaget('/login', { replace: true })} />
-                        </LoginBox>
-                    }
-                    {
-                        !isGuest && !isLoading && isOutOfCoupon &&
-                        <ChargeBox>
-                            <Title>تعداد کوپن های درخواست شما به پایان رسیده است</Title>
-                            <Title> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </Title>
+        <GPAContainer>
+            <FieldsContainer>
+                <TitledNumericInput title={"معدل شما"} value={grade} setValue={setGrade} max={20} min={0} />
+                <TitledNumericInput title={"حداکثر نمره قابل قبول"} value={min} setValue={setMin} max={20} min={0} />
+                <TitledNumericInput title={"حداقل نمره قابل قبول"} value={max} setValue={setMax} max={20} min={0} />
+                <Button title={"محاسبه"} color={"orange"} onClick={() => handleCalculate()} />
+            </FieldsContainer>
+            <ResultContainer>
+                {
+                    isLoading && <div>Loading</div>
+                }
+                {
+                    isGuest && !isLoading && <LoginBox>
+                        <Title>
+                            لطفا ابتدا وارد حساب کاربری خود شوید
+                        </Title>
+                        <Button title="ورود / ثبت نام" onClick={e => naviaget('/login', { replace: true })} />
+                    </LoginBox>
+                }
+                {
+                    !isGuest && !isLoading && isOutOfCoupon &&
+                    <ChargeBox>
+                        <Title>تعداد کوپن های درخواست شما به پایان رسیده است</Title>
+                        <Title> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </Title>
 
-                            <ChargeOptions>
-                                {chargeValue.map(value => {
-                                    return <ChargeOptionRecord key={value.id} onClick={e => setSelectedChargeOption(value)}>{value.value} درخواست , {value.price} تومان</ChargeOptionRecord>
-                                })}
-                            </ChargeOptions>
-                            <Button title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />
-                        </ChargeBox>
-                    }
-                    {
-                        !isLoading && !isGuest && !isOutOfCoupon &&
-                        <ResultInnerContainer>
-                            <Title>مقدار GPA (از 4.0) : </Title>
-                            <Result>
-                                {gpa}
-                            </Result>
-                        </ResultInnerContainer>
-                    }
-                </ResultContainer>
-            </GPAContainer>
-            <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={footerPages} contactUsLinks={contactLinks} />
-        </Container>
+                        <ChargeOptions>
+                            {chargeValue.map(value => {
+                                return <ChargeOptionRecord key={value.id} onClick={e => setSelectedChargeOption(value)}>{value.value} درخواست , {value.price} تومان</ChargeOptionRecord>
+                            })}
+                        </ChargeOptions>
+                        <Button title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />
+                    </ChargeBox>
+                }
+                {
+                    !isLoading && !isGuest && !isOutOfCoupon &&
+                    <ResultInnerContainer>
+                        <Title>مقدار GPA (از 4.0) : </Title>
+                        <Result>
+                            {gpa}
+                        </Result>
+                    </ResultInnerContainer>
+                }
+            </ResultContainer>
+        </GPAContainer>
     )
 }
 

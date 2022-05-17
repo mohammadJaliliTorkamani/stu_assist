@@ -2,52 +2,6 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-
-const footerPages = [{
-    id: 3,
-    text: "خانه",
-    link: "/"
-}, {
-    id: 2,
-    text: "ضوابط استفاده",
-    link: "terms-of-use"
-}, {
-    id: 1,
-    text: "تماس با ما",
-    link: "contact-us"
-}]
-
-const headerPages = [{
-    id: 3,
-    text: "خانه",
-    link: "/"
-}, {
-    id: 2,
-    text: "محاسبه GPA",
-    link: "gpa-calculator"
-}, {
-    id: 1,
-    text: "محاسبه ECTS",
-    link: "ects-calculator"
-}]
-
-const contactLinks = [
-    {
-        id: 1,
-        label: "روابط عمومی",
-        value: "info@stu-assist.ir"
-    }, {
-        id: 2,
-        label: "ثبت بازخورد",
-        value: "customer@stu-assist.ir"
-    }
-]
-
-const Container = styled.div`
-    height: 40px;
-`;
 
 const ECTSContainer = styled.div`
     min-height: 26rem;
@@ -187,63 +141,59 @@ function ECTSCalculator() {
     }
 
     return (
-        <Container>
-            <Header pages={headerPages} user={"مهمان"} />
-            <ECTSContainer>
-                <RightBox>
-                    <TitleValuePair>
-                        <Title>تعداد واحد درسی</Title>
-                        <Value type='number' value={unit} onChange={e => setUnit(parseInt(e.target.value))} />
-                    </TitleValuePair>
-                    <TitleValuePair>
-                        <Title>مدت زمان واحد در هفته (دقیقه)</Title>
-                        <Value type='number' value={time} onChange={e => setTime(parseInt(e.target.value))} />
-                    </TitleValuePair>
-                    <TitleValuePair>
-                        <Title>تعداد هفته در نظام آموزشی کشور حارجی</Title>
-                        <Value type='number' value={week} onChange={e => setWeek(parseInt(e.target.value))} />
-                    </TitleValuePair>
-                </RightBox>
-                <ResultButtonBox>
-                    <Button title={"محاسبه"} color={"orange"} onClick={() => handleCalculate()} />
-                    <CalculateArrow src={"https://thumbs.dreamstime.com/b/red-arrow-isolated-white-background-red-arrow-vector-stock-arrow-icon-110771171.jpg"} />
-                </ResultButtonBox>
-                <LeftBox>
-                    {
-                        isLoading && <div>Loading</div>
-                    }
-                    {
-                        isGuest && !isLoading && <LoginBox>
-                            <Title>
-                                لطفا ابتدا وارد حساب کاربری خود شوید
-                            </Title>
-                            <Button title="ورود / ثبت نام" onClick={e => naviaget('/login', { replace: true })} />
-                        </LoginBox>
-                    }
-                    {
-                        !isGuest && !isLoading && isOutOfCoupon &&
-                        <ChargeBox>
-                            <Title>تعداد کوپن های درخواست شما به پایان رسیده است</Title>
-                            <Title> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </Title>
+        <ECTSContainer>
+            <RightBox>
+                <TitleValuePair>
+                    <Title>تعداد واحد درسی</Title>
+                    <Value type='number' value={unit} onChange={e => setUnit(parseInt(e.target.value))} />
+                </TitleValuePair>
+                <TitleValuePair>
+                    <Title>مدت زمان واحد در هفته (دقیقه)</Title>
+                    <Value type='number' value={time} onChange={e => setTime(parseInt(e.target.value))} />
+                </TitleValuePair>
+                <TitleValuePair>
+                    <Title>تعداد هفته در نظام آموزشی کشور حارجی</Title>
+                    <Value type='number' value={week} onChange={e => setWeek(parseInt(e.target.value))} />
+                </TitleValuePair>
+            </RightBox>
+            <ResultButtonBox>
+                <Button title={"محاسبه"} color={"orange"} onClick={() => handleCalculate()} />
+                <CalculateArrow src={"https://thumbs.dreamstime.com/b/red-arrow-isolated-white-background-red-arrow-vector-stock-arrow-icon-110771171.jpg"} />
+            </ResultButtonBox>
+            <LeftBox>
+                {
+                    isLoading && <div>Loading</div>
+                }
+                {
+                    isGuest && !isLoading && <LoginBox>
+                        <Title>
+                            لطفا ابتدا وارد حساب کاربری خود شوید
+                        </Title>
+                        <Button title="ورود / ثبت نام" onClick={e => naviaget('/login', { replace: true })} />
+                    </LoginBox>
+                }
+                {
+                    !isGuest && !isLoading && isOutOfCoupon &&
+                    <ChargeBox>
+                        <Title>تعداد کوپن های درخواست شما به پایان رسیده است</Title>
+                        <Title> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </Title>
 
-                            <ChargeOptions>
-                                {chargeValue.map(value => {
-                                    return <ChargeOptionRecord key={value.id} onClick={e => setSelectedChargeOption(value)}>{value.value} درخواست , {value.price} تومان</ChargeOptionRecord>
-                                })}
-                            </ChargeOptions>
-                            <Button title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />
-                        </ChargeBox>
-                    }
-                    {!isLoading && !isGuest && !isOutOfCoupon &&
-                        <ResultContainer>
-                            <ECTSTResulTitle>معادل ECTS :</ECTSTResulTitle>
-                            <ECTSTResulValue>{ECTS}</ECTSTResulValue>
-                        </ResultContainer>
-                    }
-                </LeftBox>
-            </ECTSContainer>
-            <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={footerPages} contactUsLinks={contactLinks} />
-        </Container>
+                        <ChargeOptions>
+                            {chargeValue.map(value => {
+                                return <ChargeOptionRecord key={value.id} onClick={e => setSelectedChargeOption(value)}>{value.value} درخواست , {value.price} تومان</ChargeOptionRecord>
+                            })}
+                        </ChargeOptions>
+                        <Button title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />
+                    </ChargeBox>
+                }
+                {!isLoading && !isGuest && !isOutOfCoupon &&
+                    <ResultContainer>
+                        <ECTSTResulTitle>معادل ECTS :</ECTSTResulTitle>
+                        <ECTSTResulValue>{ECTS}</ECTSTResulValue>
+                    </ResultContainer>
+                }
+            </LeftBox>
+        </ECTSContainer>
     )
 }
 

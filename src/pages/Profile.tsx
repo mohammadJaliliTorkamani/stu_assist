@@ -1,12 +1,5 @@
 import styled from "@emotion/styled"
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import InfoRecord from "../components/InfoRecord";
-
-const Container = styled.div`
-    display: flex;
-    flex-direction : column;
-`;
 
 const RightBox = styled.div`
     display: flex;
@@ -87,72 +80,27 @@ const ChargeOptionRecord = styled.div`
     font-size: 0.85rem;
 `;
 
-
-const footerPages = [{
-    id: 3,
-    text: "خانه",
-    link: "/"
-}, {
-    id: 2,
-    text: "ضوابط استفاده",
-    link: "terms-of-use"
-}, {
-    id: 1,
-    text: "تماس با ما",
-    link: "contact-us"
-}]
-
-const headerPages = [{
-    id: 3,
-    text: "خانه",
-    link: "/"
-}, {
-    id: 2,
-    text: "محاسبه GPA",
-    link: "gpa-calculator"
-}, {
-    id: 1,
-    text: "محاسبه ECTS",
-    link: "ects-calculator"
-}]
-
-const contactLinks = [
-    {
-        id: 1,
-        label: "روابط عمومی",
-        value: "info@stu-assist.ir"
-    }, {
-        id: 2,
-        label: "ثبت بازخورد",
-        value: "customer@stu-assist.ir"
-    }
-]
-
 const chargeValue = [{ id: 1, value: 50, price: 50000 }, { id: 2, value: 200, price: 100000 }, { id: 3, value: 500, price: 250000 }, { id: 4, value: 1000, price: 500000 }]
 
 function Profile() {
     return (
-        <Container>
-            <Header pages={headerPages} user={"مهمان"} />
-            <Content>
-                <RightBox >
-                    <InfoBox >
-                        <InfoRecord title={"نام و نام خانوادگی"} value={"محمد جلیلی ترکمانی"} />
-                        <InfoRecord title={"تعداد درخواست باقی مانده"} value={"5 درخواست"} />
-                    </InfoBox>
-                    <ChargeBox>
-                        <ChargeOptions>
-                            {chargeValue.map(value => {
-                                return <ChargeOptionRecord key={value.id}>{value.value} درخواست , {value.price} تومان</ChargeOptionRecord>
-                            })}
-                        </ChargeOptions>
-                        <PayButton>پرداخت</PayButton>
-                    </ChargeBox>
-                </RightBox>
-                <LeftBox>Table To Show</LeftBox>
-            </Content>
-            <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={footerPages} contactUsLinks={contactLinks} />
-        </Container>
+        <Content>
+            <RightBox >
+                <InfoBox >
+                    <InfoRecord title={"نام و نام خانوادگی"} value={"محمد جلیلی ترکمانی"} />
+                    <InfoRecord title={"تعداد درخواست باقی مانده"} value={"5 درخواست"} />
+                </InfoBox>
+                <ChargeBox>
+                    <ChargeOptions>
+                        {chargeValue.map(value => {
+                            return <ChargeOptionRecord key={value.id}>{value.value} درخواست , {value.price} تومان</ChargeOptionRecord>
+                        })}
+                    </ChargeOptions>
+                    <PayButton>پرداخت</PayButton>
+                </ChargeBox>
+            </RightBox>
+            <LeftBox>Table To Show</LeftBox>
+        </Content>
     )
 }
 
