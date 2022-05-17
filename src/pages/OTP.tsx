@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from '../assets/user_avatar.png'
 import Button from "../components/Button";
@@ -61,6 +61,8 @@ const OTPInput = styled.input`
 function OTP() {
     const [otp, setOtp] = useState('')
     const navigate = useNavigate()
+    const buttonRef = useRef<any>()
+
     const buttonHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (otp.length === 0)
             alert("لطفا کد فعالسازی ارسال شده را وارد نمایید")
@@ -82,9 +84,19 @@ function OTP() {
                 <Logo src={avatar} />
                 <OTPContainer>
                     <Title>لطفا کد فعالسازی ارسال شده را وارد نمایید</Title>
-                    <OTPInput type='number' value={otp} onChange={e => e.target.value.length <= 5 ? setOtp(e.target.value) : null} />
+                    <OTPInput
+                        type='number'
+                        value={otp}
+                        onChange={e => {
+                            if (e.target.value.length <= 5)
+                                setOtp(e.target.value)
+                            if (e.target.value.length == 5)
+                                buttonRef.current.focus()
+                        }
+                        }
+                    />
                 </OTPContainer>
-                <Button title="ورود" onClick={e => buttonHandle(e)} />
+                <Button title="ورود" onClick={e => buttonHandle(e)} reference={buttonRef} />
                 <Title onClick={(e) => navigate('/login', { replace: true })}>ویرایش شماره تلفن</Title>
             </Box>
         </Container>
