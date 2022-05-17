@@ -171,7 +171,7 @@ function GPACalculator() {
                             <Title>
                                 لطفا ابتدا وارد حساب کاربری خود شوید
                             </Title>
-                            <Button color="orange" title="ورود / ثبت نام" onClick={e => naviaget('/login', { replace: true })} />
+                            <Button title="ورود / ثبت نام" onClick={e => naviaget('/login', { replace: true })} />
                         </LoginBox>
                     }
                     {
@@ -185,7 +185,7 @@ function GPACalculator() {
                                     return <ChargeOptionRecord key={value.id} onClick={e => setSelectedChargeOption(value)}>{value.value} درخواست , {value.price} تومان</ChargeOptionRecord>
                                 })}
                             </ChargeOptions>
-                            <Button color="orange" title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />
+                            <Button title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />
                         </ChargeBox>
                     }
                     {

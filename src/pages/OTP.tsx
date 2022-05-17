@@ -84,7 +84,7 @@ function OTP() {
                     <Title>لطفا کد فعالسازی ارسال شده را وارد نمایید</Title>
                     <OTPInput type='number' value={otp} onChange={e => e.target.value.length <= 5 ? setOtp(e.target.value) : null} />
                 </OTPContainer>
-                <Button color="orange" title="ورود" onClick={e => buttonHandle(e)} />
+                <Button title="ورود" onClick={e => buttonHandle(e)} />
                 <Title onClick={(e) => navigate('/login', { replace: true })}>ویرایش شماره تلفن</Title>
             </Box>
         </Container>

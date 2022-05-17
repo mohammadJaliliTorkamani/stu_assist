@@ -43,7 +43,7 @@ export default function NotFound() {
             </>
             <br />
             <br />
-            <Button color="#fff" title="بازگشت به خانه" onClick={() => navigate('/')} />
+            <Button color="blue" title="بازگشت به خانه" onClick={() => navigate('/')} />
 
         </Container >
     )

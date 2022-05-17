@@ -85,7 +85,7 @@ function Login() {
                     <Title>شماره تلفن</Title>
                     <PhoneNumber type='number' value={phoneNumber} onChange={e => e.target.value.length <= 11 ? setPhoneNumber(e.target.value) : null} />
                 </PhoneContainer>
-                <Button title="ورود / ثبت نام" color="orange" onClick={e => buttonHandle(e)} />
+                <Button title="ورود / ثبت نام" onClick={e => buttonHandle(e)} />
             </Box>
         </Container>
     )
