@@ -5,7 +5,7 @@ import ECTSCalculator from './pages/ECTSCalculator';
 import GPACalculator from './pages/GPACalculator';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import { NotFound } from './pages/NotFound';
+import NotFound from './pages/NotFound';
 import OTP from './pages/OTP';
 import Profile from './pages/Profile';
 import TermsOfUse from './pages/TermsOfUse';
