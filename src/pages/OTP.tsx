@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from '../assets/user_avatar.png'
 import Button from "../components/Button";
@@ -62,6 +62,11 @@ function OTP() {
     const [otp, setOtp] = useState('')
     const navigate = useNavigate()
     const buttonRef = useRef<any>()
+    const inputRef = useRef<any>()
+
+    useEffect(()=>{
+        inputRef.current.focus()
+    },[])
 
     const buttonHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (otp.length === 0)
@@ -87,6 +92,7 @@ function OTP() {
                     <OTPInput
                         type='number'
                         value={otp}
+                        ref={inputRef}
                         onChange={e => {
                             if (e.target.value.length <= 5)
                                 setOtp(e.target.value)
