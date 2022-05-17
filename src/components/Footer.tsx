@@ -87,7 +87,7 @@ function Footer(props: IProps) {
             <LeftContainer>
                 <LeftInnerContainer>
                     <ContactUsLabel>ارتباط با ما</ContactUsLabel>
-                    {props.contactUsLinks.map(item => <KeyValuePair key={item.id}  {...item} />)}
+                    {props.contactUsLinks.map(item => <KeyValuePair key={item.id} {...item} />)}
                 </LeftInnerContainer>
             </LeftContainer>
         </FooterContainer>

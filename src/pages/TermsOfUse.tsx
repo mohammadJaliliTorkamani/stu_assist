@@ -62,13 +62,13 @@ const TextBox = styled.div`
     display: flex;
     flex:1;
     color: black;
-    background: #d1d1d1;
+    background: #f2f2f2;
     padding-top: 4%;
     padding-bottom: 4%;
     padding-left: 2rem;
     padding-right: 2rem;
     text-align: justify;
-    border: 2px solid black;
+    border: 2px solid gray;
     border-radius: 1rem;
     line-height: 2rem;
 `;
