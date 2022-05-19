@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Footer from './components/Footer';
@@ -56,8 +57,7 @@ const contactLinks = [
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
   const { pathname } = useLocation()
-  console.log(pathname);
-
+  
   useEffect(() => {
     setShowHeaderFooter(pathname !== "/login" && pathname !== "/otp-verification")
   }, [pathname])
