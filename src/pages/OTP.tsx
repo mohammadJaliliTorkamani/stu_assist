@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import avatar from '../assets/user_avatar.png'
 import Button from "../components/Button";
 
@@ -58,15 +59,20 @@ const OTPInput = styled.input`
     text-align: center;
 `;
 
+interface stateType {
+    phone_number: string
+}
+
 function OTP() {
     const [otp, setOtp] = useState('')
+    const { state } = useLocation()
     const navigate = useNavigate()
     const buttonRef = useRef<any>()
     const inputRef = useRef<any>()
 
-    useEffect(()=>{
+    useEffect(() => {
         inputRef.current.focus()
-    },[])
+    }, [])
 
     const buttonHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (otp.length === 0)
@@ -78,10 +84,22 @@ function OTP() {
 
 
     const handleEnter = () => {
-        let i = 0;
-        while (i++ < 1000000000);
-        console.log("Navigating to Home....")
-        navigate('/', { replace: true })
+        axios
+            .post('http://localhost:8000/stu_assist_backend/authentication/otp_verification.php',
+                {
+                    phone_number: (state as stateType).phone_number,
+                    otp_code: otp
+                }, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(response => {
+                console.log("Navigating to Home....")
+                navigate('/', { replace: true })
+            }).catch(error =>
+                alert('error!'))
+
     }
     return (
         <Container>

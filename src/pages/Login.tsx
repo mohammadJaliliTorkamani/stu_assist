@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from '../assets/user_avatar.png'
@@ -78,10 +79,20 @@ function Login() {
 
 
     const handleLogin = () => {
-        let i = 0;
-        while (i++ < 1000000000);
-        console.log("Navigating to OTP....")
-        navigate('/otp-verification', { replace: true })
+        axios
+            .post('http://localhost:8000/stu_assist_backend/authentication/login.php',
+                {
+                    phone_number: phoneNumber
+                }, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(response => {
+                console.log("Navigating to OTP....")
+                navigate('/otp-verification', { replace: true, state: { phone_number: phoneNumber } })
+            }).catch(error =>
+                alert('error!'))
     }
 
     return (
