@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
@@ -135,9 +136,41 @@ function ECTSCalculator() {
     const naviaget = useNavigate()
 
     const handleCalculate = () => {
-        if (!isLoading && !isGuest && !isOutOfCoupon)
-            //must be calculated in server side  '
-            setECTS(week === 0 ? 0 : Number(((time * unit * 16) / (week * 30)).toFixed(1)))
+        if (!isLoading && !isGuest && !isOutOfCoupon) {
+            if (week === 0)
+                setECTS(0)
+            else {
+                setIsLoading(true)
+                const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
+                axios.get('http://localhost:8000/stu_assist_backend/services/ects_calculation.php', {
+                    params: {
+                        time: time,
+                        unit: unit,
+                        week: week
+                    },
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+                    .then(response => {
+                        setIsLoading(false)
+                        return response.data
+                    })
+                    .then(data => {
+                        if (!data.error) {
+                            setIsOutOfCoupon(false)
+                            setECTS(Number(parseFloat(data.data).toFixed(1)))
+                        } else {
+                            if (data.message === 'اتمام کوپن') {
+                                setIsOutOfCoupon(true)
+                            }
+                        }
+                    }).catch(error => {
+                        alert('errorr!')
+                        setIsLoading(false)
+                    })
+            }
+        }
     }
 
     return (
