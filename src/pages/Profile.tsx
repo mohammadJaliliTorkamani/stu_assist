@@ -99,7 +99,7 @@ function Profile() {
                     <PayButton>پرداخت</PayButton>
                 </ChargeBox>
             </RightBox>
-            <LeftBox>Table To Show payment and coupons records</LeftBox>
+            <LeftBox>Table To Show payment and usage records</LeftBox>
         </Content>
     )
 }
