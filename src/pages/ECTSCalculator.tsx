@@ -136,7 +136,7 @@ function ECTSCalculator() {
     const naviaget = useNavigate()
 
     const handleCalculate = () => {
-        if (!isLoading && !isGuest && !isOutOfCoupon) {
+        if (!isLoading && !isGuest) {
             if (week === 0)
                 setECTS(0)
             else {

@@ -102,7 +102,7 @@ function GPACalculator() {
     const naviaget = useNavigate()
 
     const handleCalculate = () => {
-        if (!isLoading && !isGuest && !isOutOfCoupon)
+        if (!isLoading && !isGuest)
             if (max - min === 0)
                 setGPA(0)
             else {
