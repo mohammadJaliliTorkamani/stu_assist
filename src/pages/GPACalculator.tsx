@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "../components/Button";
 import TitledNumericInput from "../components/TitledNumericInput";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const GPAContainer = styled.div`
     display: flex;
@@ -102,8 +103,39 @@ function GPACalculator() {
 
     const handleCalculate = () => {
         if (!isLoading && !isGuest && !isOutOfCoupon)
-            //must be calculated in server side            
-            setGPA(max - min === 0 ? 0 : 3 * ((max - grade) / (max - min)) + 1)
+            if (max - min === 0)
+                setGPA(0)
+            else {
+                setIsLoading(true)
+                const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
+                axios.get('http://localhost:8000/stu_assist_backend/services/gpa_calculation.php', {
+                    params: {
+                        min: min,
+                        max: max,
+                        grade: grade
+                    },
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+                    .then(response => {
+                        setIsLoading(false)
+                        return response.data
+                    })
+                    .then(data => {
+                        if (!data.error) {
+                            setIsOutOfCoupon(false)
+                            setGPA(Number(parseFloat(data.data).toFixed(2)))
+                        } else {
+                            if (data.message === 'اتمام کوپن') {
+                                setIsOutOfCoupon(true)
+                            }
+                        }
+                    }).catch(error => {
+                        alert('errorr!')
+                        setIsLoading(false)
+                    })
+            }
     }
 
     return (
