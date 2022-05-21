@@ -161,12 +161,14 @@ function ECTSCalculator() {
                             setIsOutOfCoupon(false)
                             setECTS(Number(parseFloat(data.data).toFixed(1)))
                         } else {
-                            if (data.message === 'اتمام کوپن') {
+                            if (data.message === 'موجودی ناکافی') {
                                 setIsOutOfCoupon(true)
+                            } else {
+                                alert(data.message)
                             }
                         }
                     }).catch(error => {
-                        alert('errorr!')
+                        alert('error!')
                         setIsLoading(false)
                     })
             }
