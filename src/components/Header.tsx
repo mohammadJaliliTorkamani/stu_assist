@@ -25,7 +25,6 @@ const Bar = styled.div`
 const Options = styled.div`
     display: flex;
     flex-direction : row;
-
 `;
 
 const Option = styled.div`
@@ -34,7 +33,6 @@ const Option = styled.div`
     padding-left : 2rem;
     padding-right : 2rem;
     cursor: pointer;
-
 `;
 
 const Welcome = styled.div`
