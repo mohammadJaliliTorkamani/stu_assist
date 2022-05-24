@@ -42,6 +42,7 @@ This open-source tool aims to implement handwriting detection using OpenCV and M
 * Modular and more!
 
 <br/>
+
 ### How to Run?
 1. Open the project in an IDE (Pycharm is suggested)
 2. Install project dependencies:
