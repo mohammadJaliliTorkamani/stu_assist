@@ -6,7 +6,7 @@ const HomeOptionsContainer = styled.div`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    min-height: 36rem;
+    min-height: 20rem;
     margin-top: 2rem;
 `;
 

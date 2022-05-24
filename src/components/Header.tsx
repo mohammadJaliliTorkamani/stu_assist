@@ -4,16 +4,16 @@ import { useNavigate } from "react-router-dom";
 const Container = styled.div`
     display: flex;
     flex-direction : column;
-    height: 25vh;
+    height: 15rem;
 `;
 
 const Banner = styled.img`
-    height: 15rem;
+    height: 13rem;
     background: #adadad;
 `;
 
 const Bar = styled.div`
-    height: 3rem;
+    height: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
