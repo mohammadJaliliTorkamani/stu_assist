@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
     display: flex;
@@ -19,7 +20,8 @@ const Bar = styled.div`
     justify-content: space-between;
     align-items: center;
     background: #0a3816;
-    padding: 0.8rem;    
+    padding: 0.8rem;
+    padding-left: 3rem;    
 `;
 
 const Options = styled.div`
@@ -27,18 +29,19 @@ const Options = styled.div`
     flex-direction : row;
 `;
 
-const Option = styled.div`
-    text-decoration: none;
-    color: white;
-    padding-left : 2rem;
-    padding-right : 2rem;
-    cursor: pointer;
-`;
+const optionActiveStyle = {
+    textDecoration: 'none',
+    color: 'white',
+    paddingLeft: '3rem',
+    paddingRight: '3rem',
+    cursor: 'pointer'
+}
 
-const Welcome = styled.div`
-    color: white;
-    cursor: pointer;
-`;
+const welcomeStyle = {
+    color: 'white',
+    cursor: 'pointer',
+    textDecoration: 'none'
+}
 
 interface TextLink {
     id: number,
@@ -53,14 +56,24 @@ interface IProps {
 
 function Header({ pages, user }: IProps) {
     const navigate = useNavigate()
+    const [mouseHover, setMouseHover] = useState(false)
     return (
         <Container>
             <Banner src={"http://wallpaperstock.net/green-gradient-background_wallpapers_43896_852x480.jpg"} />
             <Bar>
-                <Options>{pages.map(page => <Option key={page.id} onClick={() => navigate(page.link === "/" ? "/" : ("/" + page.link), { replace: true })}>{page.text}</Option>)}</Options>
-                <Welcome onClick={() => navigate(user === "مهمان" ? 'login' : 'profile', { replace: true })}>{`${user} عزیز خوش آمدید!`}</Welcome>
+                <Options>{
+                    pages.map(page =>
+                        <NavLink to={page.link === "/" ? "/" : ("/" + page.link)}
+                            style={optionActiveStyle}
+                            onMouseEnter={e => setMouseHover(true)}
+                            onMouseLeave={e => setMouseHover(false)}
+                        >
+                            {page.text}
+                        </NavLink>)}
+                </Options>
+                <Link to={user === "مهمان" ? 'login' : 'profile'} style={welcomeStyle}> {user === "مهمان" ? "ورود / ثبت نام" : user + " خوش آمدید"}</Link>
             </Bar>
-        </Container>
+        </Container >
     )
 }
 

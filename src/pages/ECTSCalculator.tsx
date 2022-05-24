@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 
 const ECTSContainer = styled.div`
-    min-height: 26rem;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: stretch;
+    min-height: 37rem;
     padding-top: 5rem;
     padding-bottom: 5rem;
     padding-left: 10rem;
