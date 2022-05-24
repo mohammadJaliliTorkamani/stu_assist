@@ -14,7 +14,7 @@
 
 # Air Handwriting Detection
 
-| [Python]("Game icon")  | [OpenCV](https://opencv.org/ "OpenCV")|
+| [Python](https://www.python.org/ "Game icon")  | [OpenCV](https://opencv.org/ "OpenCV")|
 | - | - |
 | <img src="https://logos-world.net/wp-content/uploads/2021/10/Python-Symbol.png" width="128">| <img src="https://editor.analyticsvidhya.com/uploads/232202.png" width="128"> |
 
