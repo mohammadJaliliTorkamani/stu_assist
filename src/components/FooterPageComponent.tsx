@@ -1,5 +1,4 @@
-import styled from "@emotion/styled"
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface IProps {
     page: FooterPageLink
@@ -10,31 +9,31 @@ interface FooterPageLink {
     link: string
 }
 
-const PageStyle = styled.div`
-    displaY: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: white;
-    height: 0.06rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 0.7rem;
-    padding-right: 0.7rem;
-    margin-left: 0.15rem;
-    margin-right: 0.15rem;
-    border: 1px solid white;
-    border-radius: 3px;
-    font-size : 0.60rem;
-    text-decoration: none;
-    cursor: pointer;
-`;
+const pageStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    color: 'white',
+    height: '0.06rem',
+    paddingTop: '0.5rem',
+    paddingBottom: '0.5rem',
+    paddingLeft: '0.7rem',
+    paddingRight: '0.7rem',
+    marginLeft: '0.15rem',
+    marginRight: '0.15rem',
+    border: '1px solid white',
+    borderRadius: '3px',
+    fontSize: '0.60rem',
+    textDecoration: 'none',
+    cursor: 'pointer',
+    alignItems: 'center'
+};
 
 function FooterPageComponent(props: IProps) {
-    const navigate = useNavigate()
     return (
-        <PageStyle onClick={() => navigate(props.page.link === "/" ? "/" : ("/" + props.page.link), { replace: true })}>
+        <Link style={pageStyle}
+            to={props.page.link === "/" ? "/" : ("/" + props.page.link)}>
             {props.page.text}
-        </PageStyle >
+        </ Link >
     )
 }
 

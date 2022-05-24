@@ -35,11 +35,11 @@ const footerPages = [{
 },{
   id: 2,
   text: "محاسبه GPA",
-  link: "/"
+  link: "gpa-calculator"
 },{
   id: 3,
   text: "محاسبه ECTS",
-  link: "/"
+  link: "ects-calculator"
 }, {
   id: 4,
   text: "ضوابط استفاده",
