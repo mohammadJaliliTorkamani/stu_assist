@@ -6,9 +6,9 @@ const FooterContainer = styled.div`
     display: flex;
     flex-direction: row;
     color: white;
-    height: 8rem;
+    height: 6rem;
     justify-content : space-between;
-    background: #636363;
+    background: #0a3816;
 `;
 
 const LeftContainer = styled.div`
@@ -30,9 +30,8 @@ const MiddleContainer = styled.div`
     display: flex;
     flex:1;
     flex-direction: column;
-    justify-content : flex-end;
+    justify-content : center;
     align-items: center;
-    margin-bottom: 1rem;
     font-size: 0.8rem;
 `;
 

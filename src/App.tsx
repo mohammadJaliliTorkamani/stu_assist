@@ -29,15 +29,23 @@ const headerPages = [{
 }]
 
 const footerPages = [{
-  id: 3,
+  id: 1,
   text: "خانه",
   link: "/"
-}, {
+},{
   id: 2,
+  text: "محاسبه GPA",
+  link: "/"
+},{
+  id: 3,
+  text: "محاسبه ECTS",
+  link: "/"
+}, {
+  id: 4,
   text: "ضوابط استفاده",
   link: "terms-of-use"
 }, {
-  id: 1,
+  id: 5,
   text: "تماس با ما",
   link: "contact-us"
 }]
@@ -45,12 +53,12 @@ const footerPages = [{
 const contactLinks = [
   {
     id: 1,
-    label: "روابط عمومی",
-    value: "info@stu-assist.ir"
+    label: "مدیریت",
+    value: "management@stu-assist.ir"
   }, {
     id: 2,
-    label: "ثبت بازخورد",
-    value: "customer@stu-assist.ir"
+    label: "امور کاربران",
+    value: "users@stu-assist.ir"
   }
 ]
 

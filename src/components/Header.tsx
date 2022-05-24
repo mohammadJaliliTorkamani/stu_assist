@@ -9,7 +9,7 @@ const Container = styled.div`
 
 const Banner = styled.img`
     height: 13rem;
-    background: #adadad;
+    background: #0a3816;
 `;
 
 const Bar = styled.div`
@@ -18,7 +18,7 @@ const Bar = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background: #636363;
+    background: #0a3816;
     padding: 0.8rem;    
 `;
 
@@ -55,7 +55,7 @@ function Header({ pages, user }: IProps) {
     const navigate = useNavigate()
     return (
         <Container>
-            <Banner />
+            <Banner src={"http://wallpaperstock.net/green-gradient-background_wallpapers_43896_852x480.jpg"} />
             <Bar>
                 <Options>{pages.map(page => <Option key={page.id} onClick={() => navigate(page.link === "/" ? "/" : ("/" + page.link), { replace: true })}>{page.text}</Option>)}</Options>
                 <Welcome onClick={() => navigate(user === "مهمان" ? 'login' : 'profile', { replace: true })}>{`${user} عزیز خوش آمدید!`}</Welcome>
