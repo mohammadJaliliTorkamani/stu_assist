@@ -1,19 +1,15 @@
 import styled from "@emotion/styled"
+import { Link } from "react-router-dom";
 
-const Container = styled.a`
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    font-size: 0.9rem;
-    text-decoration: none;
-    color: white;
-    width: 15rem;
-`;
-
-const Child = styled.div`
-
-`;
-
+const containerStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    fontSize: '0.9rem',
+    textDecoration: 'none',
+    color: 'white',
+    width: '15rem'
+};
 
 interface IProps {
     label: string,
@@ -22,10 +18,10 @@ interface IProps {
 }
 function KeyValuePair({ label, value, color = "white" }: IProps) {
     return (
-        <Container href={"mailto: " + value} style={{ color: color }}>
-            <Child> {label} :</Child>            
-            <Child> {value}</Child>
-        </Container >
+        <Link to={`mailto:${value}`} style={{ ...containerStyle, color: color }}>
+            <div> {label} :</div>
+            <div> {value}</div>
+        </Link >
     )
 }
 

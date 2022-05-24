@@ -51,6 +51,7 @@ const RightInnerContainer = styled.div`
 const ContactUsLabel = styled.div`
     color: #f2f2f2;
     font-size: 0.9rem;
+    margin-bottom: 5px;
 `;
 
 interface IProps {
