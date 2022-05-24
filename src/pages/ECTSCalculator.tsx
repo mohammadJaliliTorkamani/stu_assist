@@ -9,7 +9,7 @@ const ECTSContainer = styled.div`
     flex-direction: row;
     justify-content: space-around;
     align-items: stretch;
-    min-height: 37rem;
+    min-height: 40rem;
     padding-top: 5rem;
     padding-bottom: 5rem;
     padding-left: 10rem;

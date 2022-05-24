@@ -10,7 +10,7 @@ const RightBox = styled.div`
     justify-content: space-around;
     align-items:center;
     flex: 3;
-    min-height: 39rem;
+    min-height: 40rem;
     margin-left: 1rem;
     border: 2px solid red;
     border-radius: 2rem; 

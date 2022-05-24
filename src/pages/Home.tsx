@@ -1,17 +1,17 @@
-import styled from "@emotion/styled";
 import HomeOptionBox from "../components/HomeOptionBox";
 
-const HomeOptionsContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    min-height: 39rem;
-`;
+const homeOptionsContainer = {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    background: '#b6d6c2',
+    minHeight: '40rem',
+    backgroundImage: `url("https://via.placeholder.com/500")`,
+}
 
 function Home() {
     return (
-        <HomeOptionsContainer key={1}>
+        <div key={1} style={homeOptionsContainer}>
             <HomeOptionBox page={{
                 id: 1,
                 text: "محاسبه GPA",
@@ -22,7 +22,7 @@ function Home() {
                 text: "محاسبه ECTS",
                 link: "ects-calculator"
             }} />
-        </HomeOptionsContainer>
+        </div>
     )
 }
 

@@ -9,7 +9,7 @@ const GPAContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 39rem;
+    min-height: 40rem;
 `;
 
 const FieldsContainer = styled.div`
