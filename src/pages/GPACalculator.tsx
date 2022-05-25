@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import TitledNumericInput from "../components/TitledNumericInput";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ const GPAContainer = styled.div`
 `;
 
 const FieldsContainer = styled.div`
+    margin-top: 1rem;
     flex:0.7;
     display: flex;
     flex-direction: row;
@@ -82,19 +83,42 @@ const ChargeOptions = styled.div`
     align-items: center;
 `;
 
-const chargeValue = [{ id: 1, value: 50, price: 50000 }, { id: 2, value: 200, price: 100000 }, { id: 3, value: 500, price: 250000 }, { id: 4, value: 1000, price: 500000 }]
+interface ChargeValue {
+    id: number,
+    value: number,
+    price: number
+}
 
 function GPACalculator() {
-    const [isLoading, setIsLoading] = useState(false)
+    const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
+    const [isLoading, setIsLoading] = useState(true)
     const [isGuest, setIsGuest] = useState(false)
-    const [isOutOfCoupon, setIsOutOfCoupon] = useState(false)
+    const [isOutOfCoupon, setIsOutOfCoupon] = useState(true)
     const [selectedChargeOption, setSelectedChargeOption] = useState({ id: -1, value: -1, price: -1 })
     const [min, setMin] = useState(0)
     const [max, setMax] = useState(0)
     const [grade, setGrade] = useState(0)
     const [gpa, setGPA] = useState(0)
+    const [chargeValues, setChargeValues] = useState<ChargeValue[]>([])
 
     const naviaget = useNavigate()
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:8000/stu_assist_backend/payment/charge_options.php', {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(response => {
+                setIsLoading(false)
+                return response.data
+            })
+            .then(data => data.error ? alert(data.message) : setChargeValues(data.data))
+            .catch(error => {
+                setIsLoading(false)
+                alert('خطا')
+            })
+    }, [])
 
     const handleCalculate = () => {
         if (!isLoading && !isGuest)
@@ -102,7 +126,6 @@ function GPACalculator() {
                 setGPA(0)
             else {
                 setIsLoading(true)
-                const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
                 axios.get('http://localhost:8000/stu_assist_backend/services/gpa_calculation.php', {
                     params: {
                         min: min,
@@ -162,12 +185,12 @@ function GPACalculator() {
                         <SelectedTitle> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </SelectedTitle >
 
                         <ChargeOptions>
-                            {chargeValue.map(value =>
+                            {chargeValues.map(value =>
                                 <ChargeOptionRecord
                                     key={value.id}
                                     selected={selectedChargeOption.id === value.id}
                                     onClick={e => { setSelectedChargeOption(value) }}
-                                    title={`${value.value} درخواست , ${value.price} تومان`}
+                                    title={`${value.value} درخواست , ${value.price / 10} تومان`}
                                 />)}
                         </ChargeOptions>
                         <Button title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />

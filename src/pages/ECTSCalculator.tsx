@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import ChargeOptionRecord from "../components/ChargeOptionRecord";
@@ -81,7 +81,6 @@ const ECTSTResulValue = styled.div`
     color: green;
 `;
 
-
 const LoginBox = styled.div`
     display: flex;
     flex-direction : column;
@@ -114,10 +113,15 @@ const ResultContainer = styled.div`
     width: 100%;
 `;
 
-const chargeValue = [{ id: 1, value: 50, price: 50000 }, { id: 2, value: 200, price: 100000 }, { id: 3, value: 500, price: 250000 }, { id: 4, value: 1000, price: 500000 }]
+interface ChargeValue {
+    id: number,
+    value: number,
+    price: number
+}
 
 function ECTSCalculator() {
-    const [isLoading, setIsLoading] = useState(false)
+    const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
+    const [isLoading, setIsLoading] = useState(true)
     const [isGuest, setIsGuest] = useState(false)
     const [isOutOfCoupon, setIsOutOfCoupon] = useState(true)
     const [selectedChargeOption, setSelectedChargeOption] = useState({ id: -1, value: -1, price: -1 })
@@ -125,8 +129,26 @@ function ECTSCalculator() {
     const [time, setTime] = useState(0)
     const [week, setWeek] = useState(0)
     const [ECTS, setECTS] = useState(0)
+    const [chargeValues, setChargeValues] = useState<ChargeValue[]>([])
 
-    const naviaget = useNavigate()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:8000/stu_assist_backend/payment/charge_options.php', {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(response => {
+                setIsLoading(false)
+                return response.data
+            })
+            .then(data => data.error ? alert(data.message) : setChargeValues(data.data))
+            .catch(error => {
+                setIsLoading(false)
+                alert('خطا')
+            })
+    }, [])
 
     const handleCalculate = () => {
         if (!isLoading && !isGuest) {
@@ -134,7 +156,6 @@ function ECTSCalculator() {
                 setECTS(0)
             else {
                 setIsLoading(true)
-                const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
                 axios.get('http://localhost:8000/stu_assist_backend/services/ects_calculation.php', {
                     params: {
                         time: time,
@@ -197,7 +218,7 @@ function ECTSCalculator() {
                         <Title>
                             لطفا ابتدا وارد حساب کاربری خود شوید
                         </Title>
-                        <Button title="ورود / ثبت نام" onClick={e => naviaget('/login', { replace: true })} />
+                        <Button title="ورود / ثبت نام" onClick={e => navigate('/login', { replace: true })} />
                     </LoginBox>
                 }
                 {
@@ -206,13 +227,13 @@ function ECTSCalculator() {
                         <Title style={{ marginBottom: '1rem' }}>تعداد کوپن های درخواست شما به پایان رسیده است</Title>
                         <Title style={{ marginBottom: '1.5rem' }}> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </Title>
 
-                        <ChargeOptions style={{marginBottom: '1rem'}}>
-                            {chargeValue.map(value =>
+                        <ChargeOptions style={{ marginBottom: '1rem' }}>
+                            {chargeValues.map(value =>
                                 <ChargeOptionRecord
                                     key={value.id}
                                     selected={selectedChargeOption.id === value.id}
                                     onClick={e => { setSelectedChargeOption(value) }}
-                                    title={`${value.value} درخواست , ${value.price} تومان`}
+                                    title={`${value.value} درخواست , ${value.price / 10} تومان`}
                                 />)}
                         </ChargeOptions>
                         <Button title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />
