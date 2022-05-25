@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import TitledNumericInput from "../components/TitledNumericInput";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import ChargeOptionRecord from "../components/ChargeOptionRecord";
 
 const GPAContainer = styled.div`
     display: flex;
@@ -37,7 +38,7 @@ const ResultInnerContainer = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border: 2px solid red;
+    border: 2px solid #0a3816;
     border-radius: 1rem;
     min-width: 60rem;
 `;
@@ -50,11 +51,12 @@ const Title = styled.div`
 
 const Result = styled.div`
     font-size: 3.5rem;
+    color: #0a3816;
 `;
 
 const LoginBox = styled.div`
     display: flex;
-    flex-direction : row;
+    flex-direction : column;
     justify-content: space-between;
     align-items: center;
 `;
@@ -73,26 +75,12 @@ const ChargeOptions = styled.div`
     align-items: center;
 `;
 
-const ChargeOptionRecord = styled.div`
-    color: black;
-    cursor: pointer;
-    diosplay: flex;
-    flex-direction : row;
-    justify-content: cetner;
-    align-items: center;
-    margin: 1rem;
-    border: 1px solid orange;
-    border-radius: 4px;
-    padding: 1rem;
-    font-size: 0.85rem;
-`;
-
 const chargeValue = [{ id: 1, value: 50, price: 50000 }, { id: 2, value: 200, price: 100000 }, { id: 3, value: 500, price: 250000 }, { id: 4, value: 1000, price: 500000 }]
 
 function GPACalculator() {
     const [isLoading, setIsLoading] = useState(false)
     const [isGuest, setIsGuest] = useState(false)
-    const [isOutOfCoupon, setIsOutOfCoupon] = useState(false)
+    const [isOutOfCoupon, setIsOutOfCoupon] = useState(true)
     const [selectedChargeOption, setSelectedChargeOption] = useState({ id: -1, value: -1, price: -1 })
     const [min, setMin] = useState(0)
     const [max, setMax] = useState(0)
@@ -146,11 +134,11 @@ function GPACalculator() {
                 <TitledNumericInput title={"معدل شما"} value={grade} setValue={setGrade} max={20} min={0} />
                 <TitledNumericInput title={"حداکثر نمره قابل قبول"} value={min} setValue={setMin} max={20} min={0} />
                 <TitledNumericInput title={"حداقل نمره قابل قبول"} value={max} setValue={setMax} max={20} min={0} />
-                <Button title={"محاسبه"} color={"orange"} onClick={() => handleCalculate()} />
+                <Button title={"محاسبه"} onClick={() => handleCalculate()} />
             </FieldsContainer>
             <ResultContainer>
                 {
-                    isLoading && <div>Loading</div>
+                    isLoading && <div>در حال بارگذاری...</div>
                 }
                 {
                     isGuest && !isLoading && <LoginBox>
@@ -167,9 +155,13 @@ function GPACalculator() {
                         <Title> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </Title>
 
                         <ChargeOptions>
-                            {chargeValue.map(value => {
-                                return <ChargeOptionRecord key={value.id} onClick={e => setSelectedChargeOption(value)}>{value.value} درخواست , {value.price} تومان</ChargeOptionRecord>
-                            })}
+                            {chargeValue.map(value =>
+                                <ChargeOptionRecord
+                                    key={value.id}
+                                    selected={selectedChargeOption.id === value.id}
+                                    onClick={e => { setSelectedChargeOption(value) }}
+                                    title={`${value.value} درخواست , ${value.price} تومان`}
+                                />)}
                         </ChargeOptions>
                         <Button title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />
                     </ChargeBox>
@@ -177,7 +169,7 @@ function GPACalculator() {
                 {
                     !isLoading && !isGuest && !isOutOfCoupon &&
                     <ResultInnerContainer>
-                        <Title>مقدار GPA (از 4.0) : </Title>
+                        <Title>مقدار GPA : </Title>
                         <Result>
                             {gpa}
                         </Result>
