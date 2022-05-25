@@ -8,7 +8,7 @@ const FooterContainer = styled.div`
     color: white;
     height: 6rem;
     justify-content : space-between;
-    background: #0a3816;
+    background: #002b0d;
 `;
 
 const LeftContainer = styled.div`

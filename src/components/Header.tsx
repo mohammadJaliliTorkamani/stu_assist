@@ -6,16 +6,16 @@ import { Link, NavLink } from "react-router-dom";
 const Container = styled.div`
     display: flex;
     flex-direction : column;
-    height: 15rem;
+    height: 16rem;
 `;
 
 const Bar = styled.div`
-    height: 2rem;
+    height: 3rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
-    background: #0a3816;
+    background: #002b0d;
     padding-left: 3rem;
     padding-right: 3rem;    
 `;
@@ -41,7 +41,7 @@ const Options = styled.div`
 
 const optionActiveStyle = {
     textDecoration: 'none',
-    color: '#59f551',
+    color: '#11a841',
     paddingLeft: '3rem',
     paddingRight: '3rem',
     cursor: 'pointer',
@@ -66,7 +66,7 @@ const welcomeStyle = {
 
 const Title = styled.div`
     color:white;
-    margin: 2rem;
+    margin: 3rem;
     font-size: 3rem;
 `;
 

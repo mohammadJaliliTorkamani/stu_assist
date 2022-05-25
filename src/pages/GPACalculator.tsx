@@ -48,6 +48,7 @@ const Title = styled.div`
     font-size: 2rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    color: #11a841;
 `;
 
 const SelectedTitle = styled.div`
@@ -93,7 +94,7 @@ function GPACalculator() {
     const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
     const [isLoading, setIsLoading] = useState(true)
     const [isGuest, setIsGuest] = useState(false)
-    const [isOutOfCoupon, setIsOutOfCoupon] = useState(true)
+    const [isOutOfCoupon, setIsOutOfCoupon] = useState(false)
     const [selectedChargeOption, setSelectedChargeOption] = useState({ id: -1, value: -1, price: -1 })
     const [min, setMin] = useState(0)
     const [max, setMax] = useState(0)
@@ -172,9 +173,9 @@ function GPACalculator() {
                 }
                 {
                     isGuest && !isLoading && <LoginBox>
-                        <Title>
+                        <SelectedTitle>
                             لطفا ابتدا وارد حساب کاربری خود شوید
-                        </Title>
+                        </SelectedTitle>
                         <Button title="ورود / ثبت نام" onClick={e => naviaget('/login', { replace: true })} />
                     </LoginBox>
                 }
@@ -199,7 +200,7 @@ function GPACalculator() {
                 {
                     !isLoading && !isGuest && !isOutOfCoupon &&
                     <ResultInnerContainer>
-                        <Title>مقدار GPA : </Title>
+                        <SelectedTitle>مقدار GPA : </SelectedTitle>
                         <Result>
                             {gpa}
                         </Result>

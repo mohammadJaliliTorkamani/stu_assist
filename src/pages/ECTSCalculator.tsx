@@ -55,6 +55,10 @@ const Value = styled.input`
 `;
 
 const Title = styled.div`
+    color: #11a841;
+`;
+
+const SelectedTitle = styled.div`
     color: black;
 `;
 
@@ -123,7 +127,7 @@ function ECTSCalculator() {
     const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
     const [isLoading, setIsLoading] = useState(true)
     const [isGuest, setIsGuest] = useState(false)
-    const [isOutOfCoupon, setIsOutOfCoupon] = useState(true)
+    const [isOutOfCoupon, setIsOutOfCoupon] = useState(false)
     const [selectedChargeOption, setSelectedChargeOption] = useState({ id: -1, value: -1, price: -1 })
     const [unit, setUnit] = useState(0)
     const [time, setTime] = useState(0)
@@ -193,15 +197,15 @@ function ECTSCalculator() {
         <ECTSContainer>
             <RightBox>
                 <TitleValuePair>
-                    <Title>تعداد واحد درسی</Title>
+                    <SelectedTitle>تعداد واحد درسی</SelectedTitle>
                     <Value type='number' min={1} max={50} value={unit} onChange={e => setUnit(parseInt(e.target.value))} />
                 </TitleValuePair>
                 <TitleValuePair>
-                    <Title>مدت زمان واحد در هفته (دقیقه)</Title>
+                    <SelectedTitle>مدت زمان واحد در هفته (دقیقه)</SelectedTitle>
                     <Value type='number' min={0} max={120} value={time} onChange={e => setTime(parseInt(e.target.value))} />
                 </TitleValuePair>
                 <TitleValuePair>
-                    <Title>تعداد هفته در نظام آموزشی کشور حارجی</Title>
+                    <SelectedTitle>تعداد هفته در نظام آموزشی کشور حارجی</SelectedTitle>
                     <Value type='number' min={1} max={52} value={week} onChange={e => setWeek(parseInt(e.target.value))} />
                 </TitleValuePair>
             </RightBox>
@@ -215,9 +219,9 @@ function ECTSCalculator() {
                 }
                 {
                     isGuest && !isLoading && <LoginBox>
-                        <Title>
+                        <SelectedTitle>
                             لطفا ابتدا وارد حساب کاربری خود شوید
-                        </Title>
+                        </SelectedTitle>
                         <Button title="ورود / ثبت نام" onClick={e => navigate('/login', { replace: true })} />
                     </LoginBox>
                 }
@@ -225,7 +229,7 @@ function ECTSCalculator() {
                     !isGuest && !isLoading && isOutOfCoupon &&
                     <ChargeBox>
                         <Title style={{ marginBottom: '1rem' }}>تعداد کوپن های درخواست شما به پایان رسیده است</Title>
-                        <Title style={{ marginBottom: '1.5rem' }}> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </Title>
+                        <SelectedTitle style={{ marginBottom: '1.5rem' }}> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </SelectedTitle>
 
                         <ChargeOptions style={{ marginBottom: '1rem' }}>
                             {chargeValues.map(value =>
