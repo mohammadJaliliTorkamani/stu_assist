@@ -99,7 +99,6 @@ const TableHeader = styled.th`
     height: 35px;
 `;
 
-
 interface TranscationRecordType {
     id: number,
     issueTrackingNo: string,

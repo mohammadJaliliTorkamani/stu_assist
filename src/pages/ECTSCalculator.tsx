@@ -250,5 +250,4 @@ function ECTSCalculator() {
     )
 }
 
-
 export default ECTSCalculator

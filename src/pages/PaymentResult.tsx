@@ -18,6 +18,7 @@ const RedLabel = styled.div`
     font-size: 2rem;
     margin: 2rem;
 `;
+
 const Continer = styled.div`
     display: flex;
     flex-direction: column;

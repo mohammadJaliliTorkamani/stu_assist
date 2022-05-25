@@ -26,7 +26,6 @@ const TextBox = styled.div`
     line-height: 2rem;
 `;
 
-
 function TermsOfUse() {
     const content = "این یک متن آزمایشی است"
     return (
@@ -35,6 +34,5 @@ function TermsOfUse() {
         </TextContiner>
     )
 }
-
 
 export default TermsOfUse
