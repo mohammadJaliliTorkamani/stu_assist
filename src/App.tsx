@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import OTP from './pages/OTP';
+import PaymentResult from './pages/PaymentResult';
 import Profile from './pages/Profile';
 import TermsOfUse from './pages/TermsOfUse';
 
@@ -31,11 +32,11 @@ const footerPages = [{
   id: 1,
   text: "خانه",
   link: "/"
-},{
+}, {
   id: 2,
   text: "محاسبه GPA",
   link: "gpa-calculator"
-},{
+}, {
   id: 3,
   text: "محاسبه ECTS",
   link: "ects-calculator"
@@ -64,7 +65,7 @@ const contactLinks = [
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
   const { pathname } = useLocation()
-  
+
   useEffect(() => {
     setShowHeaderFooter(pathname !== "/login" && pathname !== "/otp-verification")
   }, [pathname])
@@ -85,6 +86,7 @@ function App() {
         <Route path='otp-verification' element={<OTP />} />
         <Route path='ects-calculator' element={<ECTSCalculator />} />
         <Route path='gpa-calculator' element={<GPACalculator />} />
+        <Route path='payment-result' element={<PaymentResult isOK={true}/>} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       {showHeaderFooter && <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={footerPages} contactUsLinks={contactLinks} />}

@@ -24,7 +24,7 @@ const containerStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    textDecoration: 'none'
+    textDecoration: 'none',
 }
 
 function HomeOptionBox({ page }: IProps) {
