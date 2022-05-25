@@ -7,10 +7,32 @@ interface TextLink {
 }
 
 interface IProps {
-    page: TextLink
+    page: TextLink,
+    hovered: boolean,
+    onMouseEntered: (e: React.MouseEvent<HTMLAnchorElement>) => void,
+    onMouseLeave: (e: React.MouseEvent<HTMLAnchorElement>) => void,
+
 }
 
-const containerStyle = {
+const containerActiveStyle = {
+    cursor: 'pointer',
+    fontSize: '1.5rem',
+    background: '#59f551',
+    color: 'white',
+    border: '4px solid #0a3816',
+    borderRadius: '1rem',
+    height: '10rem',
+    width: '30rem',
+    marginLeft: '1rem',
+    marginRight: '1rem',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textDecoration: 'none',
+}
+
+
+const containerDeactiveStyle = {
     cursor: 'pointer',
     fontSize: '1.5rem',
     background: 'white',
@@ -27,9 +49,10 @@ const containerStyle = {
     textDecoration: 'none',
 }
 
-function HomeOptionBox({ page }: IProps) {
+
+function HomeOptionBox({ page, hovered, onMouseEntered, onMouseLeave }: IProps) {
     return (
-        <Link to={page.link} style={containerStyle}>
+        <Link to={page.link} style={hovered ? containerActiveStyle : containerDeactiveStyle} onMouseEnter={e => onMouseEntered(e)} onMouseLeave={e => onMouseLeave(e)} >
             {page.text}
         </Link>
     )
