@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import KeyValuePair from "../components/KeyValuePair";
+import { Link } from "react-router-dom";
 
 const TextContiner = styled.div`
     display: flex;
@@ -7,14 +7,14 @@ const TextContiner = styled.div`
     justify-content: center;
     padding-left: 33%;
     padding-right: 33%;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
     min-height: 40rem;
 `;
 
 const TextBox = styled.div`
     display: flex;
     flex:1;
+    margin-top: 3rem;
+    margin-bottom   : 3rem;
     color: black;
     background: #f2f2f2;
     padding-top: 4%;
@@ -38,14 +38,19 @@ const Separator = styled.div`
 `;
 
 function ContactUs() {
+
+    const methods = [{ label: 'روابط عمومی', emailAddress: 'info@stu-assist.ir' }, { label: 'امور کاربران', emailAddress: 'users@stu-assist.ir' }, { label: 'توسعه دهندگان', emailAddress: 'developers@stu-assist.ir' }]
     return (
         <TextContiner>
             <TextBox>
                 مشخصات تماس
                 <Separator />
-                <KeyValuePair label="روابط عمومی" value="info@stu-assist.ir" color="black" />
-                <KeyValuePair label="مدیریت مشتریان" value="customer@stu-assist.ir" color="black" />
-                <KeyValuePair label="توسعه دهنده" value="dev@stu-assist.ir" color="black" />
+                {
+                    methods.map(method => <Link to={`mailto:${method.emailAddress}`} style={{ textDecoration: 'none', color: 'black' }}>
+                        <div> {method.label} : {method.emailAddress}</div>
+                    </Link >
+                    )
+                }
             </TextBox>
         </TextContiner>
     )

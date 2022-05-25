@@ -4,9 +4,8 @@ const homeOptionsContainer = {
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    background: '#b6d6c2',
-    minHeight: '40rem',
-    backgroundImage: `url("https://via.placeholder.com/500")`,
+    background: '#f5f5f5',
+    minHeight: '40rem'
 }
 
 function Home() {

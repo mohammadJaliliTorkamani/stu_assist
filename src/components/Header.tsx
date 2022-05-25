@@ -59,7 +59,7 @@ function Header({ pages, user }: IProps) {
     const [mouseHover, setMouseHover] = useState(false)
     return (
         <Container>
-            <Banner src={"http://wallpaperstock.net/green-gradient-background_wallpapers_43896_852x480.jpg"} />
+            <Banner src={"http://wallpaperstock.net/green-blur_wallpapers_45136_852x480.jpg"} />
             <Bar>
                 <Options>{
                     pages.map(page =>
