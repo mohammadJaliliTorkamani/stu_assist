@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { url } from "inspector";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
@@ -6,11 +7,6 @@ const Container = styled.div`
     display: flex;
     flex-direction : column;
     height: 15rem;
-`;
-
-const Banner = styled.img`
-    height: 13rem;
-    background: #0a3816;
 `;
 
 const Bar = styled.div`
@@ -23,6 +19,20 @@ const Bar = styled.div`
     padding-left: 3rem;
     padding-right: 3rem;    
 `;
+
+const Banner = styled.div`
+    background: #f2f2f2;
+    background-image: url(http://wallpaperstock.net/green-blur_wallpapers_45136_852x480.jpg);
+    height: 13rem;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-size: 100%;
+`;
+
+
 
 const Options = styled.div`
     display: flex;
@@ -54,6 +64,12 @@ const welcomeStyle = {
     alignSelf: 'center',
 }
 
+const Title = styled.div`
+    color:white;
+    margin: 2rem;
+    font-size: 3rem;
+`;
+
 interface TextLink {
     id: number,
     text: string,
@@ -70,7 +86,10 @@ function Header({ pages, user }: IProps) {
     const [hoveredLinkID, setHoveredLinkID] = useState(-1)
     return (
         <Container>
-            <Banner src={"http://wallpaperstock.net/green-blur_wallpapers_45136_852x480.jpg"} />
+            <Banner>
+                <Title>سامانه خدمات دانشجویان</Title>
+                <Title>Stu-Assist</Title>
+            </Banner>
             <Bar>
                 <Options>{
                     pages.map(page =>
