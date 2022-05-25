@@ -8,7 +8,7 @@ const Container = styled.div`
     justify-content: cetner;
     align-items: center;
     margin: 1rem;
-    border: 1px solid orange;
+    border: 1px solid green;
     border-radius: 4px;
     padding: 1rem;
     font-size: 0.85rem;

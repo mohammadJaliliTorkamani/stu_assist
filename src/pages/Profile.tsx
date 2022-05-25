@@ -54,9 +54,9 @@ const Content = styled.div`
 
 const PayButton = styled.button`
     color: white;
-    background: orange;
+    background: green;
     border-radius: 4px;
-    border: 0px solid orange;
+    border: 0px solid green;
     width: 14rem;
     height: 3rem;
     margin-top: 1rem;
@@ -79,7 +79,7 @@ const ChargeOptionRecord = styled.div`
     justify-content: cetner;
     align-items: center;
     margin: 1rem;
-    border: 1px solid orange;
+    border: 1px solid green;
     border-radius: 4px;
     padding: 1rem;
     font-size: 0.85rem;

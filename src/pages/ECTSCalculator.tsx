@@ -206,7 +206,7 @@ function ECTSCalculator() {
                 </TitleValuePair>
             </RightBox>
             <ResultButtonBox>
-                <Button title={"محاسبه"} color={"orange"} onClick={() => handleCalculate()} />
+                <Button title={"محاسبه"} onClick={() => handleCalculate()} />
                 <CalculateArrow src={"https://images.vectorhq.com/images/previews/a42/arrow-left-green-clip-art-56205.png"} />
             </ResultButtonBox>
             <LeftBox>

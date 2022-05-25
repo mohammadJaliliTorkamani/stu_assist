@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 
 const Container = styled.button`
     color: white;
-    border: 0px solid orange;
+    border: 0px solid green;
     border-radius: 2px;
     font-size: 1.2rem;
     cursor: pointer;
@@ -16,7 +16,7 @@ interface IProps {
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-function Button({ title, onClick, color = "orange", reference = null }: IProps) {
+function Button({ title, onClick, color = "green", reference = null }: IProps) {
     return (
         <Container
             style={{
