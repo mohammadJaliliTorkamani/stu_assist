@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import { useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Container = styled.div`
     display: flex;
@@ -18,10 +18,10 @@ const Bar = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     background: #0a3816;
-    padding: 0.8rem;
-    padding-left: 3rem;    
+    padding-left: 3rem;
+    padding-right: 3rem;    
 `;
 
 const Options = styled.div`
@@ -31,16 +31,27 @@ const Options = styled.div`
 
 const optionActiveStyle = {
     textDecoration: 'none',
+    color: '#59f551',
+    paddingLeft: '3rem',
+    paddingRight: '3rem',
+    cursor: 'pointer',
+    alignSelf: 'center'
+}
+
+const optionDeactiveStyle = {
+    textDecoration: 'none',
     color: 'white',
     paddingLeft: '3rem',
     paddingRight: '3rem',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    alignSelf: 'center'
 }
 
 const welcomeStyle = {
     color: 'white',
     cursor: 'pointer',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    alignSelf: 'center',
 }
 
 interface TextLink {
@@ -55,8 +66,8 @@ interface IProps {
 }
 
 function Header({ pages, user }: IProps) {
-    const navigate = useNavigate()
-    const [mouseHover, setMouseHover] = useState(false)
+    const [, setMouseHover] = useState(false)
+    const [hoveredLinkID, setHoveredLinkID] = useState(-1)
     return (
         <Container>
             <Banner src={"http://wallpaperstock.net/green-blur_wallpapers_45136_852x480.jpg"} />
@@ -64,9 +75,15 @@ function Header({ pages, user }: IProps) {
                 <Options>{
                     pages.map(page =>
                         <NavLink to={page.link === "/" ? "/" : ("/" + page.link)}
-                            style={optionActiveStyle}
-                            onMouseEnter={e => setMouseHover(true)}
-                            onMouseLeave={e => setMouseHover(false)}
+                            style={page.id === hoveredLinkID ? optionActiveStyle : optionDeactiveStyle}
+                            onMouseEnter={e => {
+                                setHoveredLinkID(page.id)
+                                setMouseHover(true)
+                            }}
+                            onMouseLeave={e => {
+                                setHoveredLinkID(-1)
+                                setMouseHover(false)
+                            }}
                         >
                             {page.text}
                         </NavLink>)}
