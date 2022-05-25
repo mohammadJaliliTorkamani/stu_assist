@@ -49,9 +49,15 @@ const Title = styled.div`
     padding-bottom: 1rem;
 `;
 
+const SelectedTitle = styled.div`
+    font-size: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+`;
+
 const Result = styled.div`
     font-size: 3.5rem;
-    color: #0a3816;
+    color: green;
 `;
 
 const LoginBox = styled.div`
@@ -66,6 +72,7 @@ const ChargeBox = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    height: 25rem;
 `;
 
 const ChargeOptions = styled.div`
@@ -80,7 +87,7 @@ const chargeValue = [{ id: 1, value: 50, price: 50000 }, { id: 2, value: 200, pr
 function GPACalculator() {
     const [isLoading, setIsLoading] = useState(false)
     const [isGuest, setIsGuest] = useState(false)
-    const [isOutOfCoupon, setIsOutOfCoupon] = useState(true)
+    const [isOutOfCoupon, setIsOutOfCoupon] = useState(false)
     const [selectedChargeOption, setSelectedChargeOption] = useState({ id: -1, value: -1, price: -1 })
     const [min, setMin] = useState(0)
     const [max, setMax] = useState(0)
@@ -152,7 +159,7 @@ function GPACalculator() {
                     !isGuest && !isLoading && isOutOfCoupon &&
                     <ChargeBox>
                         <Title>تعداد کوپن های درخواست شما به پایان رسیده است</Title>
-                        <Title> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </Title>
+                        <SelectedTitle> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </SelectedTitle >
 
                         <ChargeOptions>
                             {chargeValue.map(value =>
