@@ -31,8 +31,6 @@ const Banner = styled.div`
     background-size: 100%;
 `
 
-
-
 const Options = styled.div`
     display: flex;
     flex-direction : row;

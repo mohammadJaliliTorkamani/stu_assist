@@ -86,7 +86,6 @@ function OTP() {
         else handleEnter()
     }
 
-
     const handleEnter = () => {
         axios
             .post(LINK_OTP,
@@ -133,6 +132,5 @@ function OTP() {
         </Container>
     )
 }
-
 
 export default OTP

@@ -147,5 +147,4 @@ function GPACalculator() {
     )
 }
 
-
 export default GPACalculator
