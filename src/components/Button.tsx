@@ -3,10 +3,13 @@ import styled from "@emotion/styled"
 const Container = styled.button`
     color: white;
     border: 0px solid green;
-    border-radius: 2px;
+    border-radius: 3px;
     font-size: 1.2rem;
     cursor: pointer;
-    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 `;
 
 interface IProps {
