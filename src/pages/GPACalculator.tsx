@@ -164,8 +164,8 @@ function GPACalculator() {
         <GPAContainer>
             <FieldsContainer>
                 <TitledNumericInput title={"معدل شما"} value={grade} setValue={setGrade} max={20} min={0} />
-                <TitledNumericInput title={"حداکثر نمره قابل قبول"} value={min} setValue={setMin} max={20} min={0} />
-                <TitledNumericInput title={"حداقل نمره قابل قبول"} value={max} setValue={setMax} max={20} min={0} />
+                <TitledNumericInput title={"حداکثر نمره قابل قبول"} value={max} setValue={setMax} max={20} min={0} />
+                <TitledNumericInput title={"حداقل نمره قابل قبول"} value={min} setValue={setMin} max={20} min={0} />
                 <Button title={"محاسبه"} onClick={() => handleCalculate()} />
             </FieldsContainer>
             <ResultContainer>
