@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useLocalStorage } from "../utils/useLocalStorage"
 
 interface ChargeValue {
     id: number,
@@ -8,7 +9,7 @@ interface ChargeValue {
 }
 
 function useChargeOptions() {
-    const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
+    const [token,] = useLocalStorage('token')
     const [chargeValues, setChargeValues] = useState<ChargeValue[]>([])
     const [selectedChargeOption, setSelectedChargeOption] = useState<ChargeValue>({ id: -1, value: -1, price: -1 })
 

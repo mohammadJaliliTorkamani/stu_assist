@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import InfoRecord from "../components/InfoRecord";
 import TransactionRecord from "../components/TransactionRecord";
+import { useLocalStorage } from "../utils/useLocalStorage";
 
 const RightBox = styled.div`
     display: flex;
@@ -114,7 +115,7 @@ function Profile() {
     const [fullName, setFullName] = useState('')
     const [balance, setBalance] = useState(0)
     const [transactions, setTransactions] = useState<TranscationRecordType[]>([] as TranscationRecordType[])
-    const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
+    const [token,] = useLocalStorage('token')
 
 
     useEffect(() => {
@@ -136,7 +137,7 @@ function Profile() {
                 else
                     alert(data.message)
             })
-            .catch(error => alert('error!'))
+            .catch(error => JSON.stringify(error))
     }, [])
 
     return (

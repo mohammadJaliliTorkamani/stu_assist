@@ -77,10 +77,10 @@ interface TextLink {
 
 interface IProps {
     pages: TextLink[],
-    user: string
+    isUser: boolean
 }
 
-function Header({ pages, user }: IProps) {
+function Header({ pages, isUser }: IProps) {
     const [, setMouseHover] = useState(false)
     const [hoveredLinkID, setHoveredLinkID] = useState(-1)
     return (
@@ -106,7 +106,7 @@ function Header({ pages, user }: IProps) {
                             {page.text}
                         </NavLink>)}
                 </Options>
-                <Link to={user === "guest" ? 'login' : 'profile'} style={welcomeStyle}> {user === "guest" ? "ورود / ثبت نام" : user + " خوش آمدید"}</Link>
+                <Link to={!isUser ? 'login' : 'profile'} style={welcomeStyle}> {!isUser ? "ورود / ثبت نام" : " خوش آمدید"}</Link>
             </Bar>
         </Container >
     )

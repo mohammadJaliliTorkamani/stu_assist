@@ -1,8 +1,9 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useLocalStorage } from "../utils/useLocalStorage"
 
 function useGPA(_min: number, _max: number, _grade: number) {
-    const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
+    const [token,] = useLocalStorage('token')
 
     const [min, setMin] = useState(_min)
     const [max, setMax] = useState(_max)

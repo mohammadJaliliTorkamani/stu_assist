@@ -15,10 +15,12 @@ import PaymentResult from './pages/PaymentResult';
 import Profile from './pages/Profile';
 import TermsOfUse from './pages/TermsOfUse';
 import { contactLinks, footerPages, headerPages } from './utils/Constants';
+import { useLocalStorage } from './utils/useLocalStorage';
 
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
   const { pathname } = useLocation()
+  const [token,] = useLocalStorage('token')
 
   useEffect(() => {
     setShowHeaderFooter(pathname !== "/login" && pathname !== "/otp-verification")
@@ -26,7 +28,7 @@ function App() {
 
   return (
     <>
-      {showHeaderFooter && <Header pages={headerPages} user={"guest"} />}
+      {showHeaderFooter && <Header pages={headerPages} isUser={token !== null} />}
       <Routes>
         <Route path='login' element={<Login />} />
         <Route path='/' element={<Home />} />

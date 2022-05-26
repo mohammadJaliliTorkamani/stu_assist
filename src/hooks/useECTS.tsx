@@ -1,8 +1,11 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useLocalStorage } from "../utils/useLocalStorage"
 
 function useECTS(_unit: number, _time: number, _week: number) {
-    const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
+    const [token,] = useLocalStorage('token')
+    console.log(token);
+
 
     const [loading, setLoading] = useState(false)
     const [guest, setGuest] = useState(false)

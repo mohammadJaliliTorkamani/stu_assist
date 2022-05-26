@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import avatar from '../assets/user_avatar.png'
 import Button from "../components/Button";
+import { useLocalStorage } from "../utils/useLocalStorage";
 
 const Container = styled.div`
     display: flex;
@@ -69,6 +70,7 @@ function OTP() {
     const navigate = useNavigate()
     const buttonRef = useRef<any>()
     const inputRef = useRef<any>()
+    const [, setToken] = useLocalStorage('token', null)
 
     useEffect(() => {
         document.title = "Stu Assist | احراز هویت"
@@ -95,7 +97,9 @@ function OTP() {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-            .then(response => {
+            .then(response => response.data)
+            .then(token => {
+                setToken(token)
                 console.log("Navigating to Home....")
                 navigate('/', { replace: true })
             }).catch(error =>
