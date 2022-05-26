@@ -107,7 +107,7 @@ function Header({ pages, user }: IProps) {
                             {page.text}
                         </NavLink>)}
                 </Options>
-                <Link to={user === "مهمان" ? 'login' : 'profile'} style={welcomeStyle}> {user === "مهمان" ? "ورود / ثبت نام" : user + " خوش آمدید"}</Link>
+                <Link to={user === "guest" ? 'login' : 'profile'} style={welcomeStyle}> {user === "guest" ? "ورود / ثبت نام" : user + " خوش آمدید"}</Link>
             </Bar>
         </Container >
     )

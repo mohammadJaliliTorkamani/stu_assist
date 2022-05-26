@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Footer from './components/Footer';
@@ -13,54 +14,7 @@ import OTP from './pages/OTP';
 import PaymentResult from './pages/PaymentResult';
 import Profile from './pages/Profile';
 import TermsOfUse from './pages/TermsOfUse';
-
-const headerPages = [{
-  id: 3,
-  text: "خانه",
-  link: "/"
-}, {
-  id: 2,
-  text: "محاسبه GPA",
-  link: "gpa-calculator"
-}, {
-  id: 1,
-  text: "محاسبه ECTS",
-  link: "ects-calculator"
-}]
-
-const footerPages = [{
-  id: 1,
-  text: "خانه",
-  link: "/"
-}, {
-  id: 2,
-  text: "محاسبه GPA",
-  link: "gpa-calculator"
-}, {
-  id: 3,
-  text: "محاسبه ECTS",
-  link: "ects-calculator"
-}, {
-  id: 4,
-  text: "ضوابط استفاده",
-  link: "terms-of-use"
-}, {
-  id: 5,
-  text: "تماس با ما",
-  link: "contact-us"
-}]
-
-const contactLinks = [
-  {
-    id: 1,
-    label: "مدیریت",
-    value: "management@stu-assist.ir"
-  }, {
-    id: 2,
-    label: "امور کاربران",
-    value: "users@stu-assist.ir"
-  }
-]
+import { contactLinks, footerPages, headerPages } from './utils/Constants';
 
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
@@ -72,7 +26,7 @@ function App() {
 
   return (
     <>
-      {showHeaderFooter && <Header pages={headerPages} user={"مهمان"} />}
+      {showHeaderFooter && <Header pages={headerPages} user={"guest"} />}
       <Routes>
         <Route path='login' element={<Login />} />
         <Route path='/' element={<Home />} />
