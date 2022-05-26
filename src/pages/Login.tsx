@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from '../assets/user_avatar.png'
 import Button from "../components/Button";
+import { LINK_LOGIN } from "../utils/Constants";
 
 const Container = styled.div`
     display: flex;
@@ -81,7 +82,7 @@ function Login() {
 
     const handleLogin = () => {
         axios
-            .post('http://localhost:8000/stu_assist_backend/authentication/login.php',
+            .post(LINK_LOGIN,
                 {
                     phone_number: phoneNumber
                 }, {

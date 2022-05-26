@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { LINK_CHARGE_OPTIONS } from "../utils/Constants"
 import { useLocalStorage } from "../utils/useLocalStorage"
 
 interface ChargeValue {
@@ -15,7 +16,7 @@ function useChargeOptions() {
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/stu_assist_backend/payment/charge_options.php', {
+            .get(LINK_CHARGE_OPTIONS, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }

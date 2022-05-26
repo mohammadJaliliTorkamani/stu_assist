@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { LINK_GPA } from "../utils/Constants"
 import { useLocalStorage } from "../utils/useLocalStorage"
 
 function useGPA(_min: number, _max: number, _grade: number) {
@@ -21,7 +22,7 @@ function useGPA(_min: number, _max: number, _grade: number) {
                 setGPA(0)
             else {
                 axios
-                    .get('http://localhost:8000/stu_assist_backend/services/gpa_calculation.php', {
+                    .get(LINK_GPA, {
                         params: {
                             min: min,
                             max: max,

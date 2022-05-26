@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { LINK_ECTS } from "../utils/Constants"
 import { useLocalStorage } from "../utils/useLocalStorage"
 
 function useECTS(_unit: number, _time: number, _week: number) {
@@ -20,7 +21,7 @@ function useECTS(_unit: number, _time: number, _week: number) {
                 setECTS(0)
             else {
                 setLoading(true)
-                axios.get('http://localhost:8000/stu_assist_backend/services/ects_calculation.php', {
+                axios.get(LINK_ECTS, {
                     params: {
                         time: time,
                         unit: unit,

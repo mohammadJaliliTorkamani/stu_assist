@@ -5,6 +5,7 @@ import ChargeOptionRecord from "../components/ChargeOptionRecord";
 import InfoRecord from "../components/InfoRecord";
 import TransactionRecord from "../components/TransactionRecord";
 import useChargeOptions from "../hooks/useChargeOptions";
+import { LINK_PROFILE } from "../utils/Constants";
 import { useLocalStorage } from "../utils/useLocalStorage";
 
 const RightBox = styled.div`
@@ -107,7 +108,7 @@ function Profile() {
     useEffect(() => {
         document.title = "Stu Assist | حساب کاربری"
         axios
-            .get('http://localhost:8000/stu_assist_backend/user/profile.php', {
+            .get(LINK_PROFILE, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }

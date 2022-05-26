@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import avatar from '../assets/user_avatar.png'
 import Button from "../components/Button";
-import { OTP_LENGTH } from "../utils/Constants";
+import { LINK_OTP, OTP_LENGTH } from "../utils/Constants";
 import { useLocalStorage } from "../utils/useLocalStorage";
 
 const Container = styled.div`
@@ -89,7 +89,7 @@ function OTP() {
 
     const handleEnter = () => {
         axios
-            .post('http://localhost:8000/stu_assist_backend/authentication/otp_verification.php',
+            .post(LINK_OTP,
                 {
                     phone_number: (state as stateType).phone_number,
                     otp_code: otp
