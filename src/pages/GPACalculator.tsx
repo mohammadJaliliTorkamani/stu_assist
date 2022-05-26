@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Button from "../components/Button";
 import TitledNumericInput from "../components/TitledNumericInput";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import ChargeOptionRecord from "../components/ChargeOptionRecord";
+import useGPA from "../hooks/useGPA";
+import useChargeOptions from "../hooks/useChargeOptions";
 
 const GPAContainer = styled.div`
     display: flex;
@@ -84,81 +85,16 @@ const ChargeOptions = styled.div`
     align-items: center;
 `
 
-interface ChargeValue {
-    id: number,
-    value: number,
-    price: number
-}
-
 function GPACalculator() {
-    const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
-    const [isLoading, setIsLoading] = useState(true)
-    const [isGuest, setIsGuest] = useState(false)
-    const [isOutOfCoupon, setIsOutOfCoupon] = useState(false)
-    const [selectedChargeOption, setSelectedChargeOption] = useState({ id: -1, value: -1, price: -1 })
-    const [min, setMin] = useState(0)
-    const [max, setMax] = useState(0)
-    const [grade, setGrade] = useState(0)
-    const [gpa, setGPA] = useState(0)
-    const [chargeValues, setChargeValues] = useState<ChargeValue[]>([])
+    const [min, max, grade, gpa, loading, guest, outOfCoupon, setMin, setMax, setGrade, trigger] = useGPA(0, 0, 0)
+
+    const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
 
     const naviaget = useNavigate()
 
     useEffect(() => {
         document.title = "Stu Assist | محاسبه GPA "
-        axios
-            .get('http://localhost:8000/stu_assist_backend/payment/charge_options.php', {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            }).then(response => {
-                setIsLoading(false)
-                return response.data
-            })
-            .then(data => data.error ? alert(data.message) : setChargeValues(data.data))
-            .catch(error => {
-                setIsLoading(false)
-                alert('خطا')
-            })
     }, [])
-
-    const handleCalculate = () => {
-        if (!isLoading && !isGuest)
-            if (max - min === 0)
-                setGPA(0)
-            else {
-                setIsLoading(true)
-                axios.get('http://localhost:8000/stu_assist_backend/services/gpa_calculation.php', {
-                    params: {
-                        min: min,
-                        max: max,
-                        grade: grade
-                    },
-                    headers: {
-                        "Authorization": `Bearer ${token}`
-                    }
-                })
-                    .then(response => {
-                        setIsLoading(false)
-                        return response.data
-                    })
-                    .then(data => {
-                        if (!data.error) {
-                            setIsOutOfCoupon(false)
-                            setGPA(Number(parseFloat(data.data).toFixed(2)))
-                        } else {
-                            if (data.message === 'موجودی ناکافی') {
-                                setIsOutOfCoupon(true)
-                            } else {
-                                alert(data.message)
-                            }
-                        }
-                    }).catch(error => {
-                        alert('error!')
-                        setIsLoading(false)
-                    })
-            }
-    }
 
     return (
         <GPAContainer>
@@ -166,14 +102,14 @@ function GPACalculator() {
                 <TitledNumericInput title={"نمره شما"} value={grade} setValue={setGrade} max={20} min={0} />
                 <TitledNumericInput title={"حداکثر نمره قابل قبول"} value={max} setValue={setMax} max={20} min={0} />
                 <TitledNumericInput title={"حداقل نمره قابل قبول"} value={min} setValue={setMin} max={20} min={0} />
-                <Button title={"محاسبه"} onClick={() => handleCalculate()} />
+                <Button title={"محاسبه"} onClick={() => trigger()} />
             </FieldsContainer>
             <ResultContainer>
                 {
-                    isLoading && <div>در حال بارگذاری...</div>
+                    loading && <div>در حال بارگذاری...</div>
                 }
                 {
-                    isGuest && !isLoading && <LoginBox>
+                    guest && !loading && <LoginBox>
                         <SelectedTitle>
                             لطفا ابتدا وارد حساب کاربری خود شوید
                         </SelectedTitle>
@@ -181,7 +117,7 @@ function GPACalculator() {
                     </LoginBox>
                 }
                 {
-                    !isGuest && !isLoading && isOutOfCoupon &&
+                    !guest && !loading && outOfCoupon &&
                     <ChargeBox>
                         <Title>تعداد کوپن های درخواست شما به پایان رسیده است</Title>
                         <SelectedTitle> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </SelectedTitle >
@@ -199,7 +135,7 @@ function GPACalculator() {
                     </ChargeBox>
                 }
                 {
-                    !isLoading && !isGuest && !isOutOfCoupon &&
+                    !loading && !guest && !outOfCoupon &&
                     <ResultInnerContainer>
                         <SelectedTitle>مقدار GPA : </SelectedTitle>
                         <Result>

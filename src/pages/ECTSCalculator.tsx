@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import ChargeOptionRecord from "../components/ChargeOptionRecord";
+import useChargeOptions from "../hooks/useChargeOptions";
+import useECTS from "../hooks/useECTS";
 
 const ECTSContainer = styled.div`
     display: flex;
@@ -122,75 +124,15 @@ interface ChargeValue {
 }
 
 function ECTSCalculator() {
-    const token = 'e8397ef9bb7935d06e542a5f1fb59c4e2dc105fd1ad0e3643a9547d3a48783d8'
-    const [isLoading, setIsLoading] = useState(true)
-    const [isGuest, setIsGuest] = useState(false)
-    const [isOutOfCoupon, setIsOutOfCoupon] = useState(false)
-    const [selectedChargeOption, setSelectedChargeOption] = useState({ id: -1, value: -1, price: -1 })
-    const [unit, setUnit] = useState(0)
-    const [time, setTime] = useState(0)
-    const [week, setWeek] = useState(0)
-    const [ECTS, setECTS] = useState(0)
-    const [chargeValues, setChargeValues] = useState<ChargeValue[]>([])
+
+    const [unit, time, week, ects, loading, guest, outOfCoupon, setUnit, setTime, setWeek, trigger] = useECTS(0, 0, 0)
+    const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
 
     const navigate = useNavigate()
 
     useEffect(() => {
         document.title = "Stu Assist | محاسبه ECTS "
-        axios
-            .get('http://localhost:8000/stu_assist_backend/payment/charge_options.php', {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            }).then(response => {
-                setIsLoading(false)
-                return response.data
-            })
-            .then(data => data.error ? alert(data.message) : setChargeValues(data.data))
-            .catch(error => {
-                setIsLoading(false)
-                alert('خطا')
-            })
     }, [])
-
-    const handleCalculate = () => {
-        if (!isLoading && !isGuest) {
-            if (week === 0)
-                setECTS(0)
-            else {
-                setIsLoading(true)
-                axios.get('http://localhost:8000/stu_assist_backend/services/ects_calculation.php', {
-                    params: {
-                        time: time,
-                        unit: unit,
-                        week: week
-                    },
-                    headers: {
-                        "Authorization": `Bearer ${token}`
-                    }
-                })
-                    .then(response => {
-                        setIsLoading(false)
-                        return response.data
-                    })
-                    .then(data => {
-                        if (!data.error) {
-                            setIsOutOfCoupon(false)
-                            setECTS(Number(parseFloat(data.data).toFixed(1)))
-                        } else {
-                            if (data.message === 'موجودی ناکافی') {
-                                setIsOutOfCoupon(true)
-                            } else {
-                                alert(data.message)
-                            }
-                        }
-                    }).catch(error => {
-                        alert('error!')
-                        setIsLoading(false)
-                    })
-            }
-        }
-    }
 
     return (
         <ECTSContainer>
@@ -209,15 +151,15 @@ function ECTSCalculator() {
                 </TitleValuePair>
             </RightBox>
             <ResultButtonBox>
-                <Button title={"محاسبه"} onClick={() => handleCalculate()} />
+                <Button title={"محاسبه"} onClick={() => trigger()} />
                 <CalculateArrow src={"https://images.vectorhq.com/images/previews/a42/arrow-left-green-clip-art-56205.png"} />
             </ResultButtonBox>
             <LeftBox>
                 {
-                    isLoading && <div>در حال بارگذاری...</div>
+                    loading && <div>در حال بارگذاری...</div>
                 }
                 {
-                    isGuest && !isLoading && <LoginBox>
+                    guest && !loading && <LoginBox>
                         <SelectedTitle>
                             لطفا ابتدا وارد حساب کاربری خود شوید
                         </SelectedTitle>
@@ -225,7 +167,7 @@ function ECTSCalculator() {
                     </LoginBox>
                 }
                 {
-                    !isGuest && !isLoading && isOutOfCoupon &&
+                    !guest && !loading && outOfCoupon &&
                     <ChargeBox>
                         <Title style={{ marginBottom: '1rem' }}>تعداد کوپن های درخواست شما به پایان رسیده است</Title>
                         <SelectedTitle style={{ marginBottom: '1.5rem' }}> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </SelectedTitle>
@@ -242,10 +184,10 @@ function ECTSCalculator() {
                         <Button title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />
                     </ChargeBox>
                 }
-                {!isLoading && !isGuest && !isOutOfCoupon &&
+                {!loading && !guest && !outOfCoupon &&
                     <ResultContainer>
                         <ECTSTResulTitle>معادل ECTS :</ECTSTResulTitle>
-                        <ECTSTResulValue>{ECTS}</ECTSTResulValue>
+                        <ECTSTResulValue>{ects}</ECTSTResulValue>
                     </ResultContainer>
                 }
             </LeftBox>
