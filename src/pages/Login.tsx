@@ -93,7 +93,7 @@ function Login() {
                 console.log("Navigating to OTP....")
                 navigate('/otp-verification', { replace: true, state: { phone_number: phoneNumber } })
             }).catch(error =>
-                alert('error!'))
+                alert(JSON.stringify(error)))
     }
 
     return (
@@ -114,6 +114,5 @@ function Login() {
         </Container>
     )
 }
-
 
 export default Login

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import avatar from '../assets/user_avatar.png'
 import Button from "../components/Button";
+import { OTP_LENGTH } from "../utils/Constants";
 import { useLocalStorage } from "../utils/useLocalStorage";
 
 const Container = styled.div`
@@ -80,7 +81,7 @@ function OTP() {
     const buttonHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (otp.length === 0)
             alert("لطفا کد فعالسازی ارسال شده را وارد نمایید")
-        else if (otp.length !== 5)
+        else if (otp.length !== OTP_LENGTH)
             alert("کد فعالسازی به درستی وارد نشده است")
         else handleEnter()
     }
@@ -103,7 +104,7 @@ function OTP() {
                 console.log("Navigating to Home....")
                 navigate('/', { replace: true })
             }).catch(error =>
-                alert('error!'))
+                alert(JSON.stringify(error)))
 
     }
     return (
@@ -117,10 +118,11 @@ function OTP() {
                         value={otp}
                         ref={inputRef}
                         onChange={e => {
-                            if (e.target.value.length <= 5)
+                            if (e.target.value.length <= OTP_LENGTH) {
                                 setOtp(e.target.value)
-                            if (e.target.value.length === 5)
-                                buttonRef.current.focus()
+                                if (e.target.value.length === OTP_LENGTH)
+                                    buttonRef.current.focus()
+                            }
                         }
                         }
                     />

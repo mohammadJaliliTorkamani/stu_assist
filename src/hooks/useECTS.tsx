@@ -4,9 +4,6 @@ import { useLocalStorage } from "../utils/useLocalStorage"
 
 function useECTS(_unit: number, _time: number, _week: number) {
     const [token,] = useLocalStorage('token')
-    console.log(token);
-
-
     const [loading, setLoading] = useState(false)
     const [guest, setGuest] = useState(false)
     const [outOfCoupon, setOutOfCoupon] = useState(false)
@@ -16,6 +13,8 @@ function useECTS(_unit: number, _time: number, _week: number) {
     const [ects, setECTS] = useState(0)
 
     const trigger = () => {
+        setGuest(token === null)
+
         if (!loading && !guest && !outOfCoupon) {
             if (week === 0)
                 setECTS(0)

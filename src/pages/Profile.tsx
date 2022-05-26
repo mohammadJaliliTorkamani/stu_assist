@@ -1,8 +1,10 @@
 import styled from "@emotion/styled"
 import axios from "axios";
 import { useEffect, useState } from "react";
+import ChargeOptionRecord from "../components/ChargeOptionRecord";
 import InfoRecord from "../components/InfoRecord";
 import TransactionRecord from "../components/TransactionRecord";
+import useChargeOptions from "../hooks/useChargeOptions";
 import { useLocalStorage } from "../utils/useLocalStorage";
 
 const RightBox = styled.div`
@@ -72,20 +74,6 @@ const ChargeOptions = styled.div`
     align-items: center;
 `
 
-const ChargeOptionRecord = styled.div`
-    color: black;
-    cursor: pointer;
-    diosplay: flex;
-    flex-direction : row;
-    justify-content: cetner;
-    align-items: center;
-    margin: 1rem;
-    border: 1px solid green;
-    border-radius: 4px;
-    padding: 1rem;
-    font-size: 0.85rem;
-`
-
 const Table = styled.table`
     border: 2px solid forestgreen;
     width: 800px;
@@ -109,14 +97,12 @@ interface TranscationRecordType {
     time: string
 }
 
-const chargeValue = [{ id: 1, value: 50, price: 50000 }, { id: 2, value: 200, price: 100000 }, { id: 3, value: 500, price: 250000 }, { id: 4, value: 1000, price: 500000 }]
-
 function Profile() {
     const [fullName, setFullName] = useState('')
     const [balance, setBalance] = useState(0)
     const [transactions, setTransactions] = useState<TranscationRecordType[]>([] as TranscationRecordType[])
     const [token,] = useLocalStorage('token')
-
+    const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
 
     useEffect(() => {
         document.title = "Stu Assist | حساب کاربری"
@@ -138,7 +124,7 @@ function Profile() {
                     alert(data.message)
             })
             .catch(error => JSON.stringify(error))
-    }, [])
+    }, [token])
 
     return (
         <Content>
@@ -149,9 +135,13 @@ function Profile() {
                 </InfoBox>
                 <ChargeBox>
                     <ChargeOptions>
-                        {chargeValue.map(value => {
-                            return <ChargeOptionRecord key={value.id}>{value.value} درخواست , {value.price} تومان</ChargeOptionRecord>
-                        })}
+                        {chargeValues.map(value =>
+                            <ChargeOptionRecord
+                                key={value.id}
+                                selected={selectedChargeOption.id === value.id}
+                                onClick={e => { setSelectedChargeOption(value) }}
+                                title={`${value.value} درخواست , ${value.price / 10} تومان`}
+                            />)}
                     </ChargeOptions>
                     <PayButton>پرداخت</PayButton>
                 </ChargeBox>

@@ -87,7 +87,6 @@ const ChargeOptions = styled.div`
 
 function GPACalculator() {
     const [min, max, grade, gpa, loading, guest, outOfCoupon, setMin, setMax, setGrade, trigger] = useGPA(0, 0, 0)
-
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
 
     const naviaget = useNavigate()

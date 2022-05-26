@@ -14,6 +14,8 @@ function useGPA(_min: number, _max: number, _grade: number) {
     const [outOfCoupon, setOutOfCoupon] = useState(false)
 
     const trigger = () => {
+        setGuest(token === null)
+
         if (!loading && !guest && !outOfCoupon) {
             if (max - min === 0)
                 setGPA(0)

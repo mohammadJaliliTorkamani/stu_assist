@@ -30,7 +30,6 @@ interface IProps {
 }
 
 function TitledNumericInput({ title, max, min, value, setValue }: IProps) {
-    console.log("AA")
     return (
         <Container>
             <Title>

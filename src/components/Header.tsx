@@ -92,7 +92,7 @@ function Header({ pages, isUser }: IProps) {
             <Bar>
                 <Options>{
                     pages.map(page =>
-                        <NavLink to={page.link === "/" ? "/" : ("/" + page.link)}
+                        <NavLink key={page.id} to={page.link === "/" ? "/" : ("/" + page.link)}
                             style={page.id === hoveredLinkID ? optionActiveStyle : optionDeactiveStyle}
                             onMouseEnter={e => {
                                 setHoveredLinkID(page.id)

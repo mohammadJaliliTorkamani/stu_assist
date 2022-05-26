@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { contactLinks } from "../utils/Constants";
 
 const TextContiner = styled.div`
     display: flex;
@@ -39,8 +40,6 @@ const Separator = styled.div`
 `
 
 function ContactUs() {
-
-    const methods = [{ label: 'روابط عمومی', emailAddress: 'info@stu-assist.ir' }, { label: 'امور کاربران', emailAddress: 'users@stu-assist.ir' }, { label: 'توسعه دهندگان', emailAddress: 'developers@stu-assist.ir' }]
     useEffect(() => {
         document.title = "Stu Assist | تماس با ما"
     }, [])
@@ -51,8 +50,8 @@ function ContactUs() {
                 مشخصات تماس
                 <Separator />
                 {
-                    methods.map(method => <Link to={`mailto:${method.emailAddress}`} style={{ textDecoration: 'none', color: 'black' }}>
-                        <div> {method.label} : {method.emailAddress}</div>
+                    contactLinks.map(item => <Link key={item.id} to={`mailto:${item.value}`} style={{ textDecoration: 'none', color: 'black' }}>
+                        <> {item.label} : {item.value}</>
                     </Link >
                     )
                 }
@@ -60,6 +59,5 @@ function ContactUs() {
         </TextContiner>
     )
 }
-
 
 export default ContactUs

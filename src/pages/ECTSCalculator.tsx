@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import ChargeOptionRecord from "../components/ChargeOptionRecord";
@@ -116,12 +115,6 @@ const ResultContainer = styled.div`
     flex:1;
     width: 100%;
 `
-
-interface ChargeValue {
-    id: number,
-    value: number,
-    price: number
-}
 
 function ECTSCalculator() {
 

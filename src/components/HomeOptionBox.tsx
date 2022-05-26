@@ -31,7 +31,6 @@ const containerActiveStyle = {
     textDecoration: 'none',
 }
 
-
 const containerDeactiveStyle = {
     cursor: 'pointer',
     fontSize: '1.5rem',
@@ -48,7 +47,6 @@ const containerDeactiveStyle = {
     alignItems: 'center',
     textDecoration: 'none',
 }
-
 
 function HomeOptionBox({ page, hovered, onMouseEntered, onMouseLeave }: IProps) {
     return (
