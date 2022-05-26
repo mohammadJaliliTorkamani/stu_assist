@@ -12,7 +12,7 @@ const Container = styled.div`
     border-radius: 4px;
     padding: 1rem;
     font-size: 0.85rem;
-`;
+`
 
 interface IProps {
     title: string,

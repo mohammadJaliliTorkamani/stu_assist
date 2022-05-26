@@ -9,7 +9,7 @@ const TextContiner = styled.div`
     padding-left: 33%;
     padding-right: 33%;
     min-height: 40rem;
-`;
+`
 
 const TextBox = styled.div`
     display: flex;
@@ -29,14 +29,14 @@ const TextBox = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-`;
+`
 
 const Separator = styled.div`
     height: 2px;
     background: black;
     width: 10rem;
     margin-bottom: 2rem;
-`;
+`
 
 function ContactUs() {
 

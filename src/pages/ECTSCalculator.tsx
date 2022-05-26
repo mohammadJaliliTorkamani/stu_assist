@@ -11,7 +11,7 @@ const ECTSContainer = styled.div`
     justify-content: space-around;
     align-items: stretch;
     min-height: 40rem;
-`;
+`
 
 const RightBox = styled.div`
     display: flex;
@@ -24,8 +24,7 @@ const RightBox = styled.div`
     margin-right: 10rem;
     margin-top: 10rem;
     margin-bottom: 10rem;
-    
-`;
+`
 
 const ResultButtonBox = styled.div`
     flex: 1;
@@ -33,7 +32,7 @@ const ResultButtonBox = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-`;
+`
 
 const LeftBox = styled.div`
     flex: 2;
@@ -46,44 +45,43 @@ const LeftBox = styled.div`
     margin-left: 10rem;
     margin-top: 10rem;
     margin-bottom: 10rem;
-`;
+`
 
 const Value = styled.input`
     font-size: 2rem;
     width: 10rem;
     text-align: center;
-`;
+`
 
 const Title = styled.div`
     color: #11a841;
-`;
+`
 
 const SelectedTitle = styled.div`
     color: black;
-`;
+`
 
 const TitleValuePair = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-`;
+`
 
 const CalculateArrow = styled.img`
     width: 16rem;
     height: 3rem;
     margin-top: 1rem;
-`;
+`
 
 const ECTSTResulTitle = styled.div`
     font-size: 1.5rem;
-`;
-
+`
 
 const ECTSTResulValue = styled.div`
     font-size: 4rem;
     color: green;
-`;
+`
 
 const LoginBox = styled.div`
     display: flex;
@@ -91,7 +89,7 @@ const LoginBox = styled.div`
     justify-content: space-between;
     align-items: center;
     height: 6rem;
-`;
+`
 
 const ChargeBox = styled.div`
     display: flex;
@@ -99,14 +97,14 @@ const ChargeBox = styled.div`
     justify-content: center;
     align-items: center;
     height: 25rem;
-`;
+`
 
 const ChargeOptions = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-`;
+`
 
 const ResultContainer = styled.div`
     display: flex;
@@ -115,7 +113,7 @@ const ResultContainer = styled.div`
     align-items: center;
     flex:1;
     width: 100%;
-`;
+`
 
 interface ChargeValue {
     id: number,

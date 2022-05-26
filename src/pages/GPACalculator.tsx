@@ -11,7 +11,7 @@ const GPAContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     min-height: 40rem;
-`;
+`
 
 const FieldsContainer = styled.div`
     margin-top: 1rem;
@@ -22,7 +22,7 @@ const FieldsContainer = styled.div`
     padding-left: 8rem;
     padding-right: 8rem; 
     align-items: center;    
-`;
+`
 
 const ResultContainer = styled.div`
     flex: 2;
@@ -31,7 +31,7 @@ const ResultContainer = styled.div`
     justify-content: center;
     align-items: center;
     padding-bottom: 3rem;
-`;
+`
 
 const ResultInnerContainer = styled.div`
     flex: 2;
@@ -42,32 +42,32 @@ const ResultInnerContainer = styled.div`
     border: 2px solid #0a3816;
     border-radius: 1rem;
     min-width: 60rem;
-`;
+`
 
 const Title = styled.div`
     font-size: 2rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
     color: #11a841;
-`;
+`
 
 const SelectedTitle = styled.div`
     font-size: 1.5rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
-`;
+`
 
 const Result = styled.div`
     font-size: 3.5rem;
     color: green;
-`;
+`
 
 const LoginBox = styled.div`
     display: flex;
     flex-direction : column;
     justify-content: space-between;
     align-items: center;
-`;
+`
 
 const ChargeBox = styled.div`
     display: flex;
@@ -75,14 +75,14 @@ const ChargeBox = styled.div`
     justify-content: space-between;
     align-items: center;
     height: 25rem;
-`;
+`
 
 const ChargeOptions = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-`;
+`
 
 interface ChargeValue {
     id: number,

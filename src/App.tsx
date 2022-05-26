@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -40,12 +40,12 @@ function App() {
         <Route path='otp-verification' element={<OTP />} />
         <Route path='ects-calculator' element={<ECTSCalculator />} />
         <Route path='gpa-calculator' element={<GPACalculator />} />
-        <Route path='payment-result' element={<PaymentResult isOK={true}/>} />
+        <Route path='payment-result' element={<PaymentResult isOK={true} />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       {showHeaderFooter && <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={footerPages} contactUsLinks={contactLinks} />}
     </>
-  );
+  )
 }
 
 export default App;

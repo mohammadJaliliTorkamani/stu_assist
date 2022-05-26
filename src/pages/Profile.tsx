@@ -15,14 +15,14 @@ const RightBox = styled.div`
     border: 2px solid red;
     border-radius: 2rem; 
     padding: 2rem;
-`;
+`
 
 const LeftBox = styled.div`
     flex: 2;
     border: 2px solid blue;
     border-radius: 2rem;
     padding: 2rem;
-`;
+`
 
 const InfoBox = styled.div`
     display: flex;
@@ -31,14 +31,14 @@ const InfoBox = styled.div`
     align-items: flex-start;
     height: 10rem;
     width : 100%;
-`;
+`
 
 const ChargeBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-`;
+`
 
 const Content = styled.div`
     display: flex;
@@ -50,7 +50,7 @@ const Content = styled.div`
     min-height: 30rem;
     padding-top: 3rem;
     padding-bottom: 3rem;
-`;
+`
 
 const PayButton = styled.button`
     color: white;
@@ -62,14 +62,14 @@ const PayButton = styled.button`
     margin-top: 1rem;
     font-size : 0.94rem;
     cursor: pointer;
-`;
+`
 
 const ChargeOptions = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-`;
+`
 
 const ChargeOptionRecord = styled.div`
     color: black;
@@ -83,21 +83,21 @@ const ChargeOptionRecord = styled.div`
     border-radius: 4px;
     padding: 1rem;
     font-size: 0.85rem;
-`;
+`
 
 const Table = styled.table`
     border: 2px solid forestgreen;
     width: 800px;
-`;
+`
 
 const Row = styled.tr`
     background: forestgreen;
-`;
+`
 
 const TableHeader = styled.th`
     color: white;
     height: 35px;
-`;
+`
 
 interface TranscationRecordType {
     id: number,

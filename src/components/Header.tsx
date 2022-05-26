@@ -1,5 +1,4 @@
 import styled from "@emotion/styled"
-import { url } from "inspector";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
@@ -7,7 +6,7 @@ const Container = styled.div`
     display: flex;
     flex-direction : column;
     height: 16rem;
-`;
+`
 
 const Bar = styled.div`
     height: 3rem;
@@ -18,7 +17,7 @@ const Bar = styled.div`
     background: #002b0d;
     padding-left: 3rem;
     padding-right: 3rem;    
-`;
+`
 
 const Banner = styled.div`
     background: #f2f2f2;
@@ -30,14 +29,14 @@ const Banner = styled.div`
     flex-direction: row;
     justify-content: space-between;
     background-size: 100%;
-`;
+`
 
 
 
 const Options = styled.div`
     display: flex;
     flex-direction : row;
-`;
+`
 
 const optionActiveStyle = {
     textDecoration: 'none',
@@ -68,7 +67,7 @@ const Title = styled.div`
     color:white;
     margin: 3rem;
     font-size: 3rem;
-`;
+`
 
 interface TextLink {
     id: number,

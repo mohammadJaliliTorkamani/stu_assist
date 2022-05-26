@@ -26,7 +26,7 @@ const pageStyle = {
     textDecoration: 'none',
     cursor: 'pointer',
     alignItems: 'center'
-};
+}
 
 function FooterPageComponent(props: IProps) {
     return (

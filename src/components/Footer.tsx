@@ -9,7 +9,7 @@ const FooterContainer = styled.div`
     height: 6rem;
     justify-content : space-between;
     background: #002b0d;
-`;
+`
 
 const LeftContainer = styled.div`
     display: flex;
@@ -17,14 +17,14 @@ const LeftContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-`;
+`
 
 const LeftInnerContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content:  flex-start;
     align-items: flex-start;
-`;
+`
 
 const MiddleContainer = styled.div`
     display: flex;
@@ -33,26 +33,26 @@ const MiddleContainer = styled.div`
     justify-content : center;
     align-items: center;
     font-size: 0.8rem;
-`;
+`
 
 const RightContainer = styled.div`
     display: flex;
     flex:1;
     flex-direction: column;
     justify-content: center;
-`;
+`
 
 const RightInnerContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-`;
+`
 
 const ContactUsLabel = styled.div`
     color: #f2f2f2;
     font-size: 0.9rem;
     margin-bottom: 5px;
-`;
+`
 
 interface IProps {
     copyRightText: string,

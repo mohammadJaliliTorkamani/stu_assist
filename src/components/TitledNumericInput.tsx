@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import React from "react";
 
 const Container = styled.div`
     height: 6rem;
@@ -6,11 +7,11 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-`;
+`
 
 const Title = styled.div`
     color: black;
-`;
+`
 
 const ValueInput = styled.input`
     height: 2rem;
@@ -18,7 +19,7 @@ const ValueInput = styled.input`
     coolor: black;
     text-align: center;
     font-size: 1.2rem;
-`;
+`
 
 interface IProps {
     title: string,
@@ -29,6 +30,7 @@ interface IProps {
 }
 
 function TitledNumericInput({ title, max, min, value, setValue }: IProps) {
+    console.log("AA")
     return (
         <Container>
             <Title>
@@ -45,4 +47,4 @@ function TitledNumericInput({ title, max, min, value, setValue }: IProps) {
     )
 }
 
-export default TitledNumericInput
+export default React.memo(TitledNumericInput)

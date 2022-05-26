@@ -12,13 +12,13 @@ const GreenLabel = styled.div`
     font-size: 2rem;
     margin: 1rem;
     align-self: center;
-`;
+`
 
 const RedLabel = styled.div`
     color: red;
     font-size: 2rem;
     margin: 2rem;
-`;
+`
 
 const Continer = styled.div`
     display: flex;
@@ -27,7 +27,7 @@ const Continer = styled.div`
     background: #ededed;
     justify-content: center;
     align-items: center;
-`;
+`
 
 const Box = styled.div`
     display: flex;
@@ -39,7 +39,7 @@ const Box = styled.div`
     align-items: center;
     padding: 2rem;
     border-radius: 1.2rem;
-`;
+`
 
 const OKContainer = styled.div`
     display: flex;
@@ -48,7 +48,7 @@ const OKContainer = styled.div`
     height: 100%;
     justify-content: space-between;
     align-items: stretch;
-`;
+`
 
 const FailContainer = styled.div`
     display: flex;
@@ -56,7 +56,7 @@ const FailContainer = styled.div`
     background: white;
     flex: 1;
     justify-content: center;
-`;
+`
 
 const Pair = styled.div`
     display: flex;
@@ -65,13 +65,13 @@ const Pair = styled.div`
     justify-content: space-between;
     height: 4rem;
     align-items: stretch;
-`;
+`
 
 const Key = styled.div`
     color: black;
     align-self: center;
     font-size: 1rem;
-`;
+`
 
 const Value = styled.div`
     display: flex;
@@ -84,7 +84,7 @@ const Value = styled.div`
     height: 2.5rem;
     border-radius: 3rem;
     border: 0px solid black;
-`;
+`
 
 function PaymentResult(props: IProps) {
     const navigate = useNavigate()

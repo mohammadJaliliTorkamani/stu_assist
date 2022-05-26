@@ -8,13 +8,14 @@ const containerStyle = {
     textDecoration: 'none',
     color: 'white',
     width: '15rem'
-};
+}
 
 interface IProps {
     label: string,
     value: string,
     color?: string
 }
+
 function KeyValuePair({ label, value, color = "white" }: IProps) {
     return (
         <Link to={`mailto:${value}`} style={{ ...containerStyle, color: color }}>

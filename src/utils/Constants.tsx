@@ -46,3 +46,5 @@ export const headerPages = [{
       value: "users@stu-assist.ir"
     }
   ]
+
+  export const TOUContent = "این یک متن آزمایشی است"

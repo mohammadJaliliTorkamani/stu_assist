@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useEffect } from "react";
+import { TOUContent } from "../utils/Constants";
 
 const TextContiner = styled.div`
     display: flex;
@@ -10,7 +11,7 @@ const TextContiner = styled.div`
     padding-top: 3rem;
     padding-bottom: 3rem;
     min-height: 40rem;
-`;
+`
 
 const TextBox = styled.div`
     display: flex;
@@ -25,10 +26,9 @@ const TextBox = styled.div`
     border: 2px solid gray;
     border-radius: 1rem;
     line-height: 2rem;
-`;
+`
 
 function TermsOfUse() {
-    const content = "این یک متن آزمایشی است"
 
     useEffect(() => {
         document.title = "Uni Assist | ضوابط استفاده"
@@ -36,7 +36,7 @@ function TermsOfUse() {
 
     return (
         <TextContiner>
-            <TextBox>{content}</TextBox>
+            <TextBox>{TOUContent}</TextBox>
         </TextContiner>
     )
 }

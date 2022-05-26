@@ -15,13 +15,13 @@ interface IProps {
 
 const Row = styled.tr`
     height: 35px;
-`;
+`
 
 const Column = styled.td`
     text-align: center;
     border: 1px solid gray;
     direction: ltr;
-`;
+`
 
 function TransactionRecord({ record }: IProps) {
     return (

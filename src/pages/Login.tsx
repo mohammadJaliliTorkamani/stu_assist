@@ -11,7 +11,7 @@ const Container = styled.div`
     justify-content: center;
     height: 100vh;
     align-items: center;
-`;
+`
 
 const Box = styled.div`
     display: flex;
@@ -27,27 +27,27 @@ const Box = styled.div`
     padding-top: 1.5rem;
     padding-botton: 1.5rem;
     background: #e8e8e8;
-`;
+`
 
 const Logo = styled.img`
     width: 7rem;
     height: 7rem;
     align-self: center;
-`;
+`
 
 const PhoneContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-`;
+`
 
 const Title = styled.div`
     font-size: 1.1rem;
     color: black;
     margin-bottom: 1rem;
     align-self: center;
-`;
+`
 
 const PhoneNumber = styled.input`
     color: black;
@@ -56,7 +56,7 @@ const PhoneNumber = styled.input`
     border: 0px solid white;
     border-radius: 2px;
     text-align: center;
-`;
+`
 
 function Login() {
 

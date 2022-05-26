@@ -15,13 +15,13 @@ const Container = styled.div`
     justify-content: center;
     text-align: center;
     align-items: center;
-`;
+`
 
 const Logo = styled.img`
     width: 8rem;
     height: 8rem;
     margin-bottom: 4rem;
-`;
+`
 
 export default function NotFound() {
     const navigate = useNavigate()
