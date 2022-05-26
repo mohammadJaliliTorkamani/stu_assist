@@ -6,7 +6,7 @@ import Button from "../components/Button";
 
 const Container = styled.div`
     background: #f2f2f2;
-    height: 100vh;
+    height: 40rem;
     color: black;
     display: flex;
     font-size: 2.5rem;
@@ -41,7 +41,7 @@ export default function NotFound() {
             با تشکر
             <br />
             <br />
-            <Button color="blue" title="بازگشت به خانه" onClick={() => navigate('/')} />
+            <Button title="بازگشت به خانه" onClick={() => navigate('/')} />
         </Container >
     )
 }

@@ -23,7 +23,7 @@ function useChargeOptions() {
             })
             .then(data => data.error ? alert(data.message) : setChargeValues(data.data))
             .catch(error => {
-                alert('error')
+                alert(JSON.stringify(error))
             })
     }, [])
     return [chargeValues, selectedChargeOption, setSelectedChargeOption] as const

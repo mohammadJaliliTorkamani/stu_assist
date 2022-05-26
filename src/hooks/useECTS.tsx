@@ -44,7 +44,7 @@ function useECTS(_unit: number, _time: number, _week: number) {
                             }
                         }
                     }).catch(error => {
-                        alert('error!')
+                        alert(JSON.stringify(error))
                         setLoading(false)
                     })
             }

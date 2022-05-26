@@ -44,7 +44,7 @@ function useGPA(_min: number, _max: number, _grade: number) {
                             }
                         }
                     }).catch(error => {
-                        alert('error!')
+                        alert(JSON.stringify(error))
                         setGuest(true)
                         setLoading(false)
                     })
