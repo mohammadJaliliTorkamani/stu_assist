@@ -14,7 +14,8 @@ const RightBox = styled.div`
     justify-content: space-around;
     align-items:center;
     flex: 3;
-    min-height: 40rem;
+    height: 30rem;
+    margin-top: 2rem;
     margin-left: 1rem;
     border: 2px solid red;
     border-radius: 2rem; 
@@ -24,6 +25,8 @@ const RightBox = styled.div`
 const LeftBox = styled.div`
     flex: 2;
     border: 2px solid blue;
+    height: 30rem;
+    margin-top: 2rem;
     border-radius: 2rem;
     padding: 2rem;
 `
@@ -51,9 +54,7 @@ const Content = styled.div`
     align-items: stretch;
     padding-left: 3rem;
     padding-right: 3rem;
-    min-height: 30rem;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    height: 40rem;
 `
 
 const PayButton = styled.button`
