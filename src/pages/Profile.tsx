@@ -102,7 +102,7 @@ function Profile() {
     const [fullName, setFullName] = useState('')
     const [balance, setBalance] = useState(0)
     const [transactions, setTransactions] = useState<TranscationRecordType[]>([] as TranscationRecordType[])
-    const [token,] = useLocalStorage('token')
+    const [token,] = useLocalStorage('token', null)
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
 
     useEffect(() => {

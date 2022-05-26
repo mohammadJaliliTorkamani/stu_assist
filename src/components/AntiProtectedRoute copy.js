@@ -1,10 +1,10 @@
 import { Navigate } from "react-router-dom";
 import { useLocalStorage } from "../utils/useLocalStorage";
 
-export const ProtectedRoute = (props) => {
+export const AntiProtectedRoute = (props) => {
     const [token,] = useLocalStorage('token',null)
-    if (!token) {
-        return <Navigate to="/login" />
+    if (token) {
+        return <Navigate to="/" />
     }
     return props.children
 }

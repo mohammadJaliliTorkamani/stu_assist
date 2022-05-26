@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from '../assets/user_avatar.png'
 import Button from "../components/Button";
-import { LINK_LOGIN } from "../utils/Constants";
+import { LINK_LOGIN, PHONE_LENGTH } from "../utils/Constants";
 
 const Container = styled.div`
     display: flex;
@@ -60,7 +60,6 @@ const PhoneNumber = styled.input`
 `
 
 function Login() {
-
     const [phoneNumber, setPhoneNumber] = useState('')
     const navigate = useNavigate()
     const buttonRef = useRef<any>()
@@ -74,7 +73,7 @@ function Login() {
     const buttonHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (phoneNumber.length === 0)
             alert("لطفا شماره تلفن خود را وارد نمایید")
-        else if (phoneNumber.length !== 11)
+        else if (phoneNumber.length !== PHONE_LENGTH)
             alert("شماره تلفن  به درستی وارد نشده است")
         else handleLogin()
     }
@@ -103,9 +102,9 @@ function Login() {
                 <PhoneContainer>
                     <Title>شماره تلفن</Title>
                     <PhoneNumber type='number' ref={inputRef} value={phoneNumber} onChange={e => {
-                        if (e.target.value.length <= 11)
+                        if (e.target.value.length <= PHONE_LENGTH)
                             setPhoneNumber(e.target.value)
-                        if (e.target.value.length === 11)
+                        if (e.target.value.length === PHONE_LENGTH)
                             buttonRef.current.focus()
                     }} />
                 </PhoneContainer>

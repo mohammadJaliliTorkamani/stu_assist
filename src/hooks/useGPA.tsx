@@ -4,7 +4,7 @@ import { LINK_GPA } from "../utils/Constants"
 import { useLocalStorage } from "../utils/useLocalStorage"
 
 function useGPA(_min: number, _max: number, _grade: number) {
-    const [token,] = useLocalStorage('token')
+    const [token,] = useLocalStorage('token', null)
 
     const [min, setMin] = useState(_min)
     const [max, setMax] = useState(_max)
@@ -16,8 +16,8 @@ function useGPA(_min: number, _max: number, _grade: number) {
 
     const trigger = () => {
         setGuest(token === null)
-
-        if (!loading && !guest && !outOfCoupon) {
+    
+        if (!loading && !guest && !outOfCoupon && token !== null) {
             if (max - min === 0)
                 setGPA(0)
             else {

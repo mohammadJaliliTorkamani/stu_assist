@@ -50,6 +50,7 @@ export const contactLinks = [
 ]
 
 export const OTP_LENGTH = 5
+export const PHONE_LENGTH = 11
 
 export const TOUContent = "این یک متن آزمایشی است"
 

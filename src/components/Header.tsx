@@ -81,6 +81,8 @@ interface IProps {
 function Header({ pages, isUser }: IProps) {
     const [, setMouseHover] = useState(false)
     const [hoveredLinkID, setHoveredLinkID] = useState(-1)
+    console.log("AA");
+
     return (
         <Container>
             <Banner>
@@ -104,7 +106,7 @@ function Header({ pages, isUser }: IProps) {
                             {page.text}
                         </NavLink>)}
                 </Options>
-                <Link to={!isUser ? 'login' : 'profile'} style={welcomeStyle}> {!isUser ? "ورود / ثبت نام" : " خوش آمدید"}</Link>
+                <Link to={!isUser ? 'login' : 'profile'} style={welcomeStyle}> {!isUser ? "ورود / ثبت نام" : " کاربر عزیز، خوش آمدید!"}</Link>
             </Bar>
         </Container >
     )

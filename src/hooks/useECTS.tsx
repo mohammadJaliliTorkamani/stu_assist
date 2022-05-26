@@ -4,7 +4,7 @@ import { LINK_ECTS } from "../utils/Constants"
 import { useLocalStorage } from "../utils/useLocalStorage"
 
 function useECTS(_unit: number, _time: number, _week: number) {
-    const [token,] = useLocalStorage('token')
+    const [token,] = useLocalStorage('token', null)
     const [loading, setLoading] = useState(false)
     const [guest, setGuest] = useState(false)
     const [outOfCoupon, setOutOfCoupon] = useState(false)
@@ -16,7 +16,7 @@ function useECTS(_unit: number, _time: number, _week: number) {
     const trigger = () => {
         setGuest(token === null)
 
-        if (!loading && !guest && !outOfCoupon) {
+        if (!loading && !guest && !outOfCoupon && token !== null) {
             if (week === 0)
                 setECTS(0)
             else {
