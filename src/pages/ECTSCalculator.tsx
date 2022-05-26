@@ -138,6 +138,7 @@ function ECTSCalculator() {
     const navigate = useNavigate()
 
     useEffect(() => {
+        document.title = "Stu Assist | محاسبه ECTS "
         axios
             .get('http://localhost:8000/stu_assist_backend/payment/charge_options.php', {
                 headers: {

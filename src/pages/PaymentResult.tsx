@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 
@@ -87,6 +88,11 @@ const Value = styled.div`
 
 function PaymentResult(props: IProps) {
     const navigate = useNavigate()
+
+    useEffect(() => {
+        document.title = "Stu Assist | " + (props.isOK ? "موفق" : "ناموفق")
+    }, [props.isOK])
+
     return (
         <Continer>
             <Box>

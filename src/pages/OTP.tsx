@@ -71,6 +71,7 @@ function OTP() {
     const inputRef = useRef<any>()
 
     useEffect(() => {
+        document.title = "Stu Assist | احراز هویت"
         inputRef.current.focus()
     }, [])
 

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const TextContiner = styled.div`
@@ -40,6 +41,10 @@ const Separator = styled.div`
 function ContactUs() {
 
     const methods = [{ label: 'روابط عمومی', emailAddress: 'info@stu-assist.ir' }, { label: 'امور کاربران', emailAddress: 'users@stu-assist.ir' }, { label: 'توسعه دهندگان', emailAddress: 'developers@stu-assist.ir' }]
+    useEffect(() => {
+        document.title = "Stu Assist | تماس با ما"
+    }, [])
+
     return (
         <TextContiner>
             <TextBox>

@@ -66,6 +66,7 @@ function Login() {
     const inputRef = useRef<any>()
 
     useEffect(() => {
+        document.title = "Stu Assist | ورود"
         inputRef.current.focus()
     }, [])
 

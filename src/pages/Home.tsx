@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HomeOptionBox from "../components/HomeOptionBox";
 
 const homeOptionsContainer = {
@@ -12,6 +12,10 @@ const homeOptionsContainer = {
 function Home() {
     const [, setMouseOnOption] = useState(false)
     const [optionID, setOptionID] = useState(-1)
+
+    useEffect(() => {
+        document.title = "Stu Assist | خانه"
+    }, [])
 
     return (
         <div key={1} style={homeOptionsContainer}>

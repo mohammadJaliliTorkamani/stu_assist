@@ -118,6 +118,7 @@ function Profile() {
 
 
     useEffect(() => {
+        document.title = "Stu Assist | حساب کاربری"
         axios
             .get('http://localhost:8000/stu_assist_backend/user/profile.php', {
                 headers: {

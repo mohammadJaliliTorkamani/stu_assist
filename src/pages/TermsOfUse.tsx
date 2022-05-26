@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useEffect } from "react";
 
 const TextContiner = styled.div`
     display: flex;
@@ -28,6 +29,11 @@ const TextBox = styled.div`
 
 function TermsOfUse() {
     const content = "این یک متن آزمایشی است"
+
+    useEffect(() => {
+        document.title = "Uni Assist | ضوابط استفاده"
+    }, [])
+
     return (
         <TextContiner>
             <TextBox>{content}</TextBox>

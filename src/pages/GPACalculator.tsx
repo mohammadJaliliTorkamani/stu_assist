@@ -105,6 +105,7 @@ function GPACalculator() {
     const naviaget = useNavigate()
 
     useEffect(() => {
+        document.title = "Stu Assist | محاسبه GPA "
         axios
             .get('http://localhost:8000/stu_assist_backend/payment/charge_options.php', {
                 headers: {
