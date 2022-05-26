@@ -87,7 +87,7 @@ function Header({ pages, user }: IProps) {
     return (
         <Container>
             <Banner>
-                <Title>سامانه خدمات دانشجویان</Title>
+                <Title>سامانه خدمات دانشجویان مهاجر آلمان</Title>
                 <Title>Stu-Assist</Title>
             </Banner>
             <Bar>

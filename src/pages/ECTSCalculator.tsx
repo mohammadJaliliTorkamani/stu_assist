@@ -198,16 +198,16 @@ function ECTSCalculator() {
         <ECTSContainer>
             <RightBox>
                 <TitleValuePair>
-                    <SelectedTitle>تعداد واحد درسی</SelectedTitle>
-                    <Value type='number' min={1} max={50} value={unit} onChange={e => setUnit(parseInt(e.target.value))} />
+                    <SelectedTitle>تعداد واحد درس مورد نظر</SelectedTitle>
+                    <Value type='number' min={1} max={20} value={unit} onChange={e => setUnit(parseInt(e.target.value))} />
                 </TitleValuePair>
                 <TitleValuePair>
-                    <SelectedTitle>مدت زمان واحد در هفته (دقیقه)</SelectedTitle>
+                    <SelectedTitle>مدت زمان تدریس هر واحد در هفته (دقیقه)</SelectedTitle>
                     <Value type='number' min={0} max={120} value={time} onChange={e => setTime(parseInt(e.target.value))} />
                 </TitleValuePair>
                 <TitleValuePair>
-                    <SelectedTitle>تعداد هفته در نظام آموزشی کشور حارجی</SelectedTitle>
-                    <Value type='number' min={1} max={52} value={week} onChange={e => setWeek(parseInt(e.target.value))} />
+                    <SelectedTitle>‌تعداد هفته در نظام آموزشی کشور اروپایی (معمولا 14) </SelectedTitle>
+                    <Value type='number' min={10} max={25} value={week} onChange={e => setWeek(parseInt(e.target.value))} />
                 </TitleValuePair>
             </RightBox>
             <ResultButtonBox>
