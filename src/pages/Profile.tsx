@@ -132,7 +132,7 @@ function Profile() {
         <Content>
             <RightBox >
                 <InfoBox >
-                    <InfoRecord title={"نام و نام خانوادگی"} value={fullName} />
+                    <InfoRecord title={"نام و نام خانوادگی"} value={fullName === ' ' ? "ندارد" : fullName} />
                     <InfoRecord title={"تعداد درخواست باقی مانده"} value={balance + " ریال "} />
                 </InfoBox>
                 <ChargeBox>
