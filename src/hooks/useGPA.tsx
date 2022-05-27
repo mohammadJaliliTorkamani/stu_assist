@@ -16,7 +16,7 @@ function useGPA(_min: number, _max: number, _grade: number) {
 
     const trigger = () => {
         setGuest(token === null)
-    
+
         if (!loading && !guest && !outOfCoupon && token !== null) {
             if (max - min === 0)
                 setGPA(0)
@@ -32,25 +32,19 @@ function useGPA(_min: number, _max: number, _grade: number) {
                             "Authorization": `Bearer ${token}`
                         }
                     })
-                    .then(response => {
-                        setLoading(false)
-                        return response.data
-                    })
+                    .then(response => response.data)
                     .then(data => {
-                        if (!data.error) {
-                            setOutOfCoupon(false)
-                            setGPA(Number(parseFloat(data.data).toFixed(2)))
-                        } else {
-                            if (data.message === 'موجودی ناکافی') {
-                                setOutOfCoupon(true)
-                            } else {
-                                alert(data.message)
-                            }
-                        }
-                    }).catch(error => {
-                        alert(JSON.stringify(error))
-                        setGuest(true)
                         setLoading(false)
+                        setOutOfCoupon(false)
+                        setGPA(Number(parseFloat(data.data).toFixed(2)))
+                    }).catch(error => {
+                        setLoading(false)
+                        if (error.response.data.message === 'Insufficient balance') {
+                            setOutOfCoupon(true)
+                        } else {
+                            alert(error.response.data.message)
+                            setGuest(true)
+                        }
                     })
             }
         }

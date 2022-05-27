@@ -81,7 +81,6 @@ interface IProps {
 function Header({ pages, isUser }: IProps) {
     const [, setMouseHover] = useState(false)
     const [hoveredLinkID, setHoveredLinkID] = useState(-1)
-    console.log("AA");
 
     return (
         <Container>

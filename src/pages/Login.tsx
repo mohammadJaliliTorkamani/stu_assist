@@ -88,11 +88,12 @@ function Login() {
                     'Content-Type': 'multipart/form-data'
                 }
             })
+            .then(response => response.data)
             .then(response => {
                 console.log("Navigating to OTP....")
                 navigate('/otp-verification', { replace: true, state: { phone_number: phoneNumber } })
             }).catch(error =>
-                alert(JSON.stringify(error)))
+                alert(JSON.stringify(error.response.data)))
     }
 
     return (

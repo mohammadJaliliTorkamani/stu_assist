@@ -98,12 +98,12 @@ function OTP() {
                 }
             })
             .then(response => response.data)
-            .then(token => {
-                setToken(token)
+            .then(data => {
+                setToken(data.data)
                 console.log("Navigating to Home....")
                 navigate('/', { replace: true })
             }).catch(error =>
-                alert(JSON.stringify(error)))
+                alert(JSON.stringify(error.response.data)))
 
     }
     return (
