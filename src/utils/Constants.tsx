@@ -54,9 +54,9 @@ export const PHONE_LENGTH = 11
 
 export const TOUContent = "این یک متن آزمایشی است"
 
-export const LINK_LOGIN = 'http://localhost:8000/stu_assist_backend/authentication/login.php'
-export const LINK_OTP = 'http://localhost:8000/stu_assist_backend/authentication/otp_verification.php'
-export const LINK_PROFILE = 'http://localhost:8000/stu_assist_backend/user/profile.php'
-export const LINK_CHARGE_OPTIONS = 'http://localhost:8000/stu_assist_backend/payment/charge_options.php'
-export const LINK_ECTS = "http://localhost:8000/stu_assist_backend/services/ects_calculation.php"
-export const LINK_GPA = "http://localhost:8000/stu_assist_backend/services/gpa_calculation.php"
+export const LINK_LOGIN = 'https://stu-assist.ir/api/authentication/login.php'
+export const LINK_OTP = 'https://stu-assist.ir/api/authentication/otp_verification.php'
+export const LINK_PROFILE = 'https://stu-assist.ir/api/user/profile.php'
+export const LINK_CHARGE_OPTIONS = 'https://stu-assist.ir/api/payment/charge_options.php'
+export const LINK_ECTS = "https://stu-assist.ir/api/services/ects_calculation.php"
+export const LINK_GPA = "https://stu-assist.ir/api/services/gpa_calculation.php"

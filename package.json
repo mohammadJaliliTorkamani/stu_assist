@@ -1,5 +1,6 @@
 {
   "name": "stu_assist",
+  "homepage": "https://stu-assist.ir",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
