@@ -103,7 +103,7 @@ function OTP() {
                 console.log("Navigating to Home....")
                 navigate('/', { replace: true })
             }).catch(error =>
-                alert(JSON.stringify(error.response.data)))
+                alert(JSON.stringify(error.response.data.message)))
 
     }
     return (

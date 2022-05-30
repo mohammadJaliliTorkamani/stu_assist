@@ -5,7 +5,7 @@ import ChargeOptionRecord from "../components/ChargeOptionRecord";
 import InfoRecord from "../components/InfoRecord";
 import TransactionRecord from "../components/TransactionRecord";
 import useChargeOptions from "../hooks/useChargeOptions";
-import { LINK_PROFILE } from "../utils/Constants";
+import { LINK_PAYMENT, LINK_PROFILE } from "../utils/Constants";
 import { useLocalStorage } from "../utils/useLocalStorage";
 
 const RightBox = styled.div`
@@ -145,7 +145,25 @@ function Profile() {
                                 title={`${value.value} درخواست , ${value.price / 10} تومان`}
                             />)}
                     </ChargeOptions>
-                    <PayButton>پرداخت</PayButton>
+                    <PayButton onClick={e => {
+                        axios
+                            .post(LINK_PAYMENT,
+                                {
+                                    price: selectedChargeOption.price,
+                                    value: selectedChargeOption.value,
+                                }, {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data',
+                                    "Authorization": `Bearer ${token}`
+                                }
+                            })
+                            .then(response => response.data)
+                            .then(data => window.open(data.data, "_self"))
+                            .catch(error => {
+                                alert(JSON.stringify(error.response.data.message))
+                            })
+
+                    }}>پرداخت</PayButton>
                 </ChargeBox>
             </RightBox>
             <LeftBox>
@@ -166,7 +184,7 @@ function Profile() {
                     </tbody>
                 </Table>
             </LeftBox>
-        </Content>
+        </Content >
     )
 }
 
