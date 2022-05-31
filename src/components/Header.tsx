@@ -20,8 +20,7 @@ const Bar = styled.div`
 `
 
 const Banner = styled.div`
-    background: #f2f2f2;
-    background-image: url(http://wallpaperstock.net/green-blur_wallpapers_45136_852x480.jpg);
+    background: #176327;
     height: 13rem;
     width: 100%;
     align-items: center;
