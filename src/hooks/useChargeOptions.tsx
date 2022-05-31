@@ -5,14 +5,13 @@ import { useLocalStorage } from "../utils/useLocalStorage"
 
 interface ChargeValue {
     id: number,
-    value: number,
     price: number
 }
 
 function useChargeOptions() {
     const [token,] = useLocalStorage('token', null)
     const [chargeValues, setChargeValues] = useState<ChargeValue[]>([])
-    const [selectedChargeOption, setSelectedChargeOption] = useState<ChargeValue>({ id: -1, value: -1, price: -1 })
+    const [selectedChargeOption, setSelectedChargeOption] = useState<ChargeValue>({ id: -1, price: -1 })
 
     useEffect(() => {
         if (token !== null)

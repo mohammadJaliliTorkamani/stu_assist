@@ -93,7 +93,7 @@ const TableHeader = styled.th`
 interface TranscationRecordType {
     id: number,
     issueTrackingNo: string,
-    bank: string,
+    orderID: number,
     cardNo: string,
     date: string,
     time: string
@@ -133,7 +133,7 @@ function Profile() {
             <RightBox >
                 <InfoBox >
                     <InfoRecord title={"نام و نام خانوادگی"} value={fullName === ' ' ? "ندارد" : fullName} />
-                    <InfoRecord title={"تعداد درخواست باقی مانده"} value={balance + " ریال "} />
+                    <InfoRecord title={"موجودی"} value={balance + " ریال "} />
                 </InfoBox>
                 <ChargeBox>
                     <ChargeOptions>
@@ -142,15 +142,14 @@ function Profile() {
                                 key={value.id}
                                 selected={selectedChargeOption.id === value.id}
                                 onClick={e => { setSelectedChargeOption(value) }}
-                                title={`${value.value} درخواست , ${value.price / 10} تومان`}
+                                title={`${value.price / 10} تومان`}
                             />)}
                     </ChargeOptions>
                     <PayButton onClick={e => {
                         axios
                             .post(LINK_PAYMENT,
                                 {
-                                    price: selectedChargeOption.price,
-                                    value: selectedChargeOption.value,
+                                    price: selectedChargeOption.price
                                 }, {
                                 headers: {
                                     'Content-Type': 'multipart/form-data',
@@ -171,7 +170,7 @@ function Profile() {
                     <tbody>
                         <Row>
                             <TableHeader>ردیف</TableHeader>
-                            <TableHeader>بانک</TableHeader>
+                            <TableHeader>شماره سفارش</TableHeader>
                             <TableHeader>شماره کارت</TableHeader>
                             <TableHeader>کد پیگیری</TableHeader>
                             <TableHeader>تاریخ</TableHeader>

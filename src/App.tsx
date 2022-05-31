@@ -21,7 +21,7 @@ import { useLocalStorage } from './utils/useLocalStorage';
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
   const { pathname } = useLocation()
-  const [token,] = useLocalStorage('token',null)
+  const [token,] = useLocalStorage('token', null)
 
   useEffect(() => {
     setShowHeaderFooter(pathname !== "/login" && pathname !== "/otp-verification")
@@ -43,7 +43,7 @@ function App() {
         <Route path='otp-verification' element={<AntiProtectedRoute><OTP /></AntiProtectedRoute>} />
         <Route path='ects-calculator' element={<ECTSCalculator />} />
         <Route path='gpa-calculator' element={<GPACalculator />} />
-        <Route path='payment-result' element={<PaymentResult isOK={true} />} />
+        <Route path='payment-result' element={<PaymentResult />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       {showHeaderFooter && <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={footerPages} contactUsLinks={contactLinks} />}

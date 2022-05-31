@@ -1,11 +1,10 @@
 import styled from "@emotion/styled";
-import { useEffect } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-
-interface IProps {
-    isOK: boolean;
-}
+import { LINK_PAYMENT_RESULT } from "../utils/Constants";
+import { useLocalStorage } from "../utils/useLocalStorage";
 
 const GreenLabel = styled.div`
     color: green;
@@ -86,49 +85,75 @@ const Value = styled.div`
     border: 0px solid black;
 `
 
-function PaymentResult(props: IProps) {
+interface PaymentResultTemplate {
+    orderID: number,
+    userPhone: string,
+    cardNumber: string,
+    price: number,
+    status: number,
+    statusMeaning: string,
+    trackID: string,
+    date: string,
+    time: string
+}
+
+function PaymentResult() {
+    const [token,] = useLocalStorage('token', null)
     const navigate = useNavigate()
+    const [result, setResult] = useState<PaymentResultTemplate>({} as PaymentResultTemplate)
 
     useEffect(() => {
-        document.title = "Stu Assist | " + (props.isOK ? "موفق" : "ناموفق")
-    }, [props.isOK])
+        axios.get(LINK_PAYMENT_RESULT, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }).then(response => response.data)
+            .then(data => data.error ? alert(data.message) : setResult(data.data))
+            .catch(error => alert(JSON.stringify(error.response.data.message)))
+
+        document.title = "Stu Assist | " + result.statusMeaning
+    }, [token, result.statusMeaning])
 
     return (
         <Continer>
             <Box>
                 {
-                    props.isOK && <OKContainer>
+                    result.status === 100 && <OKContainer>
                         <GreenLabel>پرداخت موفق</GreenLabel>
                         <Pair>
-                            <Key>کلید</Key>
-                            <Value>12345</Value>
+                            <Key>شماره تلفن</Key>
+                            <Value>{result.userPhone}</Value>
                         </Pair>
                         <Pair>
-                            <Key>کلید</Key>
-                            <Value>12345</Value>
+                            <Key>شماره کارت</Key>
+                            <Value>{result.cardNumber}</Value>
                         </Pair>
                         <Pair>
-                            <Key>کلید</Key>
-                            <Value>12345</Value>
+                            <Key>شماره سفارش</Key>
+                            <Value>{result.orderID}</Value>
                         </Pair>
                         <Pair>
-                            <Key>کلید</Key>
-                            <Value>12345</Value>
+                            <Key>مبلغ</Key>
+                            <Value>`{result.price} ریال`</Value>
                         </Pair>
                         <Pair>
-                            <Key>کلید</Key>
-                            <Value>12345</Value>
+                            <Key>شماره پیگیری</Key>
+                            <Value>{result.trackID}</Value>
                         </Pair>
                         <Pair>
-                            <Key>کلید</Key>
-                            <Value>12345</Value>
+                            <Key>تاریخ پرداخت</Key>
+                            <Value>{result.date}</Value>
+                        </Pair>
+                        <Pair>
+                            <Key>زمان پرداخت</Key>
+                            <Value>{result.time}</Value>
                         </Pair>
                         <Button title="بازگشت به خانه" onClick={e => navigate('/', { replace: true })} />
                     </OKContainer>
                 }
                 {
-                    !props.isOK && <FailContainer>
-                        <RedLabel>خطا در پرداخت</RedLabel>
+                    result.status !== 100 && <FailContainer>
+                        <RedLabel>{result.statusMeaning}</RedLabel>
                         <Button title="بازگشت به خانه" onClick={e => navigate('/', { replace: true })} />
                     </FailContainer>
                 }

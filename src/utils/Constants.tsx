@@ -61,3 +61,4 @@ export const LINK_CHARGE_OPTIONS = 'https://stu-assist.ir/api/payment/charge_opt
 export const LINK_ECTS = "https://stu-assist.ir/api/services/ects_calculation.php"
 export const LINK_GPA = "https://stu-assist.ir/api/services/gpa_calculation.php"
 export const LINK_PAYMENT = "https://stu-assist.ir/api/payment/payment.php"
+export const LINK_PAYMENT_RESULT = "https://stu-assist.ir/api/payment/payment_result.php"

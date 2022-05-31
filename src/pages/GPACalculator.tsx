@@ -118,8 +118,8 @@ function GPACalculator() {
                 {
                     !guest && !loading && outOfCoupon &&
                     <ChargeBox>
-                        <Title>تعداد کوپن های درخواست شما به پایان رسیده است</Title>
-                        <SelectedTitle> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.value} درخواست , ${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </SelectedTitle >
+                        <Title>موجوی حساب شما به پایان رسیده است</Title>
+                        <SelectedTitle> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </SelectedTitle >
 
                         <ChargeOptions>
                             {chargeValues.map(value =>
@@ -127,7 +127,7 @@ function GPACalculator() {
                                     key={value.id}
                                     selected={selectedChargeOption.id === value.id}
                                     onClick={e => { setSelectedChargeOption(value) }}
-                                    title={`${value.value} درخواست , ${value.price / 10} تومان`}
+                                    title={`${value.price / 10} تومان`}
                                 />)}
                         </ChargeOptions>
                         <Button title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />

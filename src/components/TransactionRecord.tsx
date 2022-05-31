@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 interface TranscationRecordType {
     id: number,
     issueTrackingNo: string,
-    bank: string,
+    orderID: number,
     cardNo: string,
     date: string,
     time: string
@@ -27,7 +27,7 @@ function TransactionRecord({ record }: IProps) {
     return (
         <Row>
             <Column>{record.id}</Column>
-            <Column>{record.bank}</Column>
+            <Column>{record.orderID}</Column>
             <Column>{record.cardNo}</Column>
             <Column>{record.issueTrackingNo}</Column>
             <Column>{record.date}</Column>
