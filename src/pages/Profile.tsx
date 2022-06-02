@@ -28,6 +28,7 @@ const LeftBox = styled.div`
     height: 30rem;
     margin-top: 2rem;
     border-radius: 2rem;
+    overflow: auto;
     padding: 2rem;
 `
 
@@ -79,6 +80,8 @@ const ChargeOptions = styled.div`
 const Table = styled.table`
     border: 2px solid forestgreen;
     width: 800px;
+    max-height: 100%;
+    overflow: auto;
 `
 
 const Row = styled.tr`
