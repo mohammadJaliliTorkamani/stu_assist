@@ -1,10 +1,13 @@
 import styled from "@emotion/styled";
+import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import ChargeOptionRecord from "../components/ChargeOptionRecord";
 import useChargeOptions from "../hooks/useChargeOptions";
 import useECTS from "../hooks/useECTS";
+import { LINK_PAYMENT } from "../utils/Constants";
+import { useLocalStorage } from "../utils/useLocalStorage";
 
 const ECTSContainer = styled.div`
     display: flex;
@@ -116,10 +119,23 @@ const ResultContainer = styled.div`
     width: 100%;
 `
 
+const PayButton = styled.button`
+    color: white;
+    background: green;
+    border-radius: 4px;
+    border: 0px solid green;
+    width: 14rem;
+    height: 3rem;
+    margin-top: 1rem;
+    font-size : 0.94rem;
+    cursor: pointer;
+`
+
 function ECTSCalculator() {
 
     const [unit, time, week, ects, loading, guest, outOfCoupon, setUnit, setTime, setWeek, trigger] = useECTS(0, 0, 0)
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
+    const [token,] = useLocalStorage('token', null)
 
     const navigate = useNavigate()
 
@@ -174,7 +190,24 @@ function ECTSCalculator() {
                                     title={`${value.price / 10} تومان`}
                                 />)}
                         </ChargeOptions>
-                        <Button title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />
+                        <PayButton onClick={e => {
+                            axios
+                                .post(LINK_PAYMENT,
+                                    {
+                                        price: selectedChargeOption.price
+                                    }, {
+                                    headers: {
+                                        'Content-Type': 'multipart/form-data',
+                                        "Authorization": `Bearer ${token}`
+                                    }
+                                })
+                                .then(response => response.data)
+                                .then(data => window.open(data.data, "_self"))
+                                .catch(error => {
+                                    alert(JSON.stringify(error.response.data.message))
+                                })
+
+                        }}>پرداخت</PayButton>
                     </ChargeBox>
                 }
                 {!loading && !guest && !outOfCoupon &&

@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import ChargeOptionRecord from "../components/ChargeOptionRecord";
 import useGPA from "../hooks/useGPA";
 import useChargeOptions from "../hooks/useChargeOptions";
+import { LINK_PAYMENT } from "../utils/Constants";
+import axios from "axios";
+import { useLocalStorage } from "../utils/useLocalStorage";
 
 const GPAContainer = styled.div`
     display: flex;
@@ -85,9 +88,22 @@ const ChargeOptions = styled.div`
     align-items: center;
 `
 
+const PayButton = styled.button`
+    color: white;
+    background: green;
+    border-radius: 4px;
+    border: 0px solid green;
+    width: 14rem;
+    height: 3rem;
+    margin-top: 1rem;
+    font-size : 0.94rem;
+    cursor: pointer;
+`
+
 function GPACalculator() {
     const [min, max, grade, gpa, loading, guest, outOfCoupon, setMin, setMax, setGrade, trigger] = useGPA(0, 0, 0)
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
+    const [token,] = useLocalStorage('token', null)
 
     const naviaget = useNavigate()
 
@@ -130,7 +146,24 @@ function GPACalculator() {
                                     title={`${value.price / 10} تومان`}
                                 />)}
                         </ChargeOptions>
-                        <Button title="پرداخت" onClick={() => alert(selectedChargeOption.price)} />
+                        <PayButton onClick={e => {
+                            axios
+                                .post(LINK_PAYMENT,
+                                    {
+                                        price: selectedChargeOption.price
+                                    }, {
+                                    headers: {
+                                        'Content-Type': 'multipart/form-data',
+                                        "Authorization": `Bearer ${token}`
+                                    }
+                                })
+                                .then(response => response.data)
+                                .then(data => window.open(data.data, "_self"))
+                                .catch(error => {
+                                    alert(JSON.stringify(error.response.data.message))
+                                })
+
+                        }}>پرداخت</PayButton>
                     </ChargeBox>
                 }
                 {

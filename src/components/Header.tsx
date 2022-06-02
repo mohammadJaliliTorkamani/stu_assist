@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useLocalStorage } from "../utils/useLocalStorage";
 
 const Container = styled.div`
     display: flex;
@@ -73,13 +74,18 @@ interface TextLink {
 }
 
 interface IProps {
-    pages: TextLink[],
-    isUser: boolean
+    pages: TextLink[]
 }
 
-function Header({ pages, isUser }: IProps) {
+function Header({ pages }: IProps) {
     const [, setMouseHover] = useState(false)
     const [hoveredLinkID, setHoveredLinkID] = useState(-1)
+    const [token,] = useLocalStorage('token', null)
+    const [isUser, setIsUser] = useState(true)
+
+    useEffect(() => {
+        setIsUser(token !== null)
+    }, [token])
 
     return (
         <Container>
