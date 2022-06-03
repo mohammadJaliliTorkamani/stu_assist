@@ -52,7 +52,7 @@ export const contactLinks = [
 export const OTP_LENGTH = 5
 export const PHONE_LENGTH = 11
 
-export const TOUContent = "این یک متن آزمایشی است"
+export const TOUContent = "کلیه حقوق مادی و معنوی استفاده از سامانه Stu-Assist محفوظ می باشد. برنامه نویسان داوطلب میتوانند با ارسال ایمیل به مدیریت، آمادگی خود را جهت توسعه فنی و کیفی وبسایت اعلام نمایند. با تشکر"
 
 export const LINK_LOGIN = 'https://stu-assist.ir/api/authentication/login.php'
 export const LINK_OTP = 'https://stu-assist.ir/api/authentication/otp_verification.php'
