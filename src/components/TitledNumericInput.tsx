@@ -40,6 +40,7 @@ function TitledNumericInput({ title, max, min, value, setValue }: IProps) {
                 min={min}
                 max={max}
                 value={value}
+                step = {1}
                 onChange={e => parseInt(e.target.value) <= max ? setValue(e.target.value) : null}
             />
         </Container>

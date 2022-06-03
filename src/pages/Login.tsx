@@ -44,7 +44,7 @@ const PhoneContainer = styled.div`
 `
 
 const Title = styled.div`
-    font-size: 1.1rem;
+    font-size: 1em;
     color: black;
     margin-bottom: 1rem;
     align-self: center;
@@ -101,8 +101,8 @@ function Login() {
             <Box>
                 <Logo src={avatar} />
                 <PhoneContainer>
-                    <Title>شماره تلفن</Title>
-                    <PhoneNumber type='number' ref={inputRef} value={phoneNumber} onChange={e => {
+                    <Title>لطفا شماره تلفن همراه خود را وارد نمایید</Title>
+                    <PhoneNumber type='tel' ref={inputRef} value={phoneNumber} onChange={e => {
                         if (e.target.value.length <= PHONE_LENGTH)
                             setPhoneNumber(e.target.value)
                         if (e.target.value.length === PHONE_LENGTH)

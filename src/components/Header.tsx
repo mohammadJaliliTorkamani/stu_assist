@@ -6,12 +6,12 @@ import { useLocalStorage } from "../utils/useLocalStorage";
 const Container = styled.div`
     display: flex;
     flex-direction : column;
-    height: 10rem;
+    height: 11rem;
     flex: 1;
 `
 
 const Bar = styled.div`
-    height: 3rem;
+    height: 4rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -83,7 +83,7 @@ function Header({ pages }: IProps) {
     const [hoveredLinkID, setHoveredLinkID] = useState(-1)
     const [token,] = useLocalStorage('token', null)
     const [isUser, setIsUser] = useState(true)
-    
+
     useEffect(() => {
         setIsUser(token !== null)
     }, [token])
@@ -92,7 +92,7 @@ function Header({ pages }: IProps) {
 
         <Container>
             <Banner>
-                <Title>سامانه خدمات دانشجویی آلمان</Title>
+                <Title>به سامانه خدمات دانشجویی آلمان خوش آمدید</Title>
                 <Title>Stu-Assist.ir</Title>
             </Banner>
             <Bar>

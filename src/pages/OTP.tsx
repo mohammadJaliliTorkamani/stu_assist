@@ -113,7 +113,7 @@ function OTP() {
                 <OTPContainer>
                     <Title>لطفا کد فعالسازی ارسال شده را وارد نمایید</Title>
                     <OTPInput
-                        type='number'
+                        type='tel'
                         value={otp}
                         ref={inputRef}
                         onChange={e => {

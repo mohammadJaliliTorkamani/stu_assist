@@ -4,7 +4,7 @@ const Container = styled.button`
     color: white;
     border: 0px solid green;
     border-radius: 3px;
-    font-size: 1.2rem;
+    font-size: 1em;
     cursor: pointer;
     padding-left: 2rem;
     padding-right: 2rem;
