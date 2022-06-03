@@ -92,8 +92,8 @@ function Header({ pages }: IProps) {
 
         <Container>
             <Banner>
-                <Title>سامانه خدمات دانشجویان مهاجر آلمان</Title>
-                <Title>Stu-Assist</Title>
+                <Title>سامانه خدمات دانشجویی آلمان</Title>
+                <Title>Stu-Assist.ir</Title>
             </Banner>
             <Bar>
                 <Options>{

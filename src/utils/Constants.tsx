@@ -52,7 +52,7 @@ export const contactLinks = [
 export const OTP_LENGTH = 5
 export const PHONE_LENGTH = 11
 
-export const TOUContent = "کلیه حقوق مادی و معنوی استفاده از سامانه Stu-Assist محفوظ می باشد. برنامه نویسان داوطلب میتوانند با ارسال ایمیل به مدیریت، آمادگی خود را جهت توسعه فنی و کیفی وبسایت اعلام نمایند. با تشکر"
+export const TOUContent = "این سایت به صورت شخصی و غیر رسمی به همت جمعی از دانشجویان و با هدف ارائه خدمات به دانشجویان مهاجر به کشور آلمان طراحی و توسعه داده شده است. در حال حاضر کاربران میتوانند پس از شارژ حساب کاربری خود، نمرات GPA و همچنین ECTS خود را بر مبنای کشور آلمان محاسبه و مشاهده نمایند. همچنین برنامه نویسان داوطلب میتوانند جهت توسعه قابلیت های فنی وبسایت، درخواست همکاری خود را به ایمیل مدیریت ارسال نمایند. "
 
 export const LINK_LOGIN = 'https://stu-assist.ir/api/authentication/login.php'
 export const LINK_OTP = 'https://stu-assist.ir/api/authentication/otp_verification.php'
