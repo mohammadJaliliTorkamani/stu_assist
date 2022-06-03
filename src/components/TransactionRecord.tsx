@@ -28,7 +28,6 @@ function TransactionRecord({ record }: IProps) {
         <Row>
             <Column>{record.id}</Column>
             <Column>{record.orderID}</Column>
-            <Column>{record.cardNo}</Column>
             <Column>{record.issueTrackingNo}</Column>
             <Column>{record.date}</Column>
             <Column>{record.time}</Column>

@@ -25,6 +25,7 @@
     "react-scripts": "5.0.1",
     "react-slideshow-image": "^3.7.5",
     "react-use-window-sessionstorage": "^1.0.10",
+    "reactjs-popup": "^2.0.5",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },

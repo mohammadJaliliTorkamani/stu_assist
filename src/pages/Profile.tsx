@@ -38,7 +38,6 @@ const InfoBox = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
-    height: 10rem;
     width : 100%;
 `
 
@@ -104,7 +103,6 @@ interface TranscationRecordType {
 }
 
 function Profile() {
-    const [fullName, setFullName] = useState('')
     const [balance, setBalance] = useState(0)
     const [transactions, setTransactions] = useState<TranscationRecordType[]>([] as TranscationRecordType[])
     const [token,] = useLocalStorage('token', null)
@@ -121,8 +119,6 @@ function Profile() {
             .then(response => response.data)
             .then(data => {
                 if (!data.error) {
-
-                    setFullName(data.data.fullName);
                     setBalance(data.data.balance)
                     setTransactions(data.data.transactions)
                 }
@@ -136,8 +132,7 @@ function Profile() {
         <Content>
             <RightBox >
                 <InfoBox >
-                    <InfoRecord title={"نام و نام خانوادگی"} value={fullName === ' ' ? "ندارد" : fullName} />
-                    <InfoRecord title={"موجودی"} value={balance + " ریال "} />
+                    <InfoRecord title={"موجودی کیف پول"} value={balance + " ریال "} />
                 </InfoBox>
                 <ChargeBox>
                     <ChargeOptions>
@@ -175,7 +170,6 @@ function Profile() {
                         <Row>
                             <TableHeader>ردیف</TableHeader>
                             <TableHeader>شماره سفارش</TableHeader>
-                            <TableHeader>شماره کارت</TableHeader>
                             <TableHeader>کد پیگیری</TableHeader>
                             <TableHeader>تاریخ</TableHeader>
                             <TableHeader>ساعت</TableHeader>
