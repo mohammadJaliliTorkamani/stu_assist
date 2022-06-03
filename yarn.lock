@@ -6145,6 +6145,11 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
+navbar-react@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/navbar-react/-/navbar-react-1.0.4.tgz#702c153a2db7c3acda6ef55e4de884e05d03463d"
+  integrity sha512-TUgzeVMLlQ04rtrrmffUqiekL9PNQ2a9XOQk7ZM2bEITdOWRsCUTKWs6dewl5rlRWuARV91txRw6D/wgDMcxdg==
+
 negotiator@0.6.3:
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.3.tgz#58e323a72fedc0d6f9cd4d31fe49f51479590ccd"

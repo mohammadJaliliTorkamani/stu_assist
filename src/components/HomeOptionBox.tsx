@@ -16,7 +16,7 @@ interface IProps {
 
 const containerActiveStyle = {
     cursor: 'pointer',
-    fontSize: '1.5rem',
+    fontSize: '1.2em',
     background: '#11a841',
     color: 'white',
     border: '4px solid #0a3816',
@@ -33,7 +33,7 @@ const containerActiveStyle = {
 
 const containerDeactiveStyle = {
     cursor: 'pointer',
-    fontSize: '1.5rem',
+    fontSize: '1.2em',
     background: 'white',
     color: '#0a3816',
     border: '4px solid #0a3816',

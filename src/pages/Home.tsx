@@ -6,7 +6,7 @@ const homeOptionsContainer = {
     justifyContent: 'space-around',
     alignItems: 'center',
     background: '#f5f5f5',
-    minHeight: '40rem'
+    minHeight: '39rem'
 }
 
 function Home() {

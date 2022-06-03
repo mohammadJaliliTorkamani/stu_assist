@@ -1,12 +1,13 @@
 import styled from "@emotion/styled"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useLocalStorage } from "../utils/useLocalStorage";
 
 const Container = styled.div`
     display: flex;
     flex-direction : column;
-    height: 16rem;
+    height: 10rem;
+    flex: 1;
 `
 
 const Bar = styled.div`
@@ -64,7 +65,7 @@ const welcomeStyle = {
 const Title = styled.div`
     color:white;
     margin: 3rem;
-    font-size: 3rem;
+    font-size: 1.2em;
 `
 
 interface TextLink {
@@ -82,12 +83,13 @@ function Header({ pages }: IProps) {
     const [hoveredLinkID, setHoveredLinkID] = useState(-1)
     const [token,] = useLocalStorage('token', null)
     const [isUser, setIsUser] = useState(true)
-
+    
     useEffect(() => {
         setIsUser(token !== null)
     }, [token])
 
     return (
+
         <Container>
             <Banner>
                 <Title>سامانه خدمات دانشجویان مهاجر آلمان</Title>

@@ -17,19 +17,20 @@ const RightBox = styled.div`
     height: 30rem;
     margin-top: 2rem;
     margin-left: 1rem;
-    border: 2px solid red;
+    border: 2px solid green;
     border-radius: 2rem; 
     padding: 2rem;
 `
 
 const LeftBox = styled.div`
     flex: 2;
-    border: 2px solid blue;
+    border: 2px solid green;
     height: 30rem;
     margin-top: 2rem;
     border-radius: 2rem;
-    overflow: auto;
     padding: 2rem;
+    overflow-y: scroll;
+    overflow-x: none;
 `
 
 const InfoBox = styled.div`
@@ -55,7 +56,7 @@ const Content = styled.div`
     align-items: stretch;
     padding-left: 3rem;
     padding-right: 3rem;
-    height: 40rem;
+    height: 39rem;
 `
 
 const PayButton = styled.button`
@@ -81,7 +82,7 @@ const Table = styled.table`
     border: 2px solid forestgreen;
     width: 800px;
     max-height: 100%;
-    overflow: auto;
+    overflow-y: scroll;
 `
 
 const Row = styled.tr`

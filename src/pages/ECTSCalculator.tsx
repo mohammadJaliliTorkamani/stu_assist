@@ -14,7 +14,7 @@ const ECTSContainer = styled.div`
     flex-direction: row;
     justify-content: space-around;
     align-items: stretch;
-    min-height: 40rem;
+    min-height: 39rem;
 `
 
 const RightBox = styled.div`
