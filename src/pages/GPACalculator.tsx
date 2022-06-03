@@ -135,7 +135,7 @@ function GPACalculator() {
                     !guest && !loading && outOfCoupon &&
                     <ChargeBox>
                         <Title>موجوی حساب شما به پایان رسیده است</Title>
-                        <SelectedTitle> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </SelectedTitle >
+                        <SelectedTitle> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گزینه های پرداخت را انتخاب نمایید"} </SelectedTitle >
 
                         <ChargeOptions>
                             {chargeValues.map(value =>

@@ -179,7 +179,7 @@ function ECTSCalculator() {
                     !guest && !loading && outOfCoupon &&
                     <ChargeBox>
                         <Title style={{ marginBottom: '1rem' }}>موجودی حساب شما به پایان رسیده است</Title>
-                        <SelectedTitle style={{ marginBottom: '1.5rem' }}> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گز ینه های پرداخت را انتخاب نمایید"} </SelectedTitle>
+                        <SelectedTitle style={{ marginBottom: '1.5rem' }}> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گزینه های پرداخت را انتخاب نمایید"} </SelectedTitle>
 
                         <ChargeOptions style={{ marginBottom: '1rem' }}>
                             {chargeValues.map(value =>
