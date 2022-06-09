@@ -174,7 +174,6 @@ function Profile() {
                             <TableHeader>تاریخ</TableHeader>
                             <TableHeader>ساعت</TableHeader>
                         </Row>
-
                         {
                             transactions.map(record => <TransactionRecord key={record.id} record={record} />)
                         }

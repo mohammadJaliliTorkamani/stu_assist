@@ -148,7 +148,7 @@ function ECTSCalculator() {
             <RightBox>
                 <TitleValuePair>
                     <SelectedTitle>تعداد واحد درس مورد نظر</SelectedTitle>
-                    <Value type='number' min={1} max={20} value={unit} onChange={e => setUnit(parseInt(e.target.value))} />
+                    <Value type='number' min={1} max={20} value={unit} onChange={e => setUnit(parseFloat(e.target.value))} />
                 </TitleValuePair>
                 <TitleValuePair>
                     <SelectedTitle>مدت زمان تدریس هر واحد در هفته (دقیقه)</SelectedTitle>

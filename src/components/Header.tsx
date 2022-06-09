@@ -92,7 +92,7 @@ function Header({ pages }: IProps) {
 
         <Container>
             <Banner>
-                <Title>به سامانه خدمات دانشجویی آلمان خوش آمدید</Title>
+                <Title>به سامانه خدمات دانشجویی خوش آمدید</Title>
                 <Title>Stu-Assist.ir</Title>
             </Banner>
             <Bar>
