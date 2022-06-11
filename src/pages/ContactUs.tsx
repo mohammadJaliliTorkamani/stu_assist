@@ -10,6 +10,7 @@ const TextContiner = styled.div`
     padding-left: 33%;
     padding-right: 33%;
     min-height: 39rem;
+    direction: rtl;
 `
 
 const TextBox = styled.div`

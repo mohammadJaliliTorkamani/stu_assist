@@ -15,6 +15,7 @@ const GPAContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     min-height: 39rem;
+    direction: rtl;
 `
 
 const FieldsContainer = styled.div`

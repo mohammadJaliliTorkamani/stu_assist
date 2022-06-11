@@ -12,6 +12,7 @@ const Container = styled.div`
     justify-content: center;
     height: 100vh;
     align-items: center;
+    direction: rtl;
 `
 
 const Box = styled.div`

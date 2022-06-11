@@ -19,13 +19,14 @@ const RedLabel = styled.div`
     margin: 2rem;
 `
 
-const Continer = styled.div`
+const Container = styled.div`
     display: flex;
     flex-direction: column;
     height: 56rem;
     background: #ededed;
     justify-content: center;
     align-items: center;
+    direction: rtl;
 `
 
 const Box = styled.div`
@@ -115,7 +116,7 @@ function PaymentResult() {
     }, [token, result.statusMeaning])
 
     return (
-        <Continer>
+        <Container>
             <Box>
                 {
                     result.status === 100 && <OKContainer>
@@ -158,7 +159,7 @@ function PaymentResult() {
                     </FailContainer>
                 }
             </Box>
-        </Continer>
+        </Container>
     )
 }
 

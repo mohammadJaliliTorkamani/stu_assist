@@ -56,6 +56,7 @@ const Content = styled.div`
     padding-left: 3rem;
     padding-right: 3rem;
     height: 39rem;
+    direction: rtl;
 `
 
 const PayButton = styled.button`

@@ -15,6 +15,7 @@ const Container = styled.div`
     justify-content: center;
     text-align: center;
     align-items: center;
+    direction: rtl;
 `
 
 const Logo = styled.img`

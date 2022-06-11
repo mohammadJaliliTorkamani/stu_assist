@@ -9,6 +9,7 @@ const FooterContainer = styled.div`
     height: 6rem;
     justify-content : space-between;
     background: #002b0d;
+    direction: rtl;
 `
 
 const LeftContainer = styled.div`

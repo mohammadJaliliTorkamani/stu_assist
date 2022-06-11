@@ -8,6 +8,7 @@ const Container = styled.div`
     flex-direction : column;
     height: 11rem;
     flex: 1;
+    direction: rtl;
 `
 
 const Bar = styled.div`

@@ -11,10 +11,8 @@
 body {
   /* font-family: iranyekan, "syekan", sans-serif; */
   font-family: syekan, sans-serif;
-  margin: 0;
-  padding: 0;
-  direction: rtl;
-
+  margin: 0px;
+  padding: 0px;
 }
 
 button {
