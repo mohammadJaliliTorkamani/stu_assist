@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { FOOTER_TEXT } from "../utils/Constants"
 
 const FooterContainer = styled.div`
     display: flex;
@@ -12,14 +13,10 @@ const FooterContainer = styled.div`
     direction: rtl;
 `
 
-interface IProps {
-    copyRightText: string,
-}
-
-function Footer(props: IProps) {
+function Footer() {
     return (
         <FooterContainer>
-            {props.copyRightText}
+            {FOOTER_TEXT}
         </FooterContainer>
     )
 }

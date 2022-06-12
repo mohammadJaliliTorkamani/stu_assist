@@ -14,7 +14,6 @@ import NotFound from './pages/NotFound';
 import OTP from './pages/OTP';
 import PaymentResult from './pages/PaymentResult';
 import Profile from './pages/Profile';
-import { headerPages } from './utils/Constants';
 
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
@@ -26,7 +25,7 @@ function App() {
 
   return (
     <>
-      {showHeaderFooter && <Header pages={headerPages} />}
+      {showHeaderFooter && <Header />}
       <Routes>
         <Route path='login' element={<AntiProtectedRoute> <Login /></AntiProtectedRoute>} />
         <Route path='/' element={<Home />} />
@@ -42,7 +41,7 @@ function App() {
         <Route path='payment-result' element={<PaymentResult />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
-      {showHeaderFooter && <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} />}
+      {showHeaderFooter && <Footer />}
     </>
   )
 }
