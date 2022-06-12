@@ -55,7 +55,7 @@ const Content = styled.div`
     align-items: stretch;
     padding-left: 3rem;
     padding-right: 3rem;
-    height: 39rem;
+    height: calc(100vh - 160px);
     direction: rtl;
 `
 

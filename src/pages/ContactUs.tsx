@@ -9,8 +9,8 @@ const TextContiner = styled.div`
     justify-content: center;
     padding-left: 33%;
     padding-right: 33%;
-    min-height: 39rem;
     direction: rtl;
+    height: calc(100vh - 160px);
 `
 
 const TextBox = styled.div`

@@ -14,7 +14,7 @@ const GPAContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 39rem;
+    height: calc(100vh - 160px);
     direction: rtl;
 `
 

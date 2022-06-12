@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, BrowserRouter as Router } from 'react-router-dom';
 import { AntiProtectedRoute } from './components/AntiProtectedRoute copy';
 import Footer from './components/Footer';
 import Header from './components/Header';

@@ -22,11 +22,11 @@ const RedLabel = styled.div`
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    height: 56rem;
     background: #ededed;
     justify-content: center;
     align-items: center;
     direction: rtl;
+    height: calc(100vh - 160px);
 `
 
 const Box = styled.div`

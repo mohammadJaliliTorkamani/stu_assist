@@ -2,24 +2,18 @@ import styled from "@emotion/styled"
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useLocalStorage } from "../utils/useLocalStorage";
+import Button from "./Button";
+import { Button1 } from "./Button1";
+import Dropdown from "./DropDown";
+import './Header.css'
 
-const Container = styled.div`
+const NavBar = styled.nav`
+    background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+    height: 80px;
     display: flex;
-    flex-direction : column;
-    height: 11rem;
-    flex: 1;
-    direction: rtl;
-`
-
-const Bar = styled.div`
-    height: 4rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch;
-    background: #002b0d;
-    padding-left: 3rem;
-    padding-right: 3rem;    
+    justify-content: center;
+    align-items: center;
+    fontSize: 1.2rem;
 `
 
 const Banner = styled.div`
@@ -57,10 +51,15 @@ const optionDeactiveStyle = {
 }
 
 const welcomeStyle = {
-    color: 'white',
+    padding: '8px 20px',
+    borderRadius: '4px',
+    outline: 'none',
+    border: 'none',
+    fontSize: '18px',
+    color: '#fff',
     cursor: 'pointer',
-    textDecoration: 'none',
-    alignSelf: 'center',
+    backgroundColor: 'green',
+    textDecoration: 'none   '
 }
 
 const Title = styled.div`
@@ -79,9 +78,14 @@ interface IProps {
     pages: TextLink[]
 }
 
+
 function Header({ pages }: IProps) {
-    const [, setMouseHover] = useState(false)
-    const [hoveredLinkID, setHoveredLinkID] = useState(-1)
+    const [click, setClick] = useState(false);
+    const [dropdown, setDropdown] = useState(false);
+
+    const handleClick = () => setClick(!click);
+    const closeMobileMenu = () => setClick(false);
+
     const [token,] = useLocalStorage('token', null)
     const [isUser, setIsUser] = useState(true)
 
@@ -90,33 +94,61 @@ function Header({ pages }: IProps) {
     }, [token])
 
     return (
-
-        <Container>
-            <Banner>
-                <Title>به سامانه خدمات دانشجویی خوش آمدید</Title>
-                <Title>Stu-Assist.ir</Title>
-            </Banner>
-            <Bar>
-                <Options>{
-                    pages.map(page =>
-                        <NavLink key={page.id} to={page.link === "/" ? "/" : ("/" + page.link)}
-                            style={page.id === hoveredLinkID ? optionActiveStyle : optionDeactiveStyle}
-                            onMouseEnter={e => {
-                                setHoveredLinkID(page.id)
-                                setMouseHover(true)
-                            }}
-                            onMouseLeave={e => {
-                                setHoveredLinkID(-1)
-                                setMouseHover(false)
-                            }}
+        <>
+            <NavBar>
+                <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
+                    Stu-Assist
+                </Link>
+                <div className='menu-icon' onClick={handleClick}>
+                    <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+                </div>
+                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                    <li className='nav-item'>
+                        <Link
+                            to='/contact-us'
+                            className='nav-links'
+                            onClick={closeMobileMenu}
                         >
-                            {page.text}
-                        </NavLink>)}
-                </Options>
-                <Link to={!isUser ? 'login' : 'profile'} style={welcomeStyle}> {!isUser ? "ورود / ثبت نام" : " کاربر عزیز، خوش آمدید!"}</Link>
-            </Bar>
-        </Container >
-    )
+                            تماس با ما
+                        </Link>
+                    </li>
+                    <li className='nav-item'>
+                        <Link
+                            to='/ects-calculator'
+                            className='nav-links'
+                            onClick={closeMobileMenu}
+                        >
+                            محاسبه ای سی تی اس
+                        </Link>
+                    </li>
+                    <li className='nav-item'>
+                        <Link
+                            to='/gpa-calculator'
+                            className='nav-links'
+                            onClick={closeMobileMenu}
+                        >
+                            محاسبه جی پی ای
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to={!isUser ? 'login' : 'profile'}
+                            className='nav-links-mobile'
+                            onClick={closeMobileMenu}
+                        >
+                            {!isUser ? "ورود / ثبت نام" : "حساب کاربری"}
+                        </Link>
+                    </li>
+                    <li className='nav-item'>
+                        <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                            خانه
+                        </Link>
+                    </li>
+                </ul>
+                <Button1 />
+            </NavBar>
+        </>
+    );
 }
 
 export default Header

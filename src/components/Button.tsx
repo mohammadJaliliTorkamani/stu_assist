@@ -21,7 +21,7 @@ interface IProps {
 
 function Button({ title, onClick, color = "green", reference = null }: IProps) {
     return (
-        <Container
+        <Container 
             style={{
                 background: color,
                 color: ((color === "white" || color === "#ffffff" || color === "#fff") ? "black" : "white")

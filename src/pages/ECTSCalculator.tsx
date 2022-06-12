@@ -14,7 +14,7 @@ const ECTSContainer = styled.div`
     flex-direction: row;
     justify-content: space-around;
     align-items: stretch;
-    min-height: 39rem;
+    height: calc(100vh - 160px);
     direction: rtl;
 `
 
