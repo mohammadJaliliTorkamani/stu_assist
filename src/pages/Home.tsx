@@ -1,54 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import HomeOptionBox from "../components/HomeOptionBox";
+import './Home.css'
 
 const homeOptionsContainer = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     background: '#f5f5f5',
     height: `calc(100vh - 160px)`
 }
 
 function Home() {
-    const [, setMouseOnOption] = useState(false)
-    const [optionID, setOptionID] = useState(-1)
-
     useEffect(() => {
         document.title = "Stu Assist | خانه"
     }, [])
 
     return (
-        <div key={1} style={homeOptionsContainer}>
+        <div key={1} style={homeOptionsContainer} className="home-container">
             <HomeOptionBox
                 key={1}
-                onMouseEntered={e => {
-                    setMouseOnOption(true)
-                    setOptionID(1)
-                }}
-                onMouseLeave={e => {
-                    setMouseOnOption(false)
-                    setOptionID(-1)
-                }}
-                hovered={optionID === 1}
+                className="home-option"
                 page={{
                     id: 1,
                     text: "محاسبه ای سی تی اس",
-                    link: "gpa-calculator"
+                    link: "ects-calculator"
                 }} />
             <HomeOptionBox key={2}
-                onMouseEntered={e => {
-                    setMouseOnOption(true)
-                    setOptionID(2)
-                }}
-                onMouseLeave={e => {
-                    setMouseOnOption(false)
-                    setOptionID(-1)
-                }}
-                hovered={optionID === 2}
+                className="home-option"
                 page={{
                     id: 2,
                     text: "محاسبه جی پی ای",
-                    link: "ects-calculator"
+                    link: "gpa-calculator"
                 }} />
         </div>
     )
