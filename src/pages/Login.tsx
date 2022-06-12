@@ -20,10 +20,10 @@ const Box = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: stretch;
-    min-height: 28rem;
+    height: 28rem;
     width: 22rem;
     border: 2px solid gray;
-    border-radius: 1rem;
+    border-radius: 6px;
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 1.5rem;
@@ -39,14 +39,15 @@ const Logo = styled.img`
 
 const PhoneContainer = styled.div`
     display: flex;
+    height: 10rem;
     flex-direction: column;
-    justify-content: center;
     align-items: stretch;
 `
 
 const Title = styled.div`
     font-size: 1em;
     color: black;
+    margin-top: 4rem;
     margin-bottom: 1rem;
     align-self: center;
 `

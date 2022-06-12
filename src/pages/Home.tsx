@@ -32,7 +32,7 @@ function Home() {
                 hovered={optionID === 1}
                 page={{
                     id: 1,
-                    text: "محاسبه GPA",
+                    text: "محاسبه ای سی تی اس",
                     link: "gpa-calculator"
                 }} />
             <HomeOptionBox key={2}
@@ -47,7 +47,7 @@ function Home() {
                 hovered={optionID === 2}
                 page={{
                     id: 2,
-                    text: "محاسبه ECTS",
+                    text: "محاسبه جی پی ای",
                     link: "ects-calculator"
                 }} />
         </div>

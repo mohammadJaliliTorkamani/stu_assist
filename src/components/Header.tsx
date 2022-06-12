@@ -37,62 +37,60 @@ function Header({ pages }: IProps) {
     }, [token])
 
     return (
-        <>
-            <NavBar>
-                <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
-                    Stu-Assist
-                </Link>
-                <div className='menu-icon' onClick={handleClick}>
-                    <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
-                </div>
-                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                    <li className='nav-item'>
-                        <Link
-                            to='/about-us'
-                            className='nav-links'
-                            onClick={closeMobileMenu}
-                        >
-                            درباره ما
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link
-                            to='/ects-calculator'
-                            className='nav-links'
-                            onClick={closeMobileMenu}
-                        >
-                            محاسبه ای سی تی اس
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link
-                            to='/gpa-calculator'
-                            className='nav-links'
-                            onClick={closeMobileMenu}
-                        >
-                            محاسبه جی پی ای
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to={!isUser ? 'login' : 'profile'}
-                            className='nav-links-mobile'
-                            onClick={closeMobileMenu}
-                        >
-                            {!isUser ? "ورود / ثبت نام" : "حساب کاربری"}
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                            خانه
-                        </Link>
-                    </li>
-                </ul>
-                <Link to={!isUser ? 'login' : 'profile'}>
-                    <Button title={!isUser ? "ورود / ثبت نام" : "حساب کاربری"} />
-                </Link>
-            </NavBar>
-        </>
+        <NavBar>
+            <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
+                Stu-Assist
+            </Link>
+            <div className='menu-icon' onClick={handleClick}>
+                <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+            </div>
+            <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                <li className='nav-item'>
+                    <Link
+                        to='/about-us'
+                        className='nav-links'
+                        onClick={closeMobileMenu}
+                    >
+                        درباره ما
+                    </Link>
+                </li>
+                <li className='nav-item'>
+                    <Link
+                        to='/ects-calculator'
+                        className='nav-links'
+                        onClick={closeMobileMenu}
+                    >
+                        محاسبه ای سی تی اس
+                    </Link>
+                </li>
+                <li className='nav-item'>
+                    <Link
+                        to='/gpa-calculator'
+                        className='nav-links'
+                        onClick={closeMobileMenu}
+                    >
+                        محاسبه جی پی ای
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to={!isUser ? 'login' : 'profile'}
+                        className='nav-links-mobile'
+                        onClick={closeMobileMenu}
+                    >
+                        {!isUser ? "ورود / ثبت نام" : "حساب کاربری"}
+                    </Link>
+                </li>
+                <li className='nav-item'>
+                    <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                        خانه
+                    </Link>
+                </li>
+            </ul>
+            <Link to={!isUser ? 'login' : 'profile'} style={{ textDecoration: 'none' }}>
+                <Button title={!isUser ? "ورود / ثبت نام" : "حساب کاربری"} onClick={e => null} />
+            </Link>
+        </NavBar>
     );
 }
 
