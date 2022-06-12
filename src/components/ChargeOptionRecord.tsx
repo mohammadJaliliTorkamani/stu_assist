@@ -3,11 +3,11 @@ import styled from "@emotion/styled"
 const Container = styled.div`
     color: black;
     cursor: pointer;
-    diosplay: flex;
-    flex-direction : row;
-    justify-content: cetner;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    margin: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
     border: 1px solid green;
     border-radius: 4px;
     padding: 1rem;
