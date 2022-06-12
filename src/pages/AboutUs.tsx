@@ -1,27 +1,27 @@
 import styled from "@emotion/styled";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { contactLinks, TOUContent } from "../utils/Constants";
 
 const TextContiner = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 33%;
-    padding-right: 33%;
+    align-items: center;
     direction: rtl;
-    height: calc(100vh - 160px);
+    height: 100vh;
+    width: 100%;
+    padding: 2rem;
 `
 
 const TextBox = styled.div`
     display: flex;
     flex:1;
     margin-top: 3rem;
-    margin-bottom   : 3rem;
+    margin-bottom: 3rem;
     color: black;
     background: #f2f2f2;
-    padding-top: 4%;
-    padding-bottom: 4%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     padding-left: 2rem;
     padding-right: 2rem;
     text-align: justify;
@@ -29,15 +29,15 @@ const TextBox = styled.div`
     border-radius: 1rem;
     line-height: 2rem;
     flex-direction: column;
-    justify-content: flex-start;
+    overflow: auto;
     align-items: flex-start;
 `
 
-const Separator = styled.div`
+const Separator = styled.span`
     height: 2px;
     background: black;
     width: 10rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 `
 
 function AboutUs() {
@@ -54,14 +54,17 @@ function AboutUs() {
                     TOUContent
                 }
                 <br />
-                <br />  
+                <br />
                 <br />
                 مشخصات تماس
                 <Separator />
                 {
-                    contactLinks.map(item => <Link key={item.id} to={`mailto:${item.value}`} style={{ textDecoration: 'none', color: 'black' }}>
-                        <> {item.label} : {item.value}</>
-                    </Link >
+                    contactLinks.map(
+                        item =>
+                            <div key={item.id}
+                                style={{ textDecoration: 'none', color: 'black' }}>
+                                {item.label} : {item.value}
+                            </div >
                     )
                 }
             </TextBox>
