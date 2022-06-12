@@ -3,22 +3,22 @@
 }
 
 .btn {
-    padding: 8px 20px;
-    border-radius: 4px;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 3px;
     outline: none;
     border: none;
-    font-size: 18px;
+    font-size: 1em;
     color: #fff;
     cursor: pointer;
     background-color: var(--primary);
 }
 
 .btn:hover {
-    padding: 6px 18px;
-    transition: all 0.3s ease-out;
-    background-color: transparent;
-    color: #fff;
-    border-radius: 4px;
+    transition: all 0.33s ease-out;
+    background-color: white;
+    color: green;
     border: 2px solid var(--primary);
-    transition: all 0.3s ease-out;
 }

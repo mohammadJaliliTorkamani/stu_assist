@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { contactLinks } from "../utils/Constants";
+import { contactLinks, TOUContent } from "../utils/Constants";
 
 const TextContiner = styled.div`
     display: flex;
@@ -40,7 +40,7 @@ const Separator = styled.div`
     margin-bottom: 2rem;
 `
 
-function ContactUs() {
+function AboutUs() {
     useEffect(() => {
         document.title = "Stu Assist | تماس با ما"
     }, [])
@@ -48,6 +48,14 @@ function ContactUs() {
     return (
         <TextContiner>
             <TextBox>
+                Stu-Assist چیست؟
+                <Separator />
+                {
+                    TOUContent
+                }
+                <br />
+                <br />  
+                <br />
                 مشخصات تماس
                 <Separator />
                 {
@@ -61,4 +69,4 @@ function ContactUs() {
     )
 }
 
-export default ContactUs
+export default AboutUs

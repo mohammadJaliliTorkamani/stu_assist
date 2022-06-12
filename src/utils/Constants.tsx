@@ -1,6 +1,3 @@
-import axios from "axios"
-import { useLocalStorage } from "./useLocalStorage"
-
 export const headerPages = [{
   id: 3,
   text: "خانه",
@@ -34,7 +31,7 @@ export const footerPages = [{
 }, {
   id: 5,
   text: "تماس با ما",
-  link: "contact-us"
+  link: "about-us"
 }]
 
 export const contactLinks = [

@@ -1,10 +1,8 @@
 import styled from "@emotion/styled"
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useLocalStorage } from "../utils/useLocalStorage";
 import Button from "./Button";
-import { Button1 } from "./Button1";
-import Dropdown from "./DropDown";
 import './Header.css'
 
 const NavBar = styled.nav`
@@ -14,58 +12,6 @@ const NavBar = styled.nav`
     justify-content: center;
     align-items: center;
     fontSize: 1.2rem;
-`
-
-const Banner = styled.div`
-    background: #176327;
-    height: 13rem;
-    width: 100%;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-size: 100%;
-`
-
-const Options = styled.div`
-    display: flex;
-    flex-direction : row;
-`
-
-const optionActiveStyle = {
-    textDecoration: 'none',
-    color: '#11a841',
-    paddingLeft: '3rem',
-    paddingRight: '3rem',
-    cursor: 'pointer',
-    alignSelf: 'center'
-}
-
-const optionDeactiveStyle = {
-    textDecoration: 'none',
-    color: 'white',
-    paddingLeft: '3rem',
-    paddingRight: '3rem',
-    cursor: 'pointer',
-    alignSelf: 'center'
-}
-
-const welcomeStyle = {
-    padding: '8px 20px',
-    borderRadius: '4px',
-    outline: 'none',
-    border: 'none',
-    fontSize: '18px',
-    color: '#fff',
-    cursor: 'pointer',
-    backgroundColor: 'green',
-    textDecoration: 'none   '
-}
-
-const Title = styled.div`
-    color:white;
-    margin: 3rem;
-    font-size: 1.2em;
 `
 
 interface TextLink {
@@ -81,11 +27,8 @@ interface IProps {
 
 function Header({ pages }: IProps) {
     const [click, setClick] = useState(false);
-    const [dropdown, setDropdown] = useState(false);
-
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
-
     const [token,] = useLocalStorage('token', null)
     const [isUser, setIsUser] = useState(true)
 
@@ -105,11 +48,11 @@ function Header({ pages }: IProps) {
                 <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                     <li className='nav-item'>
                         <Link
-                            to='/contact-us'
+                            to='/about-us'
                             className='nav-links'
                             onClick={closeMobileMenu}
                         >
-                            تماس با ما
+                            درباره ما
                         </Link>
                     </li>
                     <li className='nav-item'>
@@ -145,7 +88,9 @@ function Header({ pages }: IProps) {
                         </Link>
                     </li>
                 </ul>
-                <Button1 />
+                <Link to={!isUser ? 'login' : 'profile'}>
+                    <Button title={!isUser ? "ورود / ثبت نام" : "حساب کاربری"} />
+                </Link>
             </NavBar>
         </>
     );
