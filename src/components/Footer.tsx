@@ -1,6 +1,4 @@
 import styled from "@emotion/styled"
-import FooterPageComponent from "./FooterPageComponent";
-import KeyValuePair from "./KeyValuePair";
 
 const FooterContainer = styled.div`
     display: flex;
@@ -8,89 +6,20 @@ const FooterContainer = styled.div`
     color: white;
     height: 80px;
     width: 100%;
-    justify-content : space-between;
-    background: #001f02;
-    direction: rtl;
-`
-
-const LeftContainer = styled.div`
-    display: flex;
-    flex:1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`
-
-const LeftInnerContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content:  flex-start;
-    align-items: flex-start;
-`
-
-const MiddleContainer = styled.div`
-    display: flex;
-    flex:1;
-    flex-direction: column;
     justify-content : center;
     align-items: center;
-    font-size: 0.8rem;
-`
-
-const RightContainer = styled.div`
-    display: flex;
-    flex:1;
-    flex-direction: column;
-    justify-content: center;
-`
-
-const RightInnerContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-`
-
-const ContactUsLabel = styled.div`
-    color: #f2f2f2;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
+    background: black;
+    direction: rtl;
 `
 
 interface IProps {
     copyRightText: string,
-    pages: FooterPageLink[],
-    contactUsLinks: KeyValuePairItem[]
-}
-
-interface KeyValuePairItem {
-    id: number,
-    label: string,
-    value: string
-}
-
-interface FooterPageLink {
-    id: number,
-    text: string,
-    link: string
 }
 
 function Footer(props: IProps) {
     return (
         <FooterContainer>
-            <RightContainer>
-                <RightInnerContainer>
-                    {props.pages.map(page => <FooterPageComponent key={page.id} page={page} />)}
-                </RightInnerContainer>
-            </RightContainer>
-            <MiddleContainer>
-                {props.copyRightText}
-            </MiddleContainer>
-            <LeftContainer>
-                <LeftInnerContainer>
-                    <ContactUsLabel>ارتباط با ما</ContactUsLabel>
-                    {props.contactUsLinks.map(item => <KeyValuePair key={item.id} {...item} />)}
-                </LeftInnerContainer>
-            </LeftContainer>
+            {props.copyRightText}
         </FooterContainer>
     )
 }

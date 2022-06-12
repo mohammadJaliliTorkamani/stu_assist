@@ -44,7 +44,7 @@ function App() {
         <Route path='payment-result' element={<PaymentResult />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
-      {showHeaderFooter && <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} pages={footerPages} contactUsLinks={contactLinks} />}
+      {showHeaderFooter && <Footer copyRightText={"تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"} />}
     </>
   )
 }
