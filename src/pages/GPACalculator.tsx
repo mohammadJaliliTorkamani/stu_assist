@@ -85,7 +85,7 @@ function GPACalculator() {
                                     key={value.id}
                                     selected={selectedChargeOption.id === value.id}
                                     onClick={e => { setSelectedChargeOption(value) }}
-                                    title={`${value.price / 10} تومان به ازای  ${value.numberOfRequests}درخواست`}
+                                    title={`${value.price / 10} تومان به ازای  ${value.numberOfRequests}محاسبه`}
                                 />)}
                         </div>
                         <Button title="پرداخت" onClick={e => handlePayment()} />
