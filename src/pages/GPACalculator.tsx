@@ -34,7 +34,8 @@ function GPACalculator() {
         axios
             .post(LINK_PAYMENT,
                 {
-                    price: selectedChargeOption.price
+                    price: selectedChargeOption.price,
+                    number_of_requests: selectedChargeOption.numberOfRequests,
                 }, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -84,7 +85,7 @@ function GPACalculator() {
                                     key={value.id}
                                     selected={selectedChargeOption.id === value.id}
                                     onClick={e => { setSelectedChargeOption(value) }}
-                                    title={`${value.price / 10} تومان`}
+                                    title={`${value.price / 10} تومان به ازای  ${value.numberOfRequests}درخواست`}
                                 />)}
                         </div>
                         <Button title="پرداخت" onClick={e => handlePayment()} />

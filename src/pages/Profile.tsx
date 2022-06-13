@@ -26,7 +26,8 @@ function Profile() {
     const handlePayment = () => {
         axios.post(LINK_PAYMENT,
             {
-                price: selectedChargeOption.price
+                price: selectedChargeOption.price,
+                number_of_requests: selectedChargeOption.numberOfRequests,
             }, {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -70,7 +71,7 @@ function Profile() {
                                     key={value.id}
                                     selected={selectedChargeOption.id === value.id}
                                     onClick={e => { setSelectedChargeOption(value) }}
-                                    title={`${value.price / 10} تومان`}
+                                    title={`${value.price / 10} تومان به ازای  ${value.numberOfRequests}درخواست`}
 
                                 />)
                         }
@@ -78,18 +79,18 @@ function Profile() {
                     <Button title="پرداخت" onClick={e => handlePayment()} />
                 </div>
             </div>
-                <table className="table">
-                    <tbody>
-                        <tr className="table-row">
-                            <th className="table-header">ردیف</th>
-                            <th className="table-header"> سفارش</th>
-                            <th className="table-header">کد پیگیری</th>
-                            <th className="table-header">تاریخ</th>
-                            <th className="table-header">ساعت</th>
-                        </tr>
-                        {transactions.map(record => <TransactionRecord key={record.id} record={record} />)}
-                    </tbody>
-                </table>
+            <table className="table">
+                <tbody>
+                    <tr className="table-row">
+                        <th className="table-header">ردیف</th>
+                        <th className="table-header"> سفارش</th>
+                        <th className="table-header">کد پیگیری</th>
+                        <th className="table-header">تاریخ</th>
+                        <th className="table-header">ساعت</th>
+                    </tr>
+                    {transactions.map(record => <TransactionRecord key={record.id} record={record} />)}
+                </tbody>
+            </table>
         </div >
     )
 }

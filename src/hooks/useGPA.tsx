@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { LINK_GPA } from "../utils/Constants"
 import { useLocalStorage } from "../utils/useLocalStorage"
 
-function useGPA(_min: number, _max: number, _grade: number) {
+function useGPA(_min: number | '', _max: number | '', _grade: number | '') {
     const [token,] = useLocalStorage('token', null)
 
     const [min, setMin] = useState(_min)
@@ -16,7 +16,9 @@ function useGPA(_min: number, _max: number, _grade: number) {
 
     const trigger = () => {
         setGuest(token === null)
-
+        if (max === '' || min === '' || grade === '')
+            return;
+            
         if (!loading && !guest && !outOfCoupon && token !== null) {
             if (max - min === 0)
                 setGPA(0)

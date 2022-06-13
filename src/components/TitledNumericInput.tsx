@@ -34,7 +34,17 @@ function TitledNumericInput({ title, max, min, value, setValue, className }: IPr
                 max={max}
                 value={value}
                 step={1}
-                onChange={e => parseInt(e.target.value) <= max ? setValue(e.target.value) : null}
+                onChange={e => {
+                    if (e.target.value === '')
+                        setValue('')
+                    else {
+                        if (parseInt(e.target.value) <= max)
+                            setValue(e.target.value)
+                        else
+                            return null
+                    }
+                }
+                }
             />
         </div>
     )
