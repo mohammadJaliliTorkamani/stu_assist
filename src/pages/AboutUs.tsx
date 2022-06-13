@@ -8,7 +8,7 @@ const TextContiner = styled.div`
     justify-content: center;
     align-items: center;
     direction: rtl;
-    height: 100vh;
+    height: calc(100vh - 160px);
     width: 100%;
     padding: 2rem;
 `
