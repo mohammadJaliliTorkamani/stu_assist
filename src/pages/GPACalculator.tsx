@@ -12,13 +12,6 @@ import { useLocalStorage } from "../utils/useLocalStorage";
 import './GPACalculator.css'
 
 
-const Title = styled.div`
-    font-size: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    color: #11a841;
-`
-
 const SelectedTitle = styled.div`
     font-size: 1rem;
     padding-top: 1rem;
