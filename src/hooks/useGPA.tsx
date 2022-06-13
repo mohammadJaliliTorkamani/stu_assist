@@ -16,9 +16,11 @@ function useGPA(_min: number | '', _max: number | '', _grade: number | '') {
 
     const trigger = () => {
         setGuest(token === null)
-        if (max === '' || min === '' || grade === '')
+        if (max === '' || min === '' || grade === '') {
+            alert("لطفا تمامی فیلد ها را تکمیل نمایید")
             return;
-            
+        }
+
         if (!loading && !guest && !outOfCoupon && token !== null) {
             if (max - min === 0)
                 setGPA(0)

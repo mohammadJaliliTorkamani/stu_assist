@@ -78,7 +78,7 @@ function ECTSCalculator() {
                     !guest && !loading && outOfCoupon &&
                     <div className="charge-box">
                         <SelectedTitle>موجودی کیف پول شما به پایان رسیده است</SelectedTitle>
-                        <SelectedTitle> {selectedChargeOption.id !== -1 ? `${selectedChargeOption.price} تومان` : "برای ادامه، لطفا یکی از گزینه های پرداخت را انتخاب نمایید"} </SelectedTitle >
+                        <SelectedTitle> {"برای ادامه، لطفا یکی از گزینه های پرداخت را انتخاب نمایید"} </SelectedTitle >
 
                         <div className="charge-options">
                             {chargeValues.map(value =>
@@ -86,7 +86,7 @@ function ECTSCalculator() {
                                     key={value.id}
                                     selected={selectedChargeOption.id === value.id}
                                     onClick={e => { setSelectedChargeOption(value) }}
-                                    title={`${value.price / 10} تومان به ازای  ${value.numberOfRequests}محاسبه`}
+                                    title={`${value.price / 10} تومان به ازای  ${value.numberOfRequests} محاسبه `}
                                 />)}
                         </div>
                         <Button title="پرداخت" onClick={e => handlePayment()} />

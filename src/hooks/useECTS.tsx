@@ -15,8 +15,10 @@ function useECTS(_unit: number | '', _time: number | '', _week: number | '') {
 
     const trigger = () => {
         setGuest(token === null)
-        if (unit === '' || week === '' || time === '')
+        if (unit === '' || week === '' || time === '') {
+            alert("لطفا تمامی فیلد ها را تکمیل نمایید")
             return;
+        }
 
         if (!loading && !guest && !outOfCoupon && token !== null) {
             if (week === 0)
