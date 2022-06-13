@@ -1,14 +1,6 @@
 import styled from "@emotion/styled"
 import React from "react";
 
-const Container = styled.div`
-    height: 6rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-`
-
 const Title = styled.div`
     color: black;
 `
@@ -26,12 +18,13 @@ interface IProps {
     max: number,
     min: number,
     value: any,
-    setValue: any
+    setValue: any,
+    className?: string
 }
 
-function TitledNumericInput({ title, max, min, value, setValue }: IProps) {
+function TitledNumericInput({ title, max, min, value, setValue, className }: IProps) {
     return (
-        <Container>
+        <div className={className}>
             <Title>
                 {title}
             </Title>
@@ -40,10 +33,10 @@ function TitledNumericInput({ title, max, min, value, setValue }: IProps) {
                 min={min}
                 max={max}
                 value={value}
-                step = {1}
+                step={1}
                 onChange={e => parseInt(e.target.value) <= max ? setValue(e.target.value) : null}
             />
-        </Container>
+        </div>
     )
 }
 

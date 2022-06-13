@@ -5,7 +5,8 @@
     align-items: center;
     padding-left: 2rem;
     padding-right: 2rem;
-    height: 100vh;
+    padding-bottom: 3rem;
+    min-height: calc(100vh - 160px);
     direction: rtl;
 }
 
