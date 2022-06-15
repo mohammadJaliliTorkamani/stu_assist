@@ -161,19 +161,19 @@ function ApplicationExperience() {
                                     <div className='post-item-body-row'>
                                         <div className='post-item-body-row-key-value-container'>
                                             <div className='post-item-label-key'>کشور : </div>
-                                            <>{experience.universityCountry}</>
+                                            <div>{experience.universityCountry}</div>
                                         </div>
                                     </div>
                                     <div className='post-item-body-row'>
                                         <div className='post-item-body-row-key-value-container'>
                                             <div className='post-item-label-key'>شهر : </div>
-                                            <>{experience.universityCity}</>
+                                            <div>{experience.universityCity}</div>
                                         </div>
                                     </div>
                                     <div className='post-item-body-row'>
                                         <div className='post-item-body-row-key-value-container'>
                                             <div className='post-item-label-key'>دانشگاه : </div>
-                                            <>{experience.universityName}</>
+                                            <div>{experience.universityName}</div>
                                         </div>
                                     </div>
                                     <div className='post-item-body-row-comment'>
