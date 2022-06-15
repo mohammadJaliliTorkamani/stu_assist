@@ -142,7 +142,7 @@ function ApplicationExperience() {
                                     <div className='post-item-header-text-container'>
                                         <div className='post-item-header-text-container-row'>
                                             <div className='post-item-label-key'>نام و نام خانوادگی : </div>
-                                            <div>{experience.fullName}</div>
+                                            <div>{experience.fullName === ' ' ? 'بدون نام' : experience.fullName}</div>
                                         </div>
                                         <div className='post-item-header-text-container-row'>
                                             <div className='post-item-label-key'>تاریخ ارسال : </div>
