@@ -16,6 +16,7 @@ const SelectedTitle = styled.div`
 `
 
 interface ApplicationExperience {
+    id: number,
     fullName: string,
     experienceDate: string,
     experienceTime: string,
@@ -108,16 +109,16 @@ function ApplicationExperience() {
             {!sent && <div className='post-box'>
                 {guest && <div className='login-box'>
                     <SelectedTitle>
-                        لطفا ابتدا وارد حساب کاربری خود شوید
+                        جهت ثبت تجربه پذیرش خود، لطفا ابتدا وارد حساب کاربری خود شوید
                     </SelectedTitle>
                     <Button title="ورود / ثبت نام" onClick={e => navigate('/login', { replace: true })} />
                 </div>
                 }
                 {!guest && <div className='write-box'>
                     <div className='university-info-write-box'>
-                        <TitledTextInput title='کشور' value={country} setValue={setCountry} maxLength={40} />
-                        <TitledTextInput title='شهر' value={city} setValue={setCity} maxLength={30} />
-                        <TitledTextInput title='نام دانشگاه' value={universityName} setValue={setUniversityName} maxLength={100} />
+                        <TitledTextInput title='کشور' value={country} setValue={setCountry} maxLength={40} className='titled-text-input' />
+                        <TitledTextInput title='شهر' value={city} setValue={setCity} maxLength={30} className='titled-text-input' />
+                        <TitledTextInput title='نام دانشگاه' value={universityName} setValue={setUniversityName} maxLength={100} className='titled-text-input' />
                     </div>
                     <div className='admission-status-write-box'>
                         <>از این دانشگاه پذیرش گرفته ام</>
@@ -135,7 +136,7 @@ function ApplicationExperience() {
                 {!loading && <div className='list-box'>
                     {
                         experiences.map(experience =>
-                            <div className='post-item-container'>
+                            <div key={experience.id} className='post-item-container'>
                                 <div className='post-item-header'>
                                     <img className='avatar-style' src={avatar} />
                                     <div className='post-item-header-text-container'>
@@ -150,13 +151,17 @@ function ApplicationExperience() {
                                     </div>
                                 </div>
                                 <div className='post-item-body'>
+                                    <div className='post-item-body-row ltr'>
+                                        <div className='post-item-body-row-key-value-container'>
+                                            <div className={experience.admissionStatus ? 'post-item-body-row-admission-status-green' : 'post-item-body-row-admission-status-red'}>
+                                                <div>{experience.admissionStatus ? "از این دانشگاه پذیرش گرفته ام" : "از این دانشگاه پذیرش نگرفته ام"}</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div className='post-item-body-row'>
                                         <div className='post-item-body-row-key-value-container'>
                                             <div className='post-item-label-key'>کشور : </div>
                                             <>{experience.universityCountry}</>
-                                        </div>
-                                        <div className={experience.admissionStatus ? 'post-item-body-row-admission-status-green' : 'post-item-body-row-admission-status-red'}>
-                                            <div>{experience.admissionStatus ? "از این دانشگاه پذیرش گرفته ام" : "از این دانشگاه پذیرش نگرفته ام"}</div>
                                         </div>
                                     </div>
                                     <div className='post-item-body-row'>
