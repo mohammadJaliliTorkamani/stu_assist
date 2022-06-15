@@ -19,10 +19,10 @@ interface TranscationRecordType {
 
 function Profile() {
     const [balance, setBalance] = useState(0)
+    const [fullName, setFullName] = useState('')
     const [transactions, setTransactions] = useState<TranscationRecordType[]>([] as TranscationRecordType[])
     const [token,] = useLocalStorage('token', null)
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
-    const fullNameReference = useRef<HTMLInputElement>(null)
 
     const handlePayment = () => {
         axios.post(LINK_PAYMENT,
@@ -41,9 +41,11 @@ function Profile() {
     }
 
     const handleNameChangeClick = () => {
-        const fullNameValue = fullNameReference.current?.value
-        if (fullNameValue === '')
+        const fullNameValue = fullName
+        if (fullNameValue === '') {
             alert("لطفا ابتدا نام و نام خانوادگی خود را وارد نمایید")
+            return
+        }
 
         axios
             .get(LINK_EDIT_USER, {
@@ -72,6 +74,7 @@ function Profile() {
             .then(data => {
                 if (!data.error) {
                     setBalance(data.data.balance)
+                    setFullName(data.data.fullName)
                     setTransactions(data.data.transactions)
                 }
                 else
@@ -85,7 +88,7 @@ function Profile() {
             <div className="box top-box" >
                 <div className="full-name-label">نام و نام خانوادگی</div>
                 <div className="profile-name-input-container">
-                    <input className="full-name-input" type="text" maxLength={140} ref={fullNameReference} placeholder="لطفا نام کامل خود را وارد نمایید" />
+                    <input className="full-name-input" type="text" maxLength={140} value={fullName} onChange={e => setFullName(e.target.value)} placeholder="لطفا نام کامل خود را وارد نمایید" />
                     <Button title="اصلاح اطلاعات" onClick={e => handleNameChangeClick()} />
                 </div>
             </div>

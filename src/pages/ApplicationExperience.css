@@ -1,7 +1,173 @@
-.content {
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: calc(100vh - 160px);
+    padding: 2rem;
+}
+
+.sent-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sent-text {
+    background-color: rgb(255, 220, 92);
+    color: rgb(160, 103, 25);
+    padding: 2rem;
+    margin-bottom: 1rem;
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.post-box {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid green;
+    border-radius: 1rem;
+    overflow-y: auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 3rem;
+}
+
+.write-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: stretch;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.university-info-write-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    min-height: calc(100vh - 160px);
+}
+
+.admission-status-write-box {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkbox-write-box {
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    color: black;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+.comment-write-box {
+    min-height: 10rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    margin-top: 1.5rem;
+}
+
+.list-box {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow-y: auto;
+}
+
+.post-item-container {
+    margin-top: 1rem;
+    border: 1px solid gray;
+    border-radius: 0.5rem;
+    padding: 2rem;
+}
+
+.post-item-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.avatar-style {
+    width: 4rem;
+    height: 4rem;
+}
+
+.post-item-header-text-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 2rem;
+}
+
+.post-item-header-text-container-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.post-item-label-key {
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.post-item-body {
+    background-color: rgb(243, 243, 243);
+    margin-top: 1rem;
+    border: 0px solid gray;
+    border-radius: 0.5rem;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    margin-top: 2rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.post-item-body-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 1rem;
+}
+
+.post-item-body-row-admission-status-red {
+    background-color: rgb(255, 174, 174);
+    color: rgb(65, 26, 26);
+    padding: 0.5rem;
+    font-size: 0.7em;
+}
+
+.post-item-body-row-admission-status-green {
+    background-color: rgb(167, 255, 167);
+    color: rgb(27, 51, 27);
+    padding: 0.5rem;
+    font-size: 0.7em;
+}
+
+.post-item-body-row-key-value-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.post-item-body-row-comment{
+    margin-top: 2rem;
 }
