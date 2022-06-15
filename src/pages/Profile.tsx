@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../components/Button";
 import ChargeOptionRecord from "../components/ChargeOptionRecord";
 import TransactionRecord from "../components/TransactionRecord";
 import useChargeOptions from "../hooks/useChargeOptions";
-import { LINK_PAYMENT, LINK_PROFILE } from "../utils/Constants";
+import { LINK_EDIT_USER, LINK_PAYMENT, LINK_PROFILE } from "../utils/Constants";
 import { useLocalStorage } from "../utils/useLocalStorage";
 import './Profile.css'
 
@@ -22,6 +22,7 @@ function Profile() {
     const [transactions, setTransactions] = useState<TranscationRecordType[]>([] as TranscationRecordType[])
     const [token,] = useLocalStorage('token', null)
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
+    const fullNameReference = useRef<HTMLInputElement>(null)
 
     const handlePayment = () => {
         axios.post(LINK_PAYMENT,
@@ -37,6 +38,26 @@ function Profile() {
             .then(response => response.data)
             .then(data => window.open(data.data, "_self"))
             .catch(error => { alert(JSON.stringify(error.response.data.message)) })
+    }
+
+    const handleNameChangeClick = () => {
+        const fullNameValue = fullNameReference.current?.value
+        if (fullNameValue === '')
+            alert("لطفا ابتدا نام و نام خانوادگی خود را وارد نمایید")
+
+        axios
+            .get(LINK_EDIT_USER, {
+                params: {
+                    fullName: fullNameValue
+                }, headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then(response => response.data)
+            .then(data => {
+                alert(data.message)
+            })
+            .catch(error => alert(JSON.stringify(error.response.data.message)))
     }
 
     useEffect(() => {
@@ -62,6 +83,14 @@ function Profile() {
     return (
         <div className="content">
             <div className="box top-box" >
+                <div className="full-name-label">نام و نام خانوادگی</div>
+                <div className="profile-name-input-container">
+                    <input className="full-name-input" type="text" maxLength={140} ref={fullNameReference} placeholder="لطفا نام کامل خود را وارد نمایید" />
+                    <Button title="اصلاح اطلاعات" onClick={e => handleNameChangeClick()} />
+                </div>
+            </div>
+
+            <div className="box" >
                 {"موجودی کیف پول : " + balance + " ریال "}
                 <div className="charge-box">
                     <div className="charge-options">

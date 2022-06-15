@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import AboutUs from './pages/AboutUs';
+import ApplicationExperience from './pages/ApplicationExperience';
 import ECTSCalculator from './pages/ECTSCalculator';
 import GPACalculator from './pages/GPACalculator';
 import Home from './pages/Home';
@@ -39,6 +40,7 @@ function App() {
         <Route path='ects-calculator' element={<ECTSCalculator />} />
         <Route path='gpa-calculator' element={<GPACalculator />} />
         <Route path='payment-result' element={<PaymentResult />} />
+        <Route path='application-experience' element={<ApplicationExperience />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       {showHeaderFooter && <Footer />}
