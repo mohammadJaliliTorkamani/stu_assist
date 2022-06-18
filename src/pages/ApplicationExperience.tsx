@@ -15,7 +15,7 @@ const SelectedTitle = styled.div`
     padding-bottom: 1rem;
 `
 
-interface ApplicationExperience {
+interface ApplicationExperienceTemplate {
     id: number,
     fullName: string,
     experienceDate: string,
@@ -37,7 +37,7 @@ function ApplicationExperience() {
     const [universityName, setUniversityName] = useState('')
     const [admissionStatus, setAdmissionStatus] = useState(false)
     const [comment, setComment] = useState('')
-    const [experiences, setExperiences] = useState<ApplicationExperience[]>([])
+    const [experiences, setExperiences] = useState<ApplicationExperienceTemplate[]>([])
 
     const [token,] = useLocalStorage('token', null)
 

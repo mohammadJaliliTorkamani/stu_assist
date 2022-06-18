@@ -37,7 +37,7 @@ function Home() {
                     text: "لیست دارالترجمه ها",
                     link: "translation-offices"
                 }} />
-            <HomeOptionBox key={2}
+            <HomeOptionBox key={4}
                 className="home-option"
                 page={{
                     id: 4,
