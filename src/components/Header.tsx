@@ -34,7 +34,7 @@ function Header() {
                 </li>
                 <li className='nav-item'>
                     <Link to='/translation-offices' className='nav-links' onClick={e => setIsMobileMenuOpen(false)}>
-                        لیست دارالترجمه ها
+                        لیست دارالترجمه های رسمی
                     </Link>
                 </li>
                 <li className='nav-item'>
