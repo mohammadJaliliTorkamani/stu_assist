@@ -47,7 +47,7 @@ function TranslationOfficeRecord({ record }: IProps) {
             </Column>
             <Column>
                 {(record.website === '' || record.website === null) && "ندارد"}
-                {record.website !== '' && record.website !== null && <a href={record.website}>
+                {record.website !== '' && record.website !== null && <a href={"https://" + record.website} target="_blank" rel="noreferrer" >
                     {record.website}
                 </a>
                 }
