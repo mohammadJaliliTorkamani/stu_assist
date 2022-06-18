@@ -47,6 +47,14 @@
     width: 85%;
     border: 2px solid forestgreen;
     overflow: auto;
+    display: block;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.table-body {
+    display: table;
+    width: 100%;
 }
 
 .table-row {

@@ -21,7 +21,7 @@ interface TranslationOfficeTemplate {
 
 function TranslationOffice() {
     const [token,] = useLocalStorage('token', null)
-    const [offices, setOffices] = useState([] as TranslationOfficeTemplate[])
+    const [offices, setOffices] = useState<TranslationOfficeTemplate[]>([])
 
     useEffect(() => {
         axios
@@ -31,14 +31,14 @@ function TranslationOffice() {
                 }
             })
             .then(response => response.data)
-            .then(data => { setOffices(data) })
+            .then(data => { setOffices(data.data) })
             .catch(error => alert(JSON.stringify(error.response.data.message)))
     }, [token])
 
     return (
         <div className='container'>
             <table className="table">
-                <tbody>
+                <tbody className='table-body'>
                     <tr className="table-row">
                         <th className="table-header">ردیف</th>
                         <th className="table-header"> نام دارالترجمه</th>

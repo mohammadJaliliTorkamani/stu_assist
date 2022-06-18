@@ -2,13 +2,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: calc(100vh - 160px);
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .table {
-    overflow: auto;
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.table-body {
+    display: table;
+    width: 100%;
 }
 
 .table-row {

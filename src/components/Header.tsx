@@ -58,7 +58,7 @@ function Header() {
                     </Link>
                 </li>
             </ul>
-            <Link to={!isUser ? 'login' : 'profile'} style={{ textDecoration: 'none' }}>
+            <Link className="profile-button" to={!isUser ? 'login' : 'profile'} style={{ textDecoration: 'none' }}>
                 <Button title={!isUser ? "ورود / ثبت نام" : "حساب کاربری"} onClick={e => null} />
             </Link>
         </div>

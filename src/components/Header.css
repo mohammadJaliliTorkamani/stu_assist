@@ -95,7 +95,6 @@
   }
 
   .nav-links:hover {
-    background-color: green;
     border-radius: 0;
   }
 
@@ -140,7 +139,7 @@
     transition: 250ms;
   }
 
-  a {
+  .profile-button {
     display: none;
   }
 }

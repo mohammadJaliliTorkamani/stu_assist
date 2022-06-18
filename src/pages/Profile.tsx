@@ -20,7 +20,7 @@ interface TranscationRecordType {
 function Profile() {
     const [balance, setBalance] = useState(0)
     const [fullName, setFullName] = useState('')
-    const [transactions, setTransactions] = useState<TranscationRecordType[]>([] as TranscationRecordType[])
+    const [transactions, setTransactions] = useState<TranscationRecordType[]>([])
     const [token,] = useLocalStorage('token', null)
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
 
@@ -112,7 +112,7 @@ function Profile() {
                 </div>
             </div>
             <table className="table">
-                <tbody>
+                <tbody className="table-body">
                     <tr className="table-row">
                         <th className="table-header">ردیف</th>
                         <th className="table-header"> سفارش</th>
