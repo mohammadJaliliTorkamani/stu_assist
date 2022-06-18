@@ -15,6 +15,7 @@ export const LINK_PAYMENT_RESULT = "https://stu-assist.ir/api/payment/payment_re
 export const LINK_EDIT_USER = "https://stu-assist.ir/api/user/edit.php"
 export const LINK_POST_APPLICATION_EXPERIENCE = "https://stu-assist.ir/api/application/submitExperience.php"
 export const LINK_EXPERIENCES = "https://stu-assist.ir/api/application/experiences.php"
+export const LINK_TRANSLATION_OFFICES = "https://stu-assist.ir/api/services/translation_offices.php"
 
 export const contactLinks = [
   {

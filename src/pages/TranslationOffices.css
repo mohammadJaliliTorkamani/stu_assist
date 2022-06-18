@@ -6,3 +6,16 @@
     min-height: calc(100vh - 160px);
     padding: 2rem;
 }
+
+.table {
+    overflow: auto;
+}
+
+.table-row {
+    background: forestgreen;
+}
+
+.table-header {
+    color: white;
+    height: 35px;
+}

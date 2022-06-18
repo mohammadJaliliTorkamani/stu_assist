@@ -16,6 +16,7 @@
     align-items: center;
     justify-content: space-between;
     direction: rtl;
+    width: 80%;
 }
 
 .calculate-button {
