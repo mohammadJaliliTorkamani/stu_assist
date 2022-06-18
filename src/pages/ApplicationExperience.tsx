@@ -37,7 +37,7 @@ function ApplicationExperience() {
     const [universityName, setUniversityName] = useState('')
     const [admissionStatus, setAdmissionStatus] = useState(false)
     const [comment, setComment] = useState('')
-    const [experiences, setExperiences] = useState([] as ApplicationExperience[])
+    const [experiences, setExperiences] = useState<ApplicationExperience[]>([])
 
     const [token,] = useLocalStorage('token', null)
 
