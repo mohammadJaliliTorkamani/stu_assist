@@ -15,6 +15,7 @@ import NotFound from './pages/NotFound';
 import OTP from './pages/OTP';
 import PaymentResult from './pages/PaymentResult';
 import Profile from './pages/Profile';
+import TranslationOffice from './pages/TranslationOffice';
 
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
@@ -41,6 +42,7 @@ function App() {
         <Route path='gpa-calculator' element={<GPACalculator />} />
         <Route path='payment-result' element={<PaymentResult />} />
         <Route path='application-experience' element={<ApplicationExperience />} />
+        <Route path='translation-offices' element={<TranslationOffice />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       {showHeaderFooter && <Footer />}

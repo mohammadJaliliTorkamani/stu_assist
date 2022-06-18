@@ -29,6 +29,21 @@ function Home() {
                     text: "محاسبه جی پی ای",
                     link: "gpa-calculator"
                 }} />
+            <HomeOptionBox
+                key={3}
+                className="home-option"
+                page={{
+                    id: 3,
+                    text: "لیست دارالترجمه ها",
+                    link: "translation-offices"
+                }} />
+            <HomeOptionBox key={2}
+                className="home-option"
+                page={{
+                    id: 4,
+                    text: "تجربه پذیرش",
+                    link: "application-experience"
+                }} />
         </div>
     )
 }
