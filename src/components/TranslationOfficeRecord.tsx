@@ -29,7 +29,6 @@ const Column = styled.td`
 `
 
 function TranslationOfficeRecord({ record }: IProps) {
-
     return (
         <Row>
             <Column>
@@ -39,7 +38,7 @@ function TranslationOfficeRecord({ record }: IProps) {
                 {record.name}
             </Column>
             <Column>
-                {record.languages.join("، ")}
+                {record.languages.length > 0 ? record.languages.join("، ") : "وارد نشده است"}
             </Column>
             <Column>
                 <a href={"tel:" + record.phoneNumber}>
@@ -47,17 +46,21 @@ function TranslationOfficeRecord({ record }: IProps) {
                 </a>
             </Column>
             <Column>
-                <a href={record.website}>
+                {(record.website === '' || record.website === null) && "ندارد"}
+                {record.website !== '' && record.website !== null && <a href={record.website}>
                     {record.website}
                 </a>
+                }
             </Column>
             <Column>
                 {record.address.name}
             </Column>
             <Column>
-                <a target="_blank" href={"https://maps.google.com?q=" + record.address.latitude + "," + record.address.longitude} rel="noreferrer">
-                    نمایش بر روی نقشه
-                </a>
+                {(record.address.latitude == 0 && record.address.longitude == 0) ? "مشخص نشده است" :
+                    <a target="_blank" href={"https://maps.google.com?q=" + record.address.latitude + "," + record.address.longitude} rel="noreferrer">
+                        نمایش بر روی نقشه
+                    </a>
+                }
             </Column>
         </Row>
     )
