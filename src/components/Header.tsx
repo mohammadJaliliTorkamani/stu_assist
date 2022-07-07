@@ -17,8 +17,9 @@ function Header() {
 
     return (
         <div className="nav-bar">
-            <div className="navbar-logo" onClick={e => setIsMobileMenuOpen(false)}>
-                Stu-Assist
+            <div className="navbar-logo-container" onClick={e => setIsMobileMenuOpen(false)}>
+                <div className="navbar-logo-text">Stu-Assist</div>
+                <div className="navbar-logo-icon" />
             </div>
             <div className='menu-icon' onClick={e => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                 <i className={isMobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'} />
