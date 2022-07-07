@@ -23,7 +23,7 @@
 
 .nav-menu {
   display: grid;
-  grid-template-columns: repeat(7 , auto);
+  grid-template-columns: repeat(6, auto);
   grid-gap: 10px;
   list-style: none;
   text-align: center;
@@ -71,12 +71,18 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    justify-content: center;
     height: 90vh;
     position: absolute;
     top: 80px;
     left: -100%;
     opacity: 1;
     transition: all 0.5s ease;
+  }
+
+  .nav-item{
+    display: flex;
+    align-self: center;
   }
 
   .nav-menu.active {

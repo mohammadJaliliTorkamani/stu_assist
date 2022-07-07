@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "../utils/useLocalStorage";
 import Button from "./Button";
+import { MenuItems } from "./MenuItems";
 import './Header.css'
+import MenuItem from "./MenuItem";
 
 function Header() {
     const [token,] = useLocalStorage('token', null)
@@ -37,15 +39,12 @@ function Header() {
                         لیست دارالترجمه های رسمی
                     </Link>
                 </li>
-                <li className='nav-item'>
-                    <Link to='/ects-calculator' className='nav-links' onClick={e => setIsMobileMenuOpen(false)}>
-                        محاسبه ای سی تی اس
-                    </Link>
-                </li>
-                <li className='nav-item'>
-                    <Link to='/gpa-calculator' className='nav-links' onClick={e => setIsMobileMenuOpen(false)}>
-                        محاسبه جی پی ای
-                    </Link>
+                <li className='nav-item '>
+                    {
+                        MenuItems.map((item, index) => {
+                            return <MenuItem items={item} key={index} depthLevel={0} onClick={() => setIsMobileMenuOpen(false)} />;
+                        })
+                    }
                 </li>
                 <li>
                     <Link to={!isUser ? 'login' : 'profile'} className='nav-links-mobile' onClick={e => setIsMobileMenuOpen(false)}>

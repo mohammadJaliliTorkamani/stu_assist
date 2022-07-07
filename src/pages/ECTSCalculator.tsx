@@ -59,7 +59,7 @@ function ECTSCalculator() {
             <div className="fields-container">
                 <TitledNumericInput title={"تعداد واحد درس"} value={unit} setValue={setUnit} max={20} min={1} className="numeric-input-container" />
                 <TitledNumericInput title={"مدت زمان تدریس هر واحد در هفته (دقیقه)"} value={time} setValue={setTime} max={120} min={0} className="numeric-input-container" />
-                <TitledNumericInput title={"تعداد هفته نظام آموزشی اروپایی"} value={week} setValue={setWeek} max={25} min={10} className="numeric-input-container" />
+                <TitledNumericInput title={"تعداد هفته نظام آموزشی اروپایی (۱۴)"} value={week} setValue={setWeek} max={25} min={10} className="numeric-input-container" />
                 <Button title={"محاسبه"} className="calculate-button" onClick={() => trigger()} />
             </div>
             <div className="result-container">
