@@ -13,7 +13,7 @@ function Home() {
     }, [])
 
     return (
-        <div key={1} style={homeOptionsContainer} className="home-container">
+        <div key={1} style={homeOptionsContainer} className="home-container ltr">
             <HomeOptionBox
                 key={1}
                 className="home-option"

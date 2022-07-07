@@ -29,6 +29,7 @@
   .menu-items a:hover,
   .menu-items button:hover {
     color: white;
+    border-radius: 4px  ;
     background-color: green;
   }
   
