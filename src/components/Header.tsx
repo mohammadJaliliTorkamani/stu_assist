@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "../utils/useLocalStorage";
 import Button from "./Button";
-import { MenuItems } from "./MenuItems";
+import { MenuItems, MenuItems_Links } from "./MenuItems";
 import './Header.css'
 import MenuItem from "./MenuItem";
 
@@ -30,6 +30,13 @@ function Header() {
                         درباره ما
                     </Link>
                 </li>
+                <li className='nav-item '>
+                    {
+                        MenuItems_Links.map((item, index) => {
+                            return <MenuItem items={item} key={index} depthLevel={0} externalLinks={true} onClick={() => setIsMobileMenuOpen(false)} />;
+                        })
+                    }
+                </li>
                 <li className='nav-item'>
                     <Link to='/application-experience' className='nav-links' onClick={e => setIsMobileMenuOpen(false)}>
                         تجربه پذیرش
@@ -43,7 +50,7 @@ function Header() {
                 <li className='nav-item '>
                     {
                         MenuItems.map((item, index) => {
-                            return <MenuItem items={item} key={index} depthLevel={0} onClick={() => setIsMobileMenuOpen(false)} />;
+                            return <MenuItem items={item} key={index} depthLevel={0} externalLinks={false} onClick={() => setIsMobileMenuOpen(false)} />;
                         })
                     }
                 </li>

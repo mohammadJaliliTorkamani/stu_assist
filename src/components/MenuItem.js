@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Dropdown from "./DropDown";
 import './MenuItem.css'
 
-const MenuItem = ({ items, depthLevel, onClick }) => {
+const MenuItem = ({ items, depthLevel, onClick, externalLinks = false }) => {
   const [dropdown, setDropdown] = useState(false);
 
   let ref = useRef();
@@ -48,17 +48,18 @@ const MenuItem = ({ items, depthLevel, onClick }) => {
             onClick={() => setDropdown((prev) => !prev)}
           >
             {items.title}{" "}
-            {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
+            {depthLevel > 0 ? <span>*</span> : <span className="arrow" />}
           </button>
           <Dropdown
             depthLevel={depthLevel}
             submenus={items.submenu}
-            onClick={onClick}
+            externalLink={externalLinks}
             dropdown={dropdown}
           />
         </>
       ) : (
-        <Link to={items.path}>{items.title}</Link>
+        externalLinks ? <a href={items.path} target="_blank" rel="noreferrer" onClick={e => onClick()}>{items.title}</a> :
+          <Link to={items.path} onClick={e => onClick()}>{items.title}</Link>
       )}
     </li>
   );

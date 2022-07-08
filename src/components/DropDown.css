@@ -10,7 +10,7 @@
     padding: 0.5rem 0;
     list-style: none;
     background-color: black;
-    border-radius: 0.5rem;
+    border-radius: 0.3rem;
     display: none;
   }
   
@@ -20,6 +20,6 @@
   
   .dropdown .dropdown-submenu {
     position: absolute;
-    left: 100%;
+    right: 100%;
     top: -7px;
   }
