@@ -1,6 +1,6 @@
 {
   "short_name": "Stu Assist",
-  "name": "Stu Assist Website",
+  "name": "Stu Assist",
   "icons": [
     {
       "src": "64_64.ico",
@@ -17,9 +17,10 @@
       "type": "image/png"
     },
     {
-      "src": "512_512.ico",
-      "sizes": "256x256",
-      "type": "image/x-icon"
+      "src": "512_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "start_url": "/",
