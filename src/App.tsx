@@ -16,6 +16,7 @@ import OTP from './pages/OTP';
 import PaymentResult from './pages/PaymentResult';
 import Profile from './pages/Profile';
 import TranslationOffice from './pages/TranslationOffice';
+import Forums from './pages/Forums'
 
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
@@ -43,6 +44,7 @@ function App() {
         <Route path='payment-result' element={<PaymentResult />} />
         <Route path='application-experience' element={<ApplicationExperience />} />
         <Route path='translation-offices' element={<TranslationOffice />} />
+        <Route path='forums' element={<Forums />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       {showHeaderFooter && <Footer />}
