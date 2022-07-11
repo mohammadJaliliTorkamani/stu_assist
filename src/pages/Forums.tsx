@@ -6,7 +6,6 @@ import { useLocalStorage } from '../utils/useLocalStorage'
 import './Forums.css'
 
 interface CategoryType {
-    id: number,
     name: string,
     descriptor: string
 }
@@ -31,7 +30,7 @@ function Forums() {
         <div className='container'>
             <div className='categories_container'>
                 {
-                    categories.map(category => <CategoryItem key={category.id} category={category} />)
+                    categories.map(category => <CategoryItem key={category.name} category={category} />)
                 }
             </div>
         </div>

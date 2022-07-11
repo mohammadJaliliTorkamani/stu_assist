@@ -6,7 +6,6 @@ import { LINK_FORUMS_HALLS } from "../utils/Constants"
 import axios from "axios"
 
 interface CategoryType {
-    id: number,
     name: string,
     descriptor: string
 }
@@ -40,12 +39,14 @@ function CategoryItem({ category }: IProps) {
             .get(LINK_FORUMS_HALLS, {
                 headers: {
                     "Authorization": `Bearer ${token}`
+                }, params: {
+                    category: category.name,
                 }
             })
             .then(response => response.data)
             .then(data => { setHalls(data.data) })
             .catch(error => alert(JSON.stringify(error.response.data.message)))
-    }, [token])
+    }, [token, category.name])
 
     return <div className="category-item">
         <div className="category-header">
