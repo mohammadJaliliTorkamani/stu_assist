@@ -43,7 +43,24 @@ function Home() {
                     id: 4,
                     text: "تجربه پذیرش",
                     link: "application-experience"
-                }} />
+                }}
+            />
+            <HomeOptionBox key={5}
+                className="home-option"
+                page={{
+                    id: 5,
+                    text: "تالار گفتگو",
+                    link: "forums"
+                }}
+            />
+              <HomeOptionBox key={6}
+                className="home-option"
+                page={{
+                    id: 6,
+                    text: "لیست دارالترجمه های رسمی",
+                    link: "translation-offices"
+                }}
+            />
         </div>
     )
 }
