@@ -41,24 +41,24 @@ function Home() {
                 className="home-option"
                 page={{
                     id: 4,
-                    text: "تجربه پذیرش",
-                    link: "application-experience"
+                    text: "لیست دارالترجمه های رسمی",
+                    link: "translation-offices"
                 }}
             />
             <HomeOptionBox key={5}
                 className="home-option"
                 page={{
                     id: 5,
-                    text: "تالار گفتگو",
+                    text: "تالار گفتگو ( به زودی )",
                     link: "forums"
                 }}
             />
-              <HomeOptionBox key={6}
+            <HomeOptionBox key={6}
                 className="home-option"
                 page={{
                     id: 6,
-                    text: "لیست دارالترجمه های رسمی",
-                    link: "translation-offices"
+                    text: "تجربه پذیرش",
+                    link: "application-experience"
                 }}
             />
         </div>
