@@ -6,7 +6,6 @@ interface IProps {
 }
 
 interface HallType {
-    id: number,
     name: {
         name: string,
         link: string

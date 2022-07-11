@@ -39,7 +39,7 @@ function Header() {
                 </li>
                 <li className='nav-item'>
                     <Link to='/forums' className='nav-links' onClick={e => setIsMobileMenuOpen(false)}>
-                        تالار گفتگو
+                        تالار گفتگو (به زودی)
                     </Link>
                 </li>
                 <li className='nav-item'>

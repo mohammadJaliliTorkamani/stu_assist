@@ -11,7 +11,6 @@ interface CategoryType {
 }
 
 interface HallType {
-    id: number,
     name: {
         name: string,
         link: string
@@ -60,7 +59,7 @@ function CategoryItem({ category }: IProps) {
                     <th className="table-header"> تاپیک ها</th>
                     <th className="table-header">آخرین پست در</th>
                 </tr>
-                {halls.map(hall => <HallItem key={hall.id} hall={hall} />)}
+                {halls.map(hall => <HallItem key={hall.name.name} hall={hall} />)}
             </tbody>
         </table>
     </div>
