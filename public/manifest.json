@@ -3,21 +3,21 @@
   "name": "Stu Assist",
   "icons": [
     {
-      "src": "64_64.ico",
+      "src": "/assets/64_64.ico",
       "sizes": "64x64",
       "type": "image/x-icon"
     },
     {
-      "src": "128_128.ico",
+      "src": "/assets/128_128.ico",
       "sizes": "128x128",
       "type": "image/x-icon"
     },{
-      "src": "144_144.png",
+      "src": "/assets/144_144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "512_512.png",
+      "src": "/assets/512_512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
