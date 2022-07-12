@@ -2,10 +2,10 @@ export const MenuItems = [
     {
         title: 'خدمات',
         submenu: [{
-            title: 'محاسبه جی پی اِی',
+            title: 'GPA محاسبه',
             path: '/gpa-calculator',
         }, {
-            title: 'محاسبه ای سی تی اس',
+            title: 'ECTS محاسبه',
             path: '/ects-calculator',
         }]
     },

@@ -19,48 +19,49 @@ function Home() {
                 className="home-option"
                 page={{
                     id: 1,
-                    text: "محاسبه ای سی تی اس",
+                    text: "محاسبه ECTS",
                     link: "ects-calculator"
                 }} />
             <HomeOptionBox key={2}
                 className="home-option"
                 page={{
                     id: 2,
-                    text: "محاسبه جی پی ای",
+                    text: "محاسبه GPA",
                     link: "gpa-calculator"
                 }} />
-            <HomeOptionBox
-                key={3}
+
+            <HomeOptionBox key={3}
                 className="home-option"
                 page={{
                     id: 3,
-                    text: "لیست دارالترجمه ها",
+                    text: "لیست دارالترجمه های رسمی",
                     link: "translation-offices"
-                }} />
+                }}
+            />
             <HomeOptionBox key={4}
                 className="home-option"
                 page={{
                     id: 4,
-                    text: "لیست دارالترجمه های رسمی",
-                    link: "translation-offices"
+                    text: "تالار گفتگو ( به زودی )",
+                    link: "forums"
                 }}
             />
             <HomeOptionBox key={5}
                 className="home-option"
                 page={{
                     id: 5,
-                    text: "تالار گفتگو ( به زودی )",
-                    link: "forums"
-                }}
-            />
-            <HomeOptionBox key={6}
-                className="home-option"
-                page={{
-                    id: 6,
                     text: "تجربه پذیرش",
                     link: "application-experience"
                 }}
             />
+            <HomeOptionBox
+                key={6}
+                className="home-option"
+                page={{
+                    id: 6,
+                    text: "درباره ما",
+                    link: "about-us"
+                }} />
         </div>
     )
 }

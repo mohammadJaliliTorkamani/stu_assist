@@ -4,11 +4,11 @@ import { createTopicUrl } from "../utils/Utils"
 interface TopicType {
     id: number,
     name: string,
-    descriptor: string,
+    content: string,
     numberOfComments: number,
     lastComment: {
         id: number,
-        name: string,
+        content: string,
         lastCommentDateEquivalent: string
     }
 }
@@ -50,11 +50,11 @@ function TopicItem({ topic, hallId }: IProps) {
         <Column1>
             <a href={createTopicUrl(hallId, topic.id)}>{topic.name}</a>
         </Column1>
-        <Column2 >{topic.numberOfComments}</Column2>
+        {/* <Column2 >{topic.numberOfComments}</Column2>
         <Column3>
             <div>{topic.lastComment.name}</div>
             <div className="last-post-date">{topic.lastComment.lastCommentDateEquivalent}</div>
-        </Column3>
+        </Column3> */}
     </Row>
 }
 
