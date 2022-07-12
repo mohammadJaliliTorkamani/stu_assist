@@ -15,7 +15,7 @@ interface TopicType {
 
 interface IProps {
     topic: TopicType,
-    hallId: string | undefined
+    hallId: number
 }
 
 

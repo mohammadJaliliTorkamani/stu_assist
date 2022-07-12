@@ -51,9 +51,16 @@ function HallItem({ hall }: IProps) {
             <div>{hall.descriptor}</div>
         </Column1>
         <Column2 >{hall.numberOfTopics}</Column2>
+
         <Column3>
-            <a href={createTopicUrl(hall.id.toString(), hall.lastTopic.id)}>{hall.lastTopic.name}</a>
-            <div className="last-post-date">{hall.lastTopic.lastTopicDateEquivalent}</div>
+            {hall.lastTopic && <>
+                <a href={createTopicUrl(hall.id, hall.lastTopic.id)}>{hall.lastTopic.name}</a>
+                <div className="last-post-date">{hall.lastTopic.lastTopicDateEquivalent}</div>
+            </>}
+            {
+                !hall.lastTopic &&
+                <>ندارد</>
+            }
         </Column3>
     </Row>
 }

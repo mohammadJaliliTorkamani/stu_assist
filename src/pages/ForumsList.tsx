@@ -81,7 +81,7 @@ function ForumsList() {
                         <th className="table-header"> پست ها / بازدید ها</th>
                         <th className="table-header">آخرین پاسخ / زمان</th>
                     </tr>
-                    {topics.map(topic => <TopicItem key={topic.id} topic={topic} hallId={hallId} />)}
+                    {topics.map(topic => <TopicItem key={topic.id} topic={topic} hallId={typeof hallId == 'undefined' ? 0 : parseInt(hallId)} />)}
                 </tbody>
             </table>
         </div>
