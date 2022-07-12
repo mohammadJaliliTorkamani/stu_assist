@@ -22,6 +22,7 @@ interface TopicType {
     id: number,
     name: string,
     content: string,
+    numberOfViews: number,
     numberOfComments: number,
     lastComment: {
         id: number,
@@ -74,8 +75,8 @@ function ForumsList() {
                 <tbody className="table-body">
                     <tr className="table-row">
                         <th className="table-header">تاپیک</th>
-                        {/* <th className="table-header"> پست ها / بازدید ها</th>
-                        <th className="table-header">آخرین پاسخ / زمان</th> */}
+                        <th className="table-header"> نظرات / بازدید ها</th>
+                        {/* <th className="table-header">آخرین پاسخ / زمان</th> */}
                     </tr>
                     {topics.map(topic => <TopicItem key={topic.id} topic={topic} hallId={typeof hallId == 'undefined' ? 0 : parseInt(hallId)} />)}
                 </tbody>

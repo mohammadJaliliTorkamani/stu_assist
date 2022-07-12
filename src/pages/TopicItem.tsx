@@ -6,6 +6,7 @@ interface TopicType {
     name: string,
     content: string,
     numberOfComments: number,
+    numberOfViews: number,
     lastComment: {
         id: number,
         content: string,
@@ -50,8 +51,8 @@ function TopicItem({ topic, hallId }: IProps) {
         <Column1>
             <a href={createTopicUrl(hallId, topic.id)}>{topic.name}</a>
         </Column1>
-        {/* <Column2 >{topic.numberOfComments}</Column2>
-        <Column3>
+        <Column2 >{topic.numberOfViews} / {topic.numberOfComments}</Column2>
+        {/* <Column3>
             <div>{topic.lastComment.name}</div>
             <div className="last-post-date">{topic.lastComment.lastCommentDateEquivalent}</div>
         </Column3> */}
