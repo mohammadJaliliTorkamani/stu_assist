@@ -1,22 +1,23 @@
-import styled from '@emotion/styled'
-import { createHallUrl, createTopicUrl } from '../utils/Utils'
-import './HallItem.css'
+import styled from "@emotion/styled"
+import { createTopicUrl } from "../utils/Utils"
 
-interface IProps {
-    hall: HallType
-}
-
-interface HallType {
+interface TopicType {
     id: number,
     name: string,
     descriptor: string,
-    numberOfTopics: number,
-    lastTopic: {
+    numberOfComments: number,
+    lastComment: {
         id: number,
         name: string,
-        lastTopicDateEquivalent: string
+        lastCommentDateEquivalent: string
     }
 }
+
+interface IProps {
+    topic: TopicType,
+    hallId: string | undefined
+}
+
 
 const Row = styled.tr`
     height: 35px;
@@ -44,18 +45,17 @@ const Column3 = styled.td`
     align-items: center;
 `
 
-function HallItem({ hall }: IProps) {
+function TopicItem({ topic, hallId }: IProps) {
     return <Row>
         <Column1>
-            <a href={createHallUrl(hall.id)}>{hall.name}</a>
-            <div>{hall.descriptor}</div>
+            <a href={createTopicUrl(hallId, topic.id)}>{topic.name}</a>
         </Column1>
-        <Column2 >{hall.numberOfTopics}</Column2>
+        <Column2 >{topic.numberOfComments}</Column2>
         <Column3>
-            <a href={createTopicUrl(hall.id.toString(), hall.lastTopic.id)}>{hall.lastTopic.name}</a>
-            <div className="last-post-date">{hall.lastTopic.lastTopicDateEquivalent}</div>
+            <div>{topic.lastComment.name}</div>
+            <div className="last-post-date">{topic.lastComment.lastCommentDateEquivalent}</div>
         </Column3>
     </Row>
 }
 
-export default HallItem
+export default TopicItem

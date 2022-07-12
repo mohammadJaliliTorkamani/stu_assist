@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { Outlet } from 'react-router-dom'
 import CategoryItem from '../components/CategoryItem'
 import { LINK_FORUMS_CATEGORIES } from '../utils/Constants'
 import { useLocalStorage } from '../utils/useLocalStorage'

@@ -17,6 +17,7 @@ import PaymentResult from './pages/PaymentResult';
 import Profile from './pages/Profile';
 import TranslationOffice from './pages/TranslationOffice';
 import Forums from './pages/Forums'
+import ForumsList from './pages/ForumsList';
 
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
@@ -45,7 +46,9 @@ function App() {
         <Route path='application-experience' element={<ApplicationExperience />} />
         <Route path='translation-offices' element={<TranslationOffice />} />
         <Route path='forums' element={<Forums />} />
+        <Route path="forums/:hallId" element={<ForumsList />} />
         <Route path='*' element={<NotFound />} />
+
       </Routes>
       {showHeaderFooter && <Footer />}
     </>
