@@ -18,6 +18,7 @@ import Profile from './pages/Profile';
 import TranslationOffice from './pages/TranslationOffice';
 import Forums from './pages/Forums'
 import ForumsList from './pages/ForumsList';
+import GuestProfile from './pages/GuestProfile';
 
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
@@ -38,6 +39,7 @@ function App() {
             <Profile />
           </ProtectedRoute>
         } />
+        <Route path='profile/:profileId' element={<GuestProfile />} />
         <Route path='about-us' element={<AboutUs />} />
         <Route path='otp-verification' element={<AntiProtectedRoute><OTP /></AntiProtectedRoute>} />
         <Route path='ects-calculator' element={<ECTSCalculator />} />
