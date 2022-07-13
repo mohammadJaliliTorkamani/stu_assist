@@ -42,7 +42,7 @@ function Topic() {
                     headers: {
                         "Authorization": `Bearer ${token}`
                     }, params: {
-                        topic: _topicId,
+                        id: topic?.creatorID,
                     }
                 })
                     .then(response => response.data)
@@ -50,7 +50,7 @@ function Topic() {
                     .catch(error => alert(JSON.stringify(error.response.data.message)))
             })
             .catch(error => alert(JSON.stringify(error.response.data.message)))
-    }, [token, _topicId])
+    }, [token, _topicId, topic?.creatorID])
 
     return (
         <div className='total-container'>
