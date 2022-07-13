@@ -2,7 +2,7 @@ import './Topic.css'
 
 function Topic() {
     return (
-        <div className='container'/>
+        <div className='container1'/>
     )
 }
 

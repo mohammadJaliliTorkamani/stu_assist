@@ -2,7 +2,7 @@ import './GuestProfile.css'
 
 function GuestProfile() {
     return (
-        <div className="container" />
+        <div className="container1" />
     )
 }
 

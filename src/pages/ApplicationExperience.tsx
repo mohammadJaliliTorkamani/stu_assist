@@ -92,7 +92,7 @@ function ApplicationExperience() {
     }
 
     return (
-        <div className='container'>
+        <div className='container1'>
             {sent && <div className='sent-box'>
                 <div className='sent-text'>تجربه شما برای تایید به مدیریت ارسال شد و پس از تایید نمایش داده خواهد شد. با تشکر</div>
                 <Button title='بازگشت به لیست' onClick={e => {

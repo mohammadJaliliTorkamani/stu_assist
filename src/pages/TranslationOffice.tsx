@@ -36,7 +36,7 @@ function TranslationOffice() {
     }, [token])
 
     return (
-        <div className='container'>
+        <div className='container1'>
             <table className="table">
                 <tbody className='table-body'>
                     <tr className="table-row">

@@ -55,7 +55,7 @@ function ECTSCalculator() {
     }, [])
 
     return (
-        <div className="container">
+        <div className="ects-container">
             <div className="fields-container">
                 <TitledNumericInput title={"تعداد واحد درس"} value={unit} setValue={setUnit} max={20} min={1} className="numeric-input-container" />
                 <TitledNumericInput title={"مدت زمان تدریس هر واحد در هفته (دقیقه)"} value={time} setValue={setTime} max={120} min={0} className="numeric-input-container" />

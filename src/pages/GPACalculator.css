@@ -1,4 +1,4 @@
-.container {
+.gpa-container {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -71,7 +71,7 @@
 
 @media screen and (max-width: 960px) {
 
-    .container {
+    .gpa-container {
         display: flex;
         flex-direction: column;
         align-items: stretch;
