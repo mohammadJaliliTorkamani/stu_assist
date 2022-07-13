@@ -1,4 +1,5 @@
-.container {
+.container1 {
+    direction: rtl;
     display: flex;
     flex-direction: column;
     align-items: stretch;

@@ -36,8 +36,8 @@ function ForumsList() {
     const [token,] = useLocalStorage('token', null)
     const [hall, setHall] = useState<HallType>()
     const [topics, setTopics] = useState<TopicType[]>([])
-    const { _hallId } = useParams()
-    const hallId = typeof _hallId == 'undefined' ? 0 : parseInt(_hallId)
+    const { hallId } = useParams()
+    const _hallId = typeof hallId == 'undefined' ? 0 : parseInt(hallId)
 
     const fetchTopics = (token: string, hallId: number) =>
         axios.get(LINK_FORUMS_TOPICS, {
@@ -66,12 +66,12 @@ function ForumsList() {
 
     useEffect(() => {
         document.title = "Stu Assist | سالن گفتگو"
-        fetchTopics(token, hallId)
-        fetchHall(token, hallId)
-    }, [token, hallId])
+        fetchTopics(token, _hallId)
+        fetchHall(token, _hallId)
+    }, [token, _hallId])
 
     return (
-        <div className="container">
+        <div className="container1">
             <div className="above-header">
                 <div className="hall-name-text">تالار {hall?.name} </div>
                 <Button title="ساخت تاپیک جدید" className="new-topic" onClick={e => alert("آزمایشی")} />
@@ -84,7 +84,7 @@ function ForumsList() {
                         <th className="table-header"> بازدید ها / نظرات</th>
                         <th className="table-header">آخرین پاسخ دهنده</th>
                     </tr>
-                    {topics.map(topic => <TopicItem key={topic.id} hallId={hallId} topic={topic} />)}
+                    {topics.map(topic => <TopicItem key={topic.id} hallId={_hallId} topic={topic} />)}
                 </tbody>
             </table>
         </div>
