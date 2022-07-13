@@ -54,16 +54,16 @@ function TopicItem({ topic, hallId }: IProps) {
     }
     return <Row>
         <Column1>
-            <a className="topic-name" href={createTopicUrl(hallId, topic.id)}>{topic.name}</a>
+            <a className="topic-item-topic-name" href={createTopicUrl(hallId, topic.id)}>{topic.name}</a>
         </Column1>
         <Column2 >{` ${topic.numberOfViews} بازدید / ${topic.numberOfComments} نظر`}</Column2>
         <Column3>
-            <div className='column3'>
+            <div className='topic-item-column3'>
                 {
                     topic.lastComment && <>
-                        <a className='creator' href={createProfileUrl(topic.lastComment.creatorID)}>
+                        <a className='topic-item-creator' href={createProfileUrl(topic.lastComment.creatorID)}>
                             {getCreatorName(topic.lastComment.creator)}</a>
-                        <div className="last-comment-date">{"( " + topic.lastComment.lastCommentDateEquivalent + " )"}</div>                    </>
+                        <div className="topic-item-last-comment-date">{"( " + topic.lastComment.lastCommentDateEquivalent + " )"}</div>                    </>
                 }
                 {
                     !topic.lastComment &&

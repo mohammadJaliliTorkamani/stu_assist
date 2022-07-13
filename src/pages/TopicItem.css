@@ -1,15 +1,15 @@
-.topic-name {
+.topic-item-topic-name {
     text-decoration: none;
     color: green;
     font-weight: 600;
 }
 
-.creator {
+.topic-item-creator {
     text-decoration: none;
     color: green;
 }
 
-.last-comment-date {
+.topic-item-last-comment-date {
     color: gray;
     font-size: 0.8em;
     margin-right: 10px;
