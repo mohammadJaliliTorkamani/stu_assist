@@ -12,8 +12,8 @@ interface CategoryType {
 }
 
 function Forums() {
-    const [categories, setCategories] = useState<CategoryType[]>([])
     const [token,] = useLocalStorage('token', null)
+    const [categories, setCategories] = useState<CategoryType[]>([])
 
     useEffect(() => {
         document.title = "Stu Assist | تالار گفتگو"
@@ -27,12 +27,11 @@ function Forums() {
             .then(data => { setCategories(data.data) })
             .catch(error => alert(JSON.stringify(error.response.data.message)))
     }, [token])
+
     return (
         <div className='container'>
             <div className='categories_container'>
-                {
-                    categories.map(category => <CategoryItem key={category.name} category={category} />)
-                }
+                {categories.map(category => <CategoryItem key={category.name} category={category} />)}
             </div>
         </div>
     )

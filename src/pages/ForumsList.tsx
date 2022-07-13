@@ -32,37 +32,41 @@ interface TopicType {
 }
 
 function ForumsList() {
-    const { hallId } = useParams()
+    const [token,] = useLocalStorage('token', null)
     const [hall, setHall] = useState<HallType>()
     const [topics, setTopics] = useState<TopicType[]>([])
-    const [token,] = useLocalStorage('token', null)
+    const { _hallId } = useParams()
+    const hallId = typeof _hallId == 'undefined' ? 0 : parseInt(_hallId)
 
-    useEffect(() => {
-        document.title = "Stu Assist | سالن گفتگو"
-        axios
-            .get(LINK_FORUMS_TOPICS, {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }, params: {
-                    hall: hallId,
-                }
-            })
+    const fetchTopics = (token: string, hallId: number) =>
+        axios.get(LINK_FORUMS_TOPICS, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }, params: {
+                hall: hallId,
+            }
+        })
             .then(response => response.data)
             .then(data => { setTopics(data.data) })
             .catch(error => alert(JSON.stringify(error.response.data.message)))
 
-        axios
-            .get(LINK_FORUMS_HALL, {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }, params: {
-                    hall: hallId,
-                }
-            })
+    const fetchHall = (token: string, hallId: number) =>
+        axios.get(LINK_FORUMS_HALL, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }, params: {
+                hall: hallId,
+            }
+        })
             .then(response => response.data)
             .then(data => { setHall(data.data) })
             .catch(error => alert(JSON.stringify(error.response.data.message)))
 
+
+    useEffect(() => {
+        document.title = "Stu Assist | سالن گفتگو"
+        fetchTopics(token, hallId)
+        fetchHall(token, hallId)
     }, [token, hallId])
 
     return (
@@ -78,7 +82,7 @@ function ForumsList() {
                         <th className="table-header"> نظرات / بازدید ها</th>
                         {/* <th className="table-header">آخرین پاسخ / زمان</th> */}
                     </tr>
-                    {topics.map(topic => <TopicItem key={topic.id} topic={topic} hallId={typeof hallId == 'undefined' ? 0 : parseInt(hallId)} />)}
+                    {topics.map(topic => <TopicItem key={topic.id} hallId={hallId} topic={topic} />)}
                 </tbody>
             </table>
         </div>
