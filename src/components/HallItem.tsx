@@ -19,7 +19,6 @@ interface HallType {
 }
 
 const Row = styled.tr`
-    height: 35px;
 `
 
 const Column1 = styled.td`
@@ -30,39 +29,41 @@ const Column1 = styled.td`
     align-items: flex-start;
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-right: 20px;
-    padding-left: 20px;
-`
+    padding-right: 30px;
+    padding-left: 30px;
+    `
 const Column2 = styled.td`
     text-align: center;
     direction: ltr;
 `
 const Column3 = styled.td`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    
 `
 
 function HallItem({ hall }: IProps) {
-    return <Row>
-        <Column1>
-            <a href={createHallUrl(hall.id)}>{hall.name}</a>
-            <div>{hall.descriptor}</div>
-        </Column1>
-        <Column2 >{hall.numberOfTopics}</Column2>
-
-        <Column3>
-            {hall.lastTopic && <>
-                <a href={createTopicUrl(hall.id, hall.lastTopic.id)}>{hall.lastTopic.name}</a>
-                <div className="last-post-date">{hall.lastTopic.lastTopicDateEquivalent}</div>
-            </>}
-            {
-                !hall.lastTopic &&
-                <>ندارد</>
-            }
-        </Column3>
-    </Row>
+    return (
+        <Row>
+            <Column1>
+                <a className='hall-name' href={createHallUrl(hall.id)}>{hall.name}</a>
+                <div className='hall-descriptor'>{hall.descriptor}</div>
+            </Column1>
+            <Column2 >{hall.numberOfTopics === 0 ? "--" : hall.numberOfTopics}</Column2>
+            <Column3>
+                <div className='column3'>
+                    {
+                        hall.lastTopic && <>
+                            <a className='last-topic-name' href={createTopicUrl(hall.id, hall.lastTopic.id)}>{hall.lastTopic.name}</a>
+                            <div className="last-post-date">{"( " + hall.lastTopic.lastTopicDateEquivalent + " )"}</div>
+                        </>
+                    }
+                    {
+                        !hall.lastTopic &&
+                        <>--</>
+                    }
+                </div>
+            </Column3>
+        </Row>
+    )
 }
 
 export default HallItem

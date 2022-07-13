@@ -1,5 +1,29 @@
-.last-post-date{
+.last-post-date {
     color: gray;
     font-size: 0.8em;
     margin-right: 10px;
+}
+
+.hall-name {
+    text-decoration: none;
+    color: green;
+    font-weight: 600;
+}
+
+.hall-descriptor {
+    color: rgb(26, 26, 26);
+    margin-top: 7px;
+    font-size: 1em;
+}
+
+.last-topic-name {
+    text-decoration: none;
+    color: green;
+    font-weight: 600;
+}
+
+.column3{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

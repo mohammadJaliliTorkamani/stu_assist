@@ -33,7 +33,7 @@ const MenuItem = ({ items, depthLevel, onClick, externalLinks = false }) => {
   };
 
   return (
-    <li
+    <div
       className="menu-items"
       ref={ref}
       onMouseEnter={onMouseEnter}
@@ -61,7 +61,7 @@ const MenuItem = ({ items, depthLevel, onClick, externalLinks = false }) => {
         externalLinks ? <a href={items.path} target="_blank" rel="noreferrer" onClick={e => onClick()}>{items.title}</a> :
           <Link to={items.path} onClick={e => onClick()}>{items.title}</Link>
       )}
-    </li>
+    </div>
   );
 };
 

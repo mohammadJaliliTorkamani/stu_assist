@@ -54,8 +54,8 @@ function CategoryItem({ category }: IProps) {
             <tbody className="table-body">
                 <tr className="table-row">
                     <th className="table-header">تالارها</th>
-                    <th className="table-header"> تاپیک ها</th>
-                    <th className="table-header">آخرین پست در</th>
+                    <th className="table-header"> تعداد تاپیک</th>
+                    <th className="table-header">آخرین تاپیک</th>
                 </tr>
                 {halls.map(hall => <HallItem key={hall.id} hall={hall} />)}
             </tbody>
