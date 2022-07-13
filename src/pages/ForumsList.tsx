@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import './ForumsList.css'
 import TopicItem from "./TopicItem"
 import { useLocalStorage } from "../utils/useLocalStorage"
 import axios from "axios"
 import { LINK_FORUMS_HALL, LINK_FORUMS_TOPICS } from "../utils/Constants"
+import Button from "../components/Button"
 
 interface HallType {
     id: number,
@@ -22,11 +23,11 @@ interface TopicType {
     id: number,
     name: string,
     content: string,
-    numberOfViews: number,
     numberOfComments: number,
+    numberOfViews: number,
     lastComment: {
-        id: number,
-        content: string,
+        creatorID: number,
+        creator: string,
         lastCommentDateEquivalent: string
     }
 }
@@ -71,16 +72,17 @@ function ForumsList() {
 
     return (
         <div className="container">
-            <Link to={'/forums'} className="forums-text">تالار گفتگو</Link>
-            <div className="hall-name-text">تالار {hall?.name} </div>
-            {/* <Button title="ساخت تاپیک جدید" onClick={e => alert("آزمایشی")} /> */}
+            <div className="above-header">
+                <div className="hall-name-text">تالار {hall?.name} </div>
+                <Button title="ساخت تاپیک جدید" className="new-topic" onClick={e => alert("آزمایشی")} />
+            </div>
             <div className="hall-descriptor-text">{hall?.descriptor}</div>
             <table className="table">
                 <tbody className="table-body">
                     <tr className="table-row">
                         <th className="table-header">تاپیک</th>
-                        <th className="table-header"> نظرات / بازدید ها</th>
-                        {/* <th className="table-header">آخرین پاسخ / زمان</th> */}
+                        <th className="table-header"> بازدید ها / نظرات</th>
+                        <th className="table-header">آخرین پاسخ دهنده</th>
                     </tr>
                     {topics.map(topic => <TopicItem key={topic.id} hallId={hallId} topic={topic} />)}
                 </tbody>

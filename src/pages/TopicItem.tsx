@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
-import { createTopicUrl } from "../utils/Utils"
+import { createProfileUrl, createTopicUrl } from "../utils/Utils"
+import './TopicItem.css'
 
 interface TopicType {
     id: number,
@@ -8,8 +9,8 @@ interface TopicType {
     numberOfComments: number,
     numberOfViews: number,
     lastComment: {
-        id: number,
-        content: string,
+        creatorID: number,
+        creator: string,
         lastCommentDateEquivalent: string
     }
 }
@@ -37,7 +38,7 @@ const Column1 = styled.td`
 `
 const Column2 = styled.td`
     text-align: center;
-    direction: ltr;
+    direction: rtl;
 `
 const Column3 = styled.td`
     display: flex;
@@ -49,13 +50,22 @@ const Column3 = styled.td`
 function TopicItem({ topic, hallId }: IProps) {
     return <Row>
         <Column1>
-            <a href={createTopicUrl(hallId, topic.id)}>{topic.name}</a>
+            <a className="topic-name" href={createTopicUrl(hallId, topic.id)}>{topic.name}</a>
         </Column1>
-        <Column2 >{topic.numberOfViews} / {topic.numberOfComments}</Column2>
-        {/* <Column3>
-            <div>{topic.lastComment.name}</div>
-            <div className="last-post-date">{topic.lastComment.lastCommentDateEquivalent}</div>
-        </Column3> */}
+        <Column2 >{` ${topic.numberOfViews} بازدید / ${topic.numberOfComments} نظر`}</Column2>
+        <Column3>
+            <div className='column3'>
+                {
+                    topic.lastComment && <>
+                        <a className='creator' href={createProfileUrl(topic.lastComment.creatorID)}>{topic.lastComment.creator}</a>
+                        <div className="last-comment-date">{"( " + topic.lastComment.lastCommentDateEquivalent + " )"}</div>                    </>
+                }
+                {
+                    !topic.lastComment &&
+                    <>--</>
+                }
+            </div>
+        </Column3>
     </Row>
 }
 

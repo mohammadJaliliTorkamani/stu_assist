@@ -1,0 +1,16 @@
+.topic-name {
+    text-decoration: none;
+    color: green;
+    font-weight: 600;
+}
+
+.creator {
+    text-decoration: none;
+    color: green;
+}
+
+.last-comment-date {
+    color: gray;
+    font-size: 0.8em;
+    margin-right: 10px;
+}
