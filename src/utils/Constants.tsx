@@ -22,6 +22,8 @@ export const LINK_FORUMS_CATEGORIES = "https://stu-assist.ir/api/services/forums
 export const LINK_FORUMS_HALLS = "https://stu-assist.ir/api/services/forums/halls.php"
 export const LINK_FORUMS_HALL = "https://stu-assist.ir/api/services/forums/hall.php"
 export const LINK_FORUMS_TOPICS = "https://stu-assist.ir/api/services/forums/topics.php"
+export const LINK_FORUMS_TOPIC = "https://stu-assist.ir/api/services/forums/topic.php"
+export const LINK_FORUMS_CREATOR = "https://stu-assist.ir/api/services/forums/creator.php"
 
 
 
