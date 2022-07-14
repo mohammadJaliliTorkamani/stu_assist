@@ -4,7 +4,8 @@ import { useLocalStorage } from '../utils/useLocalStorage'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { LINK_FORUMS_CREATOR, LINK_FORUMS_TOPIC, LINK_INCREASE_VIEWS } from '../utils/Constants'
+import { LINK_FORUMS_CREATOR, LINK_FORUMS_TOPIC, LINK_FORUMS_INCREASE_VIEWS, LINK_FORUMS_COMMENTS } from '../utils/Constants'
+import CommentItem from '../components/CommentItem'
 
 interface TopicType {
     id: number,
@@ -18,12 +19,21 @@ interface PersonType {
     fullName: string
 }
 
+interface CommentType {
+    id: number,
+    message: string,
+    creatorID: number,
+    commentDateTime: string
+}
+
 function Topic() {
 
     const [token,] = useLocalStorage('token', null)
     const { _, topicId } = useParams()
     const [topic, setTopic] = useState<TopicType>()
     const [person, setPerson] = useState<PersonType>()
+    const [comments, setComments] = useState<CommentType[]>([])
+
 
     const _topicId = typeof topicId == 'undefined' ? 0 : parseInt(topicId);
 
@@ -53,7 +63,7 @@ function Topic() {
     }, [token, _topicId, topic?.creatorID])
 
     useEffect(() => {
-        axios.post(LINK_INCREASE_VIEWS,
+        axios.post(LINK_FORUMS_INCREASE_VIEWS,
             {
                 topic: topicId,
             }, {
@@ -64,6 +74,19 @@ function Topic() {
         })
             .then(response => response.data)
             .catch(error => { alert(JSON.stringify(error.response.data.message)) })
+    }, [token, topicId])
+
+    useEffect(() => {
+        axios.get(LINK_FORUMS_COMMENTS, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }, params: {
+                id: topicId,
+            }
+        })
+            .then(response => response.data)
+            .then(data => { setComments(data.data) })
+            .catch(error => alert(JSON.stringify(error.response.data.message)))
     }, [token, topicId])
 
     return (
@@ -89,6 +112,10 @@ function Topic() {
                     </div>
                 </div>
             </div >
+            <div className='topic-replies-sticker'>پاسخ ها</div>
+            {
+                comments?.map(comment => < CommentItem key={comment.id} comment={comment} />)
+            }
         </div>
     )
 }

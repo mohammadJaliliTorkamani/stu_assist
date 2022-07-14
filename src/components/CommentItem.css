@@ -1,61 +1,46 @@
-.topic-total-container {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    direction: rtl;
-    justify-content: flex-start;
-    min-height: calc(100vh - 160px);
-    padding: 1rem;
+.comment-item-container {
+    background: rgb(235, 235, 235);
+    margin-top: 1rem;
 }
 
-.topic-name {
-    padding: 2rem;
-    background-color: green;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.topic-container {
+.comment-item-container {
     margin-top: 1rem;
     border: 1px solid gray;
     border-radius: 0.5rem;
     padding: 2rem;
 }
 
-.topic-header {
+.comment-item-header {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
 }
 
-.topic-avatar-style {
+.comment-item-avatar-style {
     width: 4rem;
     height: 4rem;
 }
 
-.topic-header-text-container {
+.comment-item-header-text-container {
     display: flex;
     flex-direction: column;
     margin-right: 2rem;
 }
 
-.topic-header-text-container-row {
+.comment-item-header-text-container-row {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     margin-bottom: 0.5rem;
 }
 
-.topic-label-key {
+.comment-item-label-key {
     font-weight: 600;
     margin-left: 0.5rem;
 }
 
-.topic-body {
+.comment-item-body {
     background-color: rgb(243, 243, 243);
     margin-top: 1rem;
     border: 0px solid gray;
@@ -68,27 +53,25 @@
     padding-bottom: 1.5rem;
 }
 
-.topic-body-row {
+.comment-item-body-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding-top: 1rem;
 }
 
-.topic-body-row-comment {
+.comment-item-body-row-comment {
     margin-top: 2rem;
 }
 
-.topic-replies-sticker {
-    background-color: gray;
-    color: white;
-    padding: 1rem;
-    margin-top: 1rem;
-    border-radius: 4px;
+.comment-item-header-text-container-name{
+    text-decoration: none;
+    color: black;
 }
 
+
 @media screen and (max-width: 960px) {
-    .topic-container {
+    .comment-item-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -99,13 +82,13 @@
         padding: 1rem;
     }
 
-    .topic-header {
+    .comment-item-header {
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
-    .topic-header-text-container {
+    .comment-item-header-text-container {
         display: flex;
         flex-direction: column;
         margin-top: 1rem;
@@ -113,7 +96,7 @@
         margin-left: 0px;
     }
 
-    .topic-header-text-container-row {
+    .comment-item-header-text-container-row {
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -121,32 +104,9 @@
         margin-bottom: 0.5rem;
     }
 
-    .topic-body-row {
+    .comment-item-body-row {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-    }
-
-    .topic-body-row-admission-status-red {
-        background-color: rgb(255, 174, 174);
-        color: rgb(65, 26, 26);
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        font-size: 0.7em;
-    }
-
-    .topic-body-row-admission-status-green {
-        background-color: rgb(167, 255, 167);
-        color: rgb(27, 51, 27);
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        font-size: 0.7em;
-    }
-
-    .topic-body-row-key-value-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
     }
 }
