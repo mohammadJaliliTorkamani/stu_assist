@@ -20,6 +20,7 @@ import Forums from './pages/Forums'
 import ForumsList from './pages/ForumsList';
 import GuestProfile from './pages/GuestProfile';
 import Topic from './pages/Topic';
+import CreateTopic from './pages/CreateTopic';
 
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
@@ -51,6 +52,11 @@ function App() {
         <Route path='forums' element={<Forums />} />
         <Route path="forums/:hallId" element={<ForumsList />} />
         <Route path="forums/:hallId/:topicId" element={<Topic />} />
+        <Route path="create-topic" element={
+          // <ProtectedRoute>
+            <CreateTopic />
+          // </ProtectedRoute>
+        } />
         <Route path='*' element={<NotFound />} />
 
       </Routes>

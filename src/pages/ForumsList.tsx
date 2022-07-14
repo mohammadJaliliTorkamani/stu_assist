@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import './ForumsList.css'
 import TopicItem from "./TopicItem"
 import { useLocalStorage } from "../utils/useLocalStorage"
@@ -38,6 +38,7 @@ function ForumsList() {
     const [topics, setTopics] = useState<TopicType[]>([])
     const { hallId } = useParams()
     const _hallId = typeof hallId == 'undefined' ? 0 : parseInt(hallId)
+    const navigate = useNavigate()
 
     const fetchTopics = (token: string, hallId: number) =>
         axios.get(LINK_FORUMS_TOPICS, {
@@ -74,7 +75,26 @@ function ForumsList() {
         <div className="forums-list-container1">
             <div className="forums-list-above-header">
                 <div className="forums-list-hall-name-text">تالار {hall?.name} </div>
-                <Button title="ساخت تاپیک جدید" className="forums-list-new-topic" onClick={e => alert("آزمایشی")} />
+                {
+                    token && <Button
+                        title="ساخت تاپیک جدید"
+                        className="forums-list-new-topic"
+                        onClick={e => navigate('/create-topic')}
+                    />
+                }
+                {
+                    !token && <div className="forums-list-login-container">
+                        <div className="forums-list-login-label">
+                            جهت ساخت تاپیک ابتدا وارد حساب کاربری خود شوید
+                        </div>
+                        <Button
+                            className="forums-list-login-button"
+                            title="ورود / ثبت نام"
+                            onClick={e => navigate('/login', { replace: true })}
+                        />
+                    </div>
+                }
+
             </div>
             <div className="forums-list-hall-descriptor-text">{hall?.descriptor}</div>
             <table className="forums-list-table">

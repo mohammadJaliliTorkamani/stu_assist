@@ -64,6 +64,8 @@ function Topic() {
     }, [token, _topicId, topic?.creatorID])
 
     useEffect(() => {
+        document.title = "Stu Assist | تاپیک"
+
         axios.post(LINK_FORUMS_INCREASE_VIEWS,
             {
                 topic: topicId,

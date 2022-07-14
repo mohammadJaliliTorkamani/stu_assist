@@ -59,7 +59,24 @@
 .forums-list-hall-descriptor-text {
     font-size: 1em;
     font-weight: 600;
+    margin-top: 1.5rem;
+}
+
+
+.forums-list-login-label{
+    color: green;
+}
+
+.forums-list-login-button{
     margin-top: 1rem;
+}
+
+
+.forums-list-login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (max-width: 960px) {
