@@ -26,8 +26,8 @@ export const LINK_FORUMS_TOPIC = "https://stu-assist.ir/api/services/forums/topi
 export const LINK_FORUMS_CREATOR = "https://stu-assist.ir/api/services/forums/creator.php"
 export const LINK_FORUMS_INCREASE_VIEWS = "https://stu-assist.ir/api/services/forums/increase_view.php"
 export const LINK_FORUMS_COMMENTS = "https://stu-assist.ir/api/services/forums/comments.php"
+export const LINK_FORUMS_SEND_COMMENT = "https://stu-assist.ir/api/services/forums/send_comment.php"
 export const LINK_FORUMS_CREATE_TOPIC = "https://stu-assist.ir/api/services/forums/create-topic.php"
-
 
 export const contactLinks = [
   {

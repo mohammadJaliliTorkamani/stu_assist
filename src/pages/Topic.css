@@ -87,9 +87,53 @@
     border-radius: 4px;
 }
 
-.topic-label-name{
+.topic-label-name {
     text-decoration: none;
     color: black;
+}
+
+.topic-login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid green;
+    border-radius: 10px;
+    margin-top: 1rem;
+    min-height: 10rem;
+}
+
+.topic-login-button {
+    margin-top: 1rem;
+}
+
+.topic-reply{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.topic-reply-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.topic-reply-write-box {
+    padding: 1rem;
+    margin-top: 1rem;
+    flex: 1;
+    min-height: 10rem;
+    border: 1px solid gray;
+    border-radius: 8px;
+}
+
+.topic-reply-button-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 @media screen and (max-width: 960px) {
