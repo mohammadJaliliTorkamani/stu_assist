@@ -52,6 +52,7 @@ function TopicItem({ topic, hallId }: IProps) {
         const _name = name.replace(/ /g, '')
         return _name === '' ? "بی نام" : name
     }
+
     return <Row>
         <Column1>
             <a className="topic-item-topic-name" href={createTopicUrl(hallId, topic.id)}>{topic.name}</a>
@@ -60,13 +61,14 @@ function TopicItem({ topic, hallId }: IProps) {
         <Column3>
             <div className='topic-item-column3'>
                 {
-                    topic.lastComment && <>
+                    topic.lastComment.creatorID !== -1 && <>
                         <a className='topic-item-creator' href={createProfileUrl(topic.lastComment.creatorID)}>
                             {getCreatorName(topic.lastComment.creator)}</a>
-                        <div className="topic-item-last-comment-date">{"( " + topic.lastComment.lastCommentDateEquivalent + " )"}</div>                    </>
+                        <div className="topic-item-last-comment-date">{"( " + topic.lastComment.lastCommentDateEquivalent + " )"}</div>
+                    </>
                 }
                 {
-                    !topic.lastComment &&
+                    topic.lastComment.creatorID === -1 &&
                     <>--</>
                 }
             </div>
