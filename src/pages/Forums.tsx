@@ -28,8 +28,8 @@ function Forums() {
     }, [token])
 
     return (
-        <div className='container1'>
-            <div className='categories_container'>
+        <div className='forums-container1'>
+            <div className='forums-categories_container'>
                 {categories.map(category => <CategoryItem key={category.name} category={category} />)}
             </div>
         </div>

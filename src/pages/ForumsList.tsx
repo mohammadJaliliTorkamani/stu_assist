@@ -71,18 +71,18 @@ function ForumsList() {
     }, [token, _hallId])
 
     return (
-        <div className="container1">
-            <div className="above-header">
-                <div className="hall-name-text">تالار {hall?.name} </div>
-                <Button title="ساخت تاپیک جدید" className="new-topic" onClick={e => alert("آزمایشی")} />
+        <div className="forums-list-container1">
+            <div className="forums-list-above-header">
+                <div className="forums-list-hall-name-text">تالار {hall?.name} </div>
+                <Button title="ساخت تاپیک جدید" className="forums-list-new-topic" onClick={e => alert("آزمایشی")} />
             </div>
-            <div className="hall-descriptor-text">{hall?.descriptor}</div>
-            <table className="table">
-                <tbody className="table-body">
-                    <tr className="table-row">
-                        <th className="table-header">تاپیک</th>
-                        <th className="table-header"> بازدید ها / نظرات</th>
-                        <th className="table-header">آخرین پاسخ دهنده</th>
+            <div className="forums-list-hall-descriptor-text">{hall?.descriptor}</div>
+            <table className="forums-list-table">
+                <tbody className="forums-list-table-body">
+                    <tr className="forums-list-table-row">
+                        <th className="forums-list-table-header">تاپیک</th>
+                        <th className="forums-list-table-header"> بازدید ها / نظرات</th>
+                        <th className="forums-list-table-header">آخرین پاسخ دهنده</th>
                     </tr>
                     {topics.map(topic => <TopicItem key={topic.id} hallId={_hallId} topic={topic} />)}
                 </tbody>

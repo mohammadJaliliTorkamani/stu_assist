@@ -15,11 +15,11 @@
     padding-left: 30px;
 }
 
-.name{
+.category-name{
     font-size: 1.2em;
 }
 
-.descriptor{
+.category-descriptor{
     font-size: 1em;
     margin-top: 0.5rem;
 }
@@ -31,7 +31,7 @@
 }
 
 
-.table {
+.category-table {
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: 2px solid forestgreen;
@@ -41,16 +41,16 @@
     white-space: nowrap;
 }
 
-.table-body {
+.category-table-body {
     display: table;
     width: 100%;
 }
 
-.table-row {
+.category-table-row {
     background: forestgreen;
 }
 
-.table-header {
+.category-table-header {
     color: white;
     height: 35px;
     padding-left: 1rem;

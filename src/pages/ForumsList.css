@@ -1,4 +1,4 @@
-.container1 {
+.forums-list-container1 {
     direction: rtl;
     display: flex;
     flex-direction: column;
@@ -11,7 +11,7 @@
     padding-right: 2rem;
 }
 
-.table {
+.forums-list-table {
     margin-top: 1.5rem;
     margin-bottom: 1rem;
     border: 2px solid forestgreen;
@@ -21,16 +21,16 @@
     white-space: nowrap;
 }
 
-.table-body {
+.forums-list-table-body {
     display: table;
     width: 100%;
 }
 
-.table-row {
+.forums-list-table-row {
     background: forestgreen;
 }
 
-.table-header {
+.forums-list-table-header {
     color: white;
     height: 35px;
     padding-left: 1rem;
@@ -39,7 +39,7 @@
     padding-bottom: 0.5rem;
 }
 
-.above-header {
+.forums-list-above-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -47,23 +47,23 @@
     margin-top: 1rem;
 }
 
-.new-topic {
+.forums-list-new-topic {
     margin-top: 1rem;
 }
 
-.hall-name-text {
+.forums-list-hall-name-text {
     font-size: 1em;
     font-weight: 600;
 }
 
-.hall-descriptor-text {
+.forums-list-hall-descriptor-text {
     font-size: 1em;
     font-weight: 600;
     margin-top: 1rem;
 }
 
 @media screen and (max-width: 960px) {
-    .above-header {
+    .forums-list-above-header {
         display: flex;
         flex-direction: column;
         justify-content: center;

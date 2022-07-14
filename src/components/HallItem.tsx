@@ -44,16 +44,16 @@ function HallItem({ hall }: IProps) {
     return (
         <Row>
             <Column1>
-                <a className='hall-name' href={createHallUrl(hall.id)}>{hall.name}</a>
-                <div className='hall-descriptor'>{hall.descriptor}</div>
+                <a className='hall-item-name' href={createHallUrl(hall.id)}>{hall.name}</a>
+                <div className='hall-item-descriptor'>{hall.descriptor}</div>
             </Column1>
             <Column2 >{hall.numberOfTopics === 0 ? "--" : hall.numberOfTopics}</Column2>
             <Column3>
-                <div className='column3'>
+                <div className='hall-item-column3'>
                     {
                         hall.lastTopic && <>
-                            <a className='last-topic-name' href={createTopicUrl(hall.id, hall.lastTopic.id)}>{hall.lastTopic.name}</a>
-                            <div className="last-post-date">{"( " + hall.lastTopic.lastTopicDateEquivalent + " )"}</div>
+                            <a className='hall-item-last-topic-name' href={createTopicUrl(hall.id, hall.lastTopic.id)}>{hall.lastTopic.name}</a>
+                            <div className="hall-item-last-post-date">{"( " + hall.lastTopic.lastTopicDateEquivalent + " )"}</div>
                         </>
                     }
                     {

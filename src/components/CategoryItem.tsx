@@ -47,15 +47,15 @@ function CategoryItem({ category }: IProps) {
 
     return <div className="category-item">
         <div className="category-header">
-            <div className="name">{category.name}</div>
-            <div className="descriptor">{category.descriptor}</div>
+            <div className="category-name">{category.name}</div>
+            <div className="category-descriptor">{category.descriptor}</div>
         </div>
-        <table className="table">
-            <tbody className="table-body">
-                <tr className="table-row">
-                    <th className="table-header">تالارها</th>
-                    <th className="table-header"> تعداد تاپیک</th>
-                    <th className="table-header">آخرین تاپیک</th>
+        <table className="category-table">
+            <tbody className="category-table-body">
+                <tr className="category-table-row">
+                    <th className="category-table-header">تالارها</th>
+                    <th className="category-table-header"> تعداد تاپیک</th>
+                    <th className="category-table-header">آخرین تاپیک</th>
                 </tr>
                 {halls.map(hall => <HallItem key={hall.id} hall={hall} />)}
             </tbody>

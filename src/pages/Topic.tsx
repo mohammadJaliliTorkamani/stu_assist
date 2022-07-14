@@ -53,11 +53,11 @@ function Topic() {
     }, [token, _topicId, topic?.creatorID])
 
     return (
-        <div className='total-container'>
+        <div className='topic-total-container'>
             <div className='topic-name'>{topic?.name}</div>
             <div key={1} className='topic-container'>
                 <div className='topic-header'>
-                    <img className='avatar-style' src={avatar} alt={"profile"} />
+                    <img className='topic-avatar-style' src={avatar} alt={"profile"} />
                     <div className='topic-header-text-container'>
                         <div className='topic-header-text-container-row'>
                             <div className='topic-label-key'>نام و نام خانوادگی : </div>
