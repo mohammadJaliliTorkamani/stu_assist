@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { LINK_FORUMS_CREATOR, LINK_FORUMS_TOPIC, LINK_FORUMS_INCREASE_VIEWS, LINK_FORUMS_COMMENTS } from '../utils/Constants'
 import CommentItem from '../components/CommentItem'
+import { createProfileUrl } from '../utils/Utils'
 
 interface TopicType {
     id: number,
@@ -98,7 +99,7 @@ function Topic() {
                     <div className='topic-header-text-container'>
                         <div className='topic-header-text-container-row'>
                             <div className='topic-label-key'>نام و نام خانوادگی : </div>
-                            <div>{person?.fullName}</div>
+                            <a className='topic-label-name' href={createProfileUrl(topic?.creatorID!)}>{person?.fullName}</a>
                         </div>
                         <div className='topic-header-text-container-row'>
                             <div className='topic-label-key'>تاریخ ارسال : </div>

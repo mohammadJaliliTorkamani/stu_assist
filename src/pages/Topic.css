@@ -87,6 +87,11 @@
     border-radius: 4px;
 }
 
+.topic-label-name{
+    text-decoration: none;
+    color: black;
+}
+
 @media screen and (max-width: 960px) {
     .topic-container {
         display: flex;
