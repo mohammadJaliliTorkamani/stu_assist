@@ -42,7 +42,7 @@ function Home() {
                 className="home-option"
                 page={{
                     id: 4,
-                    text: "تالار گفتگو ( به زودی )",
+                    text: "تالار گفتگو",
                     link: "forums"
                 }}
             />
