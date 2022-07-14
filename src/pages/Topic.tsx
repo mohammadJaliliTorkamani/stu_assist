@@ -4,7 +4,7 @@ import { useLocalStorage } from '../utils/useLocalStorage'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { LINK_FORUMS_CREATOR, LINK_FORUMS_TOPIC } from '../utils/Constants'
+import { LINK_FORUMS_CREATOR, LINK_FORUMS_TOPIC, LINK_INCREASE_VIEWS } from '../utils/Constants'
 
 interface TopicType {
     id: number,
@@ -51,6 +51,20 @@ function Topic() {
             })
             .catch(error => alert(JSON.stringify(error.response.data.message)))
     }, [token, _topicId, topic?.creatorID])
+
+    useEffect(() => {
+        axios.post(LINK_INCREASE_VIEWS,
+            {
+                topic: topicId,
+            }, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                "Authorization": `Bearer ${token}`
+            }
+        })
+            .then(response => response.data)
+            .catch(error => { alert(JSON.stringify(error.response.data.message)) })
+    }, [token, topicId])
 
     return (
         <div className='topic-total-container'>
