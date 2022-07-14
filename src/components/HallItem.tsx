@@ -51,13 +51,13 @@ function HallItem({ hall }: IProps) {
             <Column3>
                 <div className='hall-item-column3'>
                     {
-                        hall.lastTopic && <>
+                        hall.lastTopic.id !== -1 && <>
                             <a className='hall-item-last-topic-name' href={createTopicUrl(hall.id, hall.lastTopic.id)}>{hall.lastTopic.name}</a>
                             <div className="hall-item-last-post-date">{"( " + hall.lastTopic.lastTopicDateEquivalent + " )"}</div>
                         </>
                     }
                     {
-                        !hall.lastTopic &&
+                        hall.lastTopic.id === -1 &&
                         <>--</>
                     }
                 </div>
