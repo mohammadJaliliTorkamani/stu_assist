@@ -67,7 +67,7 @@ function CreateTopic() {
             }
         })
             .then(response => response.data)
-            .then(data => { createTopicUrl(hall, data.topic) })
+            .then(data => { window.open(createTopicUrl(hall, data.data), "_self") })
             .catch(error => { alert(JSON.stringify(error.response.data.message)) })
     }
 
@@ -112,7 +112,7 @@ function CreateTopic() {
                 }
             </select>
         </div>
-        <textarea className='create-topic-content' placeholder='متن تاپیک مورد نظر را در این قسمت وارد نمایید'  maxLength={200} value={content} onChange={e => setContent(e.target.value)} ></textarea>
+        <textarea className='create-topic-content' placeholder='متن تاپیک مورد نظر را در این قسمت وارد نمایید' maxLength={200} value={content} onChange={e => setContent(e.target.value)} ></textarea>
         <div className='create-topic-button-container'>
             <Button title='ساخت تاپیک' onClick={e => createTopic()} />
         </div>
