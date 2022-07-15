@@ -92,9 +92,9 @@ function ApplicationExperience() {
     }
 
     return (
-        <div className='container1'>
-            {sent && <div className='sent-box'>
-                <div className='sent-text'>تجربه شما برای تایید به مدیریت ارسال شد و پس از تایید نمایش داده خواهد شد. با تشکر</div>
+        <div className='application-experience-container1'>
+            {sent && <div className='application-experience-sent-box'>
+                <div className='application-experience-sent-text'>تجربه شما برای تایید به مدیریت ارسال شد و پس از تایید نمایش داده خواهد شد. با تشکر</div>
                 <Button title='بازگشت به لیست' onClick={e => {
                     setComment('')
                     setCountry('')
@@ -106,77 +106,77 @@ function ApplicationExperience() {
                 } />
             </div>
             }
-            {!sent && <div className='post-box'>
-                {guest && <div className='login-box'>
+            {!sent && <div className='application-experience-post-box'>
+                {guest && <div className='application-experience-login-box'>
                     <SelectedTitle>
                         جهت ثبت تجربه پذیرش خود، لطفا ابتدا وارد حساب کاربری خود شوید
                     </SelectedTitle>
                     <Button title="ورود / ثبت نام" onClick={e => navigate('/login', { replace: true })} />
                 </div>
                 }
-                {!guest && <div className='write-box'>
-                    <div className='university-info-write-box'>
-                        <TitledTextInput title='کشور' value={country} setValue={setCountry} maxLength={40} className='titled-text-input' />
-                        <TitledTextInput title='شهر' value={city} setValue={setCity} maxLength={30} className='titled-text-input' />
-                        <TitledTextInput title='نام دانشگاه' value={universityName} setValue={setUniversityName} maxLength={100} className='titled-text-input' />
+                {!guest && <div className='application-experience-write-box'>
+                    <div className='application-experience-university-info-write-box'>
+                        <TitledTextInput title='کشور' value={country} setValue={setCountry} maxLength={40} className='application-experience-titled-text-input' />
+                        <TitledTextInput title='شهر' value={city} setValue={setCity} maxLength={30} className='application-experience-titled-text-input' />
+                        <TitledTextInput title='نام دانشگاه' value={universityName} setValue={setUniversityName} maxLength={100} className='application-experience-titled-text-input' />
                     </div>
-                    <div className='admission-status-write-box'>
+                    <div className='application-experience-admission-status-write-box'>
                         <>از این دانشگاه پذیرش گرفته ام</>
-                        <input type={'checkbox'} className='checkbox-write-box' checked={admissionStatus} onChange={() => setAdmissionStatus(!admissionStatus)} />
+                        <input type={'checkbox'} className='application-experience-checkbox-write-box' checked={admissionStatus} onChange={() => setAdmissionStatus(!admissionStatus)} />
                     </div>
-                    <textarea placeholder='تجربه خود از این دانشگاه را در این قسمت وارد نمایید' maxLength={1000} className='comment-write-box' onChange={e => setComment(e.target.value)} value={comment}></textarea>
+                    <textarea placeholder='تجربه خود از این دانشگاه را در این قسمت وارد نمایید' maxLength={1000} className='application-experience-comment-write-box' onChange={e => setComment(e.target.value)} value={comment}></textarea>
                     <Button title='ارسال' onClick={e => handlePost()} />
 
                 </div>
                 }
-                {loading && <div className='loading-box'>
+                {loading && <div className='application-experience-loading-box'>
                     در حال بارگذاری...
                 </div>
                 }
-                {!loading && <div className='list-box'>
+                {!loading && <div className='application-experience-list-box'>
                     {
                         experiences.map(experience =>
-                            <div key={experience.id} className='post-item-container'>
-                                <div className='post-item-header'>
-                                    <img className='avatar-style' src={avatar} alt={"profile"} />
-                                    <div className='post-item-header-text-container'>
-                                        <div className='post-item-header-text-container-row'>
-                                            <div className='post-item-label-key'>نام و نام خانوادگی : </div>
+                            <div key={experience.id} className='application-experience-post-item-container'>
+                                <div className='application-experience-post-item-header'>
+                                    <img className='application-experience-avatar-style' src={avatar} alt={"profile"} />
+                                    <div className='application-experience-post-item-header-text-container'>
+                                        <div className='application-experience-post-item-header-text-container-row'>
+                                            <div className='application-experience-post-item-label-key'>نام و نام خانوادگی : </div>
                                             <div>{experience.fullName === ' ' ? 'بدون نام' : experience.fullName}</div>
                                         </div>
-                                        <div className='post-item-header-text-container-row'>
-                                            <div className='post-item-label-key'>تاریخ ارسال : </div>
+                                        <div className='application-experience-post-item-header-text-container-row'>
+                                            <div className='application-experience-post-item-label-key'>تاریخ ارسال : </div>
                                             <div>{experience.experienceTime + " " + experience.experienceDate}</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className='post-item-body'>
-                                    <div className='post-item-body-row ltr'>
-                                        <div className='post-item-body-row-key-value-container'>
-                                            <div className={experience.admissionStatus ? 'post-item-body-row-admission-status-green' : 'post-item-body-row-admission-status-red'}>
+                                <div className='application-experience-post-item-body'>
+                                    <div className='application-experience-post-item-body-row ltr'>
+                                        <div className='application-experience-post-item-body-row-key-value-container'>
+                                            <div className={experience.admissionStatus ? 'application-experience-post-item-body-row-admission-status-green' : 'application-experience-post-item-body-row-admission-status-red'}>
                                                 <div>{experience.admissionStatus ? "از این دانشگاه پذیرش گرفته ام" : "از این دانشگاه پذیرش نگرفته ام"}</div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='post-item-body-row'>
-                                        <div className='post-item-body-row-key-value-container'>
-                                            <div className='post-item-label-key'>کشور : </div>
+                                    <div className='application-experience-post-item-body-row'>
+                                        <div className='application-experience-post-item-body-row-key-value-container'>
+                                            <div className='application-experience-post-item-label-key'>کشور : </div>
                                             <div>{experience.universityCountry}</div>
                                         </div>
                                     </div>
-                                    <div className='post-item-body-row'>
-                                        <div className='post-item-body-row-key-value-container'>
-                                            <div className='post-item-label-key'>شهر : </div>
+                                    <div className='application-experience-post-item-body-row'>
+                                        <div className='application-experience-post-item-body-row-key-value-container'>
+                                            <div className='application-experience-post-item-label-key'>شهر : </div>
                                             <div>{experience.universityCity}</div>
                                         </div>
                                     </div>
-                                    <div className='post-item-body-row'>
-                                        <div className='post-item-body-row-key-value-container'>
-                                            <div className='post-item-label-key'>دانشگاه : </div>
+                                    <div className='application-experience-post-item-body-row'>
+                                        <div className='application-experience-post-item-body-row-key-value-container'>
+                                            <div className='application-experience-post-item-label-key'>دانشگاه : </div>
                                             <div>{experience.universityName}</div>
                                         </div>
                                     </div>
-                                    <div className='post-item-body-row-comment'>
+                                    <div className='application-experience-post-item-body-row-comment'>
                                         {experience.comment}
                                     </div>
                                 </div>
