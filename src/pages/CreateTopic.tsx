@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Button from '../components/Button'
+import useCategory from '../hooks/useCategory'
 import useTopic from '../hooks/useTopic'
 import { LINK_FORUMS_CATEGORIES, LINK_FORUMS_CREATE_TOPIC, LINK_FORUMS_HALLS } from '../utils/Constants'
 import { useLocalStorage } from '../utils/useLocalStorage'
@@ -29,7 +30,7 @@ function CreateTopic() {
     const [content, setContent] = useState<string>('')
     const [category, setCategory] = useState<string>('')
     const [hall, setHall] = useState<number>(-1)
-    const [categories, setCategories] = useState<CategoryType[]>([])
+    const [categories] = useCategory()
     const [halls, setHalls] = useState<HallType[]>([])
 
     const [, createTopic] = useTopic(hall)
@@ -41,7 +42,6 @@ function CreateTopic() {
             .then(response => response.data)
             .then(data => {
                 setCategory(data.data[0].name)
-                setCategories(data.data)
                 fetchHalls(data.data[0].name)
             })
             .catch(error => alert(JSON.stringify(error.response.data.message)))

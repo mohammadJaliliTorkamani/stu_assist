@@ -2,7 +2,6 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { LINK_FORUMS_CREATE_TOPIC, LINK_FORUMS_TOPICS } from "../utils/Constants"
 import { useLocalStorage } from "../utils/useLocalStorage"
-import { createTopicUrl } from "../utils/Utils"
 
 interface TopicType {
     id: number,
