@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Button from '../components/Button'
+import useTopic from '../hooks/useTopic'
 import { LINK_FORUMS_CATEGORIES, LINK_FORUMS_CREATE_TOPIC, LINK_FORUMS_HALLS } from '../utils/Constants'
 import { useLocalStorage } from '../utils/useLocalStorage'
 import { createTopicUrl } from '../utils/Utils'
@@ -31,14 +32,12 @@ function CreateTopic() {
     const [categories, setCategories] = useState<CategoryType[]>([])
     const [halls, setHalls] = useState<HallType[]>([])
 
+    const [, createTopic] = useTopic(hall)
+
     useEffect(() => {
         document.title = "Stu Assist | تاپیک جدید"
         axios
-            .get(LINK_FORUMS_CATEGORIES, {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            })
+            .get(LINK_FORUMS_CATEGORIES)
             .then(response => response.data)
             .then(data => {
                 setCategory(data.data[0].name)
@@ -46,29 +45,14 @@ function CreateTopic() {
                 fetchHalls(data.data[0].name)
             })
             .catch(error => alert(JSON.stringify(error.response.data.message)))
-    }, [token])
+    }, [])
 
-    const createTopic = () => {
+    const createTopicHandler = () => {
         if (name === '' || content === '' || category === '' || hall === -1) {
             alert("لطفا تمامی فیلد ها را تکمیل نمایید")
             return;
         }
-
-        axios.post(LINK_FORUMS_CREATE_TOPIC,
-            {
-                name: name,
-                content: content,
-                category: category,
-                hall: hall,
-            }, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                "Authorization": `Bearer ${token}`
-            }
-        })
-            .then(response => response.data)
-            .then(data => { window.open(createTopicUrl(hall, data.data), "_self") })
-            .catch(error => { alert(JSON.stringify(error.response.data.message)) })
+        createTopic(name, content, category, hall, topicId => window.open(createTopicUrl(hall, topicId), "_self"))
     }
 
     const fetchHalls = (category: string) => {
@@ -114,7 +98,7 @@ function CreateTopic() {
         </div>
         <textarea className='create-topic-content' placeholder='متن تاپیک مورد نظر را در این قسمت وارد نمایید' maxLength={200} value={content} onChange={e => setContent(e.target.value)} ></textarea>
         <div className='create-topic-button-container'>
-            <Button title='ساخت تاپیک' onClick={e => createTopic()} />
+            <Button title='ساخت تاپیک' onClick={e => createTopicHandler()} />
         </div>
     </div >
 }
