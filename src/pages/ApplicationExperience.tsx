@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import TitledTextInput from '../components/TitledTextInput';
-import { LINK_EXPERIENCES, LINK_POST_APPLICATION_EXPERIENCE } from '../utils/Constants';
+import { LINK_POST_APPLICATION_EXPERIENCE } from '../utils/Constants';
 import { useLocalStorage } from '../utils/useLocalStorage';
 import './ApplicationExperience.css'
 import avatar from '../assets/user_avatar.png'
+import useExperience from '../hooks/useExperience';
 
 const SelectedTitle = styled.div`
     font-size: 1rem;
@@ -15,29 +16,14 @@ const SelectedTitle = styled.div`
     padding-bottom: 1rem;
 `
 
-interface ApplicationExperienceTemplate {
-    id: number,
-    fullName: string,
-    experienceDate: string,
-    experienceTime: string,
-    admissionStatus: boolean,
-    comment: string,
-    universityName: string,
-    universityCountry: string,
-    universityCity: string
-}
-
 function ApplicationExperience() {
-    const [guest, setGuest] = useState(true);
     const [sent, setSent] = useState(false);
-    const [loading, setLoading] = useState(false);
-
     const [country, setCountry] = useState('')
     const [city, setCity] = useState('')
     const [universityName, setUniversityName] = useState('')
     const [admissionStatus, setAdmissionStatus] = useState(false)
     const [comment, setComment] = useState('')
-    const [experiences, setExperiences] = useState<ApplicationExperienceTemplate[]>([])
+    const [experiences, loading, guest] = useExperience()
 
     const [token,] = useLocalStorage('token', null)
 
@@ -46,27 +32,6 @@ function ApplicationExperience() {
     useEffect(() => {
         document.title = "Stu Assist | تجربه پذیرش "
     }, [])
-
-    useEffect(() => {
-        setGuest(token === null)
-        setLoading(true)
-        axios
-            .get(LINK_EXPERIENCES, {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            })
-            .then(response => response.data)
-            .then(data => {
-                setLoading(false)
-                setExperiences(data.data)
-            })
-            .catch(error => {
-                setLoading(false)
-                alert(error.response.data.message)
-            }
-            )
-    }, [token])
 
     const handlePost = () => {
         if (universityName === '' || city === '' || country === '') {
