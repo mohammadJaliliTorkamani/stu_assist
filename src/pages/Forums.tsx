@@ -1,31 +1,14 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import CategoryItem from '../components/CategoryItem'
-import { LINK_FORUMS_CATEGORIES } from '../utils/Constants'
-import { useLocalStorage } from '../utils/useLocalStorage'
+import useCategory from '../hooks/useCategory'
 import './Forums.css'
 
-interface CategoryType {
-    name: string,
-    descriptor: string
-}
-
 function Forums() {
-    const [token,] = useLocalStorage('token', null)
-    const [categories, setCategories] = useState<CategoryType[]>([])
+    const [categories] = useCategory()
 
     useEffect(() => {
         document.title = "Stu Assist | تالار گفتگو"
-        axios
-            .get(LINK_FORUMS_CATEGORIES, {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            })
-            .then(response => response.data)
-            .then(data => { setCategories(data.data) })
-            .catch(error => alert(JSON.stringify(error.response.data.message)))
-    }, [token])
+    }, [])
 
     return (
         <div className='forums-container1'>
