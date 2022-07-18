@@ -8,6 +8,7 @@ import { LINK_FORUMS_CREATOR, LINK_FORUMS_TOPIC, LINK_FORUMS_INCREASE_VIEWS, LIN
 import CommentItem from '../components/CommentItem'
 import { createProfileUrl, createTopicUrl } from '../utils/Utils'
 import Button from '../components/Button'
+import useTopic from '../hooks/useTopic'
 
 interface TopicType {
     id: number,
@@ -37,7 +38,7 @@ function Topic() {
     const [reply, setReply] = useState<string>('')
     const [comments, setComments] = useState<CommentType[]>([])
     const navigate = useNavigate()
-
+    const [, , increaseView, postReply] = useTopic(-1)
 
     const _hallId = typeof hallId == 'undefined' ? 0 : parseInt(hallId);
     const _topicId = typeof topicId == 'undefined' ? 0 : parseInt(topicId);
@@ -47,20 +48,7 @@ function Topic() {
             alert("لطفا  متن پاسخ را وارد نمایید")
             return;
         }
-
-        axios.post(LINK_FORUMS_SEND_COMMENT,
-            {
-                id: topicId,
-                content: reply
-            }, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                "Authorization": `Bearer ${token}`
-            }
-        })
-            .then(response => response.data)
-            .then(data => { window.open(createTopicUrl(_hallId, _topicId), "_self") })
-            .catch(error => { alert(JSON.stringify(error.response.data.message)) })
+        postReply(_topicId, reply, () => window.open(createTopicUrl(_hallId, _topicId), "_self"))
     }
 
     useEffect(() => {
@@ -90,19 +78,8 @@ function Topic() {
 
     useEffect(() => {
         document.title = "Stu Assist | تاپیک"
-
-        axios.post(LINK_FORUMS_INCREASE_VIEWS,
-            {
-                topic: topicId,
-            }, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                "Authorization": `Bearer ${token}`
-            }
-        })
-            .then(response => response.data)
-            .catch(error => { alert(JSON.stringify(error.response.data.message)) })
-    }, [token, topicId])
+        increaseView(_topicId)
+    }, [])
 
     useEffect(() => {
         axios.get(LINK_FORUMS_COMMENTS, {

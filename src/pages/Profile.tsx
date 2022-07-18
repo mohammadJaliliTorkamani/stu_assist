@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import ChargeOptionRecord from "../components/ChargeOptionRecord";
 import TransactionRecord from "../components/TransactionRecord";
