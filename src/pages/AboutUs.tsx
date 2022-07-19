@@ -42,7 +42,7 @@ const Separator = styled.span`
 
 function AboutUs() {
 
-    usePageTitle('تماس با ما')
+    usePageTitle('درباره ما')
 
     return (
         <TextContiner>
