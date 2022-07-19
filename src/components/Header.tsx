@@ -6,6 +6,8 @@ import { MenuItems, MenuItems_Links } from "./MenuItems";
 import './Header.css'
 import MenuItem from "./MenuItem";
 
+import React from 'react'
+
 function Header() {
     const [token,] = useLocalStorage('token', null)
     const [isUser, setIsUser] = useState(true)
@@ -14,7 +16,7 @@ function Header() {
     useEffect(() => {
         setIsUser(token !== null)
     }, [token])
-
+    console.log("S")
     return (
         <div className="nav-bar">
             <Link className="navbar-logo-container" onClick={e => setIsMobileMenuOpen(false)} to="/">
@@ -77,4 +79,4 @@ function Header() {
     );
 }
 
-export default Header
+export default React.memo(Header)
