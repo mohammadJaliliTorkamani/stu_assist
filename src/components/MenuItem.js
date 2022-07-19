@@ -65,4 +65,4 @@ const MenuItem = ({ items, depthLevel, onClick, externalLinks = false }) => {
   );
 };
 
-export default MenuItem;
+export default React.memo(MenuItem);
