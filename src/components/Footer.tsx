@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 import { FOOTER_TEXT } from "../utils/Constants"
+import React from "react"
 
 const FooterContainer = styled.div`
     display: flex;
@@ -14,6 +15,7 @@ const FooterContainer = styled.div`
 `
 
 function Footer() {
+
     return (
         <FooterContainer>
             {FOOTER_TEXT}
@@ -21,4 +23,4 @@ function Footer() {
     )
 }
 
-export default Footer
+export default React.memo(Footer)

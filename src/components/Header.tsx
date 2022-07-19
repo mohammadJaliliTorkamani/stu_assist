@@ -16,7 +16,7 @@ function Header() {
     useEffect(() => {
         setIsUser(token !== null)
     }, [token])
-    console.log("S")
+
     return (
         <div className="nav-bar">
             <Link className="navbar-logo-container" onClick={e => setIsMobileMenuOpen(false)} to="/">
