@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import TitledTextInput from '../components/TitledTextInput';
-import { useLocalStorage } from '../utils/useLocalStorage';
 import './ApplicationExperience.css'
 import avatar from '../assets/user_avatar.png'
 import useExperience from '../hooks/useExperience';
@@ -23,7 +22,7 @@ function ApplicationExperience() {
     const [admissionStatus, setAdmissionStatus] = useState(false)
     const [comment, setComment] = useState('')
     const [experiences, loading, guest, postExperience] = useExperience()
-
+ 
     const navigate = useNavigate()
     usePageTitle('تجربه پذیرش')
 

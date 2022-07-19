@@ -9,7 +9,6 @@ const homeOptionsContainer = {
 
 function Home() {
     usePageTitle('خانه')
-    
     return (
         <div key={1} style={homeOptionsContainer} className="home-container ltr">
             <HomeOptionBox

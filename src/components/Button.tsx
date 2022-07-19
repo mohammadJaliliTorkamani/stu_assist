@@ -9,7 +9,6 @@ interface IProps {
 }
 
 function Button({ title, onClick, className = "", reference = null }: IProps) {
-    console.log("W")
     return (
         <button className={"btn " + className} ref={reference} onClick={(e) => onClick(e)
         }>
