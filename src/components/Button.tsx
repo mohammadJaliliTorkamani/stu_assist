@@ -1,4 +1,5 @@
 import './Button.css'
+import React from 'react'
 
 interface IProps {
     title: string,
@@ -8,6 +9,7 @@ interface IProps {
 }
 
 function Button({ title, onClick, className = "", reference = null }: IProps) {
+    console.log("W")
     return (
         <button className={"btn " + className} ref={reference} onClick={(e) => onClick(e)
         }>
@@ -16,4 +18,4 @@ function Button({ title, onClick, className = "", reference = null }: IProps) {
     )
 }
 
-export default Button
+export default React.memo(Button)

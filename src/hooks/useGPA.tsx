@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { LINK_GPA } from "../utils/Constants"
 import { useLocalStorage } from "../utils/useLocalStorage"
 
@@ -14,7 +14,7 @@ function useGPA(_min: number | '', _max: number | '', _grade: number | '') {
     const [guest, setGuest] = useState(false)
     const [outOfCoupon, setOutOfCoupon] = useState(false)
 
-    const trigger = () => {
+    const trigger = useCallback(() => {
         setGuest(token === null)
         if (max === '' || min === '' || grade === '') {
             alert("لطفا تمامی فیلد ها را تکمیل نمایید")
@@ -52,7 +52,7 @@ function useGPA(_min: number | '', _max: number | '', _grade: number | '') {
                     })
             }
         }
-    }
+    }, [grade, max, min, guest, loading, outOfCoupon, token])
 
     useEffect(() => {
         if (outOfCoupon === true || loading === true || guest === true) {

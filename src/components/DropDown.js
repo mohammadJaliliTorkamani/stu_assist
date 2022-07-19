@@ -4,8 +4,6 @@ import './DropDown.css'
 import React from "react";
 
 const Dropdown = ({ submenus, dropdown, depthLevel, onClick, externalLink }) => {
-  console.log("S")
-
   depthLevel = depthLevel + 1;
   const dropdownClass = depthLevel > 1 ? "dropdown-submenu" : "";
   return (

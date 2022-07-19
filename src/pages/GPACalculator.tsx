@@ -10,6 +10,7 @@ import axios from "axios";
 import { useLocalStorage } from "../utils/useLocalStorage";
 import './GPACalculator.css'
 import usePageTitle from "../hooks/usePageTitle";
+import { useCallback } from "react";
 
 
 const SelectedTitle = styled.div`
@@ -30,7 +31,7 @@ function GPACalculator() {
 
     const naviaget = useNavigate()
     usePageTitle('محاسبه GPA')
-    const handlePayment = () => {
+    const handlePayment = useCallback( () => {
         axios
             .post(LINK_PAYMENT,
                 {
@@ -47,7 +48,7 @@ function GPACalculator() {
             .catch(error => {
                 alert(JSON.stringify(error.response.data.message))
             })
-    }
+    },[selectedChargeOption, token])
 
     return (
         <div className="gpa-container">
