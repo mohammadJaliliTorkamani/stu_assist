@@ -9,10 +9,6 @@ import { useLocalStorage } from '../utils/useLocalStorage'
 import { createTopicUrl } from '../utils/Utils'
 import './CreateTopic.css'
 
-interface CategoryType {
-    name: string,
-}
-
 interface HallType {
     id: number,
     name: string,

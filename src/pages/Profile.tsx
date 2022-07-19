@@ -24,7 +24,6 @@ function Profile() {
     const [transactions, setTransactions] = useState<TranscationRecordType[]>([])
     const [token,] = useLocalStorage('token', null)
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
-
     usePageTitle('حساب کاربری')
     const handlePayment = () => {
         axios.post(LINK_PAYMENT,

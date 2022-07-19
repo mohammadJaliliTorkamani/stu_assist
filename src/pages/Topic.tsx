@@ -79,7 +79,6 @@ function Topic() {
     }, [token, _topicId, topic?.creatorID])
 
     useEffect(() => {
-        document.title = "Stu Assist | تاپیک"
         increaseView(_topicId)
     }, [])
 

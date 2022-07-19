@@ -29,9 +29,8 @@ interface IProps {
 function CategoryItem({ category }: IProps) {
     const [halls, setHalls] = useState<HallType[]>([])
     const [token,] = useLocalStorage('token', null)
-
+    
     useEffect(() => {
-        document.title = "Stu Assist | تالار گفتگو"
         axios
             .get(LINK_FORUMS_HALLS, {
                 headers: {

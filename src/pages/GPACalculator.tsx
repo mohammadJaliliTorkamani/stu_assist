@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { useEffect } from "react";
 import Button from "../components/Button";
 import TitledNumericInput from "../components/TitledNumericInput";
 import { useNavigate } from "react-router-dom";
@@ -49,10 +48,6 @@ function GPACalculator() {
                 alert(JSON.stringify(error.response.data.message))
             })
     }
-
-    useEffect(() => {
-        document.title = "Stu Assist | محاسبه GPA "
-    }, [])
 
     return (
         <div className="gpa-container">
