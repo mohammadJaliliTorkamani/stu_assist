@@ -60,7 +60,7 @@ function AboutUs() {
                 {
                     contactLinks.map(
                         item =>
-                            <a key={item.id} href={"mailto:"+item.value}
+                            <a key={item.id} href={"mailto:" + item.value}
                                 style={{ textDecoration: 'none', color: 'black' }}>
                                 {item.label} : {item.value}
                             </a >

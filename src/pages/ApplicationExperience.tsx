@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
-import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import TitledTextInput from '../components/TitledTextInput';
-import { LINK_POST_APPLICATION_EXPERIENCE } from '../utils/Constants';
 import { useLocalStorage } from '../utils/useLocalStorage';
 import './ApplicationExperience.css'
 import avatar from '../assets/user_avatar.png'
@@ -24,9 +22,7 @@ function ApplicationExperience() {
     const [universityName, setUniversityName] = useState('')
     const [admissionStatus, setAdmissionStatus] = useState(false)
     const [comment, setComment] = useState('')
-    const [experiences, loading, guest] = useExperience()
-
-    const [token,] = useLocalStorage('token', null)
+    const [experiences, loading, guest, postExperience] = useExperience()
 
     const navigate = useNavigate()
     usePageTitle('تجربه پذیرش')
@@ -36,22 +32,12 @@ function ApplicationExperience() {
             alert('لطفا تمامی موارد را تکمیل بفرمایید')
             return
         }
-        axios
-            .post(LINK_POST_APPLICATION_EXPERIENCE,
-                {
-                    university: JSON.stringify({ name: universityName, city: city, country: country }),
-                    experience: JSON.stringify({ comment: comment }),
-                    admission_status: admissionStatus ? 1 : 0
-                }, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    "Authorization": `Bearer ${token}`
-                }
+
+        postExperience(
+            JSON.stringify({ name: universityName, city: city, country: country }),
+            JSON.stringify({ comment: comment }), admissionStatus ? 1 : 0, () => {
+                setSent(true)
             })
-            .then(response => response.data)
-            .then(response => setSent(true))
-            .catch(error =>
-                alert(JSON.stringify(error.response.data)))
     }
 
     return (
@@ -154,4 +140,4 @@ function ApplicationExperience() {
     )
 }
 
-export default ApplicationExperience;
+export default ApplicationExperience

@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { LINK_EXPERIENCES } from "../utils/Constants"
+import { LINK_EXPERIENCES, LINK_POST_APPLICATION_EXPERIENCE } from "../utils/Constants"
 import { useLocalStorage } from "../utils/useLocalStorage"
 
 interface ApplicationExperienceTemplate {
@@ -43,7 +43,25 @@ function useExperience() {
             )
     }, [token])
 
-    return [experiences, loading, guest] as const
+    const postExperience = (university: string, experience: string, admission_status: number, onSuccess: () => void) => {
+        axios
+            .post(LINK_POST_APPLICATION_EXPERIENCE,
+                {
+                    university: university,
+                    experience: experience,
+                    admission_status: admission_status
+                }, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then(response => response.data)
+            .then(response => onSuccess)
+            .catch(error => alert(JSON.stringify(error.response.data)))
+    }
+
+    return [experiences, loading, guest, postExperience] as const
 }
 
 export default useExperience

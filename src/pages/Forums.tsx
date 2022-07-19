@@ -7,7 +7,7 @@ function Forums() {
     const [categories] = useCategory()
 
     usePageTitle('تالار گفتگو')
-    
+
     return (
         <div className='forums-container1'>
             <div className='forums-categories_container'>

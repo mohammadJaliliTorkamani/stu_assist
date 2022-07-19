@@ -4,8 +4,7 @@ import Button from '../components/Button'
 import useCategory from '../hooks/useCategory'
 import usePageTitle from '../hooks/usePageTitle'
 import useTopic from '../hooks/useTopic'
-import { LINK_FORUMS_CATEGORIES, LINK_FORUMS_HALLS } from '../utils/Constants'
-import { useLocalStorage } from '../utils/useLocalStorage'
+import { LINK_FORUMS_HALLS } from '../utils/Constants'
 import { createTopicUrl } from '../utils/Utils'
 import './CreateTopic.css'
 
@@ -22,63 +21,53 @@ interface HallType {
 }
 
 function CreateTopic() {
-    const [token,] = useLocalStorage('token', null)
     const [name, setName] = useState<string>('')
     const [content, setContent] = useState<string>('')
-    const [category, setCategory] = useState<string>('')
-    const [hall, setHall] = useState<number>(-1)
-    const [categories] = useCategory()
+    const [category, setCategory] = useState('')
+    const [hall, setHall] = useState(-1)
     const [halls, setHalls] = useState<HallType[]>([])
-
+    const [categories] = useCategory()
     const [, createTopic] = useTopic(hall)
 
     usePageTitle('تاپیک جدید')
-    useEffect(() => {
-        axios
-            .get(LINK_FORUMS_CATEGORIES)
-            .then(response => response.data)
-            .then(data => {
-                setCategory(data.data[0].name)
-                fetchHalls(data.data[0].name)
-            })
-            .catch(error => alert(JSON.stringify(error.response.data.message)))
-    }, [])
 
     const createTopicHandler = () => {
-        if (name === '' || content === '' || category === '' || hall === -1) {
+        if (name === '' || content === '' || category === '' || hall === -1)
             alert("لطفا تمامی فیلد ها را تکمیل نمایید")
-            return;
-        }
-        createTopic(name, content, category, hall, topicId => window.open(createTopicUrl(hall, topicId), "_self"))
+        else
+            createTopic(name, content, category, hall, topicId => window.open(createTopicUrl(hall, topicId), "_self"))
     }
 
-    const fetchHalls = (category: string) => {
+    useEffect(() => {
+        if (categories.length > 0)
+            setCategory(categories[0].name)
+    }, [categories])
+
+    useEffect(() => {
         axios
             .get(LINK_FORUMS_HALLS, {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }, params: {
+                params: {
                     category: category,
                 }
             })
             .then(response => response.data)
             .then(data => {
-                setHall(data.data[0].id)
                 setHalls(data.data)
+                if (data.data.length > 0)
+                    setHall(data.data[0].id)
             })
             .catch(error => alert(JSON.stringify(error.response.data.message)))
-    }
-
-
+    }, [category])
 
     return <div className="create-topic-container">
         <div className='create-topic-label'>ساخت تاپیک جدید</div>
-        <input className='create-topic-name' placeholder='نام تاپیک را در این قسمت وارد نمایید' value={name} onChange={e => setName(e.target.value)} />
+        <input
+            className='create-topic-name'
+            placeholder='نام تاپیک را در این قسمت وارد نمایید'
+            value={name}
+            onChange={e => setName(e.target.value)} />
         <div className='create-topic-selects-container'>
-            <select className='create-topic-categories-select' onChange={e => {
-                setCategory(e.target.value)
-                fetchHalls(e.target.value)
-            }}>
+            <select className='create-topic-categories-select' onChange={e => setCategory(e.target.value)}>
                 {
                     categories.map(item => <option key={item.name} value={item.name}>
                         تالار  {item.name}
@@ -93,7 +82,13 @@ function CreateTopic() {
                 }
             </select>
         </div>
-        <textarea className='create-topic-content' placeholder='متن تاپیک مورد نظر را در این قسمت وارد نمایید' maxLength={200} value={content} onChange={e => setContent(e.target.value)} ></textarea>
+        <textarea
+            className='create-topic-content'
+            placeholder='متن تاپیک مورد نظر را در این قسمت وارد نمایید'
+            maxLength={200}
+            value={content}
+            onChange={e => setContent(e.target.value)} >
+        </textarea>
         <div className='create-topic-button-container'>
             <Button title='ساخت تاپیک' onClick={e => createTopicHandler()} />
         </div>

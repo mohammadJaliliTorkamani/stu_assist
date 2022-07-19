@@ -14,8 +14,9 @@ function useCategory() {
         axios
             .get(LINK_FORUMS_CATEGORIES)
             .then(response => response.data)
-            .then(data => { setCategories(data.data) })
+            .then(data => setCategories(data.data))
             .catch(error => alert(JSON.stringify(error.response.data.message)))
+
     }, [])
     return [categories] as const
 }
