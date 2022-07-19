@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useEffect } from "react";
+import usePageTitle from "../hooks/usePageTitle";
 import { contactLinks, TOUContent } from "../utils/Constants";
 
 const TextContiner = styled.div`
@@ -41,9 +41,8 @@ const Separator = styled.span`
 `
 
 function AboutUs() {
-    useEffect(() => {
-        document.title = "Stu Assist | تماس با ما"
-    }, [])
+
+    usePageTitle('تماس با ما')
 
     return (
         <TextContiner>

@@ -1,15 +1,13 @@
-import { useEffect } from 'react'
 import CategoryItem from '../components/CategoryItem'
 import useCategory from '../hooks/useCategory'
+import usePageTitle from '../hooks/usePageTitle'
 import './Forums.css'
 
 function Forums() {
     const [categories] = useCategory()
 
-    useEffect(() => {
-        document.title = "Stu Assist | تالار گفتگو"
-    }, [])
-
+    usePageTitle('تالار گفتگو')
+    
     return (
         <div className='forums-container1'>
             <div className='forums-categories_container'>

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import usePageTitle from "../hooks/usePageTitle";
 import { LINK_PAYMENT_RESULT } from "../utils/Constants";
 import { useLocalStorage } from "../utils/useLocalStorage";
 

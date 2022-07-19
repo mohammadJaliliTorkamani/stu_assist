@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from '../assets/user_avatar.png'
 import Button from "../components/Button";
+import usePageTitle from "../hooks/usePageTitle";
 import { LINK_LOGIN, PHONE_LENGTH } from "../utils/Constants";
 
 const Container = styled.div`
@@ -67,8 +68,8 @@ function Login() {
     const buttonRef = useRef<any>()
     const inputRef = useRef<any>()
 
+    usePageTitle('ورود')
     useEffect(() => {
-        document.title = "Stu Assist | ورود"
         inputRef.current.focus()
     }, [])
 

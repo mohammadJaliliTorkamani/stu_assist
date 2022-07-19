@@ -9,6 +9,7 @@ import CommentItem from '../components/CommentItem'
 import { createProfileUrl, createTopicUrl } from '../utils/Utils'
 import Button from '../components/Button'
 import useTopic from '../hooks/useTopic'
+import usePageTitle from '../hooks/usePageTitle'
 
 interface TopicType {
     id: number,
@@ -43,6 +44,7 @@ function Topic() {
     const _hallId = typeof hallId == 'undefined' ? 0 : parseInt(hallId);
     const _topicId = typeof topicId == 'undefined' ? 0 : parseInt(topicId);
 
+    usePageTitle('تاپیک')
     const sendReply = () => {
         if (reply === '') {
             alert("لطفا  متن پاسخ را وارد نمایید")

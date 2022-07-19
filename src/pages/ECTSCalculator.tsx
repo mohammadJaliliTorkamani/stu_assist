@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import axios from "axios";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import ChargeOptionRecord from "../components/ChargeOptionRecord";
 import TitledNumericInput from "../components/TitledNumericInput";
 import useChargeOptions from "../hooks/useChargeOptions";
 import useECTS from "../hooks/useECTS";
+import usePageTitle from "../hooks/usePageTitle";
 import { LINK_PAYMENT } from "../utils/Constants";
 import { useLocalStorage } from "../utils/useLocalStorage";
 
@@ -30,6 +30,7 @@ function ECTSCalculator() {
     const [token,] = useLocalStorage('token', null)
 
     const navigate = useNavigate()
+    usePageTitle('محاسبه ECTS')
 
     const handlePayment = () => {
         axios
@@ -49,10 +50,6 @@ function ECTSCalculator() {
                 alert(JSON.stringify(error.response.data.message))
             })
     }
-
-    useEffect(() => {
-        document.title = "Stu Assist | محاسبه ECTS "
-    }, [])
 
     return (
         <div className="ects-container">

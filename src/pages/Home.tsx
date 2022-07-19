@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import HomeOptionBox from "../components/HomeOptionBox";
+import usePageTitle from "../hooks/usePageTitle";
 import './Home.css'
 
 const homeOptionsContainer = {
@@ -8,10 +8,8 @@ const homeOptionsContainer = {
 }
 
 function Home() {
-    useEffect(() => {
-        document.title = "Stu Assist | خانه"
-    }, [])
-
+    usePageTitle('خانه')
+    
     return (
         <div key={1} style={homeOptionsContainer} className="home-container ltr">
             <HomeOptionBox

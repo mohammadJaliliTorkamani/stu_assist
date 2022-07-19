@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import TitledTextInput from '../components/TitledTextInput';
@@ -9,6 +9,7 @@ import { useLocalStorage } from '../utils/useLocalStorage';
 import './ApplicationExperience.css'
 import avatar from '../assets/user_avatar.png'
 import useExperience from '../hooks/useExperience';
+import usePageTitle from '../hooks/usePageTitle';
 
 const SelectedTitle = styled.div`
     font-size: 1rem;
@@ -28,10 +29,7 @@ function ApplicationExperience() {
     const [token,] = useLocalStorage('token', null)
 
     const navigate = useNavigate()
-
-    useEffect(() => {
-        document.title = "Stu Assist | تجربه پذیرش "
-    }, [])
+    usePageTitle('تجربه پذیرش')
 
     const handlePost = () => {
         if (universityName === '' || city === '' || country === '') {

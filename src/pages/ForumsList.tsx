@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import './ForumsList.css'
-import TopicItem from "./TopicItem"
+import TopicItem from "../components/TopicItem"
 import { useLocalStorage } from "../utils/useLocalStorage"
 import Button from "../components/Button"
 import useHall from "../hooks/useHall"
 import useTopic from "../hooks/useTopic"
+import usePageTitle from "../hooks/usePageTitle"
 
 function ForumsList() {
     const [token,] = useLocalStorage('token', null)
@@ -14,10 +14,7 @@ function ForumsList() {
     const [hall] = useHall(_hallId)
     const [topics] = useTopic(_hallId)
     const navigate = useNavigate()
-
-    useEffect(() => {
-        document.title = "Stu Assist | سالن گفتگو"
-    }, [])
+    usePageTitle('سالن گفتگو')
 
     return (
         <div className="forums-list-container1">

@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import ChargeOptionRecord from "../components/ChargeOptionRecord";
 import TransactionRecord from "../components/TransactionRecord";
 import useChargeOptions from "../hooks/useChargeOptions";
+import usePageTitle from "../hooks/usePageTitle";
 import { LINK_EDIT_USER, LINK_PAYMENT, LINK_PROFILE } from "../utils/Constants";
 import { useLocalStorage } from "../utils/useLocalStorage";
 import './Profile.css'
@@ -24,6 +25,7 @@ function Profile() {
     const [token,] = useLocalStorage('token', null)
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
 
+    usePageTitle('حساب کاربری')
     const handlePayment = () => {
         axios.post(LINK_PAYMENT,
             {
@@ -63,7 +65,6 @@ function Profile() {
     }
 
     useEffect(() => {
-        document.title = "Stu Assist | حساب کاربری"
         axios
             .get(LINK_PROFILE, {
                 headers: {

@@ -2,8 +2,9 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Button from '../components/Button'
 import useCategory from '../hooks/useCategory'
+import usePageTitle from '../hooks/usePageTitle'
 import useTopic from '../hooks/useTopic'
-import { LINK_FORUMS_CATEGORIES, LINK_FORUMS_CREATE_TOPIC, LINK_FORUMS_HALLS } from '../utils/Constants'
+import { LINK_FORUMS_CATEGORIES, LINK_FORUMS_HALLS } from '../utils/Constants'
 import { useLocalStorage } from '../utils/useLocalStorage'
 import { createTopicUrl } from '../utils/Utils'
 import './CreateTopic.css'
@@ -35,8 +36,8 @@ function CreateTopic() {
 
     const [, createTopic] = useTopic(hall)
 
+    usePageTitle('تاپیک جدید')
     useEffect(() => {
-        document.title = "Stu Assist | تاپیک جدید"
         axios
             .get(LINK_FORUMS_CATEGORIES)
             .then(response => response.data)

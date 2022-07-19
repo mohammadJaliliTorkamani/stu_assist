@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import avatar from '../assets/user_avatar.png'
 import Button from "../components/Button";
+import usePageTitle from "../hooks/usePageTitle";
 import { LINK_OTP, OTP_LENGTH } from "../utils/Constants";
 import { useLocalStorage } from "../utils/useLocalStorage";
 
@@ -74,8 +75,8 @@ function OTP() {
     const inputRef = useRef<any>()
     const [, setToken] = useLocalStorage('token', null)
 
+    usePageTitle('احراز هویت')
     useEffect(() => {
-        document.title = "Stu Assist | احراز هویت"
         inputRef.current.focus()
     }, [])
 

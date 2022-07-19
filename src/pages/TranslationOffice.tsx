@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import TranslationOfficeRecord from '../components/TranslationOfficeRecord'
+import usePageTitle from '../hooks/usePageTitle'
 import { LINK_TRANSLATION_OFFICES } from '../utils/Constants'
 import { useLocalStorage } from '../utils/useLocalStorage'
 import './TranslationOffices.css'
@@ -22,6 +23,7 @@ interface TranslationOfficeTemplate {
 function TranslationOffice() {
     const [token,] = useLocalStorage('token', null)
     const [offices, setOffices] = useState<TranslationOfficeTemplate[]>([])
+    usePageTitle('دارالترجمه های رسمی')
 
     useEffect(() => {
         axios

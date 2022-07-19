@@ -10,6 +10,7 @@ import { LINK_PAYMENT } from "../utils/Constants";
 import axios from "axios";
 import { useLocalStorage } from "../utils/useLocalStorage";
 import './GPACalculator.css'
+import usePageTitle from "../hooks/usePageTitle";
 
 
 const SelectedTitle = styled.div`
@@ -29,7 +30,7 @@ function GPACalculator() {
     const [token,] = useLocalStorage('token', null)
 
     const naviaget = useNavigate()
-
+    usePageTitle('محاسبه GPA')
     const handlePayment = () => {
         axios
             .post(LINK_PAYMENT,

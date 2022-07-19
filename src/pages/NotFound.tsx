@@ -1,8 +1,8 @@
 import styled from "@emotion/styled"
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from '../assets/sad_computer.png'
 import Button from "../components/Button";
+import usePageTitle from "../hooks/usePageTitle";
 
 const Container = styled.div`
     background: #f2f2f2;
@@ -26,9 +26,7 @@ const Logo = styled.img`
 
 export default function NotFound() {
     const navigate = useNavigate()
-    useEffect(() => {
-        document.title = "صفحه یافت نشد"
-    }, [])
+    usePageTitle('صفحه یافت نشد')
 
     return (
         <Container>
