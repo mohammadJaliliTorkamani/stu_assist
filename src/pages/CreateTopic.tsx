@@ -20,7 +20,7 @@ interface HallType {
     }
 }
 
-function CreateTopic() {
+function CreateTopic() {    
     const [name, setName] = useState<string>('')
     const [content, setContent] = useState<string>('')
     const [category, setCategory] = useState('')

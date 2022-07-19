@@ -15,7 +15,6 @@ function ForumsList() {
     const [topics] = useTopic(_hallId)
     const navigate = useNavigate()
     usePageTitle('سالن گفتگو')
-
     return (
         <div className="forums-list-container1">
             <div className="forums-list-above-header">
