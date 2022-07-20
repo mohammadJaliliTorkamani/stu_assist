@@ -1,0 +1,9 @@
+.blogs-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    direction: rtl;
+    min-height: calc(100vh - 160px);
+    padding: 1rem;
+}

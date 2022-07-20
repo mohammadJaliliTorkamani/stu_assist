@@ -38,17 +38,17 @@ function TranslationOffice() {
     }, [token])
 
     return (
-        <div className='container1'>
-            <table className="table">
-                <tbody className='table-body'>
-                    <tr className="table-row">
-                        <th className="table-header">ردیف</th>
-                        <th className="table-header"> نام دارالترجمه</th>
-                        <th className="table-header">زبان ها</th>
-                        <th className="table-header">شماره تلفن</th>
-                        <th className="table-header">وبسایت</th>
-                        <th className="table-header">آدرس پستی</th>
-                        <th className="table-header">موقعیت در نقشه</th>
+        <div className='translation-offices-container'>
+            <table className="translation-offices-table">
+                <tbody className='translation-offices-table-body'>
+                    <tr className="translation-offices-table-row">
+                        <th className="translation-offices-table-header">ردیف</th>
+                        <th className="translation-offices-table-header"> نام دارالترجمه</th>
+                        <th className="translation-offices-table-header">زبان ها</th>
+                        <th className="translation-offices-table-header">شماره تلفن</th>
+                        <th className="translation-offices-table-header">وبسایت</th>
+                        <th className="translation-offices-table-header">آدرس پستی</th>
+                        <th className="translation-offices-table-header">موقعیت در نقشه</th>
                     </tr>
                     {offices.map(office => <TranslationOfficeRecord key={office.id} record={office} />)}
                 </tbody>

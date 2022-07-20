@@ -40,6 +40,11 @@ function Header() {
                     }
                 </li>
                 <li className='nav-item'>
+                    <Link to='/blogs' className='nav-links' onClick={e => setIsMobileMenuOpen(false)}>
+                        وبلاگ
+                    </Link>
+                </li>
+                <li className='nav-item'>
                     <Link to='/forums' className='nav-links' onClick={e => setIsMobileMenuOpen(false)}>
                         تالار گفتگو
                     </Link>

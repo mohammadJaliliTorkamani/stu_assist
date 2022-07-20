@@ -22,7 +22,7 @@ function ApplicationExperience() {
     const [admissionStatus, setAdmissionStatus] = useState(false)
     const [comment, setComment] = useState('')
     const [experiences, loading, guest, postExperience] = useExperience()
- 
+
     const navigate = useNavigate()
     usePageTitle('تجربه پذیرش')
 
