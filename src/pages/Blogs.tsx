@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import BlogPost from '../components/BlogPost'
+import BlogPostItem from '../components/BlogPostItem'
 import { LINK_BLOGS_BLOGS } from '../utils/Constants'
 import './Blogs.css'
 
@@ -73,11 +73,11 @@ function Blogs() {
         <div className='blogs-posts'>
             {
                 selectedBlogCategory === -1 &&
-                posts.map(post => <BlogPost post={post} />)
+                posts.map(post => <BlogPostItem post={post} />)
             }
             {
                 selectedBlogCategory > 0 &&
-                rawData.filter(item => item.categoryID === selectedBlogCategory)[0].posts.map(post => <BlogPost post={post} />)
+                rawData.filter(item => item.categoryID === selectedBlogCategory)[0].posts.map(post => <BlogPostItem post={post} />)
             }
         </div>
 

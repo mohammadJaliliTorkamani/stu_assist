@@ -22,6 +22,7 @@ import GuestProfile from './pages/GuestProfile';
 import Topic from './pages/Topic';
 import CreateTopic from './pages/CreateTopic';
 import Blogs from './pages/Blogs';
+import BlogPost from './pages/BlogPost';
 
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
@@ -54,9 +55,10 @@ function App() {
         <Route path="forums/:hallId" element={<ForumsList />} />
         <Route path="forums/:hallId/:topicId" element={<Topic />} />
         <Route path="blogs" element={<Blogs />} />
+        <Route path="blogs/:postId" element={<BlogPost />} />
         <Route path="create-topic" element={
           // <ProtectedRoute>
-            <CreateTopic />
+          <CreateTopic />
           // </ProtectedRoute>
         } />
         <Route path='*' element={<NotFound />} />

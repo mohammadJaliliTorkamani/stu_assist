@@ -11,3 +11,7 @@ export function createTopicUrl(hallId: number, topicId: number) {
 export function createProfileUrl(profileID: number) {
     return BASE_URL + "profile/" + profileID
 }
+
+export function createBlogPostUrl(postID: number) {
+    return BASE_URL + "blogs/" + postID
+}
