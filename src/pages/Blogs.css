@@ -1,9 +1,48 @@
 .blogs-container {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: center;
+    align-items: flex-start;
     direction: rtl;
     min-height: calc(100vh - 160px);
     padding: 1rem;
+}
+
+.blogs-categories {
+    display: flex;
+    overflow-x: auto;
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+.blogs-category {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    color: white;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-left: 10px;
+    border-radius: 10rem;
+    cursor: pointer;
+}
+
+.blogs-posts {
+    display: grid;
+    margin-top: 1rem;
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+}
+
+@media screen and (max-width: 960px) {
+    .blogs-posts {
+        display: grid; 
+        margin-top: 1rem;
+        grid-template-columns: repeat(1, minmax(100px, 1fr));
+    }
 }

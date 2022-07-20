@@ -1,0 +1,43 @@
+.blog-post-container {
+    background-color: white;
+    border-radius: 4px 4px 0 0;
+    margin: 1rem;
+    cursor: pointer;
+    width: 20rem;
+    height: 20rem;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: space-around;
+    border: solid 1px rgb(241, 241, 241);
+}
+
+.blog-post-text-content-container{
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    
+}
+
+.blog-post-title {
+    color: black;
+}
+
+.blog-post-overview {
+    color: rgb(145, 145, 145);
+    margin-top: 10px;
+}
+
+.blog-post-read-more-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+.blog-post-read-more {
+    font-weight: 700;
+    color: green;
+}
