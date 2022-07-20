@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import BlogPostItem from '../components/BlogPostItem'
+import usePageTitle from '../hooks/usePageTitle'
 import { LINK_BLOGS_BLOGS } from '../utils/Constants'
 import './Blogs.css'
 
@@ -29,6 +30,7 @@ function Blogs() {
     const [posts, setPosts] = useState<BlogPostType[]>([])
     const [rawData, setRawData] = useState<RawPostsType[]>([])
     const [selectedBlogCategory, setSelectedBlogCategory] = useState<number>(-1)
+    usePageTitle('وبلاگ')
 
     const getCategoriesFrom = (data: RawPostsType[]): BlogsCategoryType[] => {
         let categories: BlogsCategoryType[] = []

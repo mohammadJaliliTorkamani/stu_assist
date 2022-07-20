@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import usePageTitle from '../hooks/usePageTitle'
 import { LINK_BLOGS_BLOG } from '../utils/Constants'
 import './BlogPost.css'
 
@@ -18,7 +19,6 @@ function BlogPost() {
 
     const { postId } = useParams()
     const _postId = typeof postId == 'undefined' ? 0 : parseInt(postId)
-
     const [post, setPost] = useState<BlogPostType>()
 
     useEffect(() => {
@@ -29,7 +29,10 @@ function BlogPost() {
                 }
             })
             .then(response => response.data)
-            .then(data => setPost(data.data))
+            .then(data => {
+                setPost(data.data)
+                document.title = data.data.title
+            })
             .catch(error => alert(JSON.stringify(error.response.data.message)))
 
     }, [_postId])
