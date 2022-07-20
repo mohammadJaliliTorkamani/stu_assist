@@ -16,7 +16,7 @@ interface BlogPostType {
 function BlogPost({ post }: IProps) {
     const photoPath = post.photoPath
     return <div className='blog-post-container'>
-        <img src={photoPath} alt={post.title + " Image"} />
+        <img src={photoPath} alt={post.title + " Image"} className="blog-post-image" />
         <div className='blog-post-text-content-container'>
             <div className='blog-post-title'>{post.title}</div>
             <div className='blog-post-overview'>{post.overview}</div>
