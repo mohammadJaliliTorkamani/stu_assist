@@ -9,7 +9,7 @@ import MenuItem from "./MenuItem";
 import React from 'react'
 
 function Header() {
-    const [token,] = useLocalStorage('token', null)
+    const [token, setToken] = useLocalStorage('token', null)
     const [isUser, setIsUser] = useState(true)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -27,6 +27,16 @@ function Header() {
                 <i className={isMobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'} />
             </div>
             <ul className={isMobileMenuOpen ? 'nav-menu active' : 'nav-menu'}>
+                {isUser && <li className='nav-item'>
+                    <div className='nav-links logout' onClick={e => {
+                        setToken(null)
+                        setIsMobileMenuOpen(false)
+                        window.location.reload()
+                    }}>
+                        خروج از حساب کاربری
+                    </div>
+                </li>
+                }
                 <li className='nav-item'>
                     <Link to='/about-us' className='nav-links' onClick={e => setIsMobileMenuOpen(false)}>
                         درباره ما
