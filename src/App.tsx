@@ -57,9 +57,9 @@ function App() {
         <Route path="blogs" element={<Blogs />} />
         <Route path="blogs/:postId" element={<BlogPost />} />
         <Route path="create-topic" element={
-          // <ProtectedRoute>
-          <CreateTopic />
-          // </ProtectedRoute>
+          <ProtectedRoute>
+            <CreateTopic />
+          </ProtectedRoute>
         } />
         <Route path='*' element={<NotFound />} />
 
