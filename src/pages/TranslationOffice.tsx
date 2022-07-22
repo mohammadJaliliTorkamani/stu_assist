@@ -13,7 +13,9 @@ interface TranslationOfficeTemplate {
     address: {
         name: string,
         latitude: number,
-        longitude: number
+        longitude: number,
+        state: string,
+        city: string
     },
     website: string,
     phoneNumber: string
@@ -23,6 +25,10 @@ interface TranslationOfficeTemplate {
 function TranslationOffice() {
     const [token,] = useLocalStorage('token', null)
     const [offices, setOffices] = useState<TranslationOfficeTemplate[]>([])
+    const [state, setState] = useState<string>('')
+    const [states, setStates] = useState<string[]>([])
+    const [shownOffices, setShownOffices] = useState<TranslationOfficeTemplate[]>([])
+
     usePageTitle('دارالترجمه های رسمی')
 
     useEffect(() => {
@@ -33,12 +39,38 @@ function TranslationOffice() {
                 }
             })
             .then(response => response.data)
-            .then(data => { setOffices(data.data) })
+            .then(data => {
+                setOffices(data.data)
+                if (data.data.length > 0) {
+                    const _statesTemp: string[] = ['همه']
+                    data.data.forEach((item: TranslationOfficeTemplate) => {
+                        if (_statesTemp.indexOf(item.address.state) === -1) {
+                            _statesTemp.push(item.address.state)
+                        }
+                    })
+                    setStates(_statesTemp)
+                    setState(_statesTemp[0])
+                }
+            })
             .catch(error => alert(JSON.stringify(error.response.data.message)))
     }, [token])
 
+    useEffect(() => {
+        setShownOffices(state === 'همه' ? offices : offices.filter(office => office.address.state === state))
+    }, [state])
+
     return (
         <div className='translation-offices-container'>
+            <div className='translation-offices-state-choosing-container'>
+                <div>استان</div>
+                <select className='translation-offices-state-select' onChange={e => setState(e.target.value)}>
+                    {
+                        states.map((stateItem: string) => <option key={stateItem} value={stateItem}>
+                            {stateItem}
+                        </option>)
+                    }
+                </select>
+            </div>
             <table className="translation-offices-table">
                 <tbody className='translation-offices-table-body'>
                     <tr className="translation-offices-table-row">
@@ -50,7 +82,7 @@ function TranslationOffice() {
                         <th className="translation-offices-table-header">آدرس پستی</th>
                         <th className="translation-offices-table-header">موقعیت در نقشه</th>
                     </tr>
-                    {offices.map(office => <TranslationOfficeRecord key={office.id} record={office} />)}
+                    {shownOffices.map(office => <TranslationOfficeRecord key={office.id} record={office} />)}
                 </tbody>
             </table>
         </div>
