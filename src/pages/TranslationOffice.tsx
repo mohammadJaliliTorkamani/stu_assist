@@ -44,9 +44,8 @@ function TranslationOffice() {
                 if (data.data.length > 0) {
                     const _statesTemp: string[] = ['همه']
                     data.data.forEach((item: TranslationOfficeTemplate) => {
-                        if (_statesTemp.indexOf(item.address.state) === -1) {
+                        if (_statesTemp.indexOf(item.address.state) === -1)
                             _statesTemp.push(item.address.state)
-                        }
                     })
                     setStates(_statesTemp)
                     setState(_statesTemp[0])
