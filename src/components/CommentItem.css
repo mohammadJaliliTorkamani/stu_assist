@@ -62,6 +62,7 @@
 
 .comment-item-body-row-comment {
     margin-top: 2rem;
+    padding-top: 1rem;
 }
 
 .comment-item-header-text-container-name{
@@ -73,7 +74,7 @@
     margin-top: 1rem;
     direction: ltr;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
 }
 
@@ -97,6 +98,14 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     height: 8rem;
+}
+
+.comment-item-like-text{
+    direction: rtl;
+    display: flex;
+    flex-direction: row;
+    margin-left: 1rem;
+    justify-content: baseline;
 }
 
 .comment-item-report-inner-container{

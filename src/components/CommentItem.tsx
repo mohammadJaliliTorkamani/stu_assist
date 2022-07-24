@@ -20,6 +20,7 @@ interface CommentType {
     id: number,
     message: string,
     liked: boolean | undefined,
+    numberOfLikes: number,
     creatorID: number,
     commentDateTime: string
 }
@@ -107,19 +108,22 @@ function CommentItem({ comment }: IProps) {
                 </div>
             </div>
             <div className='comment-item-options-container'>
-                <img
-                    className='comment-item-options-item-image'
-                    src={repottLogo}
-                    title="گزارش پست"
-                    alt="گزارش پست"
-                    onClick={e => setReportTopicModalIsShown(true)}
-                />
-                <img
-                    className='comment-item-options-item-image'
-                    src={liked ? heartFilledLogo : heartEmptyLogo}
-                    alt={liked ? "نپسندیدن" : "پسندیدن"}
-                    title="پسندیدن"
-                    onClick={e => { likeUnlikeComment(comment.id, !liked, () => setLiked(!liked)) }} />
+                <div>
+                    <img
+                        className='comment-item-options-item-image'
+                        src={repottLogo}
+                        title="گزارش پست"
+                        alt="گزارش پست"
+                        onClick={e => setReportTopicModalIsShown(true)}
+                    />
+                    <img
+                        className='comment-item-options-item-image'
+                        src={liked ? heartFilledLogo : heartEmptyLogo}
+                        alt={liked ? "نپسندیدن" : "پسندیدن"}
+                        title="پسندیدن"
+                        onClick={e => { likeUnlikeComment(comment.id, !liked, () => setLiked(!liked)) }} />
+                </div>
+                <div className='comment-item-like-text'>{`${comment?.numberOfLikes === undefined ? 0 : comment?.numberOfLikes} پسند`}</div>
             </div>
         </div>
     )

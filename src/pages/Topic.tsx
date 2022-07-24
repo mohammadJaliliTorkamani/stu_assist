@@ -20,6 +20,7 @@ interface TopicType {
     name: string,
     content: string,
     creatorID: number,
+    numberOfLikes: number,
     liked: boolean | undefined,
     postDateTime: string,
 }
@@ -32,6 +33,7 @@ interface CommentType {
     id: number,
     message: string,
     liked: boolean | undefined,
+    numberOfLikes: number,
     creatorID: number,
     commentDateTime: string
 }
@@ -163,23 +165,29 @@ function Topic() {
                     </div>
                 </div>
                 <div className='topic-options-container'>
-                    <img
-                        className='topic-options-item-image'
-                        src={repottLogo}
-                        title="گزارش پست"
-                        alt="گزارش پست"
-                        onClick={e => setReportTopicModalIsShown(true)}
-                    />
-                    <img
-                        className='topic-options-item-image'
-                        src={liked ? heartFilledLogo : heartEmptyLogo}
-                        alt={liked ? "نپسندیدن" : "پسندیدن"}
-                        title="پسندیدن"
-                        onClick={e => { likeUnlikeTopic(_topicId, !liked, () => setLiked(!liked)) }} />
+                    <div>
+                        <img
+                            className='topic-options-item-image'
+                            src={repottLogo}
+                            title="گزارش پست"
+                            alt="گزارش پست"
+                            onClick={e => setReportTopicModalIsShown(true)}
+                        />
+                        <img
+                            className='topic-options-item-image'
+                            src={liked ? heartFilledLogo : heartEmptyLogo}
+                            alt={liked ? "نپسندیدن" : "پسندیدن"}
+                            title={liked ? "نپسندیدن" : "پسندیدن"}
+                            onClick={e => likeUnlikeTopic(_topicId, !liked, () => {
+                                setLiked(!liked)
+                                window.location.reload()
+                            })} />
+                    </div>
+                    <div className='topic-options-like-text'>{`${topic?.numberOfLikes === undefined ? 0 : topic?.numberOfLikes} پسند`}</div>
                 </div>
             </div >
 
-            <div className='topic-replies-sticker'>{"پاسخ ها ( " + comments.length + "پاسخ )"}</div>
+            <div className='topic-replies-sticker'>{"پاسخ ها ( " + comments.length + " پاسخ )"}</div>
             <div className="topic-reply">
                 {
                     token && <div className='topic-reply-container'>
