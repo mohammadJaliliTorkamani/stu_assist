@@ -13,9 +13,7 @@ function Header() {
     const [isUser, setIsUser] = useState(true)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    useEffect(() => {
-        setIsUser(token !== null)
-    }, [token])
+    useEffect(() => setIsUser(token !== null), [token])
 
     return (
         <div className="nav-bar">

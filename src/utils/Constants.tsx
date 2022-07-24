@@ -34,6 +34,7 @@ export const LINK_FORUMS_CREATE_TOPIC = "https://stu-assist.ir/api/services/foru
 export const LINK_BLOGS_BLOGS = "https://stu-assist.ir/api/blog/blogs.php"
 export const LINK_BLOGS_BLOG = "https://stu-assist.ir/api/blog/blog.php"
 export const LINK_ABOUT_US = "https://stu-assist.ir/api/utils/about_us.php"
+export const LINK_EMBASSIES = "https://stu-assist.ir/api/services/embassy/embassies.php"
 
 export const contactLinks = [
   {
