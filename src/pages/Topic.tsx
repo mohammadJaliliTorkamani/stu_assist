@@ -4,18 +4,22 @@ import { useLocalStorage } from '../utils/useLocalStorage'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { LINK_FORUMS_CREATOR, LINK_FORUMS_TOPIC, LINK_FORUMS_INCREASE_VIEWS, LINK_FORUMS_COMMENTS, LINK_FORUMS_SEND_COMMENT } from '../utils/Constants'
+import { LINK_FORUMS_COMMENTS, LINK_FORUMS_CREATOR, LINK_FORUMS_TOPIC } from '../utils/Constants'
 import CommentItem from '../components/CommentItem'
 import { createProfileUrl, createTopicUrl } from '../utils/Utils'
 import Button from '../components/Button'
 import useTopic from '../hooks/useTopic'
 import usePageTitle from '../hooks/usePageTitle'
+import heartFilledLogo from '../assets/heart_filled.png'
+import heartEmptyLogo from '../assets/heart_empty.png'
+import repottLogo from '../assets/report_logo.png'
 
 interface TopicType {
     id: number,
     name: string,
     content: string,
     creatorID: number,
+    liked: boolean | undefined,
     postDateTime: string,
 }
 
@@ -38,13 +42,15 @@ function Topic() {
     const [person, setPerson] = useState<PersonType>()
     const [reply, setReply] = useState<string>('')
     const [comments, setComments] = useState<CommentType[]>([])
+    const [liked, setLiked] = useState<boolean>(false)
     const navigate = useNavigate()
-    const [, , increaseView, postReply] = useTopic(-1)
+    const [, , increaseView, likeUnlikeTopic, postReply] = useTopic(-1)
 
-    const _hallId = typeof hallId == 'undefined' ? 0 : parseInt(hallId);
-    const _topicId = typeof topicId == 'undefined' ? 0 : parseInt(topicId);
+    const _hallId = typeof hallId == 'undefined' ? 0 : parseInt(hallId)
+    const _topicId = typeof topicId == 'undefined' ? 0 : parseInt(topicId)
 
     usePageTitle('تاپیک')
+
     const sendReply = () => {
         if (reply === '') {
             alert("لطفا  متن پاسخ را وارد نمایید")
@@ -64,6 +70,7 @@ function Topic() {
             .then(response => response.data)
             .then(data => {
                 setTopic(data.data)
+                setLiked(data.data.liked !== undefined && data.data.liked === true)
                 axios.get(LINK_FORUMS_CREATOR, {
                     headers: {
                         "Authorization": `Bearer ${token}`
@@ -116,6 +123,22 @@ function Topic() {
                     <div className='topic-body-row-comment'>
                         {topic?.content}
                     </div>
+                </div>
+                <div className='topic-options-container'>
+                    <img
+                        className='topic-options-item-image'
+                        src={repottLogo}
+                        title="گزارش پست"
+                        onClick={e => {
+
+                        }}
+                    />
+                    <img
+                        className='topic-options-item-image'
+                        src={liked ? heartFilledLogo : heartEmptyLogo}
+                        alt={liked ? "نپسندیدن" : "پسندیدن"}
+                        title="پسندیدن"
+                        onClick={e => { likeUnlikeTopic(_topicId, !liked, () => setLiked(!liked)) }} />
                 </div>
             </div >
 
