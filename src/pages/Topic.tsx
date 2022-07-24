@@ -13,6 +13,7 @@ import usePageTitle from '../hooks/usePageTitle'
 import heartFilledLogo from '../assets/heart_filled.png'
 import heartEmptyLogo from '../assets/heart_empty.png'
 import repottLogo from '../assets/report_logo.png'
+import Modal from 'react-modal';
 
 interface TopicType {
     id: number,
@@ -34,6 +35,17 @@ interface CommentType {
     commentDateTime: string
 }
 
+const modalStyle = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
+
 function Topic() {
 
     const [token,] = useLocalStorage('token', null)
@@ -43,8 +55,10 @@ function Topic() {
     const [reply, setReply] = useState<string>('')
     const [comments, setComments] = useState<CommentType[]>([])
     const [liked, setLiked] = useState<boolean>(false)
+    const [reportText, setReportText] = useState<string>('')
+    const [reportTopicModalIsShown, setReportTopicModalIsShown] = useState<boolean>(false)
     const navigate = useNavigate()
-    const [, , increaseView, likeUnlikeTopic, postReply] = useTopic(-1)
+    const [, , increaseView, likeUnlikeTopic, reportTopic, postReply] = useTopic(-1)
 
     const _hallId = typeof hallId == 'undefined' ? 0 : parseInt(hallId)
     const _topicId = typeof topicId == 'undefined' ? 0 : parseInt(topicId)
@@ -104,6 +118,29 @@ function Topic() {
 
     return (
         <div className='topic-total-container'>
+            <Modal
+                style={modalStyle}
+                isOpen={reportTopicModalIsShown}>
+                <div className='topic-report-container'>
+                    <div className='topic-report-inner-container'>
+                        <span className='fas fa-times topic-report-cross' onClick={e => setReportTopicModalIsShown(false)} />
+                        <textarea className='topic-report-text' placeholder='علت تخلف تاپیک را توضیح دهید'
+                            onChange={e => setReportText(e.target.value)}>{reportText}</textarea>
+                    </div>
+                    <Button title='ارسال تخلف' onClick={e => {
+                        if (reportText.trim() === '' || reportText.length === 0) {
+                            alert("لطفا علت تخلف تاپیک را وارد نمایید")
+                            return
+                        }
+                        reportTopic(_topicId, reportText, () => {
+                            setReportText('')
+                            setReportTopicModalIsShown(false)
+                            alert("با تشکر از شما، گزارش به مدیریت ارسال شد")
+                        })
+
+                    }} />
+                </div>
+            </Modal>
             <div className='topic-name'>{topic?.name}</div>
             <div key={1} className='topic-container'>
                 <div className='topic-header'>
@@ -129,9 +166,8 @@ function Topic() {
                         className='topic-options-item-image'
                         src={repottLogo}
                         title="گزارش پست"
-                        onClick={e => {
-
-                        }}
+                        alt="گزارش پست"
+                        onClick={e => setReportTopicModalIsShown(true)}
                     />
                     <img
                         className='topic-options-item-image'
@@ -142,7 +178,7 @@ function Topic() {
                 </div>
             </div >
 
-            <div className='topic-replies-sticker'>پاسخ ها</div>
+            <div className='topic-replies-sticker'>{"پاسخ ها ( " + comments.length + "پاسخ )"}</div>
             <div className="topic-reply">
                 {
                     token && <div className='topic-reply-container'>

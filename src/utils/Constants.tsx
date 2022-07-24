@@ -24,6 +24,7 @@ export const LINK_FORUMS_HALL = "https://stu-assist.ir/api/services/forums/halls
 export const LINK_FORUMS_TOPICS = "https://stu-assist.ir/api/services/forums/topics/topics.php"
 export const LINK_FORUMS_TOPIC = "https://stu-assist.ir/api/services/forums/topics/topic.php"
 export const LINK_FORUMS_LIKE_UNLIKE_TOPIC = "https://stu-assist.ir/api/services/forums/topics/like_topic.php"
+export const LINK_FORUMS_REPORT_TOPIC = "https://stu-assist.ir/api/services/forums/topics/report_topic.php"
 export const LINK_FORUMS_CREATOR = "https://stu-assist.ir/api/user/tiny_profile.php"
 export const LINK_FORUMS_INCREASE_VIEWS = "https://stu-assist.ir/api/services/forums/topics/increase_topic_viewers.php"
 export const LINK_FORUMS_COMMENTS = "https://stu-assist.ir/api/services/forums/comments/comments.php"

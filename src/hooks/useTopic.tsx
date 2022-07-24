@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { LINK_FORUMS_CREATE_TOPIC, LINK_FORUMS_INCREASE_VIEWS, LINK_FORUMS_LIKE_UNLIKE_TOPIC, LINK_FORUMS_SEND_COMMENT, LINK_FORUMS_TOPICS } from "../utils/Constants"
+import { LINK_FORUMS_CREATE_TOPIC, LINK_FORUMS_INCREASE_VIEWS, LINK_FORUMS_LIKE_UNLIKE_TOPIC, LINK_FORUMS_REPORT_TOPIC, LINK_FORUMS_SEND_COMMENT, LINK_FORUMS_TOPICS } from "../utils/Constants"
 import { useLocalStorage } from "../utils/useLocalStorage"
 
 interface TopicType {
@@ -93,7 +93,24 @@ function useTopic(hallId: number) {
                 alert(JSON.stringify(error.response.data.message)))
     }
 
-
+    const reportTopic = (topicId: number, reason: string, onSuccess: (() => void)) => {
+        if (reason === '')
+            return
+        axios
+            .post(LINK_FORUMS_REPORT_TOPIC,
+                {
+                    id: topicId,
+                    reason: reason
+                }, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then(response => response.data)
+            .then(data => onSuccess())
+            .catch(error => alert(JSON.stringify(error.response.data.message)))
+    }
 
     useEffect(() => {
         axios.get(LINK_FORUMS_TOPICS, {
@@ -106,7 +123,7 @@ function useTopic(hallId: number) {
             .catch(error => alert(JSON.stringify(error.response.data.message)))
     }, [hallId])
 
-    return [topics, createTopic, increaseView, likeUnlikeTopic, postReply] as const
+    return [topics, createTopic, increaseView, likeUnlikeTopic, reportTopic, postReply] as const
 }
 
 export default useTopic
