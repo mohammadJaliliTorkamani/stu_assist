@@ -15,6 +15,9 @@ import heartEmptyLogo from '../assets/heart_empty.png'
 import repottLogo from '../assets/report_logo.png'
 import Modal from 'react-modal'
 import { ToastContainer } from 'react-toastify'
+import 'react-quill/dist/quill.snow.css'
+import ReactQuill from 'react-quill';
+
 
 interface TopicType {
     id: number,
@@ -161,7 +164,6 @@ function Topic() {
                             setToastStatus(ToastStatus.SUCCESS)
                             toastMessage("با تشکر از شما، گزارش به مدیریت ارسال شد")
                         })
-
                     }} />
                 </div>
 
@@ -182,8 +184,7 @@ function Topic() {
                     </div>
                 </div>
                 <div className='topic-body'>
-                    <div className='topic-body-row-comment'>
-                        {topic?.content}
+                    <div className='topic-body-row-comment' dangerouslySetInnerHTML={{ __html: topic === undefined ? '' : topic?.content }}>
                     </div>
                 </div>
                 <div className='topic-options-container'>
@@ -215,8 +216,19 @@ function Topic() {
             <div className="topic-reply">
                 {
                     token && <div className='topic-reply-container'>
-
-                        <textarea placeholder='پاسخ خود را در این قسمت وارد نمایید' maxLength={1000} className='topic-reply-write-box' onChange={e => setReply(e.target.value)} value={reply}></textarea>
+                        <ReactQuill
+                            theme='snow'
+                            value={reply}
+                            onChange={setReply}
+                            placeholder='پاسخ خود را در این قسمت وارد نمایید'
+                            preserveWhitespace={true}
+                            style={{
+                                marginTop: '1rem',
+                                direction: 'rtl',
+                                border: '1px solid gray',
+                                borderRadius: '8px'
+                            }}
+                        />
                         <div className='topic-reply-button-container'>
                             <Button title='ارسال' onClick={e => sendReply()} />
                         </div>

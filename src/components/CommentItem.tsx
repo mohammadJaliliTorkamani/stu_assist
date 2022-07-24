@@ -12,6 +12,7 @@ import repottLogo from '../assets/report_logo.png'
 import Button from './Button'
 import useComment from '../hooks/useComment'
 import { useNavigate } from 'react-router-dom'
+import { Quill } from 'react-quill';
 
 interface IProps {
     comment: CommentType
@@ -111,8 +112,7 @@ function CommentItem({ comment }: IProps) {
                 </div>
             </div>
             <div className='comment-item-body'>
-                <div className='comment-item-body-row-comment'>
-                    {comment?.message}
+                <div className='comment-item-body-row-comment' dangerouslySetInnerHTML={{ __html: comment.message }}>
                 </div>
             </div>
             <div className='comment-item-options-container'>
@@ -135,7 +135,7 @@ function CommentItem({ comment }: IProps) {
                 </div>
                 <div className='comment-item-like-text'>{`${comment?.numberOfLikes === undefined ? 0 : comment?.numberOfLikes} پسند`}</div>
             </div>
-        </div>
+        </div >
     )
 }
 

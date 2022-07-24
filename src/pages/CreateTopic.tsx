@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import ReactQuill from 'react-quill'
 import { ToastContainer } from 'react-toastify'
 import Button from '../components/Button'
 import useCategory from '../hooks/useCategory'
@@ -89,13 +90,20 @@ function CreateTopic() {
                 }
             </select>
         </div>
-        <textarea
-            className='create-topic-content'
-            placeholder='متن تاپیک مورد نظر را در این قسمت وارد نمایید'
-            maxLength={200}
+        <ReactQuill
+            theme='snow'
             value={content}
-            onChange={e => setContent(e.target.value)} >
-        </textarea>
+            onChange={setContent}
+            placeholder='متن تاپیک مورد نظر را در این قسمت وارد نمایید'
+            preserveWhitespace={true}
+            style={{
+                marginTop: '1rem',
+                direction: 'rtl',
+                border: '1px solid gray',
+                borderRadius: '8px'
+            }}
+        />
+
         <div className='create-topic-button-container'>
             <Button title='ساخت تاپیک' onClick={e => createTopicHandler()} />
         </div>
