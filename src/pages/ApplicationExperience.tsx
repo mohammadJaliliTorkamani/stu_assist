@@ -7,6 +7,8 @@ import './ApplicationExperience.css'
 import avatar from '../assets/user_avatar.png'
 import useExperience from '../hooks/useExperience';
 import usePageTitle from '../hooks/usePageTitle';
+import { getToastColor, toastMessage, ToastStatus } from '../utils/Utils';
+import { ToastContainer } from 'react-toastify';
 
 const SelectedTitle = styled.div`
     font-size: 1rem;
@@ -22,13 +24,15 @@ function ApplicationExperience() {
     const [admissionStatus, setAdmissionStatus] = useState(false)
     const [comment, setComment] = useState('')
     const [experiences, loading, guest, postExperience] = useExperience()
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
 
     const navigate = useNavigate()
     usePageTitle('تجربه پذیرش')
 
     const handlePost = () => {
         if (universityName === '' || city === '' || country === '') {
-            alert('لطفا تمامی موارد را تکمیل بفرمایید')
+            setToastStatus(ToastStatus.INFO)
+            toastMessage('لطفا تمامی موارد را تکمیل بفرمایید')
             return
         }
 
@@ -135,6 +139,17 @@ function ApplicationExperience() {
                 }
             </div>
             }
+            <ToastContainer
+                toastStyle={{
+                    backgroundColor: getToastColor(toastID),
+                    color: 'white',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-end'
+                }}
+                limit={1}
+                hideProgressBar={true}
+                position='bottom-center' />
         </div>
     )
 }

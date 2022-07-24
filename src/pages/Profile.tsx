@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 import Button from "../components/Button";
 import ChargeOptionRecord from "../components/ChargeOptionRecord";
 import TransactionRecord from "../components/TransactionRecord";
@@ -7,6 +8,7 @@ import useChargeOptions from "../hooks/useChargeOptions";
 import usePageTitle from "../hooks/usePageTitle";
 import { LINK_EDIT_USER, LINK_PAYMENT, LINK_PROFILE } from "../utils/Constants";
 import { useLocalStorage } from "../utils/useLocalStorage";
+import { getToastColor, toastMessage, ToastStatus } from "../utils/Utils";
 import './Profile.css'
 
 interface TranscationRecordType {
@@ -24,7 +26,9 @@ function Profile() {
     const [transactions, setTransactions] = useState<TranscationRecordType[]>([])
     const [token,] = useLocalStorage('token', null)
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
     usePageTitle('حساب کاربری')
+
     const handlePayment = () => {
         axios.post(LINK_PAYMENT,
             {
@@ -38,13 +42,17 @@ function Profile() {
         })
             .then(response => response.data)
             .then(data => window.open(data.data, "_self"))
-            .catch(error => { alert(JSON.stringify(error.response.data.message)) })
+            .catch(error => {
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
+            })
     }
 
     const handleNameChangeClick = () => {
         const fullNameValue = fullName
         if (fullNameValue === '') {
-            alert("لطفا ابتدا نام و نام خانوادگی خود را وارد نمایید")
+            setToastStatus(ToastStatus.INFO)
+            toastMessage("لطفا ابتدا نام و نام خانوادگی خود را وارد نمایید")
             return
         }
 
@@ -58,9 +66,13 @@ function Profile() {
             })
             .then(response => response.data)
             .then(data => {
-                alert(data.message)
+                setToastStatus(ToastStatus.SUCCESS)
+                toastMessage(data.message)
             })
-            .catch(error => alert(JSON.stringify(error.response.data.message)))
+            .catch(error => {
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
+            })
     }
 
     useEffect(() => {
@@ -77,8 +89,10 @@ function Profile() {
                     setFullName(data.data.fullName)
                     setTransactions(data.data.transactions)
                 }
-                else
-                    alert(data.message)
+                else {
+                    setToastStatus(ToastStatus.ERROR)
+                    toastMessage(data.message)
+                }
             })
             .catch(error => JSON.stringify(error))
     }, [token])
@@ -123,6 +137,17 @@ function Profile() {
                     {transactions.map(record => <TransactionRecord key={record.id} record={record} />)}
                 </tbody>
             </table>
+            <ToastContainer
+                toastStyle={{
+                    backgroundColor: getToastColor(toastID),
+                    color: 'white',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-end'
+                }}
+                limit={1}
+                hideProgressBar={true}
+                position='bottom-center' />
         </div >
     )
 }

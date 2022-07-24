@@ -10,7 +10,9 @@ import axios from "axios";
 import { useLocalStorage } from "../utils/useLocalStorage";
 import './GPACalculator.css'
 import usePageTitle from "../hooks/usePageTitle";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import { getToastColor, toastMessage, ToastStatus } from "../utils/Utils";
+import { ToastContainer } from "react-toastify";
 
 
 const SelectedTitle = styled.div`
@@ -28,10 +30,11 @@ function GPACalculator() {
     const [min, max, grade, gpa, loading, guest, outOfCoupon, setMin, setMax, setGrade, trigger] = useGPA(0, 0, 0)
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
     const [token,] = useLocalStorage('token', null)
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
 
     const naviaget = useNavigate()
     usePageTitle('محاسبه GPA')
-    const handlePayment = useCallback( () => {
+    const handlePayment = useCallback(() => {
         axios
             .post(LINK_PAYMENT,
                 {
@@ -46,9 +49,10 @@ function GPACalculator() {
             .then(response => response.data)
             .then(data => window.open(data.data, "_self"))
             .catch(error => {
-                alert(JSON.stringify(error.response.data.message))
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
             })
-    },[selectedChargeOption, token])
+    }, [selectedChargeOption, token])
 
     return (
         <div className="gpa-container">
@@ -98,6 +102,17 @@ function GPACalculator() {
                     </>
                 }
             </div>
+            <ToastContainer
+                toastStyle={{
+                    backgroundColor: getToastColor(toastID),
+                    color: 'white',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-end'
+                }}
+                limit={1}
+                hideProgressBar={true}
+                position='bottom-center' />
         </div>
     )
 }

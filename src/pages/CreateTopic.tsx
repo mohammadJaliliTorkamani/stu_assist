@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { ToastContainer } from 'react-toastify'
 import Button from '../components/Button'
 import useCategory from '../hooks/useCategory'
 import usePageTitle from '../hooks/usePageTitle'
 import useTopic from '../hooks/useTopic'
 import { LINK_FORUMS_HALLS } from '../utils/Constants'
-import { createTopicUrl } from '../utils/Utils'
+import { createTopicUrl, getToastColor, toastMessage, ToastStatus } from '../utils/Utils'
 import './CreateTopic.css'
 
 interface HallType {
@@ -20,7 +21,7 @@ interface HallType {
     }
 }
 
-function CreateTopic() {    
+function CreateTopic() {
     const [name, setName] = useState<string>('')
     const [content, setContent] = useState<string>('')
     const [category, setCategory] = useState('')
@@ -28,12 +29,15 @@ function CreateTopic() {
     const [halls, setHalls] = useState<HallType[]>([])
     const [categories] = useCategory()
     const [, createTopic] = useTopic(hall)
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
 
     usePageTitle('تاپیک جدید')
 
     const createTopicHandler = () => {
-        if (name === '' || content === '' || category === '' || hall === -1)
-            alert("لطفا تمامی فیلد ها را تکمیل نمایید")
+        if (name === '' || content === '' || category === '' || hall === -1) {
+            setToastStatus(ToastStatus.INFO)
+            toastMessage("لطفا تمامی فیلد ها را تکمیل نمایید")
+        }
         else
             createTopic(name, content, category, hall, topicId => window.open(createTopicUrl(hall, topicId), "_self"))
     }
@@ -56,7 +60,10 @@ function CreateTopic() {
                 if (data.data.length > 0)
                     setHall(data.data[0].id)
             })
-            .catch(error => alert(JSON.stringify(error.response.data.message)))
+            .catch(error => {
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
+            })
     }, [category])
 
     return <div className="create-topic-container">
@@ -92,6 +99,17 @@ function CreateTopic() {
         <div className='create-topic-button-container'>
             <Button title='ساخت تاپیک' onClick={e => createTopicHandler()} />
         </div>
+        <ToastContainer
+            toastStyle={{
+                backgroundColor: getToastColor(toastID),
+                color: 'white',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end'
+            }}
+            limit={1}
+            hideProgressBar={true}
+            position='bottom-center' />
     </div >
 }
 

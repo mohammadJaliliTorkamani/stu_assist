@@ -2,10 +2,12 @@ import styled from "@emotion/styled";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Button from "../components/Button";
 import usePageTitle from "../hooks/usePageTitle";
 import { LINK_PAYMENT_RESULT } from "../utils/Constants";
 import { useLocalStorage } from "../utils/useLocalStorage";
+import { getToastColor, toastMessage, ToastStatus } from "../utils/Utils";
 
 const GreenLabel = styled.div`
     color: green;
@@ -103,6 +105,7 @@ function PaymentResult() {
     const [token,] = useLocalStorage('token', null)
     const navigate = useNavigate()
     const [result, setResult] = useState<PaymentResultTemplate>({} as PaymentResultTemplate)
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
 
     useEffect(() => {
         axios.get(LINK_PAYMENT_RESULT, {
@@ -110,8 +113,18 @@ function PaymentResult() {
                 "Authorization": `Bearer ${token}`
             }
         }).then(response => response.data)
-            .then(data => data.error ? alert(data.message) : setResult(data.data))
-            .catch(error => alert(JSON.stringify(error.response.data.message)))
+            .then(data => {
+                if (data.error) {
+                    setToastStatus(ToastStatus.ERROR)
+                    toastMessage(data.message)
+                } else
+                    setResult(data.data)
+
+            })
+            .catch(error => {
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
+            })
 
         document.title = "Stu Assist | " + result.statusMeaning
     }, [token, result.statusMeaning])
@@ -160,6 +173,17 @@ function PaymentResult() {
                     </FailContainer>
                 }
             </Box>
+            <ToastContainer
+                toastStyle={{
+                    backgroundColor: getToastColor(toastID),
+                    color: 'white',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-end'
+                }}
+                limit={1}
+                hideProgressBar={true}
+                position='bottom-center' />
         </Container>
     )
 }

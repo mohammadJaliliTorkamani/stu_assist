@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Button from "../components/Button";
 import ChargeOptionRecord from "../components/ChargeOptionRecord";
 import TitledNumericInput from "../components/TitledNumericInput";
@@ -9,6 +11,7 @@ import useECTS from "../hooks/useECTS";
 import usePageTitle from "../hooks/usePageTitle";
 import { LINK_PAYMENT } from "../utils/Constants";
 import { useLocalStorage } from "../utils/useLocalStorage";
+import { getToastColor, toastMessage, ToastStatus } from "../utils/Utils";
 
 import './ECTSCalculator.css'
 
@@ -28,6 +31,7 @@ function ECTSCalculator() {
     const [unit, time, week, ects, loading, guest, outOfCoupon, setUnit, setTime, setWeek, trigger] = useECTS(0, 0, 0)
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
     const [token,] = useLocalStorage('token', null)
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
 
     const navigate = useNavigate()
     usePageTitle('محاسبه ECTS')
@@ -47,7 +51,8 @@ function ECTSCalculator() {
             .then(response => response.data)
             .then(data => window.open(data.data, "_self"))
             .catch(error => {
-                alert(JSON.stringify(error.response.data.message))
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
             })
     }
 
@@ -99,6 +104,17 @@ function ECTSCalculator() {
                     </>
                 }
             </div>
+            <ToastContainer
+                toastStyle={{
+                    backgroundColor: getToastColor(toastID),
+                    color: 'white',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-end'
+                }}
+                limit={1}
+                hideProgressBar={true}
+                position='bottom-center' />
         </div>
     )
 }

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { LINK_FORUMS_COMMENTS, LINK_FORUMS_CREATOR, LINK_FORUMS_TOPIC } from '../utils/Constants'
 import CommentItem from '../components/CommentItem'
-import { createProfileUrl, createTopicUrl } from '../utils/Utils'
+import { createProfileUrl, createTopicUrl, getToastColor, toastMessage, ToastStatus } from '../utils/Utils'
 import Button from '../components/Button'
 import useTopic from '../hooks/useTopic'
 import usePageTitle from '../hooks/usePageTitle'
@@ -14,6 +14,7 @@ import heartFilledLogo from '../assets/heart_filled.png'
 import heartEmptyLogo from '../assets/heart_empty.png'
 import repottLogo from '../assets/report_logo.png'
 import Modal from 'react-modal'
+import { ToastContainer } from 'react-toastify'
 
 interface TopicType {
     id: number,
@@ -59,6 +60,7 @@ function Topic() {
     const [comments, setComments] = useState<CommentType[]>([])
     const [liked, setLiked] = useState<boolean>(false)
     const [reportText, setReportText] = useState<string>('')
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
     const [reportTopicModalIsShown, setReportTopicModalIsShown] = useState<boolean>(false)
     const navigate = useNavigate()
     const [, , increaseView, likeUnlikeTopic, reportTopic, postReply] = useTopic(-1)
@@ -77,7 +79,8 @@ function Topic() {
 
     const sendReply = () => {
         if (reply === '') {
-            alert("لطفا  متن پاسخ را وارد نمایید")
+            setToastStatus(ToastStatus.INFO)
+            toastMessage("لطفا  متن پاسخ را وارد نمایید")
             return;
         }
         postReply(_topicId, reply, () => window.open(createTopicUrl(_hallId, _topicId), "_self"))
@@ -104,9 +107,15 @@ function Topic() {
                 })
                     .then(response => response.data)
                     .then(data => { setPerson(data.data) })
-                    .catch(error => alert(JSON.stringify(error.response.data.message)))
+                    .catch(error => {
+                        setToastStatus(ToastStatus.ERROR)
+                        toastMessage(JSON.stringify(error.response.data.message))
+                    })
             })
-            .catch(error => alert(JSON.stringify(error.response.data.message)))
+            .catch(error => {
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
+            })
     }, [token, _topicId, topic?.creatorID])
 
     useEffect(() => {
@@ -123,7 +132,10 @@ function Topic() {
         })
             .then(response => response.data)
             .then(data => { setComments(data.data) })
-            .catch(error => alert(JSON.stringify(error.response.data.message)))
+            .catch(error => {
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
+            })
     }, [token, topicId])
 
     return (
@@ -139,17 +151,20 @@ function Topic() {
                     </div>
                     <Button title='ارسال تخلف' onClick={e => {
                         if (reportText.trim() === '' || reportText.length === 0) {
-                            alert("لطفا علت تخلف تاپیک را وارد نمایید")
+                            setToastStatus(ToastStatus.INFO)
+                            toastMessage("لطفا علت تخلف تاپیک را وارد نمایید")
                             return
                         }
                         reportTopic(_topicId, reportText, () => {
                             setReportText('')
                             setReportTopicModalIsShown(false)
-                            alert("با تشکر از شما، گزارش به مدیریت ارسال شد")
+                            setToastStatus(ToastStatus.SUCCESS)
+                            toastMessage("با تشکر از شما، گزارش به مدیریت ارسال شد")
                         })
 
                     }} />
                 </div>
+
             </Modal>
             <div className='topic-name'>{topic?.name}</div>
             <div key={1} className='topic-container'>
@@ -224,6 +239,17 @@ function Topic() {
             {
                 comments?.map(comment => < CommentItem key={comment.id} comment={comment} />)
             }
+            <ToastContainer
+                toastStyle={{
+                    backgroundColor: getToastColor(toastID),
+                    color: 'white',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-end'
+                }}
+                limit={1}
+                hideProgressBar={true}
+                position='bottom-center' />
         </div>
     )
 }

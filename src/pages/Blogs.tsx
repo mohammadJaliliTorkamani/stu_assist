@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { ToastContainer } from 'react-toastify'
 import BlogPostItem from '../components/BlogPostItem'
 import usePageTitle from '../hooks/usePageTitle'
 import { LINK_BLOGS_BLOGS } from '../utils/Constants'
+import { getToastColor, toastMessage, ToastStatus } from '../utils/Utils'
 import './Blogs.css'
 
 interface BlogsCategoryType {
@@ -29,6 +31,7 @@ function Blogs() {
     const [categories, setCategories] = useState<BlogsCategoryType[]>([])
     const [posts, setPosts] = useState<BlogPostType[]>([])
     const [rawData, setRawData] = useState<RawPostsType[]>([])
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
     const [selectedBlogCategory, setSelectedBlogCategory] = useState<number>(-1)
     usePageTitle('وبلاگ')
 
@@ -65,7 +68,10 @@ function Blogs() {
                 return data
             })
             .then(data => setPosts(getPostsFrom(data)))
-            .catch(error => alert(JSON.stringify(error.response.data.message)))
+            .catch(error => {
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
+            })
     }, [])
 
     return <div className='blogs-container'>
@@ -82,7 +88,17 @@ function Blogs() {
                 rawData.filter(item => item.categoryID === selectedBlogCategory)[0].posts.map(post => <BlogPostItem post={post} />)
             }
         </div>
-
+        <ToastContainer
+            toastStyle={{
+                backgroundColor: getToastColor(toastID),
+                color: 'white',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end'
+            }}
+            limit={1}
+            hideProgressBar={true}
+            position='bottom-center' />
     </div>
 }
 

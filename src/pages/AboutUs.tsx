@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 import usePageTitle from "../hooks/usePageTitle";
 import { contactLinks, LINK_ABOUT_US } from "../utils/Constants";
+import { getToastColor, toastMessage, ToastStatus } from "../utils/Utils";
 
 const TextContiner = styled.div`
     display: flex;
@@ -46,12 +48,17 @@ function AboutUs() {
 
     usePageTitle('درباره ما')
     const [content, setContent] = useState<string>('')
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
+
     useEffect(() => {
         axios
             .get(LINK_ABOUT_US)
             .then(response => response.data.data)
             .then(data => setContent(data))
-            .catch(error => alert(JSON.stringify(error.response.data.message)))
+            .catch(error => {
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
+            })
     }, [])
 
     return (
@@ -75,6 +82,17 @@ function AboutUs() {
                     )
                 }
             </TextBox>
+            <ToastContainer
+                toastStyle={{
+                    backgroundColor: getToastColor(toastID),
+                    color: 'white',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-end'
+                }}
+                limit={1}
+                hideProgressBar={true}
+                position='bottom-center' />
         </TextContiner>
     )
 }

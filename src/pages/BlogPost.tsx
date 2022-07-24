@@ -17,7 +17,7 @@ import {
     WhatsappShareButton,
     WhatsappIcon
 } from 'react-share'
-import { createBlogPostUrl } from '../utils/Utils'
+import { createBlogPostUrl, toastMessage, ToastStatus } from '../utils/Utils'
 import clipboardLogo from '../assets/clipboard_logo.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,6 +37,7 @@ function BlogPost() {
     const { postId } = useParams()
     const _postId = typeof postId == 'undefined' ? 0 : parseInt(postId)
     const [post, setPost] = useState<BlogPostType>()
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
 
     useEffect(() => {
         axios
@@ -50,7 +51,10 @@ function BlogPost() {
                 setPost(data.data)
                 document.title = data.data.title
             })
-            .catch(error => alert(JSON.stringify(error.response.data.message)))
+            .catch(error => {
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
+            })
 
     }, [_postId])
 

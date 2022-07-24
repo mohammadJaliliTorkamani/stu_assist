@@ -1,9 +1,11 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { ToastContainer } from 'react-toastify'
 import TranslationOfficeRecord from '../components/TranslationOfficeRecord'
 import usePageTitle from '../hooks/usePageTitle'
 import { LINK_TRANSLATION_OFFICES } from '../utils/Constants'
 import { useLocalStorage } from '../utils/useLocalStorage'
+import { getToastColor, toastMessage, ToastStatus } from '../utils/Utils'
 import './TranslationOffices.css'
 
 interface TranslationOfficeTemplate {
@@ -28,6 +30,7 @@ function TranslationOffice() {
     const [state, setState] = useState<string>('')
     const [states, setStates] = useState<string[]>([])
     const [shownOffices, setShownOffices] = useState<TranslationOfficeTemplate[]>([])
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
 
     usePageTitle('دارالترجمه های رسمی')
 
@@ -51,7 +54,10 @@ function TranslationOffice() {
                     setState(_statesTemp[0])
                 }
             })
-            .catch(error => alert(JSON.stringify(error.response.data.message)))
+            .catch(error => {
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
+            })
     }, [token])
 
     useEffect(() => {
@@ -84,6 +90,17 @@ function TranslationOffice() {
                     {shownOffices.map(office => <TranslationOfficeRecord key={office.id} record={office} />)}
                 </tbody>
             </table>
+            <ToastContainer
+                toastStyle={{
+                    backgroundColor: getToastColor(toastID),
+                    color: 'white',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-end'
+                }}
+                limit={1}
+                hideProgressBar={true}
+                position='bottom-center' />
         </div>
     )
 }

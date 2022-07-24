@@ -2,11 +2,13 @@ import styled from "@emotion/styled"
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import avatar from '../assets/user_avatar.png'
 import Button from "../components/Button";
 import usePageTitle from "../hooks/usePageTitle";
 import { LINK_OTP, OTP_LENGTH } from "../utils/Constants";
 import { useLocalStorage } from "../utils/useLocalStorage";
+import { getToastColor, toastMessage, ToastStatus } from "../utils/Utils";
 
 const Container = styled.div`
     display: flex;
@@ -74,6 +76,7 @@ function OTP() {
     const buttonRef = useRef<any>()
     const inputRef = useRef<any>()
     const [, setToken] = useLocalStorage('token', null)
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
 
     usePageTitle('احراز هویت')
     useEffect(() => {
@@ -81,10 +84,13 @@ function OTP() {
     }, [])
 
     const buttonHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
-        if (otp.length === 0)
-            alert("لطفا کد فعالسازی ارسال شده را وارد نمایید")
-        else if (otp.length !== OTP_LENGTH)
-            alert("کد فعالسازی به درستی وارد نشده است")
+        if (otp.length === 0) {
+            setToastStatus(ToastStatus.INFO)
+            toastMessage("لطفا کد فعالسازی ارسال شده را وارد نمایید")
+        } else if (otp.length !== OTP_LENGTH) {
+            setToastStatus(ToastStatus.INFO)
+            toastMessage("کد فعالسازی به درستی وارد نشده است")
+        }
         else handleEnter()
     }
 
@@ -104,8 +110,10 @@ function OTP() {
                 setToken(data.data)
                 console.log("Navigating to Home....")
                 navigate('/', { replace: true })
-            }).catch(error =>
-                alert(JSON.stringify(error.response.data.message)))
+            }).catch(error => {
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
+            })
 
     }
     return (
@@ -131,6 +139,17 @@ function OTP() {
                 <Button title="ورود" onClick={e => buttonHandle(e)} reference={buttonRef} />
                 <Title onClick={(e) => navigate('/login', { replace: true })}>ویرایش شماره تلفن</Title>
             </Box>
+            <ToastContainer
+                toastStyle={{
+                    backgroundColor: getToastColor(toastID),
+                    color: 'white',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-end'
+                }}
+                limit={1}
+                hideProgressBar={true}
+                position='bottom-center' />
         </Container>
     )
 }
