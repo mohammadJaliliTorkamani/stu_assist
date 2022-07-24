@@ -23,7 +23,6 @@ const MenuItem = ({ items, depthLevel, onClick, externalLinks = false }) => {
       axios
         .get(LINK_EMBASSIES)
         .then(response => items.submenu = response.data.data)
-        .then(data => console.log(data))
         .catch(error => alert(JSON.stringify(error.response.data.message)))
     }
     return () => {
