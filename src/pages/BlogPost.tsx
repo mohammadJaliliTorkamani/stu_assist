@@ -19,6 +19,8 @@ import {
 } from 'react-share'
 import { createBlogPostUrl } from '../utils/Utils'
 import clipboardLogo from '../assets/clipboard_logo.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface BlogPostType {
     id: number,
@@ -68,6 +70,7 @@ function BlogPost() {
             <div className='blog-post-cadr-content'>{post?.content}</div>
             <div className='blog-post-cadr-clipboard-container' onClick={e => {
                 navigator.clipboard.writeText(createBlogPostUrl(_postId))
+                toast("آدرس پست وبلاگ کپی شد")
             }}>
                 <div className='blog-post-cadr-clipboard-text'>{createBlogPostUrl(_postId)}</div>
                 <img className='blog-post-cadr-clipboard-button' src={clipboardLogo} alt="copy to clopboard logo" />
@@ -92,9 +95,19 @@ function BlogPost() {
                 <EmailShareButton url={createBlogPostUrl(_postId)} title={post?.title} body={post?.overview}>
                     <EmailIcon round={true} size={45} />
                 </EmailShareButton>
-
             </div>
         </div>
+        <ToastContainer
+            toastStyle={{
+                backgroundColor: '#e3c427',
+                color: 'white',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end'
+            }}
+            limit={1}
+            hideProgressBar={true}
+            position='bottom-center' />
     </div>
 }
 
