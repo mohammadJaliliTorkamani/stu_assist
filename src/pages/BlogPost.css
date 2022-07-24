@@ -7,6 +7,13 @@
     min-height: calc(100vh - 160px);
 }
 
+.blog-post-cadr-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
 .blog-post-cadr {
     display: flex;
     flex-direction: column;
@@ -30,19 +37,87 @@
 
 
 .blog-post-cadr-content {
-    margin-top: 3rem;
+    margin-top: 2rem;
+    line-height: 2.5rem;
     text-align: justify;
 }
 
-.blog-post-cadr-image-container{
+.blog-post-cadr-image-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 4rem;
 }
 
 .blog-post-cadr-image {
-    width: 20rem;
+    max-width: 15rem;
     border-radius: 8px;
+}
+
+.blog-post-share-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    direction: ltr;
+    justify-content: baseline;
+    margin-top: 1rem;
+}
+
+.blog-post-cadr-clipboard-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    direction: ltr;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+.blog-post-cadr-clipboard-text{
+    background-color: gray;
+    color: white;
+    border-radius: 4px;
+    font-size: 1em;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    font-weight: 100;
+}
+
+.blog-post-cadr-clipboard-button{
+    width: 30px;
+    height: 30px;
+}
+
+@media screen and (max-width: 960px) {
+    .blog-post-cadr-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .blog-post-cadr-image-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    .blog-post-share-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        direction: ltr;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .blog-post-cadr-clipboard-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        direction: ltr;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
 }

@@ -200,6 +200,7 @@ function Topic() {
             <div className="topic-reply">
                 {
                     token && <div className='topic-reply-container'>
+
                         <textarea placeholder='پاسخ خود را در این قسمت وارد نمایید' maxLength={1000} className='topic-reply-write-box' onChange={e => setReply(e.target.value)} value={reply}></textarea>
                         <div className='topic-reply-button-container'>
                             <Button title='ارسال' onClick={e => sendReply()} />
