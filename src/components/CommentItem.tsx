@@ -11,6 +11,7 @@ import heartEmptyLogo from '../assets/heart_empty.png'
 import repottLogo from '../assets/report_logo.png'
 import Button from './Button'
 import useComment from '../hooks/useComment'
+import { useNavigate } from 'react-router-dom'
 
 interface IProps {
     comment: CommentType
@@ -47,6 +48,14 @@ function CommentItem({ comment }: IProps) {
     const [reportText, setReportText] = useState<string>('')
     const [reportTopicModalIsShown, setReportTopicModalIsShown] = useState<boolean>(false)
     const [likeUnlikeComment, reportComment] = useComment()
+    const navigate = useNavigate()
+
+    const hanldIfLoggedIn = (callBack: () => void) => {
+        if (token !== null)
+            callBack()
+        else
+            navigate('/login')
+    }
 
     useEffect(() => {
         setLiked(comment.liked !== undefined && comment.liked === true)
@@ -61,7 +70,6 @@ function CommentItem({ comment }: IProps) {
             .then(data => { setPerson(data.data) })
             .catch(error => alert(JSON.stringify(error.response.data.message)))
     }, [token, comment.creatorID])
-
 
     return (
         <div className="comment-item-container">
@@ -114,14 +122,16 @@ function CommentItem({ comment }: IProps) {
                         src={repottLogo}
                         title="گزارش پست"
                         alt="گزارش پست"
-                        onClick={e => setReportTopicModalIsShown(true)}
+                        onClick={e => hanldIfLoggedIn(() => setReportTopicModalIsShown(true))}
                     />
                     <img
                         className='comment-item-options-item-image'
                         src={liked ? heartFilledLogo : heartEmptyLogo}
                         alt={liked ? "نپسندیدن" : "پسندیدن"}
                         title="پسندیدن"
-                        onClick={e => { likeUnlikeComment(comment.id, !liked, () => setLiked(!liked)) }} />
+                        onClick={e =>
+                            hanldIfLoggedIn(() => likeUnlikeComment(comment.id, !liked, () => setLiked(!liked)))
+                        } />
                 </div>
                 <div className='comment-item-like-text'>{`${comment?.numberOfLikes === undefined ? 0 : comment?.numberOfLikes} پسند`}</div>
             </div>

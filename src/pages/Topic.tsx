@@ -68,6 +68,13 @@ function Topic() {
 
     usePageTitle('تاپیک')
 
+    const hanldIfLoggedIn = (callBack: () => void) => {
+        if (token !== null)
+            callBack()
+        else
+            navigate('/login')
+    }
+
     const sendReply = () => {
         if (reply === '') {
             alert("لطفا  متن پاسخ را وارد نمایید")
@@ -171,16 +178,18 @@ function Topic() {
                             src={repottLogo}
                             title="گزارش پست"
                             alt="گزارش پست"
-                            onClick={e => setReportTopicModalIsShown(true)}
+                            onClick={e => hanldIfLoggedIn(() => setReportTopicModalIsShown(true))}
                         />
                         <img
                             className='topic-options-item-image'
                             src={liked ? heartFilledLogo : heartEmptyLogo}
                             alt={liked ? "نپسندیدن" : "پسندیدن"}
                             title={liked ? "نپسندیدن" : "پسندیدن"}
-                            onClick={e => likeUnlikeTopic(_topicId, !liked, () => {
-                                setLiked(!liked)
-                                window.location.reload()
+                            onClick={e => hanldIfLoggedIn(() => {
+                                likeUnlikeTopic(_topicId, !liked, () => {
+                                    setLiked(!liked)
+                                    window.location.reload()
+                                })
                             })} />
                     </div>
                     <div className='topic-options-like-text'>{`${topic?.numberOfLikes === undefined ? 0 : topic?.numberOfLikes} پسند`}</div>
