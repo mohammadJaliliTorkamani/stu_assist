@@ -13,7 +13,7 @@ import usePageTitle from '../hooks/usePageTitle'
 import heartFilledLogo from '../assets/heart_filled.png'
 import heartEmptyLogo from '../assets/heart_empty.png'
 import repottLogo from '../assets/report_logo.png'
-import Modal from 'react-modal';
+import Modal from 'react-modal'
 
 interface TopicType {
     id: number,
@@ -31,6 +31,7 @@ interface PersonType {
 interface CommentType {
     id: number,
     message: string,
+    liked: boolean | undefined,
     creatorID: number,
     commentDateTime: string
 }

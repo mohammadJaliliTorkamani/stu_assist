@@ -5,6 +5,12 @@ import { useLocalStorage } from '../utils/useLocalStorage'
 import './CommentItem.css'
 import avatar from '../assets/user_avatar.png'
 import { createProfileUrl } from '../utils/Utils'
+import Modal from 'react-modal'
+import heartFilledLogo from '../assets/heart_filled.png'
+import heartEmptyLogo from '../assets/heart_empty.png'
+import repottLogo from '../assets/report_logo.png'
+import Button from './Button'
+import useComment from '../hooks/useComment'
 
 interface IProps {
     comment: CommentType
@@ -13,6 +19,7 @@ interface IProps {
 interface CommentType {
     id: number,
     message: string,
+    liked: boolean | undefined,
     creatorID: number,
     commentDateTime: string
 }
@@ -21,11 +28,27 @@ interface PersonType {
     fullName: string
 }
 
+const modalStyle = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
+
 function CommentItem({ comment }: IProps) {
     const [token,] = useLocalStorage('token', null)
     const [person, setPerson] = useState<PersonType>()
+    const [liked, setLiked] = useState<boolean>(false)
+    const [reportText, setReportText] = useState<string>('')
+    const [reportTopicModalIsShown, setReportTopicModalIsShown] = useState<boolean>(false)
+    const [likeUnlikeComment, reportComment] = useComment()
 
     useEffect(() => {
+        setLiked(comment.liked !== undefined && comment.liked === true)
         axios.get(LINK_FORUMS_CREATOR, {
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -41,6 +64,29 @@ function CommentItem({ comment }: IProps) {
 
     return (
         <div className="comment-item-container">
+            <Modal
+                style={modalStyle}
+                isOpen={reportTopicModalIsShown}>
+                <div className='topic-report-container'>
+                    <div className='topic-report-inner-container'>
+                        <span className='fas fa-times topic-report-cross' onClick={e => setReportTopicModalIsShown(false)} />
+                        <textarea className='topic-report-text' placeholder='علت تخلف کامنت را توضیح دهید'
+                            onChange={e => setReportText(e.target.value)}>{reportText}</textarea>
+                    </div>
+                    <Button title='ارسال تخلف' onClick={e => {
+                        if (reportText.trim() === '' || reportText.length === 0) {
+                            alert("لطفا علت تخلف کامنت را وارد نمایید")
+                            return
+                        }
+                        reportComment(comment.id, reportText, () => {
+                            setReportText('')
+                            setReportTopicModalIsShown(false)
+                            alert("با تشکر از شما، گزارش به مدیریت ارسال شد")
+                        })
+
+                    }} />
+                </div>
+            </Modal>
             <div className='comment-item-header'>
                 <img className='comment-item-avatar-style' src={avatar} alt={"profile"} />
                 <div className='comment-item-header-text-container'>
@@ -59,6 +105,21 @@ function CommentItem({ comment }: IProps) {
                 <div className='comment-item-body-row-comment'>
                     {comment?.message}
                 </div>
+            </div>
+            <div className='comment-item-options-container'>
+                <img
+                    className='comment-item-options-item-image'
+                    src={repottLogo}
+                    title="گزارش پست"
+                    alt="گزارش پست"
+                    onClick={e => setReportTopicModalIsShown(true)}
+                />
+                <img
+                    className='comment-item-options-item-image'
+                    src={liked ? heartFilledLogo : heartEmptyLogo}
+                    alt={liked ? "نپسندیدن" : "پسندیدن"}
+                    title="پسندیدن"
+                    onClick={e => { likeUnlikeComment(comment.id, !liked, () => setLiked(!liked)) }} />
             </div>
         </div>
     )
