@@ -1,12 +1,14 @@
 import styled from "@emotion/styled";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import usePageTitle from "../hooks/usePageTitle";
-import { contactLinks, TOUContent } from "../utils/Constants";
+import { contactLinks, LINK_ABOUT_US } from "../utils/Constants";
 
 const TextContiner = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     direction: rtl;
     height: calc(100vh - 160px);
     width: 100%;
@@ -43,15 +45,21 @@ const Separator = styled.span`
 function AboutUs() {
 
     usePageTitle('درباره ما')
-    
+    const [content, setContent] = useState<string>('')
+    useEffect(() => {
+        axios
+            .get(LINK_ABOUT_US)
+            .then(response => response.data.data)
+            .then(data => setContent(data))
+            .catch(error => alert(JSON.stringify(error.response.data.message)))
+    }, [])
+
     return (
         <TextContiner>
             <TextBox>
                 Stu-Assist چیست؟
                 <Separator />
-                {
-                    TOUContent
-                }
+                {content}
                 <br />
                 <br />
                 <br />

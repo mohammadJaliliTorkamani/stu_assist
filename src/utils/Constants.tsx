@@ -2,7 +2,6 @@ export const OTP_LENGTH = 5
 export const PHONE_LENGTH = 11
 
 export const FOOTER_TEXT = "تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"
-export const TOUContent = "سایت Stu-Assist به صورت شخصی و غیر رسمی با هدف ارائه خدمات به دانشجویان مهاجر به کشور آلمان طراحی و توسعه داده شده است. در حال حاضر کاربران میتوانند پس از شارژ حساب کاربری خود، خدماتی نظیر محاسبه نمرات GPA و همچنین ECTS خود را بر مبنای کشور آلمان محاسبه کرده و یا تجربه دیگر پذیرفته شدگان را مطالعه نمایند. آنها همچنین میتوانند لیستی از دارالترجمه های کشور را مشاهده کرده و به اطلاعاتی نظیر وبسایت، آدرس و شماره تلفن آنها دسترسی داشته باشند. همچنین برنامه نویسان داوطلب میتوانند جهت توسعه قابلیت های فنی وبسایت، درخواست همکاری خود را به ایمیل مدیریت ارسال نمایند. "
 
 export const BASE_URL = "https://stu-assist.ir/"
 
@@ -34,6 +33,7 @@ export const LINK_FORUMS_SEND_COMMENT = "https://stu-assist.ir/api/services/foru
 export const LINK_FORUMS_CREATE_TOPIC = "https://stu-assist.ir/api/services/forums/topics/create_topic.php"
 export const LINK_BLOGS_BLOGS = "https://stu-assist.ir/api/blog/blogs.php"
 export const LINK_BLOGS_BLOG = "https://stu-assist.ir/api/blog/blog.php"
+export const LINK_ABOUT_US = "https://stu-assist.ir/api/utils/about_us.php"
 
 export const contactLinks = [
   {
