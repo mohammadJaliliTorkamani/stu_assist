@@ -35,6 +35,7 @@ export const LINK_BLOGS_BLOGS = "https://stu-assist.ir/api/blog/blogs.php"
 export const LINK_BLOGS_BLOG = "https://stu-assist.ir/api/blog/blog.php"
 export const LINK_ABOUT_US = "https://stu-assist.ir/api/utils/about_us.php"
 export const LINK_EMBASSIES = "https://stu-assist.ir/api/services/embassy/embassies.php"
+export const LINK_GUEST_PROFILE = "http://stu-assist.ir/api/user/guest_profile.php"
 
 export const contactLinks = [
   {
