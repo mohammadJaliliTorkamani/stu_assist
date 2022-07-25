@@ -20,6 +20,8 @@
 .comment-item-avatar-style {
     width: 4rem;
     height: 4rem;
+    border-radius: 10rem;
+    border: 2px solid green;
 }
 
 .comment-item-header-text-container {

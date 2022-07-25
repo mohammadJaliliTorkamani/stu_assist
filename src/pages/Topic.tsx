@@ -30,7 +30,10 @@ interface TopicType {
 }
 
 interface PersonType {
-    fullName: string
+    fullName: string,
+    photo: {
+        path: string
+    }
 }
 
 interface CommentType {
@@ -171,7 +174,7 @@ function Topic() {
             <div className='topic-name'>{topic?.name}</div>
             <div key={1} className='topic-container'>
                 <div className='topic-header'>
-                    <img className='topic-avatar-style' src={avatar} alt={"profile"} />
+                    <img className='topic-avatar-style' src={person?.photo === null ? avatar : person?.photo.path} alt={"profile"} />
                     <div className='topic-header-text-container'>
                         <div className='topic-header-text-container-row'>
                             <div className='topic-label-key'>نام و نام خانوادگی : </div>

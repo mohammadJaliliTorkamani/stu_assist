@@ -28,7 +28,10 @@ interface CommentType {
 }
 
 interface PersonType {
-    fullName: string
+    fullName: string,
+    photo: {
+        path: string
+    }
 }
 
 const modalStyle = {
@@ -98,7 +101,7 @@ function CommentItem({ comment }: IProps) {
                 </div>
             </Modal>
             <div className='comment-item-header'>
-                <img className='comment-item-avatar-style' src={avatar} alt={"profile"} />
+                <img className='comment-item-avatar-style' src={person?.photo === null ? avatar : person?.photo.path} alt={"profile"} />
                 <div className='comment-item-header-text-container'>
                     <div className='comment-item-header-text-container-row'>
                         <div className='topic-label-key'>نام و نام خانوادگی : </div>
