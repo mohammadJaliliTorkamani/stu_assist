@@ -90,7 +90,7 @@ function ApplicationExperience() {
                         experiences.map(experience =>
                             <div key={experience.id} className='application-experience-post-item-container'>
                                 <div className='application-experience-post-item-header'>
-                                    <img className='application-experience-avatar-style' src={avatar} alt={"profile"} />
+                                    <img className='application-experience-avatar-style' src={experience.photo !== null ? experience.photo.path : avatar} alt={"profile"} />
                                     <div className='application-experience-post-item-header-text-container'>
                                         <div className='application-experience-post-item-header-text-container-row'>
                                             <div className='application-experience-post-item-label-key'>نام و نام خانوادگی : </div>

@@ -6,6 +6,9 @@ import { useLocalStorage } from "../utils/useLocalStorage"
 interface ApplicationExperienceTemplate {
     id: number,
     fullName: string,
+    photo: {
+        path: string
+    },
     experienceDate: string,
     experienceTime: string,
     admissionStatus: boolean,
