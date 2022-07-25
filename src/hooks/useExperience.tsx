@@ -5,6 +5,7 @@ import { useLocalStorage } from "../utils/useLocalStorage"
 
 interface ApplicationExperienceTemplate {
     id: number,
+    userID: number,
     fullName: string,
     photo: {
         path: string

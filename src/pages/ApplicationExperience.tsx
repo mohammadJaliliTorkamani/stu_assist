@@ -7,7 +7,7 @@ import './ApplicationExperience.css'
 import avatar from '../assets/user_avatar.png'
 import useExperience from '../hooks/useExperience';
 import usePageTitle from '../hooks/usePageTitle';
-import { getToastColor, toastMessage, ToastStatus } from '../utils/Utils';
+import { createProfileUrl, getToastColor, toastMessage, ToastStatus } from '../utils/Utils';
 import { ToastContainer } from 'react-toastify';
 
 const SelectedTitle = styled.div`
@@ -94,7 +94,9 @@ function ApplicationExperience() {
                                     <div className='application-experience-post-item-header-text-container'>
                                         <div className='application-experience-post-item-header-text-container-row'>
                                             <div className='application-experience-post-item-label-key'>نام و نام خانوادگی : </div>
-                                            <div>{experience.fullName === ' ' ? 'بدون نام' : experience.fullName}</div>
+                                            <a className='application-experience-post-item-full-name' href={createProfileUrl(experience.userID)}>
+                                                {experience.fullName === ' ' ? 'بدون نام' : experience.fullName}
+                                            </a>
                                         </div>
                                         <div className='application-experience-post-item-header-text-container-row'>
                                             <div className='application-experience-post-item-label-key'>تاریخ ارسال : </div>

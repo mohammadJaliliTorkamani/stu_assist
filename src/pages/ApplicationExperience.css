@@ -195,6 +195,11 @@
     margin-top: 2rem;
 }
 
+.application-experience-post-item-full-name{
+    text-decoration: none;
+    color:black;
+}
+
 @media screen and (max-width: 960px) {
 
     .application-experience-university-info-write-box {
