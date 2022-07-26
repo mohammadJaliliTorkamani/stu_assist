@@ -4,7 +4,7 @@ import { useLocalStorage } from '../utils/useLocalStorage'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { LINK_FORUMS_COMMENTS, LINK_FORUMS_CREATOR, LINK_FORUMS_TOPIC } from '../utils/Constants'
+import { LINK_FORUMS_COMMENTS, LINK_FORUMS_TOPIC, LINK_GUEST_PROFILE } from '../utils/Constants'
 import CommentItem from '../components/CommentItem'
 import { createProfileUrl, createTopicUrl, getToastColor, toastMessage, ToastStatus } from '../utils/Utils'
 import Button from '../components/Button'
@@ -30,7 +30,8 @@ interface TopicType {
 }
 
 interface PersonType {
-    fullName: string,
+    name: string,
+    last_name: string,
     photo: {
         path: string
     }
@@ -104,7 +105,7 @@ function Topic() {
             .then(data => {
                 setTopic(data.data)
                 setLiked(data.data.liked !== undefined && data.data.liked === true)
-                axios.get(LINK_FORUMS_CREATOR, {
+                axios.get(LINK_GUEST_PROFILE, {
                     headers: {
                         "Authorization": `Bearer ${token}`
                     }, params: {
@@ -178,7 +179,7 @@ function Topic() {
                     <div className='topic-header-text-container'>
                         <div className='topic-header-text-container-row'>
                             <div className='topic-label-key'>نام و نام خانوادگی : </div>
-                            <a className='topic-label-name' href={createProfileUrl(topic?.creatorID!)}>{person?.fullName}</a>
+                            <a className='topic-label-name' href={createProfileUrl(topic?.creatorID!)}>{(person?.name === undefined ? "" : person?.name) + " " + (person?.last_name === undefined ? "" : person?.last_name)}</a>
                         </div>
                         <div className='topic-header-text-container-row'>
                             <div className='topic-label-key'>تاریخ ارسال : </div>

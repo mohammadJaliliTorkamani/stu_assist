@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { LINK_FORUMS_CREATOR } from '../utils/Constants'
+import { LINK_GUEST_PROFILE } from '../utils/Constants'
 import { useLocalStorage } from '../utils/useLocalStorage'
 import './CommentItem.css'
 import avatar from '../assets/user_avatar.png'
-import { createProfileUrl, ToastStatus } from '../utils/Utils'
+import { createProfileUrl } from '../utils/Utils'
 import Modal from 'react-modal'
 import heartFilledLogo from '../assets/heart_filled.png'
 import heartEmptyLogo from '../assets/heart_empty.png'
@@ -28,7 +28,8 @@ interface CommentType {
 }
 
 interface PersonType {
-    fullName: string,
+    name: string,
+    last_name: string,
     photo: {
         path: string
     }
@@ -63,7 +64,7 @@ function CommentItem({ comment }: IProps) {
 
     useEffect(() => {
         setLiked(comment.liked !== undefined && comment.liked === true)
-        axios.get(LINK_FORUMS_CREATOR, {
+        axios.get(LINK_GUEST_PROFILE, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }, params: {
@@ -106,7 +107,7 @@ function CommentItem({ comment }: IProps) {
                     <div className='comment-item-header-text-container-row'>
                         <div className='topic-label-key'>نام و نام خانوادگی : </div>
                         <a className='comment-item-header-text-container-name' href={createProfileUrl(comment.creatorID)}>
-                            {person?.fullName}</a>
+                            {person?.name + " " + person?.last_name}</a>
                     </div>
                     <div className='comment-item-header-text-container-row'>
                         <div className='comment-item-label-key'>تاریخ ارسال : </div>
