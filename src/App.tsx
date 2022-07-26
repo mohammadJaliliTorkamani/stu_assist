@@ -1,28 +1,28 @@
 
 import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { AntiProtectedRoute } from './components/AntiProtectedRoute copy';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import { ProtectedRoute } from './components/ProtectedRoute';
-import AboutUs from './pages/AboutUs';
-import ApplicationExperience from './pages/ApplicationExperience';
-import ECTSCalculator from './pages/ECTSCalculator';
-import GPACalculator from './pages/GPACalculator';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import NotFound from './pages/NotFound';
-import OTP from './pages/OTP';
-import PaymentResult from './pages/PaymentResult';
-import Profile from './pages/Profile';
-import TranslationOffice from './pages/TranslationOffice';
-import Forums from './pages/Forums'
-import ForumsList from './pages/ForumsList';
-import GuestProfile from './pages/GuestProfile';
-import Topic from './pages/Topic';
-import CreateTopic from './pages/CreateTopic';
-import Blogs from './pages/Blogs';
-import BlogPost from './pages/BlogPost';
+import AboutUs from './pages/tsx/AboutUs';
+import ApplicationExperience from './pages/tsx/ApplicationExperience';
+import ECTSCalculator from './pages/tsx/ECTSCalculator';
+import GPACalculator from './pages/tsx/GPACalculator';
+import Home from './pages/tsx/Home';
+import Login from './pages/tsx/Login';
+import NotFound from './pages/tsx/NotFound';
+import OTP from './pages/tsx/OTP';
+import PaymentResult from './pages/tsx/PaymentResult';
+import Profile from './pages/tsx/Profile';
+import TranslationOffice from './pages/tsx/TranslationOffice';
+import Forums from './pages/tsx/Forums'
+import ForumsList from './pages/tsx/ForumsList';
+import GuestProfile from './pages/tsx/GuestProfile';
+import Topic from './pages/tsx/Topic';
+import CreateTopic from './pages/tsx/CreateTopic';
+import Blogs from './pages/tsx/Blogs';
+import BlogPost from './pages/tsx/BlogPost';
+import { ProtectedRoute } from './components/tsx/ProtectedRoute';
+import Header from './components/tsx/Header';
+import Footer from './components/tsx/Footer';
+import { AntiProtectedRoute } from './components/tsx/AntiProtectedRoute';
 
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
