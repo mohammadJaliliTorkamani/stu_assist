@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { LINK_FORUMS_CREATE_TOPIC, LINK_FORUMS_INCREASE_VIEWS, LINK_FORUMS_LIKE_UNLIKE_TOPIC, LINK_FORUMS_REPORT_TOPIC, LINK_FORUMS_SEND_COMMENT, LINK_FORUMS_TOPICS } from "../utils/Constants"
+import { LINK_FORUMS_INCREASE_VIEWS, LINK_FORUMS_LIKE_UNLIKE_TOPIC, LINK_FORUMS_REPORT_TOPIC, LINK_FORUMS_SEND_COMMENT, LINK_FORUMS_TOPIC, LINK_FORUMS_TOPICS } from "../utils/Constants"
 import { useLocalStorage } from "../utils/useLocalStorage"
 
 interface TopicType {
@@ -26,7 +26,7 @@ function useTopic(hallId: number) {
             return;
         }
 
-        axios.post(LINK_FORUMS_CREATE_TOPIC,
+        axios.post(LINK_FORUMS_TOPIC,
             {
                 name: name,
                 content: content,
