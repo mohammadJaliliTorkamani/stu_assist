@@ -77,7 +77,7 @@ function OTP() {
     const inputRef = useRef<any>()
     const [, setToken] = useLocalStorage('token', null)
     const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
-
+    console.log("SSS" + (state as stateType).phone_number)
     usePageTitle('احراز هویت')
     useEffect(() => {
         inputRef.current.focus()
@@ -98,7 +98,7 @@ function OTP() {
         axios
             .post(LINK_OTP,
                 {
-                    phone_number: (state as stateType).phone_number,
+                    phone: (state as stateType).phone_number,
                     otp_code: otp
                 }, {
                 headers: {
@@ -107,9 +107,10 @@ function OTP() {
             })
             .then(response => response.data)
             .then(data => {
-                setToken(data.data)
-                console.log("Navigating to Home....")
-                navigate('/', { replace: true })
+                setToastStatus(ToastStatus.INFO)
+                toastMessage(data.data)
+                console.log("Navigating to Login....")
+                navigate('/login', { replace: true })
             }).catch(error => {
                 setToastStatus(ToastStatus.ERROR)
                 toastMessage(JSON.stringify(error.response.data.message))

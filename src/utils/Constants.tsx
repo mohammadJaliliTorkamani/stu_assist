@@ -1,11 +1,20 @@
 export const OTP_LENGTH = 5
 export const PHONE_LENGTH = 11
 
+export const FIRST_NAME_MINIMUM_LENGTH = 2
+export const LAST_NAME_MINIMUM_LENGTH = 2
+export const COUNTRY_MINIMUM_LENGTH = 2
+export const STATE_MINIMUM_LENGTH = 2
+export const BIOGRAPHY_MINIMUM_LENGTH = 0
+export const USERNAME_MINIMUM_LENGTH = 5
+export const PASSWORD_MINIMUM_LENGTH = 8
+
 export const FOOTER_TEXT = "تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"
 
 export const BASE_URL = "https://stu-assist.ir/"
 
 export const LINK_LOGIN = 'https://stu-assist.ir/api/authentication/login.php'
+export const LINK_REGISTER = 'https://stu-assist.ir/api/authentication/register.php'
 export const LINK_OTP = 'https://stu-assist.ir/api/authentication/otp_verification.php'
 export const LINK_PROFILE = 'https://stu-assist.ir/api/user/profile.php'
 export const LINK_CHARGE_OPTIONS = 'https://stu-assist.ir/api/payment/charge_options.php'

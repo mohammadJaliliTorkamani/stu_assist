@@ -23,13 +23,14 @@ import { ProtectedRoute } from './components/tsx/ProtectedRoute';
 import Header from './components/tsx/Header';
 import Footer from './components/tsx/Footer';
 import { AntiProtectedRoute } from './components/tsx/AntiProtectedRoute';
+import Register from './pages/tsx/Register';
 
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
   const { pathname } = useLocation()
 
   useEffect(() => {
-    setShowHeaderFooter(pathname !== "/login" && pathname !== "/otp-verification")
+    setShowHeaderFooter(pathname !== "/login" && pathname !== "/otp-verification" && pathname !== "/register")
   }, [pathname])
 
   return (
@@ -37,6 +38,7 @@ function App() {
       {showHeaderFooter && <Header />}
       <Routes>
         <Route path='login' element={<AntiProtectedRoute> <Login /></AntiProtectedRoute>} />
+        <Route path='register' element={<AntiProtectedRoute> <Register /></AntiProtectedRoute>} />
         <Route path='/' element={<Home />} />
         <Route path='profile' element={
           <ProtectedRoute>

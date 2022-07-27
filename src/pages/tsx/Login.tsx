@@ -1,12 +1,13 @@
 import styled from "@emotion/styled"
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import avatar from '../../assets/user_avatar.png'
+import avatar from '../../assets/512_512.png'
 import Button from "../../components/tsx/Button";
 import usePageTitle from "../../hooks/usePageTitle";
-import { LINK_LOGIN, PHONE_LENGTH } from "../../utils/Constants";
+import { LINK_LOGIN, PASSWORD_MINIMUM_LENGTH, USERNAME_MINIMUM_LENGTH } from "../../utils/Constants";
+import { useLocalStorage } from "../../utils/useLocalStorage";
 import { getToastColor, toastMessage, ToastStatus } from "../../utils/Utils";
 
 const Container = styled.div`
@@ -21,16 +22,16 @@ const Container = styled.div`
 const Box = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: stretch;
-    height: 28rem;
+    min-height: 28rem;
     width: 22rem;
     border: 2px solid gray;
     border-radius: 6px;
     padding-left: 1rem;
     padding-right: 1rem;
-    padding-top: 1.5rem;
-    padding-botton: 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
     background: #e8e8e8;
 `
 
@@ -40,50 +41,71 @@ const Logo = styled.img`
     align-self: center;
 `
 
-const PhoneContainer = styled.div`
+const FieldsContainer = styled.div`
     display: flex;
     height: 10rem;
     flex-direction: column;
+    flex-direction: center;
     align-items: stretch;
 `
 
-const Title = styled.div`
-    font-size: 1em;
-    color: black;
-    margin-top: 4rem;
-    margin-bottom: 1rem;
-    align-self: center;
-`
-
-const PhoneNumber = styled.input`
+const Username = styled.input`
     color: black;
     height: 3rem;
-    font-size: 1.2rem;
-    border: 0px solid white;
+    font-size: 1em;
+    border: 1px solid green;
     border-radius: 2px;
     text-align: center;
+    margin-bottom: 0.5rem;
+`
+const Password = styled.input`
+    color: black;
+    height: 3rem;
+    font-size: 1em;
+    border: 1px solid green;
+    border-radius: 2px;
+    text-align: center;
+    margin-bottom: 1rem;
 `
 
+const LogoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content : center;
+`;
+
+const Title = styled.div`
+    font-size: 1.3em;
+    color: green;
+    font-weight: 700;
+    margin-top: 1rem;
+`;
+
+const NewUserText = styled.div`
+    color: green;
+    font-size: 0.9em;
+    margin-top: 1rem;
+    cursor: pointer;
+`;
+
 function Login() {
-    const [phoneNumber, setPhoneNumber] = useState('')
+    const [, setToken] = useLocalStorage('token', null)
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
     const navigate = useNavigate()
-    const buttonRef = useRef<any>()
-    const inputRef = useRef<any>()
     const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
 
-    usePageTitle('ورود')
-    useEffect(() => {
-        inputRef.current.focus()
-    }, [])
+    usePageTitle('ورود کاربری')
 
     const buttonHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
-        if (phoneNumber.length === 0) {
+        if (username.length < USERNAME_MINIMUM_LENGTH) {
             setToastStatus(ToastStatus.INFO)
-            toastMessage("لطفا شماره تلفن خود را وارد نمایید")
+            toastMessage("نام کاربری به درستی وارد نشده است")
         }
-        else if (phoneNumber.length !== PHONE_LENGTH) {
+        else if (password.length < PASSWORD_MINIMUM_LENGTH) {
             setToastStatus(ToastStatus.INFO)
-            toastMessage("شماره تلفن  به درستی وارد نشده است")
+            toastMessage("کلمه عبور به درستی وارد نشده است")
         }
         else handleLogin()
     }
@@ -92,16 +114,18 @@ function Login() {
         axios
             .post(LINK_LOGIN,
                 {
-                    phone_number: phoneNumber
+                    username: username,
+                    password: password
                 }, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             })
             .then(response => response.data)
-            .then(response => {
-                console.log("Navigating to OTP....")
-                navigate('/otp-verification', { replace: true, state: { phone_number: phoneNumber } })
+            .then(data => {
+                setToken(data.data)
+                console.log("Navigating to Home....")
+                navigate('/', { replace: true })
             }).catch(error => {
                 setToastStatus(ToastStatus.ERROR)
                 toastMessage(JSON.stringify(error.response.data.message))
@@ -111,18 +135,18 @@ function Login() {
     return (
         <Container>
             <Box>
-                <Logo src={avatar} />
-                <PhoneContainer>
-                    <Title>لطفا شماره تلفن همراه خود را وارد نمایید</Title>
-                    <PhoneNumber type='tel' ref={inputRef} value={phoneNumber} onChange={e => {
-                        if (e.target.value.length <= PHONE_LENGTH)
-                            setPhoneNumber(e.target.value)
-                        if (e.target.value.length === PHONE_LENGTH)
-                            buttonRef.current.focus()
-                    }} />
-                </PhoneContainer>
-                <Button title="ورود / ثبت نام" onClick={e => buttonHandle(e)} reference={buttonRef} />
+                <LogoContainer>
+                    <Logo src={avatar} />
+                    <Title>سامانه خدمات دانشجویی</Title>
+                    <Title>Stu-Assist</Title>
+                </LogoContainer>
+                <FieldsContainer>
+                    <Username type='text' value={username} placeholder="نام کاربری" onChange={e => setUsername(e.target.value)} />
+                    <Password type='password' value={password} placeholder="کلمه عبور" onChange={e => setPassword(e.target.value)} />
+                    <Button title="ورود به حساب کاربری" onClick={e => buttonHandle(e)} />
+                </FieldsContainer>
             </Box>
+            <NewUserText onClick={e => navigate('/register', { replace: true })}>حساب کاربری ندارید؟ ثبت نام کنید</NewUserText>
             <ToastContainer
                 toastStyle={{
                     backgroundColor: getToastColor(toastID),
