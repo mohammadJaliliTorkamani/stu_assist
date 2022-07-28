@@ -32,6 +32,7 @@ const Username = styled.input`
     color: black;
     height: 3rem;
     font-size: 1em;
+    direction: ltr;
     border: 1px solid rgb(185, 185, 185);
     border-radius: 2px;
     text-align: center;
@@ -117,6 +118,25 @@ function Register() {
     const navigate = useNavigate()
     const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
     const usernameRef = useRef<any>()
+    const justPersian = (str: string, onSuccessCallBack: (() => void), onFailureCallBack: () => void) => {
+        let regex = /^[\u0600-\u06FF\s]*$/;
+        if (regex.test(str))
+            onSuccessCallBack()
+        else
+            onFailureCallBack()
+    }
+    const justEnglish = (str: string, onSuccessCallBack: (() => void), onFailureCallBack: () => void) => {
+        let regex = /^[a-zA-Z0-9_.\s]{0,}$/;
+        if (regex.test(str))
+            onSuccessCallBack()
+        else
+            onFailureCallBack()
+    }
+
+    const isValidUsername = (str: string) => {
+        const reg = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/
+        return reg.test(str)
+    }
 
     useEffect(() => {
         axios
@@ -155,11 +175,11 @@ function Register() {
     usePageTitle('ایجاد حساب کاربری')
 
     const buttonHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
-        if (firstName.length < FIRST_NAME_MINIMUM_LENGTH) {
+        if (firstName.trim().length < FIRST_NAME_MINIMUM_LENGTH) {
             setToastStatus(ToastStatus.INFO)
             toastMessage("نام به درستی وارد نشده است")
         }
-        else if (lastName.length < LAST_NAME_MINIMUM_LENGTH) {
+        else if (lastName.trim().length < LAST_NAME_MINIMUM_LENGTH) {
             setToastStatus(ToastStatus.INFO)
             toastMessage("نام خانوادگی به درستی وارد نشده است")
         } else if (phone.length !== PHONE_LENGTH) {
@@ -171,6 +191,9 @@ function Register() {
         } else if (password.length < PASSWORD_MINIMUM_LENGTH || password2.length < PASSWORD_MINIMUM_LENGTH) {
             setToastStatus(ToastStatus.INFO)
             toastMessage("رمز عبور درستی وارد نشده است")
+        } else if (isValidUsername(username)) {
+            setToastStatus(ToastStatus.INFO)
+            toastMessage("قالب نام کاربری نامعتبر است")
         } else if (password !== password2) {
             setToastStatus(ToastStatus.INFO)
             toastMessage("کلمات عبور با هم تطابق ندارند")
@@ -214,15 +237,30 @@ function Register() {
                 <Title>Stu-Assist</Title>
             </div>
             <div className='register-fields-container'>
-                <FirstName type='text' value={firstName} placeholder="نام" onChange={e => setFirstname(e.target.value)} />
-                <LastName type='text' value={lastName} placeholder="نام خانوادگی" onChange={e => setLastname(e.target.value)} />
+                <FirstName type='text' value={firstName} placeholder="نام" onChange={e => {
+                    justPersian(e.target.value, () => setFirstname(e.target.value), () => {
+                        setToastStatus(ToastStatus.INFO)
+                        toastMessage("لظفا فارسی تایپ کنید")
+                    })
+                }} />
+                <LastName type='text' value={lastName} placeholder="نام خانوادگی" onChange={e => {
+                    justPersian(e.target.value, () => setLastname(e.target.value), () => {
+                        setToastStatus(ToastStatus.INFO)
+                        toastMessage("لظفا فارسی تایپ کنید")
+                    })
+                }} />
                 <Phone type='tel' value={phone} placeholder="شماره تلفن همراه" onChange={e => {
                     if (e.target.value.length <= PHONE_LENGTH)
                         setPhone(e.target.value)
                     if (e.target.value.length === PHONE_LENGTH)
                         usernameRef.current.focus()
                 }} />
-                <Username type='text' value={username} placeholder="نام کاربری" ref={usernameRef} onChange={e => setUsername(e.target.value)} />
+                <Username type='text' value={username} placeholder="نام کاربری" ref={usernameRef} onChange={e => {
+                    justEnglish(e.target.value, () => setUsername(e.target.value), () => {
+                        setToastStatus(ToastStatus.INFO)
+                        toastMessage("لظفا انگلیسی تایپ کنید")
+                    })
+                }} />
                 <Password type='password' value={password} placeholder="کلمه عبور" onChange={e => setPassword(e.target.value)} />
                 <Password type='password' value={password2} placeholder="تکرار کلمه عبور" onChange={e => setPassword2(e.target.value)} />
                 <div className='register-position-container'>

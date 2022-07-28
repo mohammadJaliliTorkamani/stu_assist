@@ -21,6 +21,7 @@
     "navbar-react": "^1.0.4",
     "otp-input-component": "^0.1.2",
     "otp-input-react": "^0.3.0",
+    "persian-rex": "^2.3.3",
     "react": "^18.2.0",
     "react-awesome-slider": "^4.1.0",
     "react-dom": "^18.2.0",

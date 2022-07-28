@@ -58,6 +58,7 @@ const Username = styled.input`
     border: 1px solid green;
     border-radius: 2px;
     text-align: center;
+    direction: ltr;
     margin-bottom: 0.5rem;
 `
 const Password = styled.input`
@@ -97,6 +98,18 @@ function Login() {
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
     const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
+    const justEnglish = (str: string, onSuccessCallBack: (() => void), onFailureCallBack: () => void) => {
+        let regex = /^[a-zA-Z0-9_.\s]{0,}$/;
+        if (regex.test(str))
+            onSuccessCallBack()
+        else
+            onFailureCallBack()
+    }
+
+    const isValidUsername = (str: string) => {
+        const reg = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/
+        return reg.test(str)
+    }
 
     usePageTitle('ورود به حساب کاربری')
 
@@ -143,7 +156,12 @@ function Login() {
                     <Title>Stu-Assist</Title>
                 </LogoContainer>
                 <FieldsContainer>
-                    <Username type='text' value={username} placeholder="نام کاربری" onChange={e => setUsername(e.target.value)} />
+                    <Username type='text' value={username} placeholder="نام کاربری" onChange={e => {
+                        justEnglish(e.target.value, () => setUsername(e.target.value), () => {
+                            setToastStatus(ToastStatus.INFO)
+                            toastMessage("لظفا انگلیسی تایپ کنید")
+                        })
+                    }} />
                     <Password type='password' value={password} placeholder="کلمه عبور" onChange={e => setPassword(e.target.value)} />
                     <Button title="ورود به حساب کاربری" onClick={e => buttonHandle(e)} />
                 </FieldsContainer>

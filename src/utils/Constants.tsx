@@ -3,11 +3,9 @@ export const PHONE_LENGTH = 11
 
 export const FIRST_NAME_MINIMUM_LENGTH = 2
 export const LAST_NAME_MINIMUM_LENGTH = 2
-export const COUNTRY_MINIMUM_LENGTH = 2
-export const STATE_MINIMUM_LENGTH = 2
 export const BIOGRAPHY_MINIMUM_LENGTH = 0
 export const USERNAME_MINIMUM_LENGTH = 5
-export const PASSWORD_MINIMUM_LENGTH = 8
+export const PASSWORD_MINIMUM_LENGTH = 7
 
 export const FOOTER_TEXT = "تمامی حقوق مادی و معنوی محفوظ است - ۱۴۰۱"
 
