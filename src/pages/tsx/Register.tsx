@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../components/tsx/Button'
 import usePageTitle from '../../hooks/usePageTitle'
@@ -116,6 +116,7 @@ function Register() {
     const [phone, setPhone] = useState('')
     const navigate = useNavigate()
     const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
+    const usernameRef = useRef<any>()
 
     useEffect(() => {
         axios
@@ -215,8 +216,13 @@ function Register() {
             <div className='register-fields-container'>
                 <FirstName type='text' value={firstName} placeholder="نام" onChange={e => setFirstname(e.target.value)} />
                 <LastName type='text' value={lastName} placeholder="نام خانوادگی" onChange={e => setLastname(e.target.value)} />
-                <Phone type='phone' value={phone} placeholder="شماره تلفن همراه (۱۱ رقمی)" onChange={e => setPhone(e.target.value)} />
-                <Username type='text' value={username} placeholder="نام کاربری" onChange={e => setUsername(e.target.value)} />
+                <Phone type='tel' value={phone} placeholder="شماره تلفن همراه" onChange={e => {
+                    if (e.target.value.length <= PHONE_LENGTH)
+                        setPhone(e.target.value)
+                    if (e.target.value.length === PHONE_LENGTH)
+                        usernameRef.current.focus()
+                }} />
+                <Username type='text' value={username} placeholder="نام کاربری" ref={usernameRef} onChange={e => setUsername(e.target.value)} />
                 <Password type='password' value={password} placeholder="کلمه عبور" onChange={e => setPassword(e.target.value)} />
                 <Password type='password' value={password2} placeholder="تکرار کلمه عبور" onChange={e => setPassword2(e.target.value)} />
                 <div className='register-position-container'>
