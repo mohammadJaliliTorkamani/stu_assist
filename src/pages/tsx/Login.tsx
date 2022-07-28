@@ -117,8 +117,10 @@ function Login() {
         if (username.length < USERNAME_MINIMUM_LENGTH) {
             setToastStatus(ToastStatus.INFO)
             toastMessage("نام کاربری به درستی وارد نشده است")
-        }
-        else if (password.length < PASSWORD_MINIMUM_LENGTH) {
+        } else if (!isValidUsername(username)) {
+            setToastStatus(ToastStatus.INFO)
+            toastMessage("قالب نام کاربری نامعتبر است")
+        } else if (password.length < PASSWORD_MINIMUM_LENGTH) {
             setToastStatus(ToastStatus.INFO)
             toastMessage("کلمه عبور به درستی وارد نشده است")
         }

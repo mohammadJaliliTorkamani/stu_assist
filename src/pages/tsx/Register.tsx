@@ -138,6 +138,13 @@ function Register() {
         return reg.test(str)
     }
 
+    const containsOnlyDigits = (str: string) => {
+        if (str.trim() === '')
+            return true
+        const reg = /^[0-9]*$/
+        return reg.test(str)
+    }
+
     useEffect(() => {
         axios
             .get(LINK_COUTNIES_STATES)
@@ -188,12 +195,12 @@ function Register() {
         } else if (username.length < USERNAME_MINIMUM_LENGTH) {
             setToastStatus(ToastStatus.INFO)
             toastMessage("نام کاربری به درستی وارد نشده است")
+        } else if (!isValidUsername(username)) {
+            setToastStatus(ToastStatus.INFO)
+            toastMessage("قالب نام کاربری نامعتبر است")
         } else if (password.length < PASSWORD_MINIMUM_LENGTH || password2.length < PASSWORD_MINIMUM_LENGTH) {
             setToastStatus(ToastStatus.INFO)
             toastMessage("رمز عبور درستی وارد نشده است")
-        } else if (isValidUsername(username)) {
-            setToastStatus(ToastStatus.INFO)
-            toastMessage("قالب نام کاربری نامعتبر است")
         } else if (password !== password2) {
             setToastStatus(ToastStatus.INFO)
             toastMessage("کلمات عبور با هم تطابق ندارند")
@@ -250,10 +257,15 @@ function Register() {
                     })
                 }} />
                 <Phone type='tel' value={phone} placeholder="شماره تلفن همراه" onChange={e => {
-                    if (e.target.value.length <= PHONE_LENGTH)
-                        setPhone(e.target.value)
-                    if (e.target.value.length === PHONE_LENGTH)
-                        usernameRef.current.focus()
+                    if (!containsOnlyDigits(e.target.value)) {
+                        setToastStatus(ToastStatus.INFO)
+                        toastMessage("لطفا فقط عدد تایپ کنید")
+                    } else {
+                        if (e.target.value.length <= PHONE_LENGTH)
+                            setPhone(e.target.value)
+                        if (e.target.value.length === PHONE_LENGTH)
+                            usernameRef.current.focus()
+                    }
                 }} />
                 <Username type='text' value={username} placeholder="نام کاربری" ref={usernameRef} onChange={e => {
                     justEnglish(e.target.value, () => setUsername(e.target.value), () => {
