@@ -1,0 +1,75 @@
+.register-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 24rem;
+    border: 2px solid gray;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    background: #e8e8e8;
+}
+
+.register-countries-select {
+    flex: 1;
+    background: white;
+    color: rgb(114, 114, 114);
+    padding: 0.7rem;
+    border: 1px solid rgb(185, 185, 185);
+    margin-left: 5px;
+    width: 50%;
+}
+
+.register-states-select {
+    flex: 1;
+    background: white;
+    color: rgb(114, 114, 114);
+    width: 50%;
+    padding: 0.7rem;
+    border: 1px solid rgb(185, 185, 185);
+}
+
+.register-position-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5rem;
+}
+
+.register-fields-container {
+    display: flex;
+    height: 28rem;
+    flex-direction: column;
+    flex-direction: center;
+    align-items: stretch;
+}
+
+.register-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 960px) {
+    .register-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+        width: 20rem;
+        border: 1px solid rgb(185, 185, 185);
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 6px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+        background: #e8e8e8;
+    }
+
+}

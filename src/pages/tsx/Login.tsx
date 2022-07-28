@@ -9,6 +9,8 @@ import usePageTitle from "../../hooks/usePageTitle";
 import { LINK_LOGIN, PASSWORD_MINIMUM_LENGTH, USERNAME_MINIMUM_LENGTH } from "../../utils/Constants";
 import { useLocalStorage } from "../../utils/useLocalStorage";
 import { getToastColor, toastMessage, ToastStatus } from "../../utils/Utils";
+import crypto from "crypto-js";
+
 
 const Container = styled.div`
     display: flex;
@@ -96,7 +98,7 @@ function Login() {
     const navigate = useNavigate()
     const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
 
-    usePageTitle('ورود کاربری')
+    usePageTitle('ورود به حساب کاربری')
 
     const buttonHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (username.length < USERNAME_MINIMUM_LENGTH) {
@@ -115,7 +117,7 @@ function Login() {
             .post(LINK_LOGIN,
                 {
                     username: username,
-                    password: password
+                    password: crypto.SHA256(password)
                 }, {
                 headers: {
                     'Content-Type': 'multipart/form-data'

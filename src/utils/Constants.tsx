@@ -43,6 +43,7 @@ export const LINK_BLOGS_BLOG = "https://stu-assist.ir/api/blog/blog.php"
 export const LINK_ABOUT_US = "https://stu-assist.ir/api/utils/about_us.php"
 export const LINK_EMBASSIES = "https://stu-assist.ir/api/services/embassy/embassies.php"
 export const LINK_GUEST_PROFILE = "https://stu-assist.ir/api/user/guest_profile.php"
+export const LINK_COUTNIES_STATES = "https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/states.json"
 
 export const contactLinks = [
   {

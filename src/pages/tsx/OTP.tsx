@@ -66,7 +66,8 @@ const OTPInput = styled.input`
 `
 
 interface stateType {
-    phone_number: string
+    phone_number: string,
+    message: string
 }
 
 function OTP() {
@@ -77,10 +78,15 @@ function OTP() {
     const inputRef = useRef<any>()
     const [, setToken] = useLocalStorage('token', null)
     const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
-    console.log("SSS" + (state as stateType).phone_number)
-    usePageTitle('احراز هویت')
+    const message = (state as stateType).message
+
+    usePageTitle('فعالسازی حساب کاربری')
     useEffect(() => {
         inputRef.current.focus()
+        if (message !== null) {
+            setToastStatus(ToastStatus.SUCCESS)
+            toastMessage((state as stateType).message)
+        }
     }, [])
 
     const buttonHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -108,9 +114,10 @@ function OTP() {
             .then(response => response.data)
             .then(data => {
                 setToastStatus(ToastStatus.INFO)
-                toastMessage(data.data)
-                console.log("Navigating to Login....")
-                navigate('/login', { replace: true })
+                toastMessage(data.data.message)
+                setToken(data.data.token)
+                console.log("Navigating to Home....")
+                navigate('/', { replace: true })
             }).catch(error => {
                 setToastStatus(ToastStatus.ERROR)
                 toastMessage(JSON.stringify(error.response.data.message))
@@ -138,7 +145,7 @@ function OTP() {
                     />
                 </OTPContainer>
                 <Button title="ورود" onClick={e => buttonHandle(e)} reference={buttonRef} />
-                <Title onClick={(e) => navigate('/login', { replace: true })}>ویرایش شماره تلفن</Title>
+                <Title onClick={(e) => navigate('/login', { replace: true })}>بازگشت به ورود به حساب کاربریی</Title>
             </Box>
             <ToastContainer
                 toastStyle={{
