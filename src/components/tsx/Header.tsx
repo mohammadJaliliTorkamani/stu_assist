@@ -40,31 +40,9 @@ function Header() {
                         درباره ما
                     </Link>
                 </li>
-                <li className='nav-item '>
-                    {
-                        MenuItems_Links.map((item, index) => {
-                            return <MenuItem items={item} key={index} depthLevel={0} externalLinks={true} onClick={() => setIsMobileMenuOpen(false)} />;
-                        })
-                    }
-                </li>
                 <li className='nav-item'>
                     <Link to='/blogs' className='nav-links' onClick={e => setIsMobileMenuOpen(false)}>
                         وبلاگ
-                    </Link>
-                </li>
-                <li className='nav-item'>
-                    <Link to='/forums' className='nav-links' onClick={e => setIsMobileMenuOpen(false)}>
-                        تالار گفتگو
-                    </Link>
-                </li>
-                <li className='nav-item'>
-                    <Link to='/application-experience' className='nav-links' onClick={e => setIsMobileMenuOpen(false)}>
-                        تجربه پذیرش
-                    </Link>
-                </li>
-                <li className='nav-item'>
-                    <Link to='/translation-offices' className='nav-links' onClick={e => setIsMobileMenuOpen(false)}>
-                        لیست دارالترجمه های رسمی
                     </Link>
                 </li>
                 <li className='nav-item '>

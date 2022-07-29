@@ -52,11 +52,12 @@ const MenuItem = ({ items, depthLevel, onClick, externalLinks = false }) => {
           <button
             type="button"
             aria-haspopup="menu"
+            className="menu-items-button"
             aria-expanded={dropdown ? "true" : "false"}
             onClick={() => setDropdown((prev) => !prev)}
           >
             {items.title}{" "}
-            {depthLevel > 0 ? <span>*</span> : <span className="arrow" />}
+            {depthLevel > 0 ? <span>{">"}</span> : <span className="arrow" />}
           </button>
           <Dropdown
             depthLevel={depthLevel}
