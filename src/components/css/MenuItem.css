@@ -1,7 +1,7 @@
 .menu-items {
   position: relative;
   font-size: inherit;
-  color: white;
+  color: black;
 }
 
 .menu-items a {
@@ -28,9 +28,9 @@
 
 .menu-items a:hover,
 .menu-items button:hover {
-  color: white;
+  color: black;
   border-radius: 4px;
-  background-color: green;
+  background-color: rgb(238, 238, 238);
 }
 
 .arrow::after {
@@ -48,7 +48,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-left: 10px;
   margin-right: 10px;
   direction: rtl;
 }
