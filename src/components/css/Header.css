@@ -13,18 +13,25 @@
 
 .navbar-logo-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  direction: rtl;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  direction: ltr;
   text-decoration: none;
-}
 
+}
 .navbar-logo-icon {
   background: url('/public/assets/64_64.ico');
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   background-size: 100% 100%;
+}
+
+.navbar-logo-text {
+  font-size: 1.4em;
+  color: green;
 }
 
 .fa-firstdraft {
@@ -109,9 +116,9 @@
   }
 
   .nav-menu.active {
-    background: #242222;
+    background: white;
     left: 0;
-    opacity: 1;
+    opacity: 0.97;
     transition: all 0.5s ease;
     z-index: 1;
   }
@@ -135,12 +142,13 @@
     text-decoration: none;
     align-items: center;
     display: flex;
+    direction: ltr;
     left: 0;
-    transform: translate(25%, 50%);
+    margin-left: 2rem;
   }
 
   .navbar-logo-text {
-    color: #fff;
+    color: black;
     text-decoration: none;
     font-size: 2rem;
   }
@@ -155,15 +163,16 @@
     display: block;
     position: absolute;
     top: 0;
+    color: black;
     right: 0;
-    transform: translate(-100%, 60%);
+    transform: translate(-100%, 50%);
     font-size: 1.8rem;
     cursor: pointer;
   }
 
   .fa-times {
-    color: #fff;
-    font-size: 2rem;
+    color: black;
+    font-size: 1.8rem;
   }
 
   .nav-links-mobile {

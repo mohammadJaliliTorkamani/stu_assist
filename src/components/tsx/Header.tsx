@@ -21,7 +21,7 @@ function Header() {
                 <Button title={!isUser ? "ورود / ثبت نام" : "حساب کاربری"} onClick={e => null} />
             </Link>
             <div className='menu-icon' onClick={e => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                <i className={isMobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'} />
+                <i className={isMobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'} style={{ color: 'black' }} />
             </div>
             <div className="header-options-container">
                 <ul className={isMobileMenuOpen ? 'nav-menu active' : 'nav-menu'}>
@@ -63,7 +63,10 @@ function Header() {
                         </Link>
                     </li>
                 </ul>
-                <div className="navbar-logo-icon" />
+                <div className='navbar-logo-container'>
+                    <div className='navbar-logo-icon' />
+                    <div className='navbar-logo-text'>Stu-Assist</div>
+                </div>
             </div>
         </div>
     );
