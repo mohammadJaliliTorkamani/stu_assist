@@ -1,0 +1,43 @@
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    height: 80px;
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    background: gray;
+    direction: rtl;
+}
+
+.footer-samandehi {
+    cursor: pointer;
+    height: 60px;
+    width: 60px;
+}
+
+
+@media screen and (max-width: 960px) {
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        color: white;
+        height: 80px;
+        width: 100%;
+        padding-top: 10px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        background: gray;
+        direction: rtl;
+    }
+
+    .footer-samandehi {
+        cursor: pointer;
+        height: 80px;
+        width: 80px;
+    }
+}
