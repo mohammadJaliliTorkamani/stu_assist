@@ -57,7 +57,7 @@ function GPACalculator() {
         <div className="gpa-container">
             <div className="gpa-box">
                 <div className="fields-container">
-                    <TitledNumericInput title={"نمره درس"} value={grade} setValue={setGrade} max={20} min={0} className="numeric-input-container" />
+                    <TitledNumericInput title={"نمره مورد نظر"} value={grade} setValue={setGrade} max={20} min={0} className="numeric-input-container" />
                     <TitledNumericInput title={"حداکثر نمره قابل قبول"} value={max} setValue={setMax} max={20} min={0} className="numeric-input-container" />
                     <TitledNumericInput title={"حداقل نمره قابل قبول"} value={min} setValue={setMin} max={20} min={0} className="numeric-input-container" />
                     <Button title={"محاسبه"} className="calculate-button" onClick={() => {
