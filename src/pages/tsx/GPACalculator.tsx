@@ -17,7 +17,6 @@ import { ToastContainer } from "react-toastify";
 
 const SelectedTitle = styled.div`
     font-size: 1rem;
-    padding-top: 1rem;
     padding-bottom: 1rem;
 `
 
@@ -27,7 +26,7 @@ const Result = styled.div`
 `
 
 function GPACalculator() {
-    const [min, max, grade, gpa, loading, guest, outOfCoupon, setMin, setMax, setGrade, trigger] = useGPA(0, 0, 0)
+    const [min, max, grade, gpa, loading, guest, outOfBalance, setMin, setMax, setGrade, trigger] = useGPA(0, 0, 0)
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
     const [token,] = useLocalStorage('token', null)
     const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
@@ -56,51 +55,59 @@ function GPACalculator() {
 
     return (
         <div className="gpa-container">
-            <div className="fields-container">
-                <TitledNumericInput title={"نمره شما"} value={grade} setValue={setGrade} max={20} min={0} className="numeric-input-container" />
-                <TitledNumericInput title={"حداکثر نمره قابل قبول"} value={max} setValue={setMax} max={20} min={0} className="numeric-input-container" />
-                <TitledNumericInput title={"حداقل نمره قابل قبول"} value={min} setValue={setMin} max={20} min={0} className="numeric-input-container" />
-                <Button title={"محاسبه"} className="calculate-button" onClick={() => trigger()} />
-            </div>
-            <div className="result-container">
-                {
-                    loading && <div>در حال بارگذاری...</div>
-                }
-                {
-                    guest && !loading && <div className="login-box">
-                        <SelectedTitle>
-                            لطفا ابتدا وارد حساب کاربری خود شوید
-                        </SelectedTitle>
-                        <Button title="ورود / ثبت نام" onClick={e => naviaget('/login', { replace: true })} />
-                    </div>
-                }
-                {
-                    !guest && !loading && outOfCoupon &&
-                    <div className="charge-box">
-                        <SelectedTitle>موجودی کیف پول شما به پایان رسیده است</SelectedTitle>
-                        <SelectedTitle> {"برای ادامه، لطفا یکی از گزینه های پرداخت را انتخاب نمایید"} </SelectedTitle >
-
-                        <div className="charge-options">
-                            {chargeValues.map(value =>
-                                <ChargeOptionRecord
-                                    key={value.id}
-                                    selected={selectedChargeOption.id === value.id}
-                                    onClick={e => { setSelectedChargeOption(value) }}
-                                    title={`${value.price / 10} تومان به ازای  ${value.numberOfRequests} محاسبه `}
-                                />)}
+            <div className="gpa-box">
+                <div className="fields-container">
+                    <TitledNumericInput title={"نمره درس"} value={grade} setValue={setGrade} max={20} min={0} className="numeric-input-container" />
+                    <TitledNumericInput title={"حداکثر نمره قابل قبول"} value={max} setValue={setMax} max={20} min={0} className="numeric-input-container" />
+                    <TitledNumericInput title={"حداقل نمره قابل قبول"} value={min} setValue={setMin} max={20} min={0} className="numeric-input-container" />
+                    <Button title={"محاسبه"} className="calculate-button" onClick={() => {
+                        if (max.toString() === '' || min.toString() === '' || grade.toString() === '') {
+                            setToastStatus(ToastStatus.INFO)
+                            toastMessage('لطفا ابتدا تمامی فیلد ها را وارد کنید')
+                        } else
+                            trigger()
+                    }} />
+                </div>
+                <div className="result-container">
+                    {
+                        loading && <div>در حال بارگذاری...</div>
+                    }
+                    {
+                        guest && !loading && <div className="login-box">
+                            <SelectedTitle>
+                                لطفا ابتدا وارد حساب کاربری خود شوید
+                            </SelectedTitle>
+                            <Button title="ورود / ثبت نام" onClick={e => naviaget('/login', { replace: true })} />
                         </div>
-                        <Button title="پرداخت" onClick={e => handlePayment()} />
-                    </div>
-                }
-                {
-                    !loading && !guest && !outOfCoupon &&
-                    <>
-                        <SelectedTitle>مقدار GPA : </SelectedTitle>
-                        <Result>
-                            {gpa}
-                        </Result>
-                    </>
-                }
+                    }
+                    {
+                        !guest && !loading && outOfBalance &&
+                        <div className="charge-box">
+                            <SelectedTitle>موجودی کیف پول شما به پایان رسیده است</SelectedTitle>
+                            <SelectedTitle> {"برای ادامه، لطفا یکی از گزینه های پرداخت را انتخاب نمایید"} </SelectedTitle >
+
+                            <div className="charge-options">
+                                {chargeValues.map(value =>
+                                    <ChargeOptionRecord
+                                        key={value.id}
+                                        selected={selectedChargeOption.id === value.id}
+                                        onClick={e => { setSelectedChargeOption(value) }}
+                                        title={`${(value.price / 10).toLocaleString()} تومان به ازای  ${value.numberOfRequests} محاسبه `}
+                                    />)}
+                            </div>
+                            <Button title="پرداخت" onClick={e => handlePayment()} />
+                        </div>
+                    }
+                    {
+                        !loading && !guest && !outOfBalance &&
+                        <>
+                            <SelectedTitle>مقدار GPA : </SelectedTitle>
+                            <Result>
+                                {gpa}
+                            </Result>
+                        </>
+                    }
+                </div>
             </div>
             <ToastContainer
                 toastStyle={{

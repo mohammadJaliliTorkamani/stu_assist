@@ -23,7 +23,8 @@ interface IProps {
 
 function ChargeOptionRecord(props: IProps) {
     return (
-        <Container onClick={e => props.onClick(e)} style={props.selected ? { border: '2px solid #0a3816' } : {}}>
+        <Container onClick={e => props.onClick(e)}
+            style={props.selected ? { background: 'green', color:'white' } : {}}>
             {props.title}
         </Container >
     )

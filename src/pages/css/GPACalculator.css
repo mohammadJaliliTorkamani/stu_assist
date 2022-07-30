@@ -1,26 +1,43 @@
 .gpa-container {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    padding-top: 2rem;
-    padding-bottom: 1rem;
-    padding-left: 8rem;
-    padding-right: 8rem;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
     direction: rtl;
+    background-color: rgb(245, 245, 245);
     min-height: calc(100vh - 160px);
 }
 
 .fields-container {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 80%;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+}
+
+.numeric-input-container {
+    display: flex;
     direction: rtl;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gpa-box {
+    background-color: white;
+    border-radius: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border: 2px solid rgb(241, 241, 241);
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+    width: 26rem;
 }
 
 .calculate-button {
-    max-height: 3rem
+    max-height: 3rem;
+    margin-top: 1rem;
 }
 
 .result-container {
@@ -29,12 +46,10 @@
     justify-content: space-around;
     align-items: center;
     border: 2px solid #0a3816;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     width: 100%;
     align-self: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    margin-top: 2rem;
 }
 
 .charge-options {
@@ -61,39 +76,82 @@
     align-items: center;
 }
 
-.numeric-input-container {
-    height: 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
 @media screen and (max-width: 960px) {
 
     .gpa-container {
         display: flex;
         flex-direction: column;
-        align-items: stretch;
-        padding-top: 2rem;
-        padding-bottom: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
         direction: rtl;
+        background-color: rgb(245, 245, 245);
         min-height: calc(100vh - 160px);
     }
-
+    
     .fields-container {
         display: flex;
         flex-direction: column;
         align-items: stretch;
         width: 100%;
     }
-
+    
     .numeric-input-container {
         display: flex;
         direction: rtl;
         flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .gpa-box {
+        background-color: white;
+        border-radius: 1rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        border: 2px solid rgb(241, 241, 241);
+        padding-bottom: 2rem;
+        padding-top: 1rem;
+        width: 23rem;
+    }
+    
+    .calculate-button {
+        max-height: 3rem;
+        margin-top: 1rem;
+    }
+    
+    .result-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        border: 2px solid #0a3816;
+        border-radius: 0.5rem;
+        width: 100%;
+        align-self: center;
+        margin-top: 2rem;
+    }
+    
+    .charge-options {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .charge-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+        justify-content: center;
+        min-height: fit-content;
+        width: 90%;
+    }
+    
+    .login-box {
+        display: flex;
+        flex-direction: column;
         justify-content: space-between;
         align-items: center;
     }

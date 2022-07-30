@@ -42,7 +42,7 @@ function useECTS(_unit: number | '', _time: number | '', _week: number | '') {
                         setECTS(Number(parseFloat(data.data).toFixed(1)))
                     }).catch(error => {
                         setLoading(false)
-                        if (error.response.data.message === 'Insufficient balance') {
+                        if (error.response.data.message === 'موجودی ناکافی') {
                             setOutOfCoupon(true)
                         } else {
                             alert(error.response.data.message)
@@ -58,6 +58,8 @@ function useECTS(_unit: number | '', _time: number | '', _week: number | '') {
             setECTS(0)
         }
     }, [outOfCoupon, loading, guest])
+
+    useEffect(() => setGuest(token === null), [token])
 
     return [unit, time, week, ects, loading, guest, outOfCoupon, setUnit, setTime, setWeek, trigger] as const
 }
