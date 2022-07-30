@@ -3,6 +3,7 @@ import React from "react";
 
 const Title = styled.div`
     color: black;
+    font-size: 0.85em;
 `
 
 const ValueInput = styled.input`

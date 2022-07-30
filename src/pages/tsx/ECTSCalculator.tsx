@@ -17,7 +17,6 @@ import '../css/ECTSCalculator.css'
 
 const SelectedTitle = styled.div`
     font-size: 1rem;
-    padding-top: 1rem;
     padding-bottom: 1rem;
 `
 
@@ -35,7 +34,6 @@ function ECTSCalculator() {
 
     const navigate = useNavigate()
     usePageTitle('محاسبه ECTS')
-
     const handlePayment = () => {
         axios
             .post(LINK_PAYMENT,
@@ -58,51 +56,53 @@ function ECTSCalculator() {
 
     return (
         <div className="ects-container">
-            <div className="fields-container">
-                <TitledNumericInput title={"تعداد واحد درس"} value={unit} setValue={setUnit} max={20} min={1} className="numeric-input-container" />
-                <TitledNumericInput title={"مدت زمان تدریس هر واحد در هفته (دقیقه)"} value={time} setValue={setTime} max={120} min={0} className="numeric-input-container" />
-                <TitledNumericInput title={"تعداد هفته نظام آموزشی اروپایی (۱۴)"} value={week} setValue={setWeek} max={25} min={10} className="numeric-input-container" />
-                <Button title={"محاسبه"} className="calculate-button" onClick={() => trigger()} />
-            </div>
-            <div className="result-container">
-                {
-                    loading && <div>در حال بارگذاری...</div>
-                }
-                {
-                    guest && !loading && <div className="login-box">
-                        <SelectedTitle>
-                            لطفا ابتدا وارد حساب کاربری خود شوید
-                        </SelectedTitle>
-                        <Button title="ورود / ثبت نام" onClick={e => navigate('/login', { replace: true })} />
-                    </div>
-                }
-                {
-                    !guest && !loading && outOfCoupon &&
-                    <div className="charge-box">
-                        <SelectedTitle>موجودی کیف پول شما به پایان رسیده است</SelectedTitle>
-                        <SelectedTitle> {"برای ادامه، لطفا یکی از گزینه های پرداخت را انتخاب نمایید"} </SelectedTitle >
-
-                        <div className="charge-options">
-                            {chargeValues.map(value =>
-                                <ChargeOptionRecord
-                                    key={value.id}
-                                    selected={selectedChargeOption.id === value.id}
-                                    onClick={e => { setSelectedChargeOption(value) }}
-                                    title={`${(value.price / 10).toLocaleString()} تومان به ازای  ${value.numberOfRequests} محاسبه `}
-                                />)}
+            <div className="ects-box">
+                <div className="fields-container">
+                    <TitledNumericInput title={"تعداد واحد درس"} value={unit} setValue={setUnit} max={20} min={1} className="numeric-input-container" />
+                    <TitledNumericInput title={"مدت زمان تدریس هر واحد در هفته (دقیقه)"} value={time} setValue={setTime} max={120} min={0} className="numeric-input-container" />
+                    <TitledNumericInput title={"تعداد هفته نظام آموزشی اروپایی (۱۴)"} value={week} setValue={setWeek} max={25} min={10} className="numeric-input-container" />
+                    <Button title={"محاسبه"} className="calculate-button" onClick={() => trigger()} />
+                </div>
+                <div className="result-container">
+                    {
+                        loading && <div>در حال بارگذاری...</div>
+                    }
+                    {
+                        guest && !loading && <div className="login-box">
+                            <SelectedTitle>
+                                لطفا ابتدا وارد حساب کاربری خود شوید
+                            </SelectedTitle>
+                            <Button title="ورود / ثبت نام" onClick={e => navigate('/login', { replace: true })} />
                         </div>
-                        <Button title="پرداخت" onClick={e => handlePayment()} />
-                    </div>
-                }
-                {
-                    !loading && !guest && !outOfCoupon &&
-                    <>
-                        <SelectedTitle>مقدار ECTS : </SelectedTitle>
-                        <Result>
-                            {ects}
-                        </Result>
-                    </>
-                }
+                    }
+                    {
+                        !guest && !loading && outOfCoupon &&
+                        <div className="charge-box">
+                            <SelectedTitle>موجودی کیف پول شما به پایان رسیده است</SelectedTitle>
+                            <SelectedTitle> {"برای ادامه، لطفا یکی از گزینه های پرداخت را انتخاب نمایید"} </SelectedTitle >
+
+                            <div className="charge-options">
+                                {chargeValues.map(value =>
+                                    <ChargeOptionRecord
+                                        key={value.id}
+                                        selected={selectedChargeOption.id === value.id}
+                                        onClick={e => { setSelectedChargeOption(value) }}
+                                        title={`${(value.price / 10).toLocaleString()} تومان به ازای  ${value.numberOfRequests} محاسبه `}
+                                    />)}
+                            </div>
+                            <Button title="پرداخت" onClick={e => handlePayment()} />
+                        </div>
+                    }
+                    {
+                        !loading && !guest && !outOfCoupon &&
+                        <>
+                            <SelectedTitle>مقدار ECTS : </SelectedTitle>
+                            <Result>
+                                {ects}
+                            </Result>
+                        </>
+                    }
+                </div>
             </div>
             <ToastContainer
                 toastStyle={{

@@ -8,11 +8,11 @@ import useChargeOptions from "../../hooks/useChargeOptions";
 import { LINK_PAYMENT } from "../../utils/Constants";
 import axios from "axios";
 import { useLocalStorage } from "../../utils/useLocalStorage";
-import '../css/GPACalculator.css'
 import usePageTitle from "../../hooks/usePageTitle";
 import { useCallback, useState } from "react";
 import { getToastColor, toastMessage, ToastStatus } from "../../utils/Utils";
 import { ToastContainer } from "react-toastify";
+import '../css/GPACalculator.css'
 
 
 const SelectedTitle = styled.div`

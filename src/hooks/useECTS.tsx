@@ -3,24 +3,19 @@ import { useEffect, useState } from "react"
 import { LINK_ECTS } from "../utils/Constants"
 import { useLocalStorage } from "../utils/useLocalStorage"
 
-function useECTS(_unit: number | '', _time: number | '', _week: number | '') {
+function useECTS(_unit: number, _time: number, _week: number) {
     const [token,] = useLocalStorage('token', null)
     const [loading, setLoading] = useState(false)
     const [guest, setGuest] = useState(false)
-    const [outOfCoupon, setOutOfCoupon] = useState(false)
-    const [unit, setUnit] = useState(_unit)
-    const [time, setTime] = useState(_time)
-    const [week, setWeek] = useState(_week)
-    const [ects, setECTS] = useState(0)
+    const [outOfBalance, setOutOfBalance] = useState(false)
+    const [unit, setUnit] = useState<number>(_unit)
+    const [time, setTime] = useState<number>(_time)
+    const [week, setWeek] = useState<number>(_week)
+    const [ects, setECTS] = useState<number>(0)
 
     const trigger = () => {
         setGuest(token === null)
-        if (unit === '' || week === '' || time === '') {
-            alert("لطفا تمامی فیلد ها را تکمیل نمایید")
-            return;
-        }
-
-        if (!loading && !guest && !outOfCoupon && token !== null) {
+        if (!loading && !guest && !outOfBalance && token !== null) {
             if (week === 0)
                 setECTS(0)
             else {
@@ -38,12 +33,12 @@ function useECTS(_unit: number | '', _time: number | '', _week: number | '') {
                     .then(response => response.data)
                     .then(data => {
                         setLoading(false)
-                        setOutOfCoupon(false)
+                        setOutOfBalance(false)
                         setECTS(Number(parseFloat(data.data).toFixed(1)))
                     }).catch(error => {
                         setLoading(false)
                         if (error.response.data.message === 'موجودی ناکافی') {
-                            setOutOfCoupon(true)
+                            setOutOfBalance(true)
                         } else {
                             alert(error.response.data.message)
                             setGuest(true)
@@ -54,14 +49,14 @@ function useECTS(_unit: number | '', _time: number | '', _week: number | '') {
     }
 
     useEffect(() => {
-        if (outOfCoupon === true || loading === true || guest === true) {
+        if (outOfBalance || loading || guest) {
             setECTS(0)
         }
-    }, [outOfCoupon, loading, guest])
+    }, [outOfBalance, loading, guest])
 
     useEffect(() => setGuest(token === null), [token])
 
-    return [unit, time, week, ects, loading, guest, outOfCoupon, setUnit, setTime, setWeek, trigger] as const
+    return [unit, time, week, ects, loading, guest, outOfBalance, setUnit, setTime, setWeek, trigger] as const
 }
 
 export default useECTS
