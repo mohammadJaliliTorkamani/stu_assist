@@ -108,7 +108,7 @@ function Profile() {
             </div>
 
             <div className="box" >
-                {"موجودی کیف پول : " + balance + " ریال "}
+                {"موجودی کیف پول : " + balance.toLocaleString() + " ریال "}
                 <div className="charge-box">
                     <div className="charge-options">
                         {
@@ -117,7 +117,7 @@ function Profile() {
                                     key={value.id}
                                     selected={selectedChargeOption.id === value.id}
                                     onClick={e => { setSelectedChargeOption(value) }}
-                                    title={`${value.price / 10} تومان به ازای  ${value.numberOfRequests} محاسبه `}
+                                    title={`${(value.price / 10).toLocaleString()} تومان به ازای  ${value.numberOfRequests} محاسبه `}
 
                                 />)
                         }
