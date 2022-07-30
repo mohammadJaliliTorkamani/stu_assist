@@ -1,0 +1,15 @@
+.homeoptionbox-container {
+    text-decoration: none;
+    background-color: white;
+    border: 2px solid green;
+    border-radius: 3px;
+    color: green;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    aspect-ratio: 1;
+    width: 10rem;
+    justify-content: center;
+    font-size: 0.9em;
+    justify-self: center;
+}

@@ -81,11 +81,11 @@ function Blogs() {
         <div className='blogs-posts'>
             {
                 selectedBlogCategory === -1 &&
-                posts.map(post => <BlogPostItem post={post} />)
+                posts.map(post => <BlogPostItem key={post.id} post={post} />)
             }
             {
                 selectedBlogCategory > 0 &&
-                rawData.filter(item => item.categoryID === selectedBlogCategory)[0].posts.map(post => <BlogPostItem post={post} />)
+                rawData.filter(item => item.categoryID === selectedBlogCategory)[0].posts.map(post => <BlogPostItem key={post.id} post={post} />)
             }
         </div>
         <ToastContainer

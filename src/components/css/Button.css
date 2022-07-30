@@ -7,7 +7,7 @@
     padding-left: 2rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    border-radius: 3px;
+    border-radius: 30px;
     outline: none;
     border: none;
     font-size: 1em;
@@ -15,6 +15,7 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+    border: 1px solid var(--primary);
     align-items: center;
     background-color: var(--primary);
     text-decoration: none;

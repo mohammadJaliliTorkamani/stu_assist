@@ -1,65 +1,118 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import BlogPostItem from "../../components/tsx/BlogPostItem";
+import Button from "../../components/tsx/Button";
 import HomeOptionBox from "../../components/tsx/HomeOptionBox";
 import usePageTitle from "../../hooks/usePageTitle";
+import { LINK_BLOGS_RECENT_POSTS } from "../../utils/Constants";
+import { getToastColor, toastMessage, ToastStatus } from "../../utils/Utils";
 import '../css/Home.css'
 
-const homeOptionsContainer = {
-    background: '#f5f5f5',
-    height: `calc(100vh - 160px)`
+interface BlogPostType {
+    id: number,
+    title: string,
+    overview: string,
+    creationDate: string,
+    creationTime: string,
+    photoPath: string
 }
 
 function Home() {
     usePageTitle('خانه')
-    return (
-        <div key={1} style={homeOptionsContainer} className="home-container ltr">
-            <HomeOptionBox
-                key={1}
-                className="home-option"
-                page={{
-                    id: 1,
-                    text: "محاسبه ECTS",
-                    link: "ects-calculator"
-                }} />
-            <HomeOptionBox key={2}
-                className="home-option"
-                page={{
-                    id: 2,
-                    text: "محاسبه GPA",
-                    link: "gpa-calculator"
-                }} />
 
-            <HomeOptionBox key={3}
-                className="home-option"
-                page={{
-                    id: 3,
-                    text: "لیست دارالترجمه های رسمی",
-                    link: "translation-offices"
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
+    const [recentBlogPosts, setRecentBlogPosts] = useState<BlogPostType[]>([])
+    const [isMobileView, setIsMobileView] = useState(false)
+
+    const navigate = useNavigate()
+
+    useEffect(() => setIsMobileView(window.innerWidth < 960), [window])
+
+    useEffect(() => {
+        axios
+            .get(LINK_BLOGS_RECENT_POSTS, {
+                params: {
+                    capacity: isMobileView ? 4 : 5
+                }
+            })
+            .then(response => response.data)
+            .then(data => setRecentBlogPosts(data.data))
+            .catch(error => {
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
+            })
+    }, [isMobileView])
+
+    return (
+        <div className="home-container">
+            <div className="home-sticker">خدمات</div>
+
+            <div className="home-options">
+                <HomeOptionBox
+                    key={1}
+                    page={{
+                        id: 1,
+                        text: "محاسبه ECTS",
+                        link: "ects-calculator"
+                    }} />
+                <HomeOptionBox key={2}
+                    page={{
+                        id: 2,
+                        text: "محاسبه GPA",
+                        link: "gpa-calculator"
+                    }} />
+
+                <HomeOptionBox key={3}
+                    page={{
+                        id: 3,
+                        text: "دارالترجمه های رسمی",
+                        link: "translation-offices"
+                    }}
+                />
+                <HomeOptionBox key={4}
+                    page={{
+                        id: 4,
+                        text: "تالار گفتگو",
+                        link: "forums"
+                    }}
+                />
+                <HomeOptionBox key={5}
+                    page={{
+                        id: 5,
+                        text: "تجربه پذیرش",
+                        link: "application-experience"
+                    }}
+                />
+                <HomeOptionBox
+                    key={6}
+                    page={{
+                        id: 6,
+                        text: "درباره ما",
+                        link: "about-us"
+                    }} />
+            </div>
+
+            <div className="home-recent-blog-posts-container">
+                <div className="home-sticker">تازه ها</div>
+                < div className="home-recent-blog-posts ltr">
+                    {recentBlogPosts.map(post => <BlogPostItem key={post.id} post={post} />)}
+                </div>
+                <Button className="home-recent-blog-show-more" title="نمایش بیشتر" onClick={e => navigate('blogs')} />
+            </div>
+            <ToastContainer
+                toastStyle={{
+                    backgroundColor: getToastColor(toastID),
+                    color: 'white',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-end'
                 }}
-            />
-            <HomeOptionBox key={4}
-                className="home-option"
-                page={{
-                    id: 4,
-                    text: "تالار گفتگو",
-                    link: "forums"
-                }}
-            />
-            <HomeOptionBox key={5}
-                className="home-option"
-                page={{
-                    id: 5,
-                    text: "تجربه پذیرش",
-                    link: "application-experience"
-                }}
-            />
-            <HomeOptionBox
-                key={6}
-                className="home-option"
-                page={{
-                    id: 6,
-                    text: "درباره ما",
-                    link: "about-us"
-                }} />
-        </div>
+                limit={1}
+                hideProgressBar={true}
+                position='bottom-center' />
+        </div >
     )
 }
 

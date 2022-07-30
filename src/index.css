@@ -1,7 +1,6 @@
 @font-face {
   font-family: "syekan";
   src: url(assets/syekan.otf) format("opentype");
-
   font-weight: normal;
   font-style: normal;
 }
@@ -20,7 +19,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'PT Sans',syekan, sans-serif;
+  font-family: 'PT Sans', syekan, sans-serif;
 }
 
 button {

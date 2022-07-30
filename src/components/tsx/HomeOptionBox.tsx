@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../css/Button.css";
+import "../css/HomeOptionBox.css";
 
 interface TextLink {
     id: number,
@@ -13,9 +13,9 @@ interface IProps {
 
 }
 
-function HomeOptionBox({ page, className }: IProps) {
+function HomeOptionBox({ page }: IProps) {
     return (
-        <Link to={page.link} className={"btn " + className} >
+        <Link to={page.link} className={"homeoptionbox-container"} >
             {page.text}
         </Link >
     )
