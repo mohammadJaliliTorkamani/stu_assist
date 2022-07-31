@@ -47,11 +47,11 @@ export const LINK_COUTNIES_STATES = "https://raw.githubusercontent.com/dr5hn/cou
 export const contactLinks = [
   {
     id: 1,
-    label: "مدیریت",
+    label: "مدیریت سایت",
     value: "management@stu-assist.ir"
   }, {
     id: 2,
-    label: "امور کاربران",
+    label: "مدیریت امور کاربران",
     value: "users@stu-assist.ir"
   }
 ]

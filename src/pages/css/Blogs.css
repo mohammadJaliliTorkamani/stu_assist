@@ -14,7 +14,7 @@
     justify-content: center;
     margin-right: 1rem;
     margin-left: 1rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .blogs-category {
@@ -26,8 +26,8 @@
     color: white;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1.7rem;
+    padding-right: 1.7rem;
     margin-left: 10px;
     border-radius: 10rem;
     cursor: pointer;

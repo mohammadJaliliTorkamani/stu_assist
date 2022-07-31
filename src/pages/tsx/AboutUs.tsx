@@ -14,24 +14,26 @@ const TextContiner = styled.div`
     direction: rtl;
     height: calc(100vh - 160px);
     width: 100%;
-    padding: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
 `
 
 const TextBox = styled.div`
     display: flex;
     flex:1;
-    margin-top: 3rem;
+    margin-top: 2rem;
     margin-bottom: 3rem;
     color: black;
-    background: #f2f2f2;
-    padding-top: 3rem;
+    background: #fbfffa;
+    padding-top: 2.5rem;
     padding-bottom: 3rem;
     padding-left: 2rem;
     padding-right: 2rem;
     text-align: justify;
-    border: 2px solid gray;
+    border: 2px solid green;
     border-radius: 1rem;
-    line-height: 2rem;
+    line-height: 2.5rem;
     flex-direction: column;
     overflow: auto;
     align-items: flex-start;
@@ -39,10 +41,14 @@ const TextBox = styled.div`
 
 const Separator = styled.span`
     height: 2px;
-    background: black;
+    background: green;
     width: 10rem;
     margin-bottom: 1rem;
 `
+
+const Title = styled.div`
+    color: green;
+`;
 
 function AboutUs() {
 
@@ -64,13 +70,12 @@ function AboutUs() {
     return (
         <TextContiner>
             <TextBox>
-                Stu-Assist چیست؟
+                <Title>Stu-Assist چیست؟</Title>
                 <Separator />
                 {content}
                 <br />
                 <br />
-                <br />
-                مشخصات تماس
+                <Title> ارتباط با ما</Title>
                 <Separator />
                 {
                     contactLinks.map(
