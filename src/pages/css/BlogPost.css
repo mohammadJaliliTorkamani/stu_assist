@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
+    background-color: rgb(244, 244, 244);
     direction: rtl;
     min-height: calc(100vh - 160px);
 }
@@ -16,9 +17,10 @@
 
 .blog-post-cadr {
     display: flex;
+    background-color: white;
     flex-direction: column;
     min-height: calc(100vh - 240px);
-    border: solid 2px rgb(218, 218, 218);
+    border: solid 1px rgb(228, 228, 228);
     border-radius: 24px;
     margin: 2rem;
     padding: 2rem;
@@ -31,14 +33,13 @@
 }
 
 .blog-post-cadr-header-date-time {
-    font-weight: 700;
     margin-top: 1rem;
 }
 
 
 .blog-post-cadr-content {
     margin-top: 2rem;
-    line-height: 2.5rem;
+    line-height: 2.8rem;
     text-align: justify;
 }
 
@@ -59,32 +60,34 @@
     flex-direction: row;
     align-items: flex-start;
     direction: ltr;
+    gap: 5px;
     justify-content: baseline;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
-.blog-post-cadr-clipboard-container{
+.blog-post-cadr-clipboard-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
     direction: ltr;
     margin-top: 2rem;
     cursor: pointer;
 }
 
-.blog-post-cadr-clipboard-text{
-    background-color: gray;
+.blog-post-cadr-clipboard-text {
+    background-color: rgb(203, 203, 203);
     color: white;
     border-radius: 4px;
     font-size: 1em;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     margin-right: 0.5rem;
-    font-weight: 100;
 }
 
-.blog-post-cadr-clipboard-button{
-    width: 30px;
-    height: 30px;
+.blog-post-cadr-clipboard-button {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 3px;
 }
 
 @media screen and (max-width: 960px) {
@@ -109,15 +112,34 @@
         align-items: center;
         direction: ltr;
         justify-content: center;
-        margin-top: 1rem;
+        margin-top: 1.5rem;
+        gap: 5px;
     }
 
-    .blog-post-cadr-clipboard-container{
+    .blog-post-cadr-clipboard-container {
         display: flex;
         flex-direction: row;
         justify-content: center;
         direction: ltr;
         cursor: pointer;
         margin-top: 1rem;
+    }
+
+    .blog-post-cadr-content {
+        margin-top: 1.5rem;
+        line-height: 2.5rem;
+        text-align: justify;
+    }
+
+    .blog-post-cadr-header-title {
+        font-weight: 700;
+        color: green;
+        font-size: 1.2em;
+    }
+
+    .blog-post-cadr-image {
+        max-width: 15rem;
+        margin-top: 0.7rem;
+        border-radius: 8px;
     }
 }

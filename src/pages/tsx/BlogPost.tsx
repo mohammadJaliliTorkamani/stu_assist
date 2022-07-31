@@ -18,7 +18,7 @@ import {
     WhatsappShareButton,
     WhatsappIcon
 } from 'react-share'
-import { createBlogPostUrl, toastMessage, ToastStatus } from '../../utils/Utils'
+import { createBlogPostUrl, getToastColor, toastMessage, ToastStatus } from '../../utils/Utils'
 import clipboardLogo from '../../assets/clipboard_logo.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -40,7 +40,7 @@ function BlogPost() {
     const { postId } = useParams()
     const _postId = typeof postId == 'undefined' ? 0 : parseInt(postId)
     const [post, setPost] = useState<BlogPostType>()
-    const [, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
 
     useEffect(() => {
         axios
@@ -85,7 +85,8 @@ function BlogPost() {
             <div className='blog-post-cadr-content'>{post?.content}</div>
             <div className='blog-post-cadr-clipboard-container' onClick={e => {
                 navigator.clipboard.writeText(createBlogPostUrl(_postId))
-                toast("آدرس پست وبلاگ کپی شد")
+                setToastStatus(ToastStatus.SUCCESS)
+                toastMessage("آدرس پست وبلاگ کپی شد")
             }}>
                 <div className='blog-post-cadr-clipboard-text'>{createBlogPostUrl(_postId)}</div>
                 <img className='blog-post-cadr-clipboard-button' src={clipboardLogo} alt="copy to clopboard logo" />
@@ -114,7 +115,7 @@ function BlogPost() {
         </div>
         <ToastContainer
             toastStyle={{
-                backgroundColor: '#e3c427',
+                backgroundColor: getToastColor(toastID),
                 color: 'white',
                 display: 'flex',
                 flexDirection: 'column',
