@@ -28,6 +28,8 @@ function TranslationOffice() {
     const [token,] = useLocalStorage('token', null)
     const [offices, setOffices] = useState<TranslationOfficeTemplate[]>([])
     const [officeName, setOfficeName] = useState<string>('')
+    const [shouldHaveWebsite, setShouldHaveWebsite] = useState<boolean>(false)
+    const [shouldHaveGeoLocation, setShouldHaveGeoLocation] = useState<boolean>(false)
     const [state, setState] = useState<string>('')
     const [states, setStates] = useState<string[]>([])
     const [shownOffices, setShownOffices] = useState<TranslationOfficeTemplate[]>([])
@@ -70,13 +72,13 @@ function TranslationOffice() {
                 <div className='translation-offices-header-title-container'>
                     <div className='translation-offices-header-title'>  فهرست دارالترجمه های رسمی</div>
                     <div className='translation-offices-options-container'>
-                        <div className='translation-offices-check-container'>
+                        <div className='translation-offices-check-container' onClick={e => setShouldHaveWebsite(!shouldHaveWebsite)}>
                             <div>وبسایت</div>
-                            <input className='translation-offices-checkbox' type={'checkbox'} />
+                            <input className='translation-offices-checkbox' type={'checkbox'} checked={shouldHaveWebsite} onChange={e => setShouldHaveWebsite(!shouldHaveWebsite)} />
                         </div>
-                        <div className='translation-offices-check-container'>
+                        <div className='translation-offices-check-container' onClick={e => setShouldHaveGeoLocation(!shouldHaveGeoLocation)}>
                             <div>موقعیت در نقشه</div>
-                            <input className='translation-offices-checkbox' type={'checkbox'} />
+                            <input className='translation-offices-checkbox' type={'checkbox'} checked={shouldHaveGeoLocation} onChange={e => setShouldHaveGeoLocation(!shouldHaveGeoLocation)} />
                         </div>
                         <div className='translation-offices-state-choosing-container'>
                             <div>استان</div>
