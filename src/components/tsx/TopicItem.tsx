@@ -17,13 +17,9 @@ interface TopicType {
 
 interface IProps {
     topic: TopicType,
-    hallId: number
+    hallId: number,
+    even: boolean
 }
-
-
-const Row = styled.tr`
-    height: 35px;
-`
 
 const Column1 = styled.td`
     text-align: center;
@@ -47,13 +43,13 @@ const Column3 = styled.td`
     align-items: center;
 `
 
-function TopicItem({ topic, hallId }: IProps) {
+function TopicItem({ topic, hallId, even }: IProps) {
     const getCreatorName = (name: string) => {
         const _name = name.replace(/ /g, '')
         return _name === '' ? "بی نام" : name
     }
 
-    return <Row>
+    return <tr className={even ? 'topic-item-row-even' : 'topic-item-row-odd'}>
         <Column1>
             <a className="topic-item-topic-name" href={createTopicUrl(hallId, topic.id)}>{topic.name}</a>
         </Column1>
@@ -73,7 +69,7 @@ function TopicItem({ topic, hallId }: IProps) {
                 }
             </div>
         </Column3>
-    </Row>
+    </tr>
 }
 
 export default TopicItem

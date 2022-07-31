@@ -1,3 +1,13 @@
+.topic-item-row-even {
+    height: 40px;
+    background-color: white;
+}
+
+.topic-item-row-odd {
+    height: 40px;
+    background-color: rgb(246, 246, 246);
+}
+
 .topic-item-topic-name {
     text-decoration: none;
     color: green;

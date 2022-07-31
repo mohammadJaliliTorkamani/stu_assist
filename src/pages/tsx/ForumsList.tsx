@@ -50,7 +50,7 @@ function ForumsList() {
                         <th className="forums-list-table-header"> تعداد بازدید ها / نظرات</th>
                         <th className="forums-list-table-header">آخرین پاسخ دهنده</th>
                     </tr>
-                    {topics.map(topic => <TopicItem key={topic.id} hallId={_hallId} topic={topic} />)}
+                    {topics.map((topic, index) => <TopicItem key={topic.id} hallId={_hallId} topic={topic} even={index % 2 == 0} />)}
                 </tbody>
             </table>
         </div>
