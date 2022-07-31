@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill'
+import { useParams } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import Button from '../../components/tsx/Button'
 import useCategory from '../../hooks/useCategory'
@@ -31,6 +32,8 @@ function CreateTopic() {
     const [categories] = useCategory()
     const [, createTopic] = useTopic(hall)
     const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
+    const { hallId } = useParams()
+    const _postId = typeof hallId == 'undefined' ? 0 : parseInt(hallId)
 
     usePageTitle('تاپیک جدید')
 
