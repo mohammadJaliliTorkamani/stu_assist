@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { BASE_URL, LINK_BLOGS_BLOG } from '../../utils/Constants'
 import '../css/BlogPost.css'
+import 'jalali-moment'
 import {
     EmailShareButton,
     EmailIcon,
@@ -21,6 +22,8 @@ import { createBlogPostUrl, toastMessage, ToastStatus } from '../../utils/Utils'
 import clipboardLogo from '../../assets/clipboard_logo.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import moment from 'jalali-moment';
+
 
 interface BlogPostType {
     id: number,
@@ -37,7 +40,7 @@ function BlogPost() {
     const { postId } = useParams()
     const _postId = typeof postId == 'undefined' ? 0 : parseInt(postId)
     const [post, setPost] = useState<BlogPostType>()
-    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
+    const [, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
 
     useEffect(() => {
         axios
@@ -58,12 +61,18 @@ function BlogPost() {
 
     }, [_postId])
 
+    const convertToShamsiDateTime = (dateTime: string | undefined) => {
+        if (typeof (dateTime) !== 'undefined' && dateTime.trim() !== '')
+            return moment(dateTime, 'YYYY/MM/DD hh:mm:ss').locale('fa').format('hh:mm YYYY/MM/DD');
+        return ""
+    }
+
     return <div className='blog-post-container'>
         <div className='blog-post-cadr'>
             <div className='blog-post-cadr-header'>
                 <div>
                     <div className='blog-post-cadr-header-title'>{post?.title}</div>
-                    <div className='blog-post-cadr-header-date-time'>{"زمان انتشار : " + post?.creationDate + " " + post?.creationTime}</div>
+                    <div className='blog-post-cadr-header-date-time'>{"زمان انتشار : " + convertToShamsiDateTime(post?.creationDate + " " + post?.creationTime)}</div>
                 </div>
                 {post?.photoPath !== undefined &&
                     <div className='blog-post-cadr-image-container'>

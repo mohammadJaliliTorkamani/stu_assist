@@ -17,6 +17,8 @@
     "@types/react-dom": "^18.0.0",
     "axios": "^0.27.2",
     "crypto-js": "^4.1.1",
+    "jalaali-js": "^1.2.6",
+    "jalali-moment": "^3.3.11",
     "js-sha256": "^0.9.0",
     "navbar-react": "^1.0.4",
     "otp-input-component": "^0.1.2",
