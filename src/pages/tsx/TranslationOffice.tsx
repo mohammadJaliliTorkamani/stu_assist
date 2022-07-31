@@ -63,8 +63,29 @@ function TranslationOffice() {
             })
     }, [token])
 
-    useEffect(() => setShownOffices(state === 'همه' ? offices : offices.filter(office => office.address.state === state && office.name.indexOf(officeName) >= 0)), [state])
-    useEffect(() => setShownOffices(offices.filter(office => office.name.indexOf(officeName) >= 0)), [officeName])
+    useEffect(() => {
+        setShownOffices(
+            offices.filter(office => {
+                if (shouldHaveWebsite && shouldHaveGeoLocation)
+                    return (state === 'همه' ? true : office.address.state === state) &&
+                        office.name.indexOf(officeName) >= 0 &&
+                        office.address.latitude !== 0 &&
+                        office.address.longitude !== 0 &&
+                        office.website !== null
+                else if (!shouldHaveWebsite && shouldHaveGeoLocation)
+                    return (state === 'همه' ? true : office.address.state === state) &&
+                        office.name.indexOf(officeName) >= 0 &&
+                        office.address.latitude !== 0 &&
+                        office.address.longitude !== 0
+                else if (shouldHaveWebsite && !shouldHaveGeoLocation)
+                    return (state === 'همه' ? true : office.address.state === state) &&
+                        office.name.indexOf(officeName) >= 0 &&
+                        office.website !== null
+                else
+                    return (state === 'همه' ? true : office.address.state === state) &&
+                        office.name.indexOf(officeName) >= 0
+            }))
+    }, [shouldHaveGeoLocation, shouldHaveWebsite, officeName, state])
 
     return (
         <div className='translation-offices-container'>
