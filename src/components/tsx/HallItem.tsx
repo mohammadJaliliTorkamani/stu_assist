@@ -3,7 +3,8 @@ import { createHallUrl, createTopicUrl } from '../../utils/Utils'
 import '../css/HallItem.css'
 
 interface IProps {
-    hall: HallType
+    hall: HallType,
+    even: boolean
 }
 
 interface HallType {
@@ -17,9 +18,6 @@ interface HallType {
         lastTopicDateEquivalent: string
     }
 }
-
-const Row = styled.tr`
-`
 
 const Column1 = styled.td`
     text-align: center;
@@ -40,14 +38,14 @@ const Column3 = styled.td`
     
 `
 
-function HallItem({ hall }: IProps) {
+function HallItem({ hall, even }: IProps) {
     return (
-        <Row>
+        <tr className={even ? 'hall-item-row-even' : 'hall-item-row-odd'}>
             <Column1>
                 <a className='hall-item-name' href={createHallUrl(hall.id)}>{hall.name}</a>
                 <div className='hall-item-descriptor'>{hall.descriptor}</div>
             </Column1>
-            <Column2 >{hall.numberOfTopics === 0 ? "--" : hall.numberOfTopics}</Column2>
+            <Column2 style={{ color: 'green' }}>{hall.numberOfTopics}</Column2>
             <Column3>
                 <div className='hall-item-column3'>
                     {
@@ -58,11 +56,11 @@ function HallItem({ hall }: IProps) {
                     }
                     {
                         hall.lastTopic.id === -1 &&
-                        <>--</>
+                        <div style={{ color: 'green' }}>--</div>
                     }
                 </div>
             </Column3>
-        </Row>
+        </tr>
     )
 }
 

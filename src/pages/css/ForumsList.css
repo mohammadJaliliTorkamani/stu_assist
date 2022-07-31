@@ -58,8 +58,6 @@
 
 .forums-list-hall-descriptor-text {
     font-size: 1em;
-    font-weight: 600;
-    margin-top: 1.5rem;
 }
 
 
@@ -85,5 +83,20 @@
         flex-direction: column;
         justify-content: center;
         margin-top: 1rem;
+    }
+
+    .forums-list-hall-descriptor-text {
+        font-size: 1em;
+        margin-top: 1rem;
+    }
+
+    .forums-list-table {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        border: 2px solid forestgreen;
+        overflow: auto;
+        display: block;
+        overflow: auto;
+        white-space: nowrap;
     }
 }

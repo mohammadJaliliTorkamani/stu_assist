@@ -131,7 +131,7 @@ function TranslationOffice() {
                         <th className="translation-offices-table-header">آدرس پستی</th>
                         <th className="translation-offices-table-header">موقعیت در نقشه</th>
                     </tr>
-                    {shownOffices.map(office => <TranslationOfficeRecord key={office.id} record={office} />)}
+                    {shownOffices.map((office, index) => <TranslationOfficeRecord key={office.id} record={office} even={index % 2 == 0} />)}
                 </tbody>
             </table>
             <ToastContainer

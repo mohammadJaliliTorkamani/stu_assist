@@ -56,7 +56,7 @@ function CategoryItem({ category }: IProps) {
                     <th className="category-table-header"> تعداد تاپیک</th>
                     <th className="category-table-header">آخرین تاپیک</th>
                 </tr>
-                {halls.map(hall => <HallItem key={hall.id} hall={hall} />)}
+                {halls.map((hall, index) => <HallItem key={hall.id} hall={hall} even={index % 2 == 0} />)}
             </tbody>
         </table>
     </div>

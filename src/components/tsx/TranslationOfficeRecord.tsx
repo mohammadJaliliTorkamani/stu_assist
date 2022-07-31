@@ -16,7 +16,8 @@ interface TranslationOfficeTemplate {
 }
 
 interface IProps {
-    record: TranslationOfficeTemplate
+    record: TranslationOfficeTemplate,
+    even: boolean
 }
 
 const Column = styled.td`
@@ -25,9 +26,9 @@ const Column = styled.td`
     padding: 1rem 1rem;
 `
 
-function TranslationOfficeRecord({ record }: IProps) {
+function TranslationOfficeRecord({ record, even }: IProps) {
     return (
-        <tr className={record.id % 2 === 0 ? "translation-office-row-even" : "translation-office-row-odd"
+        <tr className={even ? "translation-office-row-even" : "translation-office-row-odd"
         }>
             <Column>
                 {record.id}

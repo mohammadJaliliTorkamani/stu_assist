@@ -1,3 +1,11 @@
+.hall-item-row-even {
+    background-color: white;
+}
+
+.hall-item-row-odd {
+    background-color: rgb(243, 255, 239);
+}
+
 .hall-item-last-post-date {
     color: gray;
     font-size: 0.8em;
@@ -22,7 +30,7 @@
     font-weight: 600;
 }
 
-.hall-item-column3{
+.hall-item-column3 {
     display: flex;
     flex-direction: row;
     justify-content: center;

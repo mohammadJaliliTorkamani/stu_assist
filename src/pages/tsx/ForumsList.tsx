@@ -14,14 +14,16 @@ function ForumsList() {
     const [hall] = useHall(_hallId)
     const [topics] = useTopic(_hallId)
     const navigate = useNavigate()
+
     usePageTitle('سالن گفتگو')
+
     return (
         <div className="forums-list-container1">
             <div className="forums-list-above-header">
                 <div className="forums-list-hall-name-text">تالار {hall?.name} </div>
                 {
                     token && <Button
-                        title="ساخت تاپیک جدید"
+                        title="ایجاد تاپیک جدید"
                         className="forums-list-new-topic"
                         onClick={e => navigate('/create-topic')}
                     />
@@ -45,7 +47,7 @@ function ForumsList() {
                 <tbody className="forums-list-table-body">
                     <tr className="forums-list-table-row">
                         <th className="forums-list-table-header">تاپیک</th>
-                        <th className="forums-list-table-header"> بازدید ها / نظرات</th>
+                        <th className="forums-list-table-header"> تعداد بازدید ها / نظرات</th>
                         <th className="forums-list-table-header">آخرین پاسخ دهنده</th>
                     </tr>
                     {topics.map(topic => <TopicItem key={topic.id} hallId={_hallId} topic={topic} />)}
