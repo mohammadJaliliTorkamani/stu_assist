@@ -36,6 +36,7 @@ export const LINK_FORUMS_COMMENTS = "https://stu-assist.ir/api/services/forums/c
 export const LINK_FORUMS_COMMENTS_LIKE = "https://stu-assist.ir/api/services/forums/comments/like_comment.php"
 export const LINK_FORUMS_COMMENTS_REPORT = "https://stu-assist.ir/api/services/forums/comments/report_comment.php"
 export const LINK_FORUMS_SEND_COMMENT = "https://stu-assist.ir/api/services/forums/comments/send_comment.php"
+export const LINK_FORUMS_WHOSE_HALL = "https://stu-assist.ir/api/services/forums/halls/whose_hall.php"
 export const LINK_BLOGS_BLOGS = "https://stu-assist.ir/api/blog/blogs.php"
 export const LINK_BLOGS_BLOG = "https://stu-assist.ir/api/blog/blog.php"
 export const LINK_BLOGS_RECENT_POSTS = "https://stu-assist.ir/api/blog/new_blogs.php"

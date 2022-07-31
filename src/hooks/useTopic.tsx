@@ -113,14 +113,15 @@ function useTopic(hallId: number) {
     }
 
     useEffect(() => {
-        axios.get(LINK_FORUMS_TOPICS, {
-            params: {
-                hall: hallId,
-            }
-        })
-            .then(response => response.data)
-            .then(data => { setTopics(data.data) })
-            .catch(error => alert(JSON.stringify(error.response.data.message)))
+        if (hallId !== -1)
+            axios.get(LINK_FORUMS_TOPICS, {
+                params: {
+                    hall: hallId,
+                }
+            })
+                .then(response => response.data)
+                .then(data => { setTopics(data.data) })
+                .catch(error => alert(JSON.stringify(error.response.data.message)))
     }, [hallId])
 
     return [topics, createTopic, increaseView, likeUnlikeTopic, reportTopic, postReply] as const

@@ -1,13 +1,12 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill'
-import { useParams } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import Button from '../../components/tsx/Button'
-import useCategory from '../../hooks/useCategory'
 import usePageTitle from '../../hooks/usePageTitle'
 import useTopic from '../../hooks/useTopic'
-import { LINK_FORUMS_HALLS } from '../../utils/Constants'
+import { LINK_FORUMS_HALL, LINK_FORUMS_WHOSE_HALL } from '../../utils/Constants'
 import { createTopicUrl, getToastColor, toastMessage, ToastStatus } from '../../utils/Utils'
 import '../css/CreateTopic.css'
 
@@ -23,52 +22,65 @@ interface HallType {
     }
 }
 
+interface stateType {
+    hallID: number
+}
+
 function CreateTopic() {
+    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
+
     const [name, setName] = useState<string>('')
     const [content, setContent] = useState<string>('')
+    const { state } = useLocation()
+    const navigate = useNavigate()
+    let hallID = -1
+    const [hall, setHall] = useState<HallType | null>(null)
     const [category, setCategory] = useState('')
-    const [hall, setHall] = useState(-1)
-    const [halls, setHalls] = useState<HallType[]>([])
-    const [categories] = useCategory()
-    const [, createTopic] = useTopic(hall)
-    const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
-    const { hallId } = useParams()
-    const _postId = typeof hallId == 'undefined' ? 0 : parseInt(hallId)
+    const [, createTopic] = useTopic(hallID)
 
     usePageTitle('تاپیک جدید')
 
     const createTopicHandler = () => {
-        if (name === '' || content === '' || category === '' || hall === -1) {
+        if (name === '' || content === '' || category === '' || hall === null) {
             setToastStatus(ToastStatus.INFO)
             toastMessage("لطفا تمامی فیلد ها را تکمیل نمایید")
         }
         else
-            createTopic(name, content, category, hall, topicId => window.open(createTopicUrl(hall, topicId), "_self"))
+            createTopic(name, content, category, hall.id, topicId => window.open(createTopicUrl(hall?.id!, topicId), "_self"))
     }
 
     useEffect(() => {
-        if (categories.length > 0)
-            setCategory(categories[0].name)
-    }, [categories])
-
-    useEffect(() => {
-        axios
-            .get(LINK_FORUMS_HALLS, {
-                params: {
-                    category: category,
-                }
-            })
+        try {
+            hallID = (state as stateType).hallID
+        } catch (e: any) {
+            console.log("No hallID found. navigating to Home");
+            navigate('/', { replace: true })
+        }
+        axios.get(LINK_FORUMS_WHOSE_HALL, {
+            params: {
+                hall: hallID,
+            }
+        })
             .then(response => response.data)
-            .then(data => {
-                setHalls(data.data)
-                if (data.data.length > 0)
-                    setHall(data.data[0].id)
+            .then(data1 => {
+                axios
+                    .get(LINK_FORUMS_HALL, {
+                        params: {
+                            hall: hallID,
+                        }
+                    })
+                    .then(response => response.data)
+                    .then(data => {
+                        setCategory(data1.data)
+                        setHall(data.data)
+                    })
+                    .catch(error => {
+                        setToastStatus(ToastStatus.ERROR)
+                        toastMessage(JSON.stringify(error.response.data.message))
+                    })
             })
-            .catch(error => {
-                setToastStatus(ToastStatus.ERROR)
-                toastMessage(JSON.stringify(error.response.data.message))
-            })
-    }, [category])
+            .catch(error => alert(JSON.stringify(error.response.data.message)))
+    }, [])
 
     return <div className="create-topic-container">
         <div className='create-topic-label'>ساخت تاپیک جدید</div>
@@ -78,18 +90,18 @@ function CreateTopic() {
             value={name}
             onChange={e => setName(e.target.value)} />
         <div className='create-topic-selects-container'>
-            <select className='create-topic-categories-select' onChange={e => setCategory(e.target.value)}>
+            <select className='create-topic-categories-select'>
                 {
-                    categories.map(item => <option key={item.name} value={item.name}>
-                        تالار  {item.name}
-                    </option>)
+                    <option key={category} value={category}>
+                        تالار  {category}
+                    </option>
                 }
             </select>
-            <select className='create-topic-halls-select' onChange={e => setHall(parseInt(e.target.value))}>
+            <select className='create-topic-halls-select'>
                 {
-                    halls.map(item => <option key={item.id} value={item.id}>
-                        سالن  {item.name}
-                    </option>)
+                    <option key={hall?.name} value={hall?.name}>
+                        سالن  {hall?.name}
+                    </option>
                 }
             </select>
         </div>

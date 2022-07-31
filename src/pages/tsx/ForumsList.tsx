@@ -25,7 +25,7 @@ function ForumsList() {
                     token && <Button
                         title="ایجاد تاپیک جدید"
                         className="forums-list-new-topic"
-                        onClick={e => navigate('/create-topic', { state: { hallId: _hallId } })}
+                        onClick={e => navigate('/create-topic', { state: { hallID: _hallId } })}
                     />
                 }
                 {
