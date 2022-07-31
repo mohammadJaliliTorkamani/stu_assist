@@ -1,0 +1,10 @@
+.translation-office-row-even {
+    height: 35px;
+    background-color: rgb(246, 246, 246);
+
+}
+
+.translation-office-row-odd {
+    height: 35px;
+    background-color: white;
+}

@@ -66,22 +66,25 @@ function TranslationOffice() {
 
     return (
         <div className='translation-offices-container'>
-            <div className='translation-offices-state-choosing-container'>
-                <div>استان</div>
-                <select className='translation-offices-state-select' onChange={e => setState(e.target.value)}>
-                    {
-                        states.map((stateItem: string) => <option key={stateItem} value={stateItem}>
-                            {stateItem}
-                        </option>)
-                    }
-                </select>
+            <div className='translation-offices-header'>
+                <div className='translation-offices-header-title'>  فهرست دارالترجمه های رسمی</div>
+                <div className='translation-offices-state-choosing-container'>
+                    <div>استان</div>
+                    <select className='translation-offices-state-select' onChange={e => setState(e.target.value)}>
+                        {
+                            states.map((stateItem: string) => <option key={stateItem} value={stateItem}>
+                                {stateItem}
+                            </option>)
+                        }
+                    </select>
+                </div>
             </div>
             <table className="translation-offices-table">
                 <tbody className='translation-offices-table-body'>
                     <tr className="translation-offices-table-row">
                         <th className="translation-offices-table-header">ردیف</th>
                         <th className="translation-offices-table-header"> نام دارالترجمه</th>
-                        <th className="translation-offices-table-header">زبان ها</th>
+                        {/* <th className="translation-offices-table-header">زبان ها</th> */}
                         <th className="translation-offices-table-header">شماره تلفن</th>
                         <th className="translation-offices-table-header">وبسایت</th>
                         <th className="translation-offices-table-header">آدرس پستی</th>

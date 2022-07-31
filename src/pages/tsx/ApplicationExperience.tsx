@@ -47,7 +47,7 @@ function ApplicationExperience() {
         <div className='application-experience-container1'>
             {sent && <div className='application-experience-sent-box'>
                 <div className='application-experience-sent-text'>تجربه شما برای تایید به مدیریت ارسال شد و پس از تایید نمایش داده خواهد شد. با تشکر</div>
-                <Button title='بازگشت به لیست' onClick={e => {
+                <Button title='بازگشت به فهرست' onClick={e => {
                     setComment('')
                     setCountry('')
                     setCity('')
