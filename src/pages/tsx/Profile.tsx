@@ -132,7 +132,7 @@ function Profile() {
                         <th className="table-header"> سفارش</th>
                         <th className="table-header">کد پیگیری</th>
                         <th className="table-header">تاریخ</th>
-                        <th className="table-header">ساعت</th>
+                        <th className="table-header">زمان</th>
                     </tr>
                     {transactions.map(record => <TransactionRecord key={record.id} record={record} />)}
                 </tbody>

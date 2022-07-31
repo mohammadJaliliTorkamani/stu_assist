@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import moment from 'jalali-moment'
 
 interface TranscationRecordType {
     id: number,
@@ -29,8 +30,8 @@ function TransactionRecord({ record }: IProps) {
             <Column>{record.id}</Column>
             <Column>{record.orderID}</Column>
             <Column>{record.issueTrackingNo}</Column>
-            <Column>{record.date}</Column>
-            <Column>{record.time}</Column>
+            <Column>{moment(record.date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')}</Column>
+            <Column>{moment(record.time, 'hh/mm/ss').locale('fa').format('hh:mm:ss')}</Column>
         </Row>
     )
 }

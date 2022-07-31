@@ -61,10 +61,10 @@ function BlogPost() {
 
     }, [_postId])
 
-    const convertToShamsiDateTime = (dateTime: string | undefined) => {
-        if (typeof (dateTime) !== 'undefined' && dateTime.trim() !== '')
-            return moment(dateTime, 'YYYY/MM/DD hh:mm:ss').locale('fa').format('hh:mm YYYY/MM/DD');
-        return ""
+    const convertToShamsiDateTime = (date: string | undefined, time: string | undefined) => {
+        if (date === undefined || time === undefined)
+            return ""
+        return moment(date + " " + time, 'YYYY/MM/DD hh:mm:ss').locale('fa').format('hh:mm YYYY/MM/DD');
     }
 
     return <div className='blog-post-container'>
@@ -72,7 +72,9 @@ function BlogPost() {
             <div className='blog-post-cadr-header'>
                 <div>
                     <div className='blog-post-cadr-header-title'>{post?.title}</div>
-                    <div className='blog-post-cadr-header-date-time'>{"زمان انتشار : " + convertToShamsiDateTime(post?.creationDate + " " + post?.creationTime)}</div>
+                    {
+                        <div className='blog-post-cadr-header-date-time'>{"زمان انتشار : " + convertToShamsiDateTime(post?.creationDate, post?.creationTime)}</div>
+                    }
                 </div>
                 {post?.photoPath !== undefined &&
                     <div className='blog-post-cadr-image-container'>
