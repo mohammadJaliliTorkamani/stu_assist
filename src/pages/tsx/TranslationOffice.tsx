@@ -27,6 +27,7 @@ interface TranslationOfficeTemplate {
 function TranslationOffice() {
     const [token,] = useLocalStorage('token', null)
     const [offices, setOffices] = useState<TranslationOfficeTemplate[]>([])
+    const [officeName, setOfficeName] = useState<string>('')
     const [state, setState] = useState<string>('')
     const [states, setStates] = useState<string[]>([])
     const [shownOffices, setShownOffices] = useState<TranslationOfficeTemplate[]>([])
@@ -60,24 +61,41 @@ function TranslationOffice() {
             })
     }, [token])
 
-    useEffect(() => {
-        setShownOffices(state === 'همه' ? offices : offices.filter(office => office.address.state === state))
-    }, [state])
+    useEffect(() => setShownOffices(state === 'همه' ? offices : offices.filter(office => office.address.state === state && office.name.indexOf(officeName) >= 0)), [state])
+    useEffect(() => setShownOffices(offices.filter(office => office.name.indexOf(officeName) >= 0)), [officeName])
 
     return (
         <div className='translation-offices-container'>
             <div className='translation-offices-header'>
-                <div className='translation-offices-header-title'>  فهرست دارالترجمه های رسمی</div>
-                <div className='translation-offices-state-choosing-container'>
-                    <div>استان</div>
-                    <select className='translation-offices-state-select' onChange={e => setState(e.target.value)}>
-                        {
-                            states.map((stateItem: string) => <option key={stateItem} value={stateItem}>
-                                {stateItem}
-                            </option>)
-                        }
-                    </select>
+                <div className='translation-offices-header-title-container'>
+                    <div className='translation-offices-header-title'>  فهرست دارالترجمه های رسمی</div>
+                    <div className='translation-offices-options-container'>
+                        <div className='translation-offices-check-container'>
+                            <div>وبسایت</div>
+                            <input className='translation-offices-checkbox' type={'checkbox'} />
+                        </div>
+                        <div className='translation-offices-check-container'>
+                            <div>موقعیت در نقشه</div>
+                            <input className='translation-offices-checkbox' type={'checkbox'} />
+                        </div>
+                        <div className='translation-offices-state-choosing-container'>
+                            <div>استان</div>
+                            <select className='translation-offices-state-select' onChange={e => setState(e.target.value)}>
+                                {
+                                    states.map((stateItem: string) => <option key={stateItem} value={stateItem}>
+                                        {stateItem}
+                                    </option>)
+                                }
+                            </select>
+                        </div>
+                    </div>
                 </div>
+                <input
+                    className='translation-offices-search-input'
+                    placeholder='نام دارالترجمه را وارد نمایید'
+                    onChange={e => setOfficeName(e.target.value)}
+                    value={officeName} />
+
             </div>
             <table className="translation-offices-table">
                 <tbody className='translation-offices-table-body'>

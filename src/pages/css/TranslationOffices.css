@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: flex-start;
     min-height: calc(100vh - 160px);
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     direction: rtl;
 }
 
@@ -46,9 +46,16 @@
 
 .translation-offices-header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     justify-content: space-between;
+}
+
+.translation-offices-header-title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .translation-offices-header-title {
@@ -57,20 +64,63 @@
     font-weight: 700;
 }
 
+.translation-offices-search-input {
+    height: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 1.5rem;
+    color: green;
+    width: 100%;
+    font-size: 1em;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 4px;
+}
+
+.translation-offices-search-input:focus {
+    outline: none !important;
+    border-color: #719ECE;
+    box-shadow: 0 0 10px #71ce71;
+}
+
+.translation-offices-options-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.translation-offices-check-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.translation-offices-checkbox {
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: black;
+    margin-left: 20px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+
 @media screen and (max-width: 960px) {
     .translation-offices-header {
         display: flex;
         flex-direction: column;
         width: 100%;
         justify-content: center;
-        align-items: center;
+        align-items: stretch;
     }
 
     .translation-offices-state-choosing-container {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        width: 100%;
         margin-top: 2rem;
         align-items: center;
     }
@@ -78,5 +128,53 @@
     .translation-offices-state-select {
         width: 6rem;
         height: 2rem;
+    }
+
+    .translation-offices-header-title-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .translation-offices-check-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .translation-offices-checkbox {
+        position: relative;
+        width: 1.5rem;
+        height: 1.5rem;
+        color: black;
+        background-color: white;
+        border: 1px solid gray;
+        border-radius: 4px;
+        margin: 0;
+    }
+
+    .translation-offices-options-container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .translation-offices-search-input {
+        height: 3rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-top: 1.5rem;
+        color: green;
+        width: 100%;
+        font-size: 1em;
+        border: 1px solid rgb(207, 207, 207);
+        border-radius: 4px;
     }
 }

@@ -44,7 +44,7 @@ function TranslationOfficeRecord({ record }: IProps) {
                 </a>
             </Column>
             <Column>
-                {(record.website === '' || record.website === null) && "ندارد"}
+                {(record.website === '' || record.website === null) && "--"}
                 {record.website !== '' && record.website !== null && <a style={{ color: 'green', textDecoration: 'none' }} href={"https://" + record.website} target="_blank" rel="noreferrer" >
                     {record.website}
                 </a>
@@ -54,7 +54,7 @@ function TranslationOfficeRecord({ record }: IProps) {
                 {record.address.name}
             </Column>
             <Column>
-                {(record.address.latitude == 0 && record.address.longitude == 0) ? "مشخص نشده است" :
+                {(record.address.latitude == 0 && record.address.longitude == 0) ? "--" :
                     <a target="_blank" href={"https://maps.google.com?q=" + record.address.latitude + "," + record.address.longitude} rel="noreferrer" style={{ color: 'green', textDecoration: 'none' }}>
                         نمایش بر روی نقشه
                     </a>
