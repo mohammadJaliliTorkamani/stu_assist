@@ -1,6 +1,5 @@
 import { createBlogPostUrl } from '../../utils/Utils'
 import '../css/BlogPostItem.css'
-import Button from './Button'
 
 interface IProps {
     post: BlogPostType
