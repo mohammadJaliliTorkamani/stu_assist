@@ -10,8 +10,10 @@
 .blogs-categories {
     display: flex;
     overflow-x: auto;
+    width: 100%;
+    padding-bottom: 1rem;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     margin-right: 1rem;
     margin-left: 1rem;
     margin-top: 0.5rem;
