@@ -11,17 +11,19 @@
 .create-topic-label {
     background-color: green;
     color: white;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-right: 1rem;
-    padding-left: 1rem;
-
+    padding: 1rem 1rem;
 }
 
 .create-topic-name {
     margin-top: 1rem;
     padding: 1rem;
     font-size: 1em;
+}
+
+.create-topic-name:focus {
+    outline: none !important;
+    border-color: #719ECE;
+    box-shadow: 0 0 10px #71ce71;
 }
 
 .create-topic-selects-container {
@@ -56,8 +58,15 @@
 }
 
 .create-topic-button-container {
-    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+}
+
+.create-topic-halls-write-box {
+    margin-top: 1rem;
+    direction: rtl;
+    height: 12rem;
+    margin-bottom: 5rem;
+    border: 0px solid gray;
 }

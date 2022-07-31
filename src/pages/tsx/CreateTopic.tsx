@@ -111,12 +111,7 @@ function CreateTopic() {
             onChange={setContent}
             placeholder='متن تاپیک مورد نظر را در این قسمت وارد نمایید'
             preserveWhitespace={true}
-            style={{
-                marginTop: '1rem',
-                direction: 'rtl',
-                border: '1px solid gray',
-                borderRadius: '8px'
-            }}
+            className='create-topic-halls-write-box'
         />
 
         <div className='create-topic-button-container'>
