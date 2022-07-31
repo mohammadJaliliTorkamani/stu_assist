@@ -76,7 +76,7 @@ function Blogs() {
 
     return <div className='blogs-container'>
         <div className='blogs-categories'>
-            {categories.map(category => <div key={category.categoryID} className='blogs-category' onClick={e => setSelectedBlogCategory(category.categoryID)}> {category.categoryName} </div>)}
+            {categories.map(category => <div key={category.categoryID} className={category.categoryID === selectedBlogCategory ? 'blogs-category-selected' : 'blogs-category-unselected'} onClick={e => setSelectedBlogCategory(category.categoryID)}> {category.categoryName} </div>)}
         </div>
         <div className='blogs-posts'>
             {
