@@ -209,7 +209,7 @@ function Topic() {
             </Modal>
             <div className='topic-forum-name-container'>
                 <div>سالن :</div>
-                <Link className='topic-forum-name' to={createHallUrl(_hallId)}>{hall?.name}</Link>
+                <a className='topic-forum-name' href={createHallUrl(_hallId)}>{hall?.name}</a>
             </div>
             <div className='topic-name'>{topic?.name}</div>
             <div key={1} className='topic-container'>
