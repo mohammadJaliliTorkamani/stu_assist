@@ -187,7 +187,7 @@ function Register() {
                 })
                 .then(response => response.data)
                 .then(data => {
-                    setCountries(data)
+                    setCountries(data.sort((a: CountryType, b: CountryType) => a.name > b.name ? 1 : (a.name < b.name ? -1 : 0)))
                     if (data.length > 0)
                         setCountry(data[0])
                 })
@@ -209,7 +209,7 @@ function Register() {
                 })
                 .then(response => response.data)
                 .then(data => {
-                    setStates(data)
+                    setStates(data.sort((a: StateType, b: StateType) => a.name > b.name ? 1 : (a.name < b.name ? -1 : 0)))
                     if (data.length > 0)
                         setState(data[0])
                 })

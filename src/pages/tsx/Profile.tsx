@@ -169,7 +169,7 @@ function Profile() {
                     }
                 })
                 .then(response => response.data)
-                .then(data => setCountries(data))
+                .then(data => setCountries(data.sort((a: CountryType, b: CountryType) => a.name > b.name ? 1 : (a.name < b.name ? -1 : 0))))
                 .catch(error => {
                     setToastStatus(ToastStatus.ERROR)
                     toastMessage(JSON.stringify(error.response.data.message))
@@ -191,7 +191,7 @@ function Profile() {
                     }
                 })
                 .then(response => response.data)
-                .then(data => setStates(data))
+                .then(data => setStates(data.sort((a: StateType, b: StateType) => a.name > b.name ? 1 : (a.name < b.name ? -1 : 0))))
                 .catch(error => {
                     setToastStatus(ToastStatus.ERROR)
                     toastMessage(JSON.stringify(error.response.data.message))
