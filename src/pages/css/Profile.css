@@ -71,7 +71,7 @@
 
 .profile-table {
     margin-top: 1.5rem;
-    margin-right: 1rem;
+    margin-right: 2rem;
     flex: 1;
     display: block;
     overflow: auto;
@@ -123,7 +123,7 @@
     border: 1px solid rgb(200, 200, 200);
     height: 8rem;
     margin-top: 1rem;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .profile-biography:focus {
@@ -261,4 +261,15 @@
     .profile-biography-label {
         margin-top: 1.5rem;
     }
+
+    .profile-table {
+        margin-top: 1.5rem;
+        margin-right: 0rem;
+        flex: 1;
+        display: block;
+        overflow: auto;
+        white-space: nowrap;
+        overflow-y: auto;
+    }
+    
 }
