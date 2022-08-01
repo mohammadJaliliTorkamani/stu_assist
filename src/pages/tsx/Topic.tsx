@@ -1,11 +1,11 @@
 import '../css/Topic.css'
 import avatar from '../../assets/user_avatar.png'
 import { useLocalStorage } from '../../utils/useLocalStorage'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { LINK_FORUMS_COMMENTS, LINK_FORUMS_TOPIC, LINK_GUEST_PROFILE } from '../../utils/Constants'
-import { createProfileUrl, createTopicUrl, getToastColor, toastMessage, ToastStatus } from '../../utils/Utils'
+import { LINK_FORUMS_COMMENTS, LINK_FORUMS_HALL, LINK_FORUMS_TOPIC, LINK_GUEST_PROFILE } from '../../utils/Constants'
+import { createHallUrl, createProfileUrl, createTopicUrl, getToastColor, toastMessage, ToastStatus } from '../../utils/Utils'
 import useTopic from '../../hooks/useTopic'
 import usePageTitle from '../../hooks/usePageTitle'
 import heartFilledLogo from '../../assets/heart_filled.png'
@@ -46,6 +46,19 @@ interface CommentType {
     commentDateTime: string
 }
 
+interface HallType {
+    id: number,
+    name: string,
+    descriptor: string,
+    numberOfTopics: number,
+    lastTopic: {
+        id: number,
+        name: string,
+        lastTopicDateEquivalent: string
+    }
+}
+
+
 const modalStyle = {
     content: {
         top: '50%',
@@ -55,7 +68,7 @@ const modalStyle = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
     },
-};
+}
 
 function Topic() {
 
@@ -74,6 +87,8 @@ function Topic() {
 
     const _hallId = typeof hallId == 'undefined' ? 0 : parseInt(hallId)
     const _topicId = typeof topicId == 'undefined' ? 0 : parseInt(topicId)
+
+    const [hall, setHall] = useState<HallType>()
 
     usePageTitle('تاپیک')
 
@@ -134,6 +149,19 @@ function Topic() {
 
     useEffect(() => {
         increaseView(_topicId)
+        axios.get(LINK_FORUMS_HALL, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }, params: {
+                hall: _hallId,
+            }
+        })
+            .then(response => response.data)
+            .then(data => setHall(data.data))
+            .catch(error => {
+                setToastStatus(ToastStatus.ERROR)
+                toastMessage(JSON.stringify(error.response.data.message))
+            })
     }, [])
 
     useEffect(() => {
@@ -179,6 +207,10 @@ function Topic() {
                 </div>
 
             </Modal>
+            <div className='topic-forum-name-container'>
+                <div>سالن :</div>
+                <Link className='topic-forum-name' to={createHallUrl(_hallId)}>{hall?.name}</Link>
+            </div>
             <div className='topic-name'>{topic?.name}</div>
             <div key={1} className='topic-container'>
                 <div className='topic-header'>
