@@ -5,7 +5,7 @@
 
 .comment-item-container {
     margin-top: 1rem;
-    border: 1px solid gray;
+    border: 1px solid rgb(219, 219, 219);
     border-radius: 0.5rem;
     padding: 2rem;
 }
@@ -21,7 +21,7 @@
     width: 4rem;
     height: 4rem;
     border-radius: 10rem;
-    border: 2px solid green;
+    border: 1px solid green;
 }
 
 .comment-item-header-text-container {
@@ -133,7 +133,7 @@
         justify-content: center;
         align-items: stretch;
         margin-top: 1rem;
-        border: 1px solid gray;
+        background: rgb(235, 235, 235);
         border-radius: 0.5rem;
         padding: 1rem;
     }
@@ -196,5 +196,10 @@
         direction: rtl;
         height: 15rem;
         width: 20rem;
+    }
+
+    .comment-item-body-row-comment {
+        margin-top: 2rem;
+        padding: 0;
     }
 }

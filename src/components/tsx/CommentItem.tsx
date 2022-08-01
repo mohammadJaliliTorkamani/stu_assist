@@ -12,7 +12,6 @@ import repottLogo from '../../assets/report_logo.png'
 import Button from './Button'
 import useComment from '../../hooks/useComment'
 import { useNavigate } from 'react-router-dom'
-import { Quill } from 'react-quill';
 
 interface IProps {
     comment: CommentType
@@ -110,7 +109,7 @@ function CommentItem({ comment }: IProps) {
                             {person?.name + " " + person?.last_name}</a>
                     </div>
                     <div className='comment-item-header-text-container-row'>
-                        <div className='comment-item-label-key'>تاریخ ارسال : </div>
+                        <div className='comment-item-label-key'>تاریخ ارسال پاسخ : </div>
                         <div>{comment?.commentDateTime}</div>
                     </div>
                 </div>

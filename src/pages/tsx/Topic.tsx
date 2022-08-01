@@ -189,7 +189,7 @@ function Topic() {
                             <a className='topic-label-name' href={createProfileUrl(topic?.creatorID!)}>{(person?.name === undefined ? "" : person?.name) + " " + (person?.last_name === undefined ? "" : person?.last_name)}</a>
                         </div>
                         <div className='topic-header-text-container-row'>
-                            <div className='topic-label-key'>تاریخ ارسال : </div>
+                            <div className='topic-label-key'>تاریخ ارسال تاپیک : </div>
                             <div>{convertToShamsiDateTime(topic?.postDateTime)}</div>
                         </div>
                     </div>
@@ -236,7 +236,7 @@ function Topic() {
                             style={{
                                 marginTop: '1rem',
                                 direction: 'rtl',
-                                border: '1px solid gray',
+                                border: '1px solid rgb(227, 227, 227)',
                                 borderRadius: '8px'
                             }}
                         />
