@@ -12,7 +12,6 @@ import {
 } from "../../utils/Constants";
 import { useLocalStorage } from "../../utils/useLocalStorage";
 import { getToastColor, toastMessage, ToastStatus } from "../../utils/Utils";
-import avatar from '../../assets/user_avatar.png'
 import '../css/Profile.css'
 
 interface TranscationRecordType {
@@ -44,7 +43,6 @@ function Profile() {
     const [balance, setBalance] = useState(0)
     const [name, setName] = useState('')
     const [lastName, setLastName] = useState('')
-    const [photoPath, setPhotoPath] = useState<string>('')
     const [transactions, setTransactions] = useState<TranscationRecordType[]>([])
     const [token,] = useLocalStorage('token', null)
     const [chargeValues, selectedChargeOption, setSelectedChargeOption] = useChargeOptions()
@@ -100,15 +98,17 @@ function Profile() {
             toastMessage("لطفا ابتدا اطلاعات خود را تکمیل نمایید")
             return
         }
+
         axios
-            .get(LINK_EDIT_USER, {
-                params: {
-                    firstName: name,
-                    lastName: lastName,
-                    biography: biography,
-                    country: country,
-                    state: state
-                }, headers: {
+            .post(LINK_EDIT_USER, {
+                firstName: name,
+                lastName: lastName,
+                biography: biography,
+                country: country,
+                state: state
+            }, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
                     "Authorization": `Bearer ${token}`
                 }
             })
@@ -151,7 +151,6 @@ function Profile() {
                     setBiography(data.data.biography === null ? '' : data.data.biography)
                     setCountry(data.data.address !== null ? data.data.address.country : '')
                     setState(data.data.address !== null ? data.data.address.state : '')
-                    setPhotoPath(data.data.photoPath !== null ? data.data.photoPath.path : '')
                 }
                 else {
                     setToastStatus(ToastStatus.ERROR)
@@ -214,27 +213,21 @@ function Profile() {
 
 
     return (
-        <div className="content">
+        <div className="profile-content">
             <div className='profile-section-name-label'>حساب کاربری</div>
-            <div className="box" >
-                <div className="profile-photo-container">
-                    <img
-                        className="profile-photo"
-                        alt="user avatar"
-                        src={photoPath === '' ? avatar : photoPath} />
-                </div>
+            <div className="profile-box1" >
                 <div className="profile-fields-container">
-                    <div className="profile-name-input-container">
-                        <div className="profile-name-input-label">نام</div>
-                        <input className="profile-name-input-value" type="text" maxLength={140} value={name} onChange={e => setName(e.target.value)} placeholder="لطفا نام خود را وارد نمایید" />
+                    <div className="profile-input-container">
+                        <div className="profile-input-label">نام</div>
+                        <input className="profile-input-value" type="text" maxLength={140} value={name} onChange={e => setName(e.target.value)} placeholder="لطفا نام خود را وارد نمایید" />
                     </div>
-                    <div className="profile-name-input-container">
-                        <div className="profile-name-input-label">نام خانوادگی</div>
-                        <input className="profile-name-input-value" type="text" maxLength={140} value={lastName} onChange={e => setLastName(e.target.value)} placeholder="لطفا نام خانوادگی خود را وارد نمایید" />
+                    <div className="profile-input-container">
+                        <div className="profile-input-label">نام خانوادگی</div>
+                        <input className="profile-input-value" type="text" maxLength={140} value={lastName} onChange={e => setLastName(e.target.value)} placeholder="لطفا نام خانوادگی خود را وارد نمایید" />
                     </div>
-                    <div className="profile-name-input-container">
-                        <div className="profile-name-input-label">کشور</div>
-                        <select className='register-countries-select' value={selectedCountry?.iso2} onChange={e => {
+                    <div className="profile-input-container">
+                        <div className="profile-input-label">کشور</div>
+                        <select className='profile-countries-select' value={selectedCountry?.iso2} onChange={e => {
                             setSelectedCountry({ iso2: e.target.value, id: -1, name: '' })
                             setCountry(findPlaceWithISO2<CountryType>(e.target.value, countries).name)
                         }}>
@@ -245,9 +238,9 @@ function Profile() {
                             }
                         </select>
                     </div>
-                    <div className="profile-name-input-container">
-                        <div className="profile-name-input-label">استان/ایالت</div>
-                        <select className='register-countries-select' value={selectedState?.iso2} onChange={e => {
+                    <div className="profile-input-container">
+                        <div className="profile-input-label">استان/ایالت</div>
+                        <select className='profile-countries-select' value={selectedState?.iso2} onChange={e => {
                             setSelectedState({ iso2: e.target.value, id: -1, name: '' })
                             setState(findPlaceWithISO2<StateType>(e.target.value, states).name)
                         }
@@ -260,6 +253,7 @@ function Profile() {
                         </select>
                     </div>
                 </div>
+                <div className="profile-biography-label">بیوگرافی</div>
                 <textarea
                     className='profile-biography'
                     placeholder='بیوگرافی'
@@ -271,11 +265,11 @@ function Profile() {
             </div>
 
             <div className='profile-section-name-label'>شارژ کیف پول</div>
-            <div className="box row-box" >
+            <div className="profile-box2" >
                 <div className="profile-wallet-right-section">
                     {"موجودی فعلی : " + (balance / 10).toLocaleString() + " تومان "}
-                    <div className="charge-box">
-                        <div className="charge-options">
+                    <div className="profile-charge-box">
+                        <div className="profile-charge-options">
                             {
                                 chargeValues.map(value =>
                                     <ChargeOptionRecord
@@ -291,15 +285,15 @@ function Profile() {
                     </div>
                 </div>
 
-                <table className="table">
-                    <tbody className="table-body">
-                        <tr className="table-row">
-                            <th className="table-header">ردیف</th>
-                            <th className="table-header"> شماره سفارش</th>
-                            <th className="table-header">مبلغ</th>
-                            <th className="table-header">کد پیگیری</th>
-                            <th className="table-header">تاریخ</th>
-                            <th className="table-header">زمان</th>
+                <table className="profile-table">
+                    <tbody className="profile-table-body">
+                        <tr className="profile-table-row">
+                            <th className="profile-table-header">ردیف</th>
+                            <th className="profile-table-header"> شماره سفارش</th>
+                            <th className="profile-table-header">مبلغ</th>
+                            <th className="profile-table-header">کد پیگیری</th>
+                            <th className="profile-table-header">تاریخ</th>
+                            <th className="profile-table-header">زمان</th>
                         </tr>
                         {transactions.map((record, index) => <TransactionRecord key={record.id} record={record} even={index % 2 === 0} />)}
                     </tbody>

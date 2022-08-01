@@ -22,6 +22,7 @@ const Column = styled.td`
     text-align: center;
     direction: ltr;
     height: 35px;
+    padding: 1rem 1.5rem;
 `
 
 function TransactionRecord({ record, even }: IProps) {
