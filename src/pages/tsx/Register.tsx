@@ -157,6 +157,14 @@ function Register() {
         return reg.test(str)
     }
 
+    const findPlaceWithISO2 = <T extends CountryType | StateType>
+        (iso2: string, places: T[]): any => {
+
+        if (countries.length > 0 && iso2 !== null)
+            return places.filter(place => place.iso2 === iso2)[0]
+        return { id: -1, iso2: '', name: '' }
+    }
+
     useEffect(() => {
         axios
             .get(LINK_GEO_API)
@@ -238,10 +246,10 @@ function Register() {
             setToastStatus(ToastStatus.INFO)
             toastMessage("کلمات عبور با هم تطابق ندارند")
         }
-        else handleLogin()
+        else handleRegister()
     }
 
-    const handleLogin = () => {
+    const handleRegister = () => {
         axios
             .post(LINK_REGISTER,
                 {
@@ -309,14 +317,14 @@ function Register() {
                 <Password type='password' value={password} placeholder="کلمه عبور" onChange={e => setPassword(e.target.value)} />
                 <Password type='password' value={password2} placeholder="تکرار کلمه عبور" onChange={e => setPassword2(e.target.value)} />
                 <div className='register-position-container'>
-                    <select className='register-countries-select' onChange={e => setCountry({ iso2: e.target.value, id: -1, name: '' })}>
+                    <select className='register-countries-select' value={country?.iso2} onChange={e => setCountry(findPlaceWithISO2<CountryType>(e.target.value, countries))}>
                         {
                             countries.map(country => <option key={country.id} value={country.iso2}>
                                 {country.name}
                             </option>)
                         }
                     </select>
-                    <select className='register-states-select' onChange={e => setState({ iso2: e.target.value, id: -1, name: '' })}>
+                    <select className='register-states-select' value={state?.iso2} onChange={e => setState(findPlaceWithISO2<StateType>(e.target.value, states))}>
                         {
                             states.map(state => <option key={state.id} value={state.iso2}>
                                 {state.name}

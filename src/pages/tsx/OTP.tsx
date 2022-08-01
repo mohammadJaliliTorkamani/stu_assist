@@ -145,7 +145,7 @@ function OTP() {
                     />
                 </OTPContainer>
                 <Button title="ورود" onClick={e => buttonHandle(e)} reference={buttonRef} />
-                <Title onClick={(e) => navigate('/login', { replace: true })}>بازگشت به ورود به حساب کاربریی</Title>
+                <Title onClick={(e) => navigate('/login', { replace: true })}>بازگشت به صفحه ورود</Title>
             </Box>
             <ToastContainer
                 toastStyle={{
