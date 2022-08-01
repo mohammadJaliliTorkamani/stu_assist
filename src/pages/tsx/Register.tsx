@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import Button from '../../components/tsx/Button'
 import usePageTitle from '../../hooks/usePageTitle'
 import {
-    FIRST_NAME_MINIMUM_LENGTH, LAST_NAME_MINIMUM_LENGTH, LINK_COUTNIES_STATES,
-    LINK_REGISTER, PASSWORD_MINIMUM_LENGTH, PHONE_LENGTH, USERNAME_MINIMUM_LENGTH
+    FIRST_NAME_MINIMUM_LENGTH, LAST_NAME_MINIMUM_LENGTH, LINK_COUNTRIES, LINK_STATES_OF_A_COUNTRY,
+    LINK_REGISTER, PASSWORD_MINIMUM_LENGTH, PHONE_LENGTH, USERNAME_MINIMUM_LENGTH, LINK_GEO_API
 } from '../../utils/Constants'
 import { getToastColor, toastMessage, ToastStatus } from '../../utils/Utils'
 import avatar from '../../assets/512_512.png'
@@ -102,19 +102,31 @@ const CurrentUserText = styled.div`
     cursor: pointer;
 `;
 
+interface CountryType {
+    id: number,
+    name: string,
+    iso2: string
+}
+
+interface StateType {
+    id: number,
+    name: string,
+    iso2: string
+}
+
 function Register() {
     const [firstName, setFirstname] = useState('')
     const [lastName, setLastname] = useState('')
-    const [rawData, setRawData] = useState<any[]>([])
-    const [countries, setCountries] = useState<string[]>([])
-    const [states, setStates] = useState<string[]>([])
-    const [country, setCountry] = useState<string>('')
-    const [state, setState] = useState<string>('')
+    const [countries, setCountries] = useState<CountryType[]>([])
+    const [states, setStates] = useState<StateType[]>([])
+    const [country, setCountry] = useState<CountryType>()
+    const [state, setState] = useState<StateType>()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
     const [biography, setBiography] = useState('')
     const [phone, setPhone] = useState('')
+    const [GEOAPI, setGEOAPI] = useState<string>('')
     const navigate = useNavigate()
     const [toastID, setToastStatus] = useState<ToastStatus>(ToastStatus.SUCCESS)
     const usernameRef = useRef<any>()
@@ -147,19 +159,10 @@ function Register() {
 
     useEffect(() => {
         axios
-            .get(LINK_COUTNIES_STATES)
+            .get(LINK_GEO_API)
             .then(response => response.data)
-            .then(data => {
-                setRawData(data)
-                const countries: string[] = []
-                data.forEach((element: any) => {
-                    if (countries.indexOf(element.country_name) === -1)
-                        countries.push(element.country_name)
-                });
-                setCountries(countries)
-                if (countries.length > 0)
-                    setCountry(countries[0])
-            })
+            .then(data => data.data)
+            .then(GEOAPIToken => setGEOAPI(GEOAPIToken))
             .catch(error => {
                 setToastStatus(ToastStatus.ERROR)
                 toastMessage(JSON.stringify(error.response.data.message))
@@ -167,15 +170,45 @@ function Register() {
     }, [])
 
     useEffect(() => {
-        if (countries !== null && countries.length > 0) {
-            const states: string[] = []
-            rawData.forEach(item => {
-                if (item.country_name === country)
-                    states.push(item.name)
-            })
-            setStates(states)
-            if (states.length > 0)
-                setState(states[0])
+        if (GEOAPI !== '')
+            axios
+                .get(LINK_COUNTRIES, {
+                    headers: {
+                        'X-CSCAPI-KEY': GEOAPI
+                    }
+                })
+                .then(response => response.data)
+                .then(data => {
+                    setCountries(data)
+                    if (data.length > 0)
+                        setCountry(data[0])
+                })
+                .catch(error => {
+                    setToastStatus(ToastStatus.ERROR)
+                    toastMessage(JSON.stringify(error.response.data.message))
+                })
+    }, [GEOAPI])
+
+
+    useEffect(() => {
+        if (country !== undefined && GEOAPI !== '') {
+            setStates([])
+            axios
+                .get(LINK_STATES_OF_A_COUNTRY(country?.iso2), {
+                    headers: {
+                        'X-CSCAPI-KEY': GEOAPI
+                    }
+                })
+                .then(response => response.data)
+                .then(data => {
+                    setStates(data)
+                    if (data.length > 0)
+                        setState(data[0])
+                })
+                .catch(error => {
+                    setToastStatus(ToastStatus.ERROR)
+                    toastMessage(JSON.stringify(error.response.data.message))
+                })
         }
     }, [country])
 
@@ -218,8 +251,8 @@ function Register() {
                     username: username,
                     password: password,
                     phone: phone,
-                    country: country,
-                    state: state
+                    country: country?.name,
+                    state: state?.name
                 }, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -276,17 +309,17 @@ function Register() {
                 <Password type='password' value={password} placeholder="کلمه عبور" onChange={e => setPassword(e.target.value)} />
                 <Password type='password' value={password2} placeholder="تکرار کلمه عبور" onChange={e => setPassword2(e.target.value)} />
                 <div className='register-position-container'>
-                    <select className='register-countries-select' onChange={e => setCountry(e.target.value)}>
+                    <select className='register-countries-select' onChange={e => setCountry({ iso2: e.target.value, id: -1, name: '' })}>
                         {
-                            countries.map(country => <option key={country} value={country}>
-                                {country}
+                            countries.map(country => <option key={country.id} value={country.iso2}>
+                                {country.name}
                             </option>)
                         }
                     </select>
-                    <select className='register-states-select' onChange={e => setState(e.target.value)}>
+                    <select className='register-states-select' onChange={e => setState({ iso2: e.target.value, id: -1, name: '' })}>
                         {
-                            states.map(state => <option key={state} value={state}>
-                                {state}
+                            states.map(state => <option key={state.id} value={state.iso2}>
+                                {state.name}
                             </option>)
                         }
                     </select>

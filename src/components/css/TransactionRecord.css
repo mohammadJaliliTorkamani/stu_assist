@@ -1,0 +1,11 @@
+.transaction-record-row-even {
+    background-color: rgb(246, 246, 246);
+    height: 35px;
+
+}
+
+.transaction-record-row-odd {
+    background-color: white;
+    height: 35px;
+
+}

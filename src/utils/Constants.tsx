@@ -43,7 +43,9 @@ export const LINK_BLOGS_RECENT_POSTS = "https://stu-assist.ir/api/blog/new_blogs
 export const LINK_ABOUT_US = "https://stu-assist.ir/api/utils/about_us.php"
 export const LINK_EMBASSIES = "https://stu-assist.ir/api/services/embassy/embassies.php"
 export const LINK_GUEST_PROFILE = "https://stu-assist.ir/api/user/guest_profile.php"
-export const LINK_COUTNIES_STATES = "https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/states.json"
+export const LINK_COUNTRIES = "https://api.countrystatecity.in/v1/countries"
+export const LINK_GEO_API = "https://stu-assist.ir/api/utils/geo_api.php"
+export const LINK_STATES_OF_A_COUNTRY = (country_code: string) => `https://api.countrystatecity.in/v1/countries/${country_code}/states`
 
 export const contactLinks = [
   {

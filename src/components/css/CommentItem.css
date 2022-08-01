@@ -67,12 +67,12 @@
     padding-top: 1rem;
 }
 
-.comment-item-header-text-container-name{
+.comment-item-header-text-container-name {
     text-decoration: none;
     color: black;
 }
 
-.comment-item-options-container{
+.comment-item-options-container {
     margin-top: 1rem;
     direction: ltr;
     display: flex;
@@ -80,20 +80,20 @@
     align-items: flex-start;
 }
 
-.comment-item-options-item-image{
+.comment-item-options-item-image {
     width: 20px;
     height: 20px;
     margin: 10px;
     cursor: pointer;
 }
 
-.comment-item-report-cross{
+.comment-item-report-cross {
     width: 20px;
     height: 20px;
     cursor: pointer;
 }
 
-.comment-item-report-text{
+.comment-item-report-text {
     padding: 1rem;
     border-radius: 4px;
     border: solid 1px rgb(227, 227, 227);
@@ -102,7 +102,7 @@
     height: 8rem;
 }
 
-.comment-item-like-text{
+.comment-item-like-text {
     direction: rtl;
     display: flex;
     flex-direction: row;
@@ -110,13 +110,13 @@
     justify-content: baseline;
 }
 
-.comment-item-report-inner-container{
+.comment-item-report-inner-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.comment-item-report-container{
+.comment-item-report-container {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -124,6 +124,10 @@
     direction: rtl;
     height: 15rem;
     width: 30rem;
+}
+
+.topic-report-text {
+    resize: none;
 }
 
 @media screen and (max-width: 960px) {
@@ -166,14 +170,14 @@
         justify-content: space-between;
     }
 
-    .comment-item-report-cross{
+    .comment-item-report-cross {
         width: 10px;
         height: 10px;
         color: black;
         cursor: pointer;
     }
-    
-    .comment-item-report-text{
+
+    .comment-item-report-text {
         padding: 1rem;
         border-radius: 4px;
         border: solid 1px rgb(227, 227, 227);
@@ -181,14 +185,14 @@
         margin-bottom: 1rem;
         height: 8rem;
     }
-    
-    .comment-item-report-inner-container{
+
+    .comment-item-report-inner-container {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
     }
-    
-    .comment-item-report-container{
+
+    .comment-item-report-container {
         display: flex;
         flex-direction: column;
         align-items: stretch;
