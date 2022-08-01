@@ -17,7 +17,7 @@ import 'react-quill/dist/quill.snow.css'
 import ReactQuill from 'react-quill';
 import Button from '../../components/tsx/Button'
 import CommentItem from '../../components/tsx/CommentItem'
-
+import moment from 'jalali-moment'
 
 interface TopicType {
     id: number,
@@ -92,6 +92,13 @@ function Topic() {
         }
         postReply(_topicId, reply, () => window.open(createTopicUrl(_hallId, _topicId), "_self"))
     }
+
+    const convertToShamsiDateTime = (dateTime: string | undefined) => {
+        if (dateTime === undefined)
+            return ""
+        return moment(dateTime, 'YYYY/MM/DD hh:mm:ss').locale('fa').format('hh:mm YYYY/MM/DD');
+    }
+
 
     useEffect(() => {
         axios.get(LINK_FORUMS_TOPIC, {
@@ -183,7 +190,7 @@ function Topic() {
                         </div>
                         <div className='topic-header-text-container-row'>
                             <div className='topic-label-key'>تاریخ ارسال : </div>
-                            <div>{topic?.postDateTime}</div>
+                            <div>{convertToShamsiDateTime(topic?.postDateTime)}</div>
                         </div>
                     </div>
                 </div>

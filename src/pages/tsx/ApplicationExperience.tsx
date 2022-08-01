@@ -32,7 +32,7 @@ function ApplicationExperience() {
     const handlePost = () => {
         if (universityName === '' || city === '' || country === '') {
             setToastStatus(ToastStatus.INFO)
-            toastMessage('لطفا تمامی موارد را تکمیل بفرمایید')
+            toastMessage('لطفا تمامی موارد را تکمیل کنید')
             return
         }
 

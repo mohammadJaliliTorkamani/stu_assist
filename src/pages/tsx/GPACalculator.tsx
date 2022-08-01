@@ -63,7 +63,7 @@ function GPACalculator() {
                     <Button title={"محاسبه"} className="calculate-button" onClick={() => {
                         if (max.toString() === '' || min.toString() === '' || grade.toString() === '') {
                             setToastStatus(ToastStatus.INFO)
-                            toastMessage('لطفا ابتدا تمامی فیلد ها را وارد کنید')
+                            toastMessage('لطفا ابتدا تمامی فیلد ها را وارد نمایید')
                         } else
                             trigger()
                     }} />
