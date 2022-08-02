@@ -85,13 +85,13 @@ function Home() {
                         link: "application-experience"
                     }}
                 />
-                <HomeOptionBox
-                    key={6}
+                <HomeOptionBox key={6}
                     page={{
                         id: 6,
-                        text: "درباره ما",
-                        link: "about-us"
-                    }} />
+                        text: "سفارت ها",
+                        link: "embassies"
+                    }}
+                />
             </div>
 
             <div className="home-recent-blog-posts-container">
