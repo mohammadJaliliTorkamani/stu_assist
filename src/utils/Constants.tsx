@@ -11,6 +11,9 @@ export const FOOTER_TEXT = "تمامی حقوق مادی و معنوی محفو�
 
 export const BASE_URL = "https://stu-assist.ir/"
 
+
+export const DONATION_LINK = 'https://idpay.ir/stu-assist'
+
 export const LINK_LOGIN = 'https://stu-assist.ir/api/authentication/login.php'
 export const LINK_REGISTER = 'https://stu-assist.ir/api/authentication/register.php'
 export const LINK_OTP = 'https://stu-assist.ir/api/authentication/otp_verification.php'

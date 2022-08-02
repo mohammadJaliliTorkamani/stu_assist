@@ -7,6 +7,7 @@ import '../css/Header.css'
 import React from 'react'
 import Button from "./Button";
 import MenuItem from "./MenuItem";
+import { DONATION_LINK } from "../../utils/Constants";
 
 function Header() {
     const [token, setToken] = useLocalStorage('token', null)
@@ -17,9 +18,12 @@ function Header() {
 
     return (
         <div className="nav-bar">
-            <Link className="profile-button" to={!isUser ? 'login' : 'profile'} style={{ textDecoration: 'none' }}>
-                <Button title={!isUser ? "ورود / ثبت نام" : "حساب کاربری"} onClick={e => null} />
-            </Link>
+            <div className="header-buttons-container">
+                <Link className="profile-button" to={!isUser ? 'login' : 'profile'} style={{ textDecoration: 'none' }}>
+                    <Button title={!isUser ? "ورود / ثبت نام" : "حساب کاربری"} onClick={e => null} />
+                </Link>
+                <a className='donate-button' href={DONATION_LINK} target='_blank' rel="noreferrer" >کمک مالی به سامانه</a>
+            </div>
             <div className='menu-icon' onClick={e => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                 <i className={isMobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'} style={{ color: 'black' }} />
             </div>
@@ -53,6 +57,11 @@ function Header() {
                         }
                     </li>
                     <li>
+                        <a href={DONATION_LINK} target='_blank' className='nav-links-mobile-blue' onClick={e => setIsMobileMenuOpen(false)} rel="noreferrer">
+                            کمک مالی به سامانه
+                        </a>
+                    </li>
+                    <li>
                         <Link to={!isUser ? 'login' : 'profile'} className='nav-links-mobile' onClick={e => setIsMobileMenuOpen(false)}>
                             {!isUser ? "ورود / ثبت نام" : "حساب کاربری"}
                         </Link>
@@ -68,7 +77,7 @@ function Header() {
                     <div className='navbar-logo-text'>Stu-Assist</div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

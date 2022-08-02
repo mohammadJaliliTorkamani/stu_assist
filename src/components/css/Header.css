@@ -22,6 +22,7 @@
   text-decoration: none;
 
 }
+
 .navbar-logo-icon {
   background: url('/public/assets/64_64.ico');
   width: 35px;
@@ -41,7 +42,7 @@
 
 .nav-menu {
   display: grid;
-  grid-template-columns: repeat(6, auto);
+  grid-template-columns: repeat(7, auto);
   grid-gap: 10px;
   list-style: none;
   text-align: center;
@@ -65,7 +66,7 @@
 .nav-links:hover {
   background-color: rgb(238, 238, 238);
   border-radius: 3px;
-  color:black;
+  color: black;
   transition: all 0.2s ease-out;
 }
 
@@ -74,6 +75,10 @@
 }
 
 .nav-links-mobile {
+  display: none;
+}
+
+.nav-links-mobile-blue {
   display: none;
 }
 
@@ -90,6 +95,39 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+}
+
+.header-buttons-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.donate-button {
+  --primary: rgb(70, 181, 255);
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-radius: 10rem;
+  max-height: 4rem;
+  outline: none;
+  border: none;
+  font-size: 1em;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  border: 1px solid var(--primary);
+  align-items: center;
+  background-color: var(--primary);
+  text-decoration: none;
+}
+
+.donate-button:hover {
+  transition: all 0.23s ease-out;
+  background-color: white;
+  color: var(--primary);
+  border: 1px solid var(--primary);
 }
 
 @media screen and (max-width: 960px) {
@@ -180,7 +218,7 @@
     text-align: center;
     padding: 1.5rem;
     margin: 2rem auto;
-    border-radius: 4px;
+    border-radius: 10rem;
     width: 80%;
     background: green;
     text-decoration: none;
@@ -194,7 +232,32 @@
     transition: 250ms;
   }
 
+  .nav-links-mobile-blue {
+    --primary: rgb(70, 181, 255);
+    display: block;
+    text-align: center;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    border-radius: 10rem;
+    width: 80%;
+    background: var(--primary);
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+  }
+
+  .nav-links-mobile-blue:hover {
+    --primary: rgb(70, 181, 255);
+    background: #fff;
+    color: var(--primary);
+    transition: 250ms;
+  }
+
   .profile-button {
+    display: none;
+  }
+
+  .donate-button {
     display: none;
   }
 }
