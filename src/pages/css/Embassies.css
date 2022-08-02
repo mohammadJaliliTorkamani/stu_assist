@@ -1,0 +1,50 @@
+.embassies-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: calc(100vh - 160px);
+    padding: 1rem 1.5rem;
+    direction: rtl;
+}
+
+.embassies-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.embassies-table-body {
+    display: table;
+    width: 100%;
+}
+
+.embassies-table-row {
+    background: green;
+}
+
+.embassies-table-header {
+    color: white;
+    padding: 0.5rem 1.2rem;
+}
+
+.embassies-search-input {
+    height: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 1.5rem;
+    color: green;
+    width: 100%;
+    font-size: 1em;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 4px;
+}
+
+.embassies-search-input:focus {
+    outline: none !important;
+    border-color: #71ce71;
+    box-shadow: 0 0 10px #71ce71;
+}

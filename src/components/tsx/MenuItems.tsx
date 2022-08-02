@@ -21,6 +21,9 @@ export const MenuItems = [
                 {
                     title: 'دارالترجمه های رسمی',
                     path: '/translation-offices',
+                }, {
+                    title: 'سفارت ها',
+                    path: '/embassies',
                 }
             ]
         }, {
@@ -54,9 +57,6 @@ export const MenuItems = [
                                 path: "https://karapost.com/",
                             }
                         ]
-                    }, {
-                        title: 'سفارت ها',
-                        submenu: []
                     }, {
                         title: 'ویزامتریک آلمان',
                         path: 'https://www.visametric.com/iran/Germany/fa',

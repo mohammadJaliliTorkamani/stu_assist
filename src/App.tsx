@@ -24,6 +24,7 @@ import Header from './components/tsx/Header';
 import Footer from './components/tsx/Footer';
 import { AntiProtectedRoute } from './components/tsx/AntiProtectedRoute';
 import Register from './pages/tsx/Register';
+import Embassies from './pages/tsx/Embassies';
 
 function App() {
   const [showHeaderFooter, setShowHeaderFooter] = useState(true)
@@ -58,6 +59,7 @@ function App() {
         <Route path="forums/:hallId/:topicId" element={<Topic />} />
         <Route path="blogs" element={<Blogs />} />
         <Route path="blogs/:postId" element={<BlogPost />} />
+        <Route path="embassies" element={<Embassies />} />
         <Route path="create-topic" element={
           <ProtectedRoute>
             <CreateTopic />

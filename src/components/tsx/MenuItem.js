@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { LINK_EMBASSIES } from "../../utils/Constants";
 
 import Dropdown from "./DropDown";
 import '../css/MenuItem.css'
@@ -19,12 +18,6 @@ const MenuItem = ({ items, depthLevel, onClick, externalLinks = false }) => {
     };
     document.addEventListener("mousedown", handler);
     document.addEventListener("touchstart", handler);
-    if (items.title === 'سفارت ها') {
-      axios
-        .get(LINK_EMBASSIES)
-        .then(response => items.submenu = response.data.data)
-        .catch(error => alert(JSON.stringify(error.response.data.message)))
-    }
     return () => {
       // Cleanup the event listener
       document.removeEventListener("mousedown", handler);

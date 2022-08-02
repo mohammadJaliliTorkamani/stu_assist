@@ -1,0 +1,26 @@
+.embassy-row-even {
+    height: 35px;
+    background-color: white;
+}
+
+.embassy-row-odd {
+    height: 35px;
+    background-color: rgb(246, 246, 246);
+}
+
+.embassy-column-text {
+    text-align: center;
+    direction: ltr;
+    height: 35px;
+    padding: 1rem 1.5rem;
+}
+
+.embassy-column-image{
+    width: 80px;
+    height: 40px;
+}
+
+.embassy-link{
+    color:green;
+    text-decoration: none;
+}
