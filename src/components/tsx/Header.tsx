@@ -26,7 +26,7 @@ function Header() {
             </div>
             <div className='menu-icon' onClick={e => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                 <i className={isMobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'} style={{ color: 'black' }} />
-            </div>
+            </div> 
             <div className="header-options-container">
                 <ul className={isMobileMenuOpen ? 'nav-menu active' : 'nav-menu'}>
                     {isUser && <li className='nav-item'>

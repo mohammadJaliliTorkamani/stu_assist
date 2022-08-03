@@ -1,18 +1,32 @@
-name: CI -> Deploy to My website
+name: CI -> Deploy to STU-ASSIST.ir website
 on:
   push:
-    branches: [ master, Development ]
+    branches: [ master ]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env: 
+          CI: false
     steps:
       - uses: actions/checkout@v2
-      # Here is the deployment action
-      - name: Upload from public_html via FTP
-        uses: airvzxf/ftp-deployment-action@latest
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 17.1.0
+      - run: npm install --global yarn
+      - run: yarn
+      - run: yarn build
+      # - uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+      #   with:
+      #     ftp_host: ${{ secrets.FTP_SERVER }}
+      #     ftp_username: ${{ secrets.FTP_USERNAME }}
+      #     ftp_password: ${{ secrets.FTP_PASSWORD }}
+      #     local_source_dir: build/assets/"
+      #     dist_target_dir: "./"
+      - uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ${{ secrets.FTP_SERVER }}
-          user: ${{ secrets.FTP_USERNAME }}
+          username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local_dir: "./public_html"
-          delete: "false"
+          local-dir: "./build/"
+          dry-run: true
+          server-dir: "./public_html/"
