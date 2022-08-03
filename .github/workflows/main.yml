@@ -15,7 +15,6 @@ jobs:
       - run: npm install --global yarn
       - run: yarn
       - run: yarn build
-      - run: ls ./build
       # - uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
       #   with:
       #     ftp_host: ${{ secrets.FTP_SERVER }}
@@ -29,5 +28,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: "./build/"
-          server-dir: "./"
+          server-dir: "./public_html/"
           log-level: verbose
