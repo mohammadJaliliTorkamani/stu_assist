@@ -1,13 +1,17 @@
-name: CI -> Deploy to My website
+name: CI -> Deploy to STU-ASSIST.ir website
 on:
   push:
-    branches: [ master, Development ]
+    branches: [ master ]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # Here is the deployment action
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 17.1.0
+      - run: npm install --global yarn
+      - run: yarn build
       - name: Upload from public_html via FTP
         uses: airvzxf/ftp-deployment-action@latest
         with:
