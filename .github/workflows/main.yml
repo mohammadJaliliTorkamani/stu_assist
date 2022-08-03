@@ -15,13 +15,11 @@ jobs:
       - run: npm install --global yarn
       - run: yarn
       - run: yarn build
-  deploy:
-    runs-on: ubuntu-latest
-    steps:  
+      - name: Upload from public_html via FTP
       - uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ${{ secrets.FTP_SERVER }}
-          user: ${{ secrets.FTP_USERNAME }}
+          username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: "./build/"
           server-dir: "./public_html/"
