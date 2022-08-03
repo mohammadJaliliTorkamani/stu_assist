@@ -11,6 +11,7 @@ jobs:
         with:
           node-version: 17.1.0
       - run: npm install --global yarn
+      - run: yarn
       - run: yarn build
       - name: Upload from public_html via FTP
         uses: airvzxf/ftp-deployment-action@latest
