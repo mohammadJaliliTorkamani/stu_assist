@@ -16,11 +16,11 @@ jobs:
       - run: yarn
       - run: yarn build
       - name: Upload from public_html via FTP
-        uses: airvzxf/ftp-deployment-action@latest
+      - uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local_dir: "./build"
-          remote_dir: "./public_html"
+          local-dir: "./build/"
+          server-dir: "./public_html/"
           delete: "false"
