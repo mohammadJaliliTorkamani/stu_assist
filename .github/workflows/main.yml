@@ -21,5 +21,5 @@ jobs:
           ftp_host: ${{ secrets.FTP_SERVER }}
           ftp_username: ${{ secrets.FTP_USERNAME }}
           ftp_password: ${{ secrets.FTP_PASSWORD }}
-          local-source-dir: "./build/"
-          dist-target-dir: "./public_html/"
+          local_source_dir: "./build/"
+          dist_target_dir: "./public_html/"
