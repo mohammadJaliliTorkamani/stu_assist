@@ -16,10 +16,17 @@ jobs:
       - run: yarn
       - run: yarn build
     
-      - uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+      # - uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+      #   with:
+      #     ftp_host: ${{ secrets.FTP_SERVER }}
+      #     ftp_username: ${{ secrets.FTP_USERNAME }}
+      #     ftp_password: ${{ secrets.FTP_PASSWORD }}
+      #     local_source_dir: build/assets/"
+      #     dist_target_dir: "./"
+      - uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          ftp_host: ${{ secrets.FTP_SERVER }}
-          ftp_username: ${{ secrets.FTP_USERNAME }}
-          ftp_password: ${{ secrets.FTP_PASSWORD }}
-          local_source_dir: build/assets/"
-          dist_target_dir: "./"
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local_dir: "./build/assets/"
+          server_dir: "./"
