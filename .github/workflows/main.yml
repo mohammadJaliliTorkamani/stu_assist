@@ -15,9 +15,7 @@ jobs:
       - run: npm install --global yarn
       - run: yarn
       - run: yarn build
-  deployment:
-    runs-on: ubuntu-latest
-    steps:
+    
       - uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -25,4 +23,3 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: "./build/"
           server-dir: "./public_html/"
-          delete: "false"
